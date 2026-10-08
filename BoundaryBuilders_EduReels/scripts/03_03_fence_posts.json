@@ -7,11 +7,11 @@
  "stretch": 1.2,
  "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 12},
  "photos": {
-  "B": {"file": "photos/jpg/15T6JB69-uMFC4X0OGmW5XNqrrlOnMS4x.jpg", "driveId": "15T6JB69-uMFC4X0OGmW5XNqrrlOnMS4x", "name": "IMG_2234.jpg", "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)", "w": 4032, "h": 2268, "note": "also stands in for the spec's A (IMG_2411.jpg, 8064x4536, too large for the Drive connector): hook and diagram inset"},
+  "B": {"file": "photos/jpg/15T6JB69-uMFC4X0OGmW5XNqrrlOnMS4x.jpg", "driveId": "15T6JB69-uMFC4X0OGmW5XNqrrlOnMS4x", "name": "IMG_2234.jpg", "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)", "w": 4032, "h": 2268, "note": "also stands in for the spec's A (IMG_2411.jpg, 8064x4536, too large for the Drive connector): hook (full-bleed 9:16 crop on the right post, photo x about 2300-3575) and diagram inset"},
   "C": {"file": "photos/jpg/1nTEOI2KhDUFDH2VlxWsWnysQTZpCIEcR.jpg", "driveId": "1nTEOI2KhDUFDH2VlxWsWnysQTZpCIEcR", "name": "IMG_2233 2.jpg", "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)", "w": 4032, "h": 2268}
  },
  "beats": [
-  {"type": "hook", "photo": "B", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.08, 0, 0]},
+  {"type": "hook", "photo": "B", "layout": "full", "pos": "83.4% 50%", "kb": {"from": [1.0, 0, 0], "to": [1.06, 0, 0]},
    "headline": ["THIS IS HOW A", "FENCE *GOES IN*"],
    "vo": "This is how a fence goes in. It starts with the *posts*."},
   {"type": "photo", "photo": "C", "layout": "band", "kb": {"from": [1.04, 30, 0], "to": [1.08, -20, 0]}, "wipe": true,

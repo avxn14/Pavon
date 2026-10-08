@@ -25,10 +25,13 @@ Object.assign(DIAGRAMS, {
     });
   },
   // Post + footing with gold dimension arrows: 6 FT above ground, 2-3 FT below, gravel at the bottom, RULE OF THUMB tag.
-  // Geometry (band px): ground line GY 420, post centre PX 600 (post x 574-626, top 70), footing x 538-662 crowned to y 390, gravel y 680-720, dims at x 710.
-  // Free zones for labels: left air x 110-545 / y 170-410; left soil x 110-530 / y 440-560 (inset top at 576); top strip y -58..32 (frame 272-362) left of the logo (x 740+).
+  // Geometry (band px): ground line GY 420, post centre PX 600 (post x 574-626, top 70), footing x 538-662 crowned to y 390, dims at x 710.
+  // part 'depth' (video 01, approved): footing to y 720 (gravel 680-720), unchanged. parts 'full' / 'water' (video 03): the buried part is drawn
+  // to scale with the numbers (160 px below grade vs 350 above = about 2.7 ft on 6 ft), footing to y 540, gravel 540-580, which also frees the soil
+  // right of the inset (x 430-910, y 610-710) for the STEEL POSTS footnote. Free zones: left air x 110-545 / y 170-410; left soil x 110-530 / y 440-560 (16:9 inset top at 580).
   post_depth(svg, t0, opts) {
-    opts = opts || {}; const GY = 420, PX = 600, TOP = 70, BOT = GY + 300;
+    opts = opts || {}; const v03 = opts.part === 'full' || opts.part === 'water';
+    const GY = 420, PX = 600, TOP = 70, BOT = GY + (v03 ? 160 : 300);
     const tb = opts.cont ? t0 - 20 : t0;   // cont: the base drawing is already built when the beat starts (continuation of the previous beat)
     const soil = sv('rect', { x: 0, y: GY, width: 1080, height: 782 - GY, fill: '#1c1c1c' }, svg); fadeIn(soil, tb, .3);
     const gline = sv('line', { x1: 0, y1: GY, x2: 1080, y2: GY, stroke: '#434343', 'stroke-width': 4 }, svg); fadeIn(gline, tb, .3);
@@ -40,9 +43,7 @@ Object.assign(DIAGRAMS, {
     const d23 = dimArrow(svg, PX + 110, GY + 6, BOT, '2-3 FT', tb + 1.7, 'dim23');
     // video 03 'full' says "Rule of thumb" in its first second, so the tag comes in with the words there; 'depth' (video 01) keeps its original time.
     const tag = svText(svg, 110, 150, 'RULE OF THUMB', 40, GOLD, 'start', 'tag'); slideIn(tag, opts.part === 'full' ? t0 + .3 : tb + 2.1);
-    // edu.html's ".diagram text{fill}" CSS overrides the fill attribute, so GOLD labels render off-white. For video 03's parts only, an inline style
-    // makes the dimension numbers and the tag gold as the brief asks; 'depth' (video 01, approved) is left exactly as it rendered.
-    if (opts.part === 'full' || opts.part === 'water') [d6.querySelector('text'), d23.querySelector('text'), tag].forEach(e => { e.style.fill = GOLD; });
+    void d6; void d23;   // (svText now sets the fill inline, so the dimension numbers and the tag render gold in every part)
     const blueArrow = (d, t) => { const p = sv('path', { d, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg); p.style.filter = 'drop-shadow(0 3px 8px rgba(0,0,0,.5))'; drawPath(p, t, .5); return p; };
     const headD = (x1, y1, dx, dy, s) => { const a = Math.atan2(dy, dx); return ` M${(x1 - s * Math.cos(a - .5)).toFixed(1)} ${(y1 - s * Math.sin(a - .5)).toFixed(1)} L${x1} ${y1} L${(x1 - s * Math.cos(a + .5)).toFixed(1)} ${(y1 - s * Math.sin(a + .5)).toFixed(1)}`; };
     if (opts.part === 'full') {   // video 03 beat 3: WOOD POST, about 1/3 in the ground, 6 ft fence 2-3 ft deep, steel posts note
@@ -53,12 +54,12 @@ Object.assign(DIAGRAMS, {
       const buried = sv('rect', { x: PX - 26, y: GY + 2, width: 52, height: BOT - 52 - GY - 2, fill: GOLD, opacity: .85, rx: 3 }, svg); fadeIn(buried, t0 + 2.3, .4);
       const l2 = svText(svg, 110, 500, '6 FT FENCE:', 40, OFF, 'start', 'sixft'); slideIn(l2, t0 + 3.6);           // in the soil, next to the 2-3 FT arrow, above the inset
       const l2b = svText(svg, 110, 550, '2-3 FT DEEP', 40, OFF, 'start', 'sixft'); slideIn(l2b, t0 + 4.4);
-      const l3 = svText(svg, 110, -18, 'STEEL POSTS:', 40, OFF, 'start', 'steel'); slideIn(l3, t0 + 3.0);           // footnote in the strip above the band (frame y 272-362), left of the logo
-      const l3b = svText(svg, 110, 32, "MAKER'S FOOTING SPEC", 40, OFF, 'start', 'steel'); slideIn(l3b, t0 + 3.15);
+      const l3 = svText(svg, 430, 650, 'STEEL POSTS:', 40, OFF, 'start', 'steel'); slideIn(l3, t0 + 3.0);           // footnote in the soil below the footing, right of the inset (x 430-910, frame y 940-1040; left of x 920)
+      const l3b = svText(svg, 430, 700, "MAKER'S FOOTING SPEC", 40, OFF, 'start', 'steel'); slideIn(l3b, t0 + 3.15);
     }
     if (opts.part === 'water') {   // video 03 beat 4: gravel drains, crowned top sheds rain
       const gglow = gravel(svg, PX - 70, PX + 70, BOT - 40, BOT, 9); [...gglow.children].forEach(c => { c.setAttribute('fill', GOLD); c.setAttribute('opacity', 1); }); fadeIn(gglow, t0 + .3, .4);   // the same seeded gravel dots light up gold
-      const g1 = svText(svg, 110, 520, 'GRAVEL DRAINS', 40, OFF, 'start', 'gd'); slideIn(g1, t0 + .4);
+      const g1 = svText(svg, 110, 548, 'GRAVEL DRAINS', 40, OFF, 'start', 'gd'); slideIn(g1, t0 + .4);   // level with the gravel, 22 px above the inset
       [[PX - 35, 0], [PX, .1], [PX + 35, .2]].forEach(([x, dl]) => blueArrow(`M${x} ${BOT-50} L${x} ${BOT+28}` + headD(x, BOT + 28, 0, 1, 20), t0 + 1.0 + dl));   // water down through the gravel
       const crown = sv('path', { d: `M${PX-62} ${GY-8} Q${PX} ${GY-30} ${PX+62} ${GY-8}`, fill: 'none', stroke: GOLD, 'stroke-width': 8, 'stroke-linecap': 'round' }, svg); drawPath(crown, t0 + 2.4, .5);   // the crown lights up
       const g2 = svText(svg, 110, 350, 'CROWN SHEDS RAIN', 40, OFF, 'start', 'cr'); slideIn(g2, t0 + 2.5);
