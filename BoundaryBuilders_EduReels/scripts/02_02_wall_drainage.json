@@ -1,0 +1,41 @@
+{
+ "id": "02_wall_drainage",
+ "title": "Why retaining walls fail: water",
+ "category": "RETAINING WALLS",
+ "series": "WALL TIP #1",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 6},
+ "photos": {
+  "A": {"file": "photos/jpg/1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2.jpg", "driveId": "1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2", "name": "IMG_3327.jpg", "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)", "w": 1104, "h": 1515},
+  "B": {"file": "photos/jpg/1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm.jpg", "driveId": "1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm", "name": "IMG_3329.jpg", "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)", "w": 1141, "h": 1545}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "full", "kb": {"from": [1.0, 45, 0], "to": [1.0, -45, 0]}, "builtRight": true,
+   "blurs": [{"x": 548, "y": 684, "w": 152, "h": 108, "r": 14}],
+   "headline": ["*#1* REASON", "WALLS *FAIL*"],
+   "vo": "Number one reason walls fail? Water. Here's how a good wall handles it."},
+  {"type": "diagram", "diagram": "wall_drainage", "opts": {"part": 1}, "fill": "A", "inset": "A", "wipe": true,
+   "headline": ["*WATER* PRESSURE", "BREAKS WALLS"],
+   "vo": "Rain soaks the soil behind the wall, and that *water pushes* on top of the soil load."},
+  {"type": "diagram", "diagram": "wall_drainage", "opts": {"part": 2}, "cont": true, "fill": "A", "inset": "A",
+   "headline": ["DRAIN ROCK", "+ *DRAIN PIPE*"],
+   "vo": "A well-built block wall typically has about *twelve inches of drain rock* behind it and a *perforated pipe* at the base."},
+  {"type": "diagram", "diagram": "wall_drainage", "opts": {"part": 3}, "cont": true, "fill": "A", "inset": "A",
+   "headline": ["THE PIPE NEEDS", "AN *OUTLET*"],
+   "vo": "And that pipe has to drain somewhere *approved,* never onto your *neighbour.*"},
+  {"type": "photo", "photo": "B", "layout": "full", "kb": {"from": [1.0, 90, 0], "to": [1.03, -90, 0]}, "wipe": true, "builtRight": true,
+   "card": {"mark": "grey", "row": "BULGING? *LEANING?*", "small": "WEEPING WATER? GET AN ENGINEER"},
+   "vo": "Wall *bulging, leaning* or weeping water? Have an *engineer* take a look."},
+  {"type": "end", "photo": "B", "layout": "band", "pos": "50% 78%", "kb": {"from": [1.12, 0, 0], "to": [1.16, 0, 0]}, "wipe": true,
+   "prompt": "SAVE THIS FOR RAINY SEASON",
+   "vo": "Save this for rainy season."}
+ ],
+ "cover": {"photo": "A", "layout": "full", "title": ["WALL", "*DRAINAGE*"]},
+ "post": {
+  "date": "2026-10-13", "time": "10:00",
+  "caption": "The number one reason retaining walls fail in the Lower Mainland is water. A well-built block wall typically has about 12 inches of drain rock behind it and a perforated pipe at the base that drains to an approved outlet. Bulging, leaning or weeping? Have an engineer take a look.",
+  "hashtags": ["#boundarybuilders", "#retainingwall", "#drainage", "#hardscaping", "#lowermainland"],
+  "alt": "A slab walkway between two capped block retaining walls, an animated cross-section showing water pressure behind a wall and the drain rock and perforated pipe that relieve it, and a low angle on the block courses and caps of a finished retaining wall."
+ }
+}
