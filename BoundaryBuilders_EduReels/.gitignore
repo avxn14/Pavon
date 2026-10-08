@@ -25,3 +25,9 @@ final/
 # or says otherwise. Remove these two lines then.
 BRIEF.txt
 STATUS.txt
+
+# TEMPORARY, same reason: Winter Reel reference files carry the old promo copy.
+ad2.html
+script2.json
+plan2.json
+winter_ref/
