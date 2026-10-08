@@ -171,11 +171,33 @@ function buildCaps(vo, skip) {
   vo.forEach((line, li) => {
     if ((skip || []).includes(li)) return;
     goldOpen = false;
-    const raw = line.text.replace(/—/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
-    const n = raw.length, nChunks = Math.ceil(n / 3), per = Math.ceil(n / nChunks);
-    const chunks = []; for (let i = 0; i < n; i += per) chunks.push(raw.slice(i, i + per));
-    const usable = Math.max(0.6, line.dur - 0.12); let t = line.start;
-    for (const ch of chunks) { const d = usable * (ch.length / n); CAPS.push({ t0: t, t1: t + d + 0.04, html: goldify(ch.join(' ')) }); t += d; }
+    const raw = line.text.replace(/\u2014/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+    const n = raw.length, per = Math.ceil(n / Math.ceil(n / 3));
+    // gold flags per word, so a *gold phrase* is never split across two pills
+    const g = [], closes = []; let open = false;
+    raw.forEach(w => { const starts = w.startsWith('*'), cl = /\*[^\w*]*$/.test(w) && !(starts && w.length === 1); g.push(open || starts); closes.push(cl); if (starts && !cl) open = true; if (cl) open = false; });
+    const chunks = []; let i = 0;
+    while (i < n) {
+      let j = Math.min(n, i + per);
+      if (j < n && g[j - 1] && !closes[j - 1]) {   // the cut would split a gold phrase: take the whole phrase, or start it in the next pill
+        let e = j - 1; while (e < n - 1 && !closes[e]) e++;
+        let r = j - 1; while (r > i && g[r - 1] && !closes[r - 1]) r--;
+        if (e + 1 - i <= 5) j = e + 1; else if (r > i) j = r; else j = Math.min(n, i + 5);
+      }
+      if (n - j === 1 && j - i < 5) j = n;         // no one-word orphan at the end
+      chunks.push(raw.slice(i, j)); i = j;
+    }
+    // timing: spread the chunks over the VOICED part of the line only (plan.vo[].speech from render.py), never starting inside a pause
+    const segs = (line.speech && line.speech.length) ? line.speech : [[0, line.dur]];
+    const voiced = segs.reduce((a, sg) => a + (sg[1] - sg[0]), 0);
+    const mapT = v => {   // voiced-time offset -> time in the file; a chunk that would start just before a pause waits for the voice to resume
+      let r = v;
+      for (let k = 0; k < segs.length; k++) { const [a, b] = segs[k]; if (r < b - a - 1e-6) { const t = a + r; return (b - t < .30 && k + 1 < segs.length) ? segs[k + 1][0] : t; } r -= b - a; }
+      return segs[segs.length - 1][1];
+    };
+    let cum = 0; const starts = [];
+    chunks.forEach((ch, k) => { starts.push(line.start + mapT(cum) + (k ? .06 : 0)); cum += voiced * ch.length / n; });
+    chunks.forEach((ch, k) => { const t0 = starts[k], t1 = k + 1 < chunks.length ? starts[k + 1] : line.start + line.dur + .04; if (t1 > t0) CAPS.push({ t0, t1, html: goldify(ch.join(' ')) }); else goldify(ch.join(' ')); });
   });
 }
 function capTick(t) {

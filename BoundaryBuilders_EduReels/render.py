@@ -26,6 +26,21 @@ def audio_duration(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip()
     return float(out) if out else None
 
+def speech_segments(path, dur):
+    """Voiced spans [[s,e],...] of a VO file (ffmpeg silencedetect, -35 dB, pauses >= 0.12 s), so captions never start inside a pause."""
+    err = subprocess.run(["ffmpeg", "-v", "info", "-nostats", "-i", path, "-af", "silencedetect=noise=-35dB:d=0.12", "-f", "null", "-"], capture_output=True, text=True).stderr
+    sil = []; cur = None
+    for line in err.splitlines():
+        if "silence_start:" in line: cur = float(line.split("silence_start:")[1].split()[0])
+        elif "silence_end:" in line and cur is not None: sil.append((cur, float(line.split("silence_end:")[1].split()[0]))); cur = None
+    if cur is not None: sil.append((cur, dur))
+    segs = []; t = 0.0
+    for a, b in sil:
+        if a - t > 0.05: segs.append([round(t, 3), round(a, 3)])
+        t = max(t, b)
+    if dur - t > 0.05: segs.append([round(t, 3), round(dur, 3)])
+    return segs or [[0.0, round(dur, 3)]]
+
 def vo_file(i):
     for ext in ("caf", "mp3"):
         f = os.path.join(HERE, "audio", "vo", f"{VID}_b{i+1}.{ext}")
@@ -44,7 +59,7 @@ def plan():
         if d is None: sys.exit(f"missing VO for beat {i+1}: audio/vo/{VID}_b{i+1}.caf (run tools/make.sh to see which beats need new VO)")
         length = max(mn, lead + d + tail)
         start = t + lead
-        vo.append({"start": round(start, 3), "dur": round(d, 3), "text": b["vo"], "beat": i})
+        vo.append({"start": round(start, 3), "dur": round(d, 3), "text": b["vo"], "beat": i, "speech": speech_segments(f, d) if f else None})
         if b["type"] in ("hook", "end"): skipcap.append(i)
         if b.get("wipe") and i > 0: sfx.append({"file": "whoosh", "start": max(0.0, t - 0.26), "vol": 0.5})
         if b.get("card") or b["type"] == "end": sfx.append({"file": "hit", "start": t + (0.12 if b["type"] == "end" else 0.32), "vol": 0.4})
