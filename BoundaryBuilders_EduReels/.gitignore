@@ -26,3 +26,5 @@ renders/*.fifo
 renders/*_preview/
 renders/*_video.mp4
 renders/*.log
+__pycache__/
+*.pyc
