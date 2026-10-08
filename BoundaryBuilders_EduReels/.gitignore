@@ -19,3 +19,10 @@ final/
 *.jpeg
 *.heic
 *.HEIC
+
+# render scratch
+renders/chrome-profile*/
+renders/*.fifo
+renders/*_preview/
+renders/*_video.mp4
+renders/*.log
