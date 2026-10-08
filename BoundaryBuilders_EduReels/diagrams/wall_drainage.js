@@ -1,7 +1,8 @@
 /* wall_drainage (video 02): a block retaining wall section. opts.part = 1, 2 or 3; opts.cont continues the previous beat.
    part 1: the soil behind the wall fills with BLUE water, blue pressure arrows push on the wall, the wall shakes about 2 px.
-   part 2: a drain-rock zone (12 IN, TYPICAL) fills in behind the wall, a perforated pipe appears at the base, the water arrows turn down into it.
-   part 3: the pipe outlet arrow goes to APPROVED OUTLET (gold tick); the arrow toward NEIGHBOUR gets a grey X.
+   part 2: a drain-rock zone (12 IN, TYPICAL) fills in behind the wall and lights up gold (gold outline + gold gravel, as video 03's gravel does),
+           a perforated pipe (gold dashed ring) appears at the base, the water arrows turn down into it.
+   part 3: the pipe outlet arrow goes to APPROVED OUTLET (gold tick); the part-2 down-arrows clear, then the arrow toward NEIGHBOUR gets a grey X.
    Band coordinates 1080x782. The diagram inset (photo A, 320x439) covers x 72-392, y 321-760, so the section lives in the right 60% of the band
    and every label stays above y 321 on the left, inside x 65-1015, and left of x 920 below y 670. */
 Object.assign(DIAGRAMS, {
@@ -41,8 +42,9 @@ Object.assign(DIAGRAMS, {
     }
 
     /* ---- base: ground, retained soil, levelling pad, block wall with cap (builds with tb; animated in beat 2 only) ---- */
-    const ground = sv('rect', { x: 0, y: FG, width: 1080, height: 782 - FG, fill: GREY }, svg); fadeIn(ground, tb, .3);
-    const fline = sv('line', { x1: 0, y1: FG, x2: WX, y2: FG, stroke: MID, 'stroke-width': 4 }, svg); fadeIn(fline, tb, .3);
+    const GX = 400;                                      // ground starts right of the inset (x 72-392): nothing drawn behind or left of it
+    const ground = sv('rect', { x: GX, y: FG, width: 1080 - GX, height: 782 - FG, fill: GREY }, svg); fadeIn(ground, tb, .3);
+    const fline = sv('line', { x1: GX, y1: FG, x2: WX, y2: FG, stroke: MID, 'stroke-width': 4 }, svg); fadeIn(fline, tb, .3);
     const soil = sv('rect', { x: WB, y: BG, width: 1080 - WB, height: 782 - BG, fill: SOIL }, svg); fadeIn(soil, tb + .1, .35);
     const bline = sv('line', { x1: WB, y1: BG, x2: 1080, y2: BG, stroke: MID, 'stroke-width': 4 }, svg); fadeIn(bline, tb + .1, .35);
     const pad = sv('g', {}, svg); sv('rect', { x: WX - 30, y: BY, width: 270, height: 46, fill: MID }, pad); gravel(pad, WX - 24, WX + 234, BY + 6, BY + 42, 11); fadeIn(pad, tb + .25, .3);
@@ -58,7 +60,7 @@ Object.assign(DIAGRAMS, {
 
     /* ---- part 1: water fills the soil behind the wall, pressure arrows, the wall shakes ---- */
     const water = sv('rect', { x: WB, y: BG + 46, width: 1080 - WB, height: BY - BG - 46, fill: 'rgba(38,126,206,.55)' }, svg); growUp(water, t1 + 1.0, 1.2);
-    const pushArrows = [];
+    const pushArrows = [], downArrows = [];
     [[350, 0], [460, .15], [570, .3]].forEach(([y, dl]) => {
       const gr = arrow(svg, `M900 ${y} L${WB + 54} ${y}`, [900, y], [WB + 54, y], BLUE, t1 + 2.0 + dl, .5);
       pushArrows.push(gr);
@@ -67,17 +69,17 @@ Object.assign(DIAGRAMS, {
     if (part >= 2) {
       /* ---- part 2: drain rock (12 IN, TYPICAL), perforated pipe at the base, water arrows turn down into it ---- */
       pushArrows.forEach(gr => tw(gr, t2 + 1.3, t2 + 1.7, { o: 0 }, EO));
-      const rock = sv('g', {}, svg); sv('rect', { x: DRX, y: BG, width: DRW, height: BY - BG, fill: MID }, rock);
-      gravel(rock, DRX + 4, DRX + DRW - 4, BG + 6, BY - 6, 21); gravel(rock, DRX + 4, DRX + DRW - 4, BG + 6, BY - 6, 33); gravel(rock, DRX + 4, DRX + DRW - 4, BG + 6, BY - 6, 47);
+      const rock = sv('g', {}, svg); sv('rect', { x: DRX + 3, y: BG + 3, width: DRW - 6, height: BY - BG - 3, fill: MID, stroke: GOLD, 'stroke-width': 5 }, rock);   // the layer being talked about lights up gold
+      [21, 33, 47].forEach(seed => { const gd = gravel(rock, DRX + 6, DRX + DRW - 6, BG + 8, BY - 6, seed); [...gd.children].forEach(c => { c.setAttribute('fill', GOLD); c.setAttribute('opacity', .9); }); });
       growUp(rock, t2 + 1.4, .9);
       CALLOUTS.dimH(svg, t2, { x0: DRX, x1: DRX + DRW, y: 200, label: '12 IN', t: 2.3, group: 'dim12' });
       const typ = svText(svg, DRX + DRW + 34, 172, 'TYPICAL', 40, OFF, 'start', 'typical'); slideIn(typ, t2 + 2.6);
       const pipe = sv('g', {}, svg);
-      sv('circle', { cx: PIPE.x, cy: PIPE.y, r: PIPE.r, fill: GREY, stroke: OFF, 'stroke-width': 5, 'stroke-dasharray': '10 7' }, pipe);
+      sv('circle', { cx: PIPE.x, cy: PIPE.y, r: PIPE.r, fill: GREY, stroke: GOLD, 'stroke-width': 6, 'stroke-dasharray': '10 7' }, pipe);   // perforations as a gold dashed ring
       sv('circle', { cx: PIPE.x, cy: PIPE.y, r: 9, fill: MID }, pipe);
       pipe.style.filter = SH; pop(pipe, t2 + 3.6);
-      arrow(svg, `M860 360 L860 560 Q860 640 ${PIPE.x + PIPE.r + 18} ${PIPE.y}`, [860, 640], [PIPE.x + PIPE.r + 18, PIPE.y], BLUE, t2 + 4.0, .6);
-      arrow(svg, `M960 450 L960 600 Q960 690 ${PIPE.x + PIPE.r + 28} ${PIPE.y + 24}`, [960, 690], [PIPE.x + PIPE.r + 28, PIPE.y + 24], BLUE, t2 + 4.15, .6);
+      downArrows.push(arrow(svg, `M860 360 L860 560 Q860 640 ${PIPE.x + PIPE.r + 18} ${PIPE.y}`, [860, 640], [PIPE.x + PIPE.r + 18, PIPE.y], BLUE, t2 + 4.0, .6));
+      downArrows.push(arrow(svg, `M960 450 L960 600 Q960 690 ${PIPE.x + PIPE.r + 28} ${PIPE.y + 24}`, [960, 690], [PIPE.x + PIPE.r + 28, PIPE.y + 24], BLUE, t2 + 4.15, .6));
       tw(water, t2 + 4.3, t2 + 5.6, { sy: .3 }, EO);   // the water drains down toward the pipe
     }
     if (part >= 3) {
@@ -89,8 +91,9 @@ Object.assign(DIAGRAMS, {
       svText(box, 522, 226, 'APPROVED', 40, OFF, 'end', 'outlet'); svText(box, 522, 266, 'OUTLET', 40, OFF, 'end', 'outlet');
       slideIn(box, t0 + 1.0);
       markTick(svg, OX, 316, t0 + 1.3);
+      downArrows.forEach(gr => tw(gr, t0 + 1.7, t0 + 2.05, { o: 0 }, EO));   // the water-into-pipe arrows clear so the NEIGHBOUR arrow, X and label sit in clear water
       arrow(svg, `M${PIPE.x + PIPE.r + 2} ${PIPE.y - 10} L850 ${PIPE.y - 10}`, [780, PIPE.y - 10], [850, PIPE.y - 10], BLUE, t0 + 2.0, .5);
-      const nb = svText(svg, 1008, 590, 'NEIGHBOUR', 40, OFF, 'end', 'neighbour'); slideIn(nb, t0 + 2.3);
+      const nb = svText(svg, 1008, 556, 'NEIGHBOUR', 40, OFF, 'end', 'neighbour'); slideIn(nb, t0 + 2.3);   // in the dark soil just above the drained water band (top at y 572), clear of the X and the rock outline
       markX(svg, 892, PIPE.y - 10, t0 + 2.5);
     }
   }

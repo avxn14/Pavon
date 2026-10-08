@@ -1,5 +1,5 @@
 {
- "id": "04_04_pavers_sinking",
+ "id": "04_pavers_sinking",
  "title": "Pavers sinking? It's usually the base",
  "category": "PAVERS",
  "series": "PAVER TIP #1",
@@ -24,13 +24,13 @@
    "note": "stands in for the spec's IMG_2938 (over the Drive connector's 6 MB limit); same patio; plain 2160x3840 downscale of the 4536x8064 original. Framed on photo rows 1560 and below (fire pit, chairs, sofa, rose bed): the house, its windows and security camera, the stacked boxes, kids' chairs and hose along the top of the photo stay out of frame"
   },
   "B": {
-   "file": "photos/jpg/1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC.jpg",
-   "driveId": "1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC",
-   "name": "IMG_2940.jpg",
-   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
-   "w": 2160,
-   "h": 3840,
-   "note": "stands in for the spec's IMG_2934 (over 6 MB): a tight band crop of IMG_2940 on the paver field and curved border in front of the sofa"
+   "file": "photos/jpg/1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R.jpg",
+   "driveId": "1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R",
+   "name": "7",
+   "folder": "north van pool (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi)",
+   "w": 1170,
+   "h": 878,
+   "note": "stands in for IMG_2934 (over the Drive connector's size limit): close view of large-format paver joints on a pool deck"
   },
   "C": {
    "file": "photos/jpg/1QRdMKw2LG2QupfRg-fYCWpc2z5LDtK_Y.jpg",
@@ -72,14 +72,14 @@
    "layout": "band",
    "kb": {
     "from": [
-     2.1,
-     -53,
-     -1617
+     1.2,
+     0,
+     0
     ],
     "to": [
-     2.3,
-     -58,
-     -1771
+     1.38,
+     0,
+     0
     ]
    },
    "wipe": true,
@@ -88,7 +88,8 @@
     "THIN, LOOSE",
     "OR *WET* BASE"
    ],
-   "vo": "Usually the base wasn't thick enough, wasn't compacted properly, or *water* got into it."
+   "vo": "Usually the base wasn't thick enough, wasn't compacted properly, or *water* got into it.",
+   "pos": "50% 100%"
   },
   {
    "type": "diagram",
@@ -200,6 +201,6 @@
    "#hardscaping",
    "#metrovancouver"
   ],
-  "alt": "A grey paver patio with a curved charcoal border, wicker seating and a round stone fire pit, a close view of its paver joints, an animated cross-section showing clay, fabric, compacted gravel base, bedding and pavers, and a round paver patio with a stone fire pit on a lawn."
+  "alt": "A paver patio with a curved border, round fire pit and wicker seating, a close view of tight joints on a large-format paver pool deck, then an animated cross-section showing clay, fabric, compacted gravel base, bedding and pavers, and a round paver patio with a fire pit on a lawn."
  }
 }
