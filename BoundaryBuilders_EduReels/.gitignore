@@ -1,0 +1,27 @@
+# Boundary Builders Edu Reels: what stays out of git.
+#
+# The owner's photos, clips, audio, rendered frames and finished videos are large
+# binaries and the owner's own work; they are never committed.
+photos/
+clips/
+frames/
+renders/
+audio/
+qa/
+final/
+*.mp4
+*.mov
+*.MP4
+*.caf
+*.mp3
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.HEIC
+
+# TEMPORARY: the repo is public, so the brief and the status file (phone number,
+# Drive IDs, Metricool IDs) stay out of git until the owner makes the repo private
+# or says otherwise. Remove these two lines then.
+BRIEF.txt
+STATUS.txt
