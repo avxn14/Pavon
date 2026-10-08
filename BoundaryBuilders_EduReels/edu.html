@@ -291,18 +291,18 @@ const DIAGRAMS = {
     const cap = sv('rect', { x: PX - 34, y: TOP - 14, width: 68, height: 16, fill: '#8a8a8a', rx: 3 }, svg); fadeIn(cap, t0 + 1.1, .3);
     dimArrow(svg, PX + 110, TOP, GY - 6, '6 FT', t0 + 1.3, 'dim6');
     dimArrow(svg, PX + 110, GY + 6, BOT, '2-3 FT', t0 + 1.7, 'dim23');
-    const tag = svText(svg, 430, 150, 'RULE OF THUMB', 40, GOLD, 'start', 'tag'); slideIn(tag, t0 + 2.1);
+    const tag = svText(svg, 110, 150, 'RULE OF THUMB', 40, GOLD, 'start', 'tag'); slideIn(tag, t0 + 2.1);
     if (opts.part === 'full') {
       const wp = svText(svg, PX - 70, TOP + 60, 'WOOD POST', 40, OFF, 'end', 'woodpost'); slideIn(wp, t0 + 1.0, 30);
-      const l1 = svText(svg, 430, 230, 'ABOUT 1/3 IN THE GROUND', 40, OFF, 'start', 'third'); slideIn(l1, t0 + 2.4);
-      const l2 = svText(svg, 430, 300, '6 FT FENCE: 2-3 FT DEEP', 40, OFF, 'start', 'sixft'); slideIn(l2, t0 + 2.7);
+      const l1 = svText(svg, 110, 230, 'ABOUT 1/3 IN THE GROUND', 40, OFF, 'start', 'third'); slideIn(l1, t0 + 2.4);
+      const l2 = svText(svg, 110, 300, '6 FT FENCE: 2-3 FT DEEP', 40, OFF, 'start', 'sixft'); slideIn(l2, t0 + 2.7);
       const l3 = svText(svg, 430, 760, "STEEL POSTS: MAKER'S FOOTING SPEC", 40, OFF, 'start', 'steel'); slideIn(l3, t0 + 3.2);
     }
     if (opts.part === 'water') {   // video 03 beat 4: gravel drains, crowned top sheds rain
       [[PX - 40, 0], [PX + 40, .12]].forEach(([x, dl]) => { const p = sv('path', { d: `M${x} ${BOT-70} L${x} ${BOT+20} M${x-14} ${BOT} L${x} ${BOT+20} L${x+14} ${BOT}`, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg); drawPath(p, t0 + 1.3 + dl, .5); });
       [[-1, 0], [1, .12]].forEach(([d, dl]) => { const x0 = PX + d * 40, x1 = PX + d * 130; const p = sv('path', { d: `M${x0} ${GY-40} Q${x0+d*40} ${GY-24} ${x1} ${GY+40} M${x1-d*22} ${GY+34} L${x1} ${GY+40} L${x1-d*6} ${GY+16}`, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg); drawPath(p, t0 + 2.0 + dl, .5); });
-      const g1 = svText(svg, 430, 150, 'GRAVEL DRAINS', 40, OFF, 'start', 'gd'); slideIn(g1, t0 + 1.5);
-      const g2 = svText(svg, 430, 220, 'CROWN SHEDS RAIN', 40, OFF, 'start', 'cr'); slideIn(g2, t0 + 2.2);
+      const g1 = svText(svg, 110, 230, 'GRAVEL DRAINS', 40, OFF, 'start', 'gd'); slideIn(g1, t0 + 1.5);
+      const g2 = svText(svg, 110, 300, 'CROWN SHEDS RAIN', 40, OFF, 'start', 'cr'); slideIn(g2, t0 + 2.2);
     }
   }
 };
