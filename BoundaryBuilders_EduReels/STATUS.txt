@@ -1,5 +1,5 @@
 BOUNDARY BUILDERS EDU REELS - STATUS
-Updated: 2026-10-08 (session 2, Claude cloud container; batch 02-05 in progress)
+Updated: 2026-10-08 (session 2, Claude cloud container; batch 02-05 built and sent, waiting for the owner)
 Read BRIEF.txt in this folder for the full production brief. This file is the hand-off for any new chat.
 
 ENVIRONMENT
@@ -36,10 +36,15 @@ STEP 2 (DONE 2026-10-08, video 01 sent for review; waiting on owner approval + O
 - QA sampler passes with 0 failures, max sharp scale 1.283.
 
 BUILT / APPROVED / SCHEDULED / LOGGED
-- Built: 01_leaning_fence.mp4 (30.43 s, 1080x1920, H.264 9.4 Mbps, one AAC track, moov first, 35.9 MB) + cover png/jpg + qa/01_grid_preview.png + qa/01_stills. All QA passed, promo check passed.
-- Changes from the spec in video 01: opener A is the fallback IMG_2817 (band, BUILT RIGHT pill) because the P1 Video 02 clip never arrived; 3 gold wipes (beats 2, 4, 5); two-line headlines capped at 92 px so they stay inside y 1130-1330; small card line centred on y 1309 (not 1295) so it clears the 116 px badge; cover title block bottom at y 1250 over the band's lower edge with a dark gradient (band photos cannot go full-bleed under the 1.3x rule).
-- Approved: video 01 (owner: "i like all the ideas go ahead", 2026-10-08). Scheduled: none (needs the schedule row + the owner's OK, and a media URL route, see below). Logged: none.
-- ElevenLabs credits spent so far: VO 01 = 460, music bed = 900, music transcription check = 385 (estimate said 21), VO 02 = 439, VO 03 = 404, VO 04 = 496, VO 05 = 445. Total about 3,529 (about USD 0.71).
+- Built (all QA 0 failures, promo PASS, mp4check PASS, one AAC track, moov first, final template):
+  01_leaning_fence.mp4 re-rendered 2026-10-08 with the template fixes (gold diagram numbers, pause-aware captions, no end-frame drop); the owner-approved render is kept at final/approved_v1/01_leaning_fence.mp4 (+ cover) in case the owner prefers it. 30.43 s.
+  02_wall_drainage.mp4 27.53 s, 826 frames, 26.7 MB, max sharp 1.28. Cover: IMG_3327 full with a blur box over the crew member.
+  03_fence_posts.mp4 26.63 s, 799 frames, 27.3 MB, max sharp 0.89. Opens on IMG_2234 (right post, full-bleed) instead of the unavailable IMG_2411.
+  04_pavers_sinking.mp4 33.0 s, 990 frames, max sharp 1.27. Photos: IMG_2940 (hook, cover), north van pool 7 (joints close-up), Langley fire pit (diagram inset, end) instead of IMG_2938/2934/2933.
+  05_turf_base.mp4 29.0 s, 870 frames, max sharp 1.27, stretch 1.25 (so its diagram beat is 5.98 s).
+  Covers png+jpg, qa/NN_grid_preview.png, qa/NN_stills, qa/NN_sheet.png (contact sheet) and qa/NN_slug_REVIEW_COPY.mp4 (1080p crf 23, for chat) exist for 01-05.
+- Approved: video 01 (owner: "i like all the ideas go ahead", 2026-10-08; the re-render has not been seen yet). 02-05: sent 2026-10-08, awaiting the owner's verdict. Scheduled: none (schedule rows for 01-05 shown in the batch message; needs the owner's OK and a media-URL route). Logged: none.
+- ElevenLabs credits spent so far: VO 01 = 460, music bed = 900, music transcription check = 385 (estimate said 21), VO 02 = 439, VO 03 = 404, VO 04 = 496, VO 05 = 445. Total about 3,529 (about USD 0.71). No credits were spent in the batch build itself.
 
 STEP 3 (IN PROGRESS 2026-10-08)
 - Flows: 02 = 2bW7cUzckinNy00VKUMH, 03 = Hf7TOZOSXh0JoccNV9cd, 04 = k4e5ZPFbq8wzr3QZbQLs, 05 = O5jVAJLiGz5oTghqVJ4x. All 24 VO lines generated (brief text verbatim), downloaded to audio/vo/NN_bK.mp3 with NN_hashes.json.
@@ -56,7 +61,7 @@ STEP 3 (IN PROGRESS 2026-10-08)
 - Schedule row for 01 (to show, then wait for OK): Sat 2026-10-10 10:00 America/Vancouver (ISO 2026-10-10T10:00:00-07:00), final/01_leaning_fence.mp4, cover final/01_leaning_fence_cover.jpg, caption + 5 hashtags from scripts/01_leaning_fence.json, providers instagram + facebook, REEL, showReelOnFeed true, isAiGenerated false, autoPublish true.
 
 NEXT STEP
-- Finish batch 02-05 (workflow), review the encoded stills myself, send MP4s (review copies if over 30 MB), covers, 2-3 stills per video, changes from spec; show the schedule rows for 01-05; ask for the media-URL route and the OK; ask for downscaled copies of the over-6 MB photos needed by 09 and 15 (and 04's originals if the owner wants them swapped back in). Then STOP.
-- After OK: createScheduledPost per approved Reel (blogId 7175840, date with the Vancouver offset, providers instagram + facebook, instagramData REEL showReelOnFeed true isAiGenerated false, autoPublish true, media URL, videoThumbnailUrl cover JPG), append Post Log rows (or hand over TSV rows if Sheets cannot be written from here), update this file. Then batch 06-10 (needs myth + clip scene types, diagrams bedding, gate_brace, terrace_spacing, grading), then 11-15.
-- Deadline: Reel 01 should be scheduled by end of Fri Oct 9 for Sat Oct 10; batch 02-05 should reach the owner by Sun Oct 11.
-
+- Waiting for the owner on: (1) verdict on 02-05 and on the 01 re-render (or keep final/approved_v1); (2) the media-URL route for Metricool: (a) commit MP4 + cover JPG to the public GitHub repo and use raw.githubusercontent.com links, or (b) the owner uploads the files in the Metricool app; the Drive connector cannot carry a 36 MB file; (3) "OK" to schedule 01-05 (rows shown); (4) accept the over-6 s diagram beats (02 beat 3 6.75 s, 04 beat 3 9.35 s + beat 4 7.0 s) or have those VO lines trimmed and regenerated; (5) downscaled copies (sips -Z 3840, under 6 MB) of IMG_2411 (03 opener), IMG_2938/2934/2933 (04 originals), and for later batches IMG_2935/2937/2936 (09) and IMG_2934/2932/2939 (15), uploaded to Drive, if the owner wants the brief's exact photos.
+- After OK: schedule each approved Reel with tools/schedule_payload.py NN <mp4url> <coverjpgurl> -> createScheduledPost (blogId 7175840, instagram + facebook, REEL, showReelOnFeed true, isAiGenerated false, autoPublish true, publicationDate 10:00 America/Vancouver, date offset from zoneinfo); append the Post Log rows (qa/postlog_rows_01-05.tsv has them, status to be set to Scheduled; the Drive connector cannot write cells, so hand the rows over as TSV if needed); update this file.
+- Then batch 06-10: needs the clip scene type (paver clip saved at clips/paver_8.mp4, 956x720, 29.9 fps, 9.53 s) and the myth scene type (video 15), diagrams bedding, gate_brace, terrace_spacing, grading; VO for 06-10 (flows to create). Photo sizes for 06-10 were checked: all under 6 MB except none (IMG_8778 2 HEIC 2.4 MB, concrete.jpg 3.3 MB, the loose HEIC 2.2 MB are fine).
+- Deadline: Reel 01 should be scheduled by end of Fri Oct 9 for Sat Oct 10 (needs the owner's OK + the URL route by then); batch 02-05 reached the owner Oct 8.
