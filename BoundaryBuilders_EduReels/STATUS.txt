@@ -28,15 +28,20 @@ OWNER ANSWERS
 OWNER CONFIRM ANSWERS (videos 02-15)
 - (not asked yet; they go in the STEP 2 message)
 
-STEP 2 (in progress 2026-10-08)
+STEP 2 (DONE 2026-10-08, video 01 sent for review; waiting on owner approval + OWNER CONFIRM answers)
 - Tools written: tools/audiofix.py, tools/build.py, tools/frames.py, tools/mp4check.py, tools/check_promo.sh, tools/make.sh; render.py rewritten (plan/preview/all/cover/qa, VID=NN); edu.html template with hook/photo/diagram/card/end (myth + clip stubs for the next batch); diagrams post_rot, post_depth (depth/full/water parts), wind callout.
 - Video 01 photos downloaded and viewed: A = IMG_2817 fallback opener (P1 clip never arrived), B = IMG_2820, C = f24dafda. All clean (no faces/plates/numbers).
 - VO for video 01 generated (6 beats, Sia, flow XryOZB2VYpARXcrikQgW), audiofix 1.2x; plan total 30.42 s. Music bed generated (900 credits charged, 70 s, transcription check returned no words = instrumental; the transcription itself cost 385 credits, more than its 21-credit estimate).
 - QA sampler passes with 0 failures, max sharp scale 1.283.
 
 BUILT / APPROVED / SCHEDULED / LOGGED
-- Built: 01 (pending final render check). Approved: none. Scheduled: none. Logged: none.
+- Built: 01_leaning_fence.mp4 (30.43 s, 1080x1920, H.264 9.4 Mbps, one AAC track, moov first, 35.9 MB) + cover png/jpg + qa/01_grid_preview.png + qa/01_stills. All QA passed, promo check passed.
+- Changes from the spec in video 01: opener A is the fallback IMG_2817 (band, BUILT RIGHT pill) because the P1 Video 02 clip never arrived; 3 gold wipes (beats 2, 4, 5); two-line headlines capped at 92 px so they stay inside y 1130-1330; small card line centred on y 1309 (not 1295) so it clears the 116 px badge; cover title block bottom at y 1250 over the band's lower edge with a dark gradient (band photos cannot go full-bleed under the 1.3x rule).
+- Approved: none. Scheduled: none. Logged: none.
+- ElevenLabs credits spent so far: VO 01 = 460, music bed = 900, music transcription check = 385 (estimate said 21). Total about 1,745.
 
 NEXT STEP
-- Wait for the owner's STEP 1 answers, the Winter project files and the P1 clip. Then STEP 2: edu.html template, diagrams post_rot / post_depth / wind arrows, video 01, QA, send it with all [OWNER CONFIRM] questions for 02-15.
-- Deadline: Reel 01 must be scheduled by end of Fri Oct 9 to post Sat Oct 10. If STEP 2 slips, slide every Reel per the POSTING PLAN rules (about every 2 days, never on a day that already has a post, no two posts in a row in one category).
+- Wait for: owner approval of video 01 (and any changes), the OWNER CONFIRM answers for 02-15 (list sent in the STEP 2 message), isAiGenerated=false already decided, Facebook cross-post yes.
+- Then STEP 3: show the schedule row for 01, on OK schedule (createScheduledPost: blogId 7175840, providers instagram+facebook, instagramData REEL showReelOnFeed true isAiGenerated false, 10:00 America/Vancouver) and log it in the Post Log sheet; ask the owner to choose Drive upload (a) or Metricool-app upload (b) for the media URLs first. Then build 02-05 (needs myth + clip scene types in edu.html, diagrams wall_drainage, post_depth full/water, paver_layers, turf_layers), QA, send, stop.
+- Deadline: Reel 01 should be scheduled by end of Fri Oct 9 for Sat Oct 10.
+
