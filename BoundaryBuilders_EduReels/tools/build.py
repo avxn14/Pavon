@@ -31,7 +31,7 @@ def mux(video, out, clipsJSON):
         f += f",atrim=0:{total:.3f}[a{i}]"; parts.append(f); labels.append(f"[a{i}]")
     fc = ";".join(parts) + ";" + "".join(labels) + f"amix=inputs={len(clips)}:normalize=0:duration=longest,alimiter=limit=0.98:level=false,atrim=0:{total:.3f},apad=whole_dur={total:.3f}[mix]"
     run(["ffmpeg","-v","error","-y"] + inputs + ["-filter_complex", fc, "-map","0:v","-map","[mix]","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000",
-         "-movflags","+faststart","-shortest",out])
+         "-movflags","+faststart","-t",f"{total:.3f}",out])
     print(f"wrote {out} with {len(clips)} audio clips")
 if __name__ == "__main__":
     a = sys.argv

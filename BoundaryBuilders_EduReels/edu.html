@@ -256,7 +256,7 @@ function svText(parent, x, y, txt, size, fill, anchor, group) {
 function slideIn(e, t0, dx) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0, x: dx === undefined ? -30 : dx }); tw(e, t0, t0 + .4, { o: 1, x: 0 }, EO); }
 function fadeIn(e, t0, d) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0 }); tw(e, t0, t0 + (d || .35), { o: 1 }, EO); }
 function growUp(e, t0, d) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = '50% 100%'; reg(e, { o: 0, sy: .2 }); tw(e, t0, t0 + (d || .5), { o: 1, sy: 1 }, EOX); }
-function drawPath(e, t0, d) { const L = (e.getTotalLength ? e.getTotalLength() : 1000) + 2; e.setAttribute('stroke-dasharray', L); reg(e, { o: 1, dash: L }); tw(e, t0, t0 + (d || .6), { dash: 0 }, EO); return L; }
+function drawPath(e, t0, d) { const L = (e.getTotalLength ? e.getTotalLength() : 1000) + 2; e.setAttribute('stroke-dasharray', L); const it = byEl.get(e) || reg(e, { o: 0, dash: L }); if (!byEl.has(e)) {} it.base.dash = L; it.base.o = 0; tw(e, t0, t0 + .03, { o: 1 }, LIN); tw(e, t0, t0 + (d || .6), { dash: 0 }, EO); return L; }
 function dimArrow(parent, x, y0, y1, label, t0, group) {   // vertical gold dimension line with end ticks and a label to the right
   const gr = sv('g', {}, parent);
   sv('line', { x1: x, y1: y0, x2: x, y2: y1, stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }, gr);
