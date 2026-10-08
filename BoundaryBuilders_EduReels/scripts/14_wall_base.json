@@ -1,0 +1,210 @@
+{
+ "id": "14_wall_base",
+ "title": "What's under a wall that lasts",
+ "category": "RETAINING WALLS",
+ "series": "WALL TIP #3",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 33
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/11mQUsnIHILoaJjkOtlf_XSRhcqZ6YE0M.jpg",
+   "driveId": "11mQUsnIHILoaJjkOtlf_XSRhcqZ6YE0M",
+   "name": "concrete.jpg (PNG)",
+   "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)",
+   "w": 1340,
+   "h": 1636,
+   "note": "shown as a BAND (0.89x) on the lower part of the photo instead of the spec's full-bleed: full-bleed put the footing ledge inside the dark bottom gradient where the gold ring would not read; the band keeps the ledge mid-frame"
+  },
+  "B": {
+   "file": "photos/jpg/1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm.jpg",
+   "driveId": "1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm",
+   "name": "IMG_3329.jpg",
+   "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)",
+   "w": 1141,
+   "h": 1545,
+   "note": "owner confirmed the set (2026-10-08); diagram inset and the warning beat (full-bleed 1.24x, pan only)"
+  },
+  "C": {
+   "file": "photos/jpg/1jT3vUE7s_rozzzDVOnKOibiAD4yMEPeF.jpg",
+   "driveId": "1jT3vUE7s_rozzzDVOnKOibiAD4yMEPeF",
+   "name": "80496659897__70498F71-A1F3-4301-9AFD-460705C96415 2.jpg (HEIC)",
+   "folder": "Boundary Builders - Instagram (1i9OmOEikZ4ZPLzAgXc6J3iI5iQbh7p9v)",
+   "w": 4032,
+   "h": 3024
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "band",
+   "pos": "50% 100%",
+   "kb": {
+    "from": [
+     1.1,
+     0,
+     -50
+    ],
+    "to": [
+     1.13,
+     0,
+     -50
+    ]
+   },
+   "headline": [
+    "WHAT'S UNDER",
+    "A GOOD *WALL?*"
+   ],
+   "callouts": [
+    {
+     "type": "ring",
+     "x": 200,
+     "y": 505,
+     "r": 105,
+     "t": 0.6
+    }
+   ],
+   "vo": "What's under a wall that lasts? On this poured wall, it's the footing."
+  },
+  {
+   "type": "diagram",
+   "diagram": "wall_base",
+   "opts": {
+    "part": 1
+   },
+   "fill": "A",
+   "inset": "B",
+   "wipe": true,
+   "headline": [
+    "*6 IN* OF",
+    "COMPACTED ROCK"
+   ],
+   "sfx": [
+    {
+     "file": "hit",
+     "offset": 1.4,
+     "vol": 0.4
+    },
+    {
+     "file": "hit",
+     "offset": 2.3,
+     "vol": 0.4
+    }
+   ],
+   "vo": "A block wall starts in a *trench*, on at least *six inches* of compacted crushed rock."
+  },
+  {
+   "type": "diagram",
+   "diagram": "wall_base",
+   "opts": {
+    "part": 2
+   },
+   "cont": true,
+   "fill": "A",
+   "inset": "B",
+   "headline": [
+    "BURY THE",
+    "*FIRST ROW*"
+   ],
+   "vo": "The *first row* of block is *buried*, at least six inches, and deeper on taller walls."
+  },
+  {
+   "type": "diagram",
+   "diagram": "wall_base",
+   "opts": {
+    "part": 3
+   },
+   "cont": true,
+   "fill": "A",
+   "inset": "B",
+   "headline": [
+    "GOOD WALLS",
+    "*LEAN BACK*"
+   ],
+   "vo": "Each course *steps back* into the hill, and the backfill is compacted in *thin layers*."
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     60,
+     0
+    ],
+    "to": [
+     1.0,
+     -60,
+     0
+    ]
+   },
+   "wipe": true,
+   "builtRight": true,
+   "card": {
+    "mark": "grey",
+    "row": "LEANING *OUT?*",
+    "small": "TOWARD THE YARD? GET IT CHECKED"
+   },
+   "vo": "If a wall *leans out* toward the yard, that's a warning sign. *Get it checked*."
+  },
+  {
+   "type": "end",
+   "photo": "C",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     40,
+     0
+    ],
+    "to": [
+     1.02,
+     -40,
+     0
+    ]
+   },
+   "prompt": "SAVE THIS BEFORE YOUR WALL",
+   "vo": "Save this before your wall."
+  }
+ ],
+ "cover": {
+  "photo": "C",
+  "layout": "full",
+  "pos": "50% 50%",
+  "kb": {
+   "from": [
+    1.0,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "WHAT'S UNDER",
+   "A *WALL*"
+  ]
+ },
+ "post": {
+  "date": "2026-11-06",
+  "time": "10:00",
+  "caption": "What's under a retaining wall that lasts in the Lower Mainland: a block wall starts in a trench on at least 6 inches of compacted crushed rock, with a buried first course (at least 6 inches, more on taller walls), courses set back into the hill, and backfill compacted in thin layers. Taller walls need an engineer, so check your city.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#retainingwall",
+   "#blockwall",
+   "#hardscaping",
+   "#fraservalley"
+  ],
+  "alt": "A freshly poured concrete retaining wall on its footing, an animated cross-section of a block wall's buried base and setback, and a finished backyard with a concrete planter wall."
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "id": "11_edge_restraint",
+ "title": "Pavers spreading at the edges? Edge restraint",
+ "category": "PAVERS",
+ "series": "PAVER TIP #3",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 15},
+ "photos": {
+  "A": {"file": "photos/jpg/1j-RkfF8zLTrxG2TEeDyAbH6vCj71Sphb.jpg", "driveId": "1j-RkfF8zLTrxG2TEeDyAbH6vCj71Sphb", "name": "2", "folder": "north van pool (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi)", "w": 1170, "h": 878, "note": "band at 1.18-1.20x effective, bottom-left of the photo (x 0-914, y 204-878): the hi-vis worker on the deck and the blue marker flag in the lawn are both outside the crop"},
+  "B": {"file": "photos/jpg/1CCN_tl9-5rXae0bizfQDCYKbnIxnUhH-.jpg", "driveId": "1CCN_tl9-5rXae0bizfQDCYKbnIxnUhH-", "name": "13", "folder": "pool interlock (1sJNQTbMwokf76do2N9n3vIMYoLZVoqtT)", "w": 1170, "h": 878, "note": "band at 1.16-1.18x effective showing photo x 0-929: the bins and the house at the right edge are outside the crop; the two hi-vis workers at the back fence stay small and unidentifiable"},
+  "C": {"file": "photos/jpg/1AIy3pEanqCTlOTCebs1Ob3VaaiNLCPPq.jpg", "driveId": "1AIy3pEanqCTlOTCebs1Ob3VaaiNLCPPq", "name": "5", "folder": "north van pool (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi)", "w": 1170, "h": 878}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "band", "pos": "50% 50%", "kb": {"from": [1.28, 151, -113], "to": [1.3, 151, -113]},
+   "builtRight": true, "headline": ["GAPS OPENING", "AT THE *EDGES?*"],
+   "vo": "Pavers spreading at the edges? Check what's holding the edge."},
+  {"type": "diagram", "diagram": "edge_restraint", "opts": {"part": 1}, "fill": "C", "inset": "C", "wipe": true,
+   "headline": ["NO RESTRAINT?", "THEY *CREEP*"],
+   "vo": "Every paver edge that isn't against a curb or wall needs an *edge restraint*, or the pavers slowly *creep* apart."},
+  {"type": "diagram", "diagram": "edge_restraint", "opts": {"part": 2}, "cont": true, "fill": "C", "inset": "C",
+   "headline": ["BASE RUNS", "*PAST* THE EDGE"],
+   "vo": "The base runs *past* the restraint, as far as the base is thick. *Six inch* base, *six inches* past."},
+  {"type": "photo", "photo": "B", "layout": "band", "pos": "50% 50%", "kb": {"from": [1.26, 140, 0], "to": [1.28, 140, 0]}, "wipe": true,
+   "headline": ["HIDDEN UNDER", "THE *LAWN EDGE*"],
+   "callouts": [{"type": "dash", "pts": [[0, 262], [240, 256], [480, 252], [700, 258]], "w": 8, "t": 0.6}],
+   "vo": "Once the lawn or mulch goes in, you *never see it*. That's the point."},
+  {"type": "end", "photo": "C", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.04, 0, 0]},
+   "prompt": "SEND THIS TO A PATIO OWNER",
+   "vo": "Send this to a patio owner."}
+ ],
+ "cover": {"photo": "C", "layout": "band", "kb": {"from": [1.02, 0, 0]}, "title": ["PAVER EDGES", "*DONE RIGHT*"]},
+ "post": {
+  "date": "2026-10-31", "time": "10:00",
+  "caption": "Paver edges spreading on your Lower Mainland patio? Every paver edge that isn't against a curb or wall needs an edge restraint, with the compacted base running past it by at least the base thickness. On a finished job it's hidden under the lawn or mulch.",
+  "hashtags": ["#boundarybuilders", "#paverpatio", "#interlock", "#hardscaping", "#lowermainland"],
+  "alt": "A paver pool deck meeting a lawn in a clean curve, and an animated cross-section of an edge restraint holding the outer pavers in place."
+ }
+}

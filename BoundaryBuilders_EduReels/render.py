@@ -62,7 +62,7 @@ def plan():
         vo.append({"start": round(start, 3), "dur": round(d, 3), "text": b["vo"], "beat": i, "speech": speech_segments(f, d) if f else None})
         if b["type"] in ("hook", "end"): skipcap.append(i)
         if b.get("wipe") and i > 0: sfx.append({"file": "whoosh", "start": max(0.0, t - 0.26), "vol": 0.5})
-        if b.get("card") or b["type"] == "end": sfx.append({"file": "hit", "start": t + (0.12 if b["type"] == "end" else 0.32), "vol": 0.4})
+        if b.get("card") or b.get("myth") or b["type"] == "end": sfx.append({"file": "hit", "start": t + (0.12 if b["type"] == "end" else 0.32), "vol": 0.4})
         for s in b.get("sfx", []): sfx.append({"file": s["file"], "start": t + s.get("offset", 0.0), "vol": s.get("vol", 0.4)})
         t += length; scenes.append(round(t, 3))
     total = scenes[-1]
@@ -157,6 +157,8 @@ def render(times, outdir, plan_obj):
     try:
         warn = pg.ev("JSON.stringify(window.FIT_WARNINGS||[])")
         if warn and warn != "[]": print("FIT WARNINGS:", warn)
+        notes = pg.ev("JSON.stringify(window.CLIP_NOTES||[])")
+        if notes and notes != "[]": print("CLIP:", notes)
         for idx, t in enumerate(times):
             pg.seek(t); name = f"f{idx:04d}.png" if len(times) > 20 else f"t{t:06.2f}.png"; pg.shot(os.path.join(outdir, name))
             if idx % 100 == 0 and len(times) > 20: print(f"frame {idx}/{len(times)} {time.time()-t0:.1f}s", flush=True)

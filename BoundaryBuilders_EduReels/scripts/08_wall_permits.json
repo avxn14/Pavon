@@ -1,0 +1,221 @@
+{
+ "id": "08_wall_permits",
+ "title": "Planning a taller wall? Permits, engineers, terracing",
+ "category": "RETAINING WALLS",
+ "series": "WALL TIP #2",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 42
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/1fIh-ioDdU_cuKfezrbVRakbrQxwIqdpo.jpg",
+   "driveId": "1fIh-ioDdU_cuKfezrbVRakbrQxwIqdpo",
+   "name": "IMG_3328.jpg",
+   "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)",
+   "w": 1178,
+   "h": 849,
+   "note": "owner confirmed the IMG_3327-3331 set as their job (2026-10-08); the sun flare top right stays under the top vignette"
+  },
+  "B": {
+   "file": "photos/jpg/1pSkg0mo29wYoQEouQwolHMA1KjVw9YWv.jpg",
+   "driveId": "1pSkg0mo29wYoQEouQwolHMA1KjVw9YWv",
+   "name": "IMG_3330.jpg",
+   "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)",
+   "w": 1206,
+   "h": 642,
+   "note": "short band 880x440 (centred in the band area over its blurred fill) at 1.16-1.19x effective showing photo x 450-1206, y 0-378: both wall tiers, the stairs and the houses; the wet road is cropped off and the coiled hose and cord on the lower terrace are cropped out at the left"
+  },
+  "C": {
+   "file": "photos/jpg/1lqX4-1smaT35NuDbKN229CB-qZw-Ym95.jpg",
+   "driveId": "1lqX4-1smaT35NuDbKN229CB-qZw-Ym95",
+   "name": "IMG_0962.jpg",
+   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
+   "w": 1206,
+   "h": 1522,
+   "note": "owner confirmed IMG_0962 as their job (2026-10-08); full-bleed at 1.26x, pan only"
+  },
+  "I": {
+   "file": "photos/jpg/1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2.jpg",
+   "driveId": "1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2",
+   "name": "IMG_3327.jpg",
+   "folder": "retaining wall (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN)",
+   "w": 1104,
+   "h": 1515,
+   "note": "diagram inset, CSS-cropped to the low wall and walkway (320x240, object-position 0% 70%)"
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.02,
+     0,
+     0
+    ],
+    "to": [
+     1.06,
+     0,
+     0
+    ]
+   },
+   "headline": [
+    "WALL OVER",
+    "*~4 FT* TALL?"
+   ],
+   "vo": "Wall over about *four feet*? Check this first."
+  },
+  {
+   "type": "photo",
+   "photo": "A",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.06,
+     0,
+     0
+    ],
+    "to": [
+     1.09,
+     -15,
+     0
+    ]
+   },
+   "card": {
+    "mark": "badge",
+    "n": 1,
+    "row": "*PERMIT + ENGINEER*",
+    "small": "OVER ~4 FT. CHECK YOUR CITY."
+   },
+   "vo": "In many Lower Mainland cities, walls over about four feet need a *permit* and an *engineer*."
+  },
+  {
+   "type": "photo",
+   "photo": "A",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.09,
+     -15,
+     0
+    ],
+    "to": [
+     1.12,
+     -30,
+     0
+    ]
+   },
+   "card": {
+    "mark": "badge",
+    "n": 2,
+    "row": "SOME CITIES: *LOWER*",
+    "small": "MAPLE RIDGE: PERMIT OVER 0.6 M"
+   },
+   "vo": "Some set the line lower. *Maple Ridge* wants a permit over about *two feet*."
+  },
+  {
+   "type": "diagram",
+   "diagram": "terrace_spacing",
+   "plain": "#110000",
+   "inset": "I",
+   "insetBox": {
+    "h": 240,
+    "pos": "0% 70%"
+   },
+   "wipe": true,
+   "headline": [
+    "TOO CLOSE =",
+    "*ONE TALL WALL*"
+   ],
+   "vo": "Two short walls stacked close together act like *one tall wall*, so terraces need *real spacing*."
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "band",
+   "band": {
+    "w": 880,
+    "h": 440
+   },
+   "pos": "100% 0%",
+   "kb": {
+    "from": [
+     1.62,
+     -272.2,
+     145.5
+    ],
+    "to": [
+     1.65,
+     -272.2,
+     145.5
+    ]
+   },
+   "wipe": true,
+   "card": {
+    "mark": "badge",
+    "n": 3,
+    "row": "*GET AN ENGINEER*",
+    "small": "CLAY, DRIVEWAY ABOVE, SEISMIC"
+   },
+   "vo": "*Clay soil*, a *driveway above*, and *earthquake country* all mean taller walls get engineered here.",
+   "note": "880x440 band; the cover box is zoomed about its centre, so the pan (-272, +146) puts photo x 461-1206, y 0-378 in the band at 1.18-1.20x effective: both tiers, the stairs and the houses; the wet road, the coiled hose and the cord on the lower terrace are outside the crop"
+  },
+  {
+   "type": "end",
+   "photo": "C",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     40,
+     0
+    ],
+    "to": [
+     1.02,
+     -40,
+     0
+    ]
+   },
+   "prompt": "SEND TO ANYONE PLANNING A WALL",
+   "vo": "Send this to anyone planning a wall."
+  }
+ ],
+ "cover": {
+  "photo": "A",
+  "layout": "band",
+  "kb": {
+   "from": [
+    1.04,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "TALLER WALL?",
+   "*READ THIS*"
+  ]
+ },
+ "post": {
+  "date": "2026-10-25",
+  "time": "10:00",
+  "caption": "Planning a retaining wall in the Lower Mainland? In many cities, walls over about 4 ft (1.2 m) need a permit and an engineer, and some set the line lower (Maple Ridge: a permit over 0.6 m). Terraced walls need real spacing, and walls holding up driveways or slopes get engineered. Check your city first.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#retainingwall",
+   "#landscapedesign",
+   "#lowermainland",
+   "#metrovancouver"
+  ],
+  "alt": "Two-tier terraced block retaining walls along a sidewalk, an animated diagram showing why terraced walls need spacing, and a sloped front yard rebuilt with two tiers of block walls and steps."
+ }
+}
