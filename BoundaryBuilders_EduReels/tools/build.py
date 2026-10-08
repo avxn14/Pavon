@@ -10,10 +10,12 @@ def run(cmd):
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode: sys.exit(r.stderr[-4000:])
 def encode(framesDir, fps, out):
+    # BITRATE=8M (env) lowers the target when a delivery channel caps the file size; default is the Winter spec (~11 Mbps)
+    BR = os.environ.get("BITRATE", "11M"); mbps = float(BR.rstrip("Mm")); MR = f"{mbps*1.25:.1f}M"; BUF = f"{mbps*2:.0f}M"
     files = sorted(glob.glob(os.path.join(framesDir, "*.png")))
     if not files: sys.exit("no frames")
     run(["ffmpeg","-v","error","-y","-framerate",str(fps),"-pattern_type","glob","-i",os.path.join(framesDir,"*.png"),
-         "-c:v","libx264","-preset","slow","-profile:v","high","-pix_fmt","yuv420p","-b:v","11M","-maxrate","14M","-bufsize","22M",
+         "-c:v","libx264","-preset","slow","-profile:v","high","-pix_fmt","yuv420p","-b:v",BR,"-maxrate",MR,"-bufsize",BUF,
          "-g",str(int(fps)*2),"-r",str(fps),"-colorspace","bt709","-color_primaries","bt709","-color_trc","bt709",
          "-movflags","+faststart","-an",out])
     print(f"wrote {out} ({len(files)} frames @ {fps}fps)")
