@@ -250,7 +250,8 @@ function addCard(g, c, t0, cont, group) {
 const NS = 'http://www.w3.org/2000/svg';
 function sv(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
 function svText(parent, x, y, txt, size, fill, anchor, group) {
-  const t = sv('text', { x, y, 'font-size': size || 40, fill: fill || OFF, 'text-anchor': anchor || 'start', class: 'q' }, parent); t.textContent = txt; t.dataset.g = group || ('d' + Math.random()); return t;
+  const t = sv('text', { x, y, 'font-size': size || 40, fill: fill || OFF, 'text-anchor': anchor || 'start', class: 'q' }, parent); t.style.fill = fill || OFF;   // inline style, because the .diagram text CSS rule would override the fill attribute
+  t.textContent = txt; t.dataset.g = group || ('d' + Math.random()); return t;
 }
 function slideIn(e, t0, dx) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0, x: dx === undefined ? -30 : dx }); tw(e, t0, t0 + .4, { o: 1, x: 0 }, EO); }
 function fadeIn(e, t0, d) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0 }); tw(e, t0, t0 + (d || .35), { o: 1 }, EO); }
