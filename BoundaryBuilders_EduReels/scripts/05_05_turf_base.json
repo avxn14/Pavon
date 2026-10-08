@@ -1,0 +1,46 @@
+{
+ "id": "05_05_turf_base",
+ "title": "Artificial turf puddling? Check the base",
+ "category": "LANDSCAPING",
+ "series": "YARD TIP #1",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 24},
+ "photos": {
+  "A": {"file": "photos/jpg/1AR06qZeX2C-2lOWuYVjv57FtHaLALrHV.jpg", "driveId": "1AR06qZeX2C-2lOWuYVjv57FtHaLALrHV", "name": "turf-1.jpg", "folder": "artificial turf backyard Langley (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0)", "w": 1206, "h": 1507},
+  "B": {"file": "photos/jpg/1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd.jpg", "driveId": "1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd", "name": "turf-2.jpg", "folder": "artificial turf backyard Langley (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0)", "w": 1206, "h": 1507},
+  "C": {"file": "photos/jpg/13nukFeGiqkrrRS1olcGNMZ_oN0tRlFvu.jpg", "driveId": "13nukFeGiqkrrRS1olcGNMZ_oN0tRlFvu", "name": "IMG_6074.jpg", "folder": "cedar fence (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN)", "w": 1170, "h": 870, "note": "the file has 6 black rows at its bottom edge; pos 50% 0% keeps them out of the band"}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "full", "kb": {"from": [1.0, 150, 0], "to": [1.0, -110, 0]}, "builtRight": true,
+   "headline": ["TURF *PUDDLING?*", "CHECK THE *BASE*"],
+   "vo": "Puddles on your artificial turf? Turf drains through its base, so that's where to look."},
+  {"type": "diagram", "diagram": "turf_layers", "opts": {"part": 1}, "fill": "A", "inset": "A", "wipe": true,
+   "headline": ["*COMPACTED*", "GRAVEL BASE"],
+   "sfx": [{"file": "hit", "offset": 4.6, "vol": 0.35}, {"file": "hit", "offset": 5.0, "vol": 0.35}],
+   "vo": "Dig out four to six inches, lay a *weed barrier,* then three to four inches of *compacted crushed gravel.*"},
+  {"type": "diagram", "diagram": "turf_layers", "opts": {"part": 2}, "cont": true, "fill": "A", "inset": "A", "tail": 1.6,
+   "headline": ["NEVER *PLASTIC*", "UNDER TURF"],
+   "vo": "*Never plastic* underneath. It *traps the water.*"},
+  {"type": "photo", "photo": "B", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.0, 0, 0], "to": [1.03, 0, 0]}, "wipe": true,
+   "headline": ["SLOPED AWAY.", "*EDGES NAILED*"],
+   "callouts": [
+    {"type": "arrow", "pts": [[880, 330], [940, 460]], "color": "gold", "w": 8, "head": 26, "t": 0.5, "dur": 0.6, "label": "SLOPE", "lx": 860, "ly": 520, "size": 40, "anchor": "middle"},
+    {"type": "arrow", "pts": [[821, 254], [370, 708]], "color": "gold", "w": 10, "head": 34, "t": 2.3, "dur": 0.9}
+   ],
+   "vo": "The base *slopes away* from the house, and the edges get *nailed down* tight."},
+  {"type": "photo", "photo": "C", "layout": "band", "pos": "50% 0%", "kb": {"from": [1.0, 0, 0], "to": [1.05, 0, 0]}, "wipe": true,
+   "headline": ["STILL NEEDS", "*SOME CARE*"],
+   "vo": "It's *low maintenance,* not no maintenance. Blow the *leaves off* this fall. Wet leaves hold moisture and feed *moss.*"},
+  {"type": "end", "photo": "A", "layout": "band", "pos": "50% 55%", "kb": {"from": [1.02, 0, 0], "to": [1.05, 0, 0]},
+   "prompt": "FOLLOW FOR MORE YARD TIPS",
+   "vo": "Follow for more yard tips."}
+ ],
+ "cover": {"photo": "A", "layout": "full", "kb": {"from": [1.0, 0, 0]}, "title": ["TURF? IT'S", "ALL *BASE*"]},
+ "post": {
+  "date": "2026-10-19", "time": "10:00",
+  "caption": "Puddles on artificial turf in the Lower Mainland usually point to the base. A typical install uses a weed barrier and 3-4 inches of compacted crushed gravel (wet clay may need more, or a drain), sloped away from the house, and never plastic underneath. In leaf season, blow the leaves off before they hold moisture and feed moss.",
+  "hashtags": ["#boundarybuilders", "#artificialturf", "#syntheticgrass", "#landscaping", "#fraservalley"],
+  "alt": "A long artificial turf backyard beside a concrete walkway and cedar fence, an animated diagram of the gravel base layers under the turf, a crisp turf edge against a concrete pad, and artificial turf in front of a framed cedar fence."
+ }
+}
