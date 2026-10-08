@@ -1,0 +1,36 @@
+BOUNDARY BUILDERS EDU REELS - STATUS
+Updated: 2026-10-08 (session 1, Claude cloud container)
+Read BRIEF.txt in this folder for the full production brief. This file is the hand-off for any new chat.
+
+ENVIRONMENT
+- Running in a Claude cloud session (Linux), NOT on the owner's Mac. Working folder: BoundaryBuilders_EduReels/ in the avxn14/pavon repo, branch claude/boundary-builders-edu-reels-u0iuqm.
+- Container has: ffmpeg 6.1 (libx264, aac, rubberband, atempo, silenceremove), headless Chromium 141 (/opt/pw-browsers/chromium), Python 3.13 + Pillow 12.3 + pillow-heif, ImageMagick with HEIC read, Node 22. 4 CPUs, 15 GB RAM.
+- Container lacks: Swift/AVFoundation (so build.swift and audiofix.swift cannot run), sips, the Outfit font, and every Winter project file.
+- Substitutions APPROVED by owner 2026-10-08: ffmpeg for build.swift encode/mux and for audiofix.swift (rubberband pitch-preserving stretch + silenceremove, same 5 arguments); Pillow/ImageMagick in place of sips for format, sRGB and downscale ONLY; Chromium in place of Chrome; ffmpeg exact-time frame extraction in place of AVAssetImageGenerator. Output spec unchanged: 1080x1920, 30 fps, H.264 ~11 Mbps, one AAC track, moov before mdat.
+- Winter project files RECEIVED 2026-10-08 from Drive folder 'boundary builder winter ' > BoundaryBuilders_WinterReel_project (1UyAQQhGdTLAJnoIo4luxGUIImOCGhyEd): render.py, build.swift, audiofix.swift, ad2.html, script2.json, plan2.json, Outfit-500.woff2 (32,228 B), logo_gold.png (279x120), audio/sfx/whoosh.mp3 (1.04 s), audio/sfx/hit.mp3 (2.04 s), plus winter_ref/clips.json and winter_ref/fence_gray_crop.jpg (1300x2311 iPhone photo the Winter reel used as its grey-panel scene). All read.
+- Still needed from the owner: the P1 Video 02 MP4 (or its frame 0). Not in Drive as of 2026-10-08.
+
+STEP 1 (done 2026-10-08; waiting on owner answers)
+- Folder skeleton created (photos/raw, photos/jpg, photos/view, clips, scripts, audio/vo, audio/music, audio/sfx, frames, renders, qa, final, tools). BRIEF.txt copied in.
+- Metricool: brand "Boundary Builders", blogId 7175840, Instagram @boundarybuilders_bc, Facebook Page 676582572197512 also connected (every existing post goes to Instagram AND Facebook), timezone America/Vancouver. Business vs Creator not exposed by getBrandSettings.
+- Scheduled posts Oct 7-Nov 15 (all 10:00 America/Vancouver, IG + FB): Oct 7 maple ridge (published, instagram.com/p/DeM2ZtPDYD4), Oct 9 Langley fire pit (385504758), Oct 11 burnaby entrance (385504839), Oct 12 paver vid Reel (385504892), Oct 14 front entrance (385504996), Oct 16 Port Moody (385505054). No clash with the Reel dates.
+- Best time to post (Instagram, week Oct 10-16): 10:00 is the top hour every day of the week; second peak 18:00 on weekdays. Keep 10:00 AM PT.
+- Instagram Post Log sheet (1Clwn8sVDDTgGIXR_SmcoydZEp9rmdLmJFqqD3ghgY6E): 12 data rows, columns exactly as the brief lists. Statuses still read "Scheduled" for the Oct 1-7 posts that have since published.
+- Front entrance flag: both files in folder 1Ek1je-ORIERrBq2f9sPDJmzyhnCuVSqG are named "Nice little front entrance and walkway done in Waterdown..."; 1XutnGVQQyKI_eGoRw5PbFkXtICKdIXtC is the cover (#tec.jpg). Owner told in STEP 1 message. Nothing changed.
+- ElevenLabs: voice Sia qTRV75fy2dUja4REMifv confirmed ("Sia - Energetic, Confident and Commercial", professional library voice). Flow for video 01: XryOZB2VYpARXcrikQgW. Estimate (eleven_multilingual_v2, 1 generation): 1 credit per character. Beat 1 (63 chars) = 63 credits = USD 0.013. Video 01 full VO (460 chars) = 465 credits = USD 0.093. All 15 videos = 6,806 VO characters, about 6,800 credits (about USD 1.40) before any retakes. Plan type / commercial licence not visible from here.
+- Shared music bed flow: bdXkkn0WM8hS4j65E2MD (nothing generated yet). Music estimate: 1,500 credits = USD 0.30 for one ~70 s track.
+- GitHub repo avxn14/Pavon is PUBLIC. Nothing committed or pushed yet; owner asked whether to make it private before BRIEF.txt / STATUS.txt go into git.
+
+OWNER ANSWERS
+- 2026-10-08: PHOTOS TO CONFIRM: owner said YES to all six sets: (1) P1 Video 02 frame 0 is their own job (clip file itself still not received); (2) maple ridge front yard _n.jpg files; (3) Willson res _n.jpg files; (4) burnaby entrance and Port Moody kitchen outdoor; (5) retaining wall IMG_3327-IMG_3331; (6) IMG_0958 and IMG_0962 in fence before and after.
+- 2026-10-08: BUILD = cloud (ffmpeg/Pillow/Chromium substitutions approved). Instagram = Business account. Reels cross-post to Facebook too (providers instagram + facebook). isAiGenerated = false. ElevenLabs plan is paid (commercial licence OK). Repo: owner will try to make it private; said not to worry if it stays public, so BRIEF.txt and STATUS.txt may be committed.
+
+OWNER CONFIRM ANSWERS (videos 02-15)
+- (not asked yet; they go in the STEP 2 message)
+
+BUILT / APPROVED / SCHEDULED / LOGGED
+- Built: none. Approved: none. Scheduled: none. Logged: none.
+
+NEXT STEP
+- Wait for the owner's STEP 1 answers, the Winter project files and the P1 clip. Then STEP 2: edu.html template, diagrams post_rot / post_depth / wind arrows, video 01, QA, send it with all [OWNER CONFIRM] questions for 02-15.
+- Deadline: Reel 01 must be scheduled by end of Fri Oct 9 to post Sat Oct 10. If STEP 2 slips, slide every Reel per the POSTING PLAN rules (about every 2 days, never on a day that already has a post, no two posts in a row in one category).
