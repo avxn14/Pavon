@@ -41,6 +41,7 @@ img.full{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:co
 .br{left:72px;top:1030px;}
 .inset{position:absolute;left:72px;width:320px;border:4px solid #FFC527;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.5);}
 .inset img{display:block;width:100%;height:100%;object-fit:cover;}
+.blurbox{position:absolute;backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);background:rgba(8,8,8,.28);border-radius:14px;}
 .diagram,.callout{position:absolute;left:0;top:330px;width:1080px;height:782px;}
 .diagram svg,.callout svg{position:absolute;left:0;top:0;width:1080px;height:782px;overflow:visible;}
 .diagram text,.callout text{font-family:'Outfit',sans-serif;font-weight:800;fill:#F9F9F9;text-transform:uppercase;}
@@ -93,7 +94,10 @@ function seek(t) {
     }
     const s = it.el.style;
     s.opacity = Math.max(0, Math.min(1, p.o)); s.visibility = p.o <= 0.001 ? 'hidden' : 'visible';
-    s.transform = 'translate(' + p.x.toFixed(2) + 'px,' + p.y.toFixed(2) + 'px) rotate(' + p.r.toFixed(2) + 'deg) scale(' + (p.s * p.sx).toFixed(4) + ',' + (p.s * p.sy).toFixed(4) + ')';
+    if (it.kb) {   // photo Ken Burns: scale about the box centre and pan, applied as layout so the image is resampled at its exact size every frame
+      const w = it.kb.w * p.s, h = it.kb.h * p.s;
+      s.width = w.toFixed(3) + 'px'; s.height = h.toFixed(3) + 'px'; s.left = (it.kb.cx - w / 2 + p.x).toFixed(3) + 'px'; s.top = (it.kb.cy - h / 2 + p.y).toFixed(3) + 'px'; s.transform = 'none';
+    } else s.transform = 'translate(' + p.x.toFixed(2) + 'px,' + p.y.toFixed(2) + 'px) rotate(' + p.r.toFixed(2) + 'deg) scale(' + (p.s * p.sx).toFixed(4) + ',' + (p.s * p.sy).toFixed(4) + ')';
     if (p.b > 0.01) s.filter = 'blur(' + p.b.toFixed(2) + 'px)'; else if (it.base.b !== undefined && it.base.b > 0) s.filter = '';
     if ('dash' in p) s.strokeDashoffset = p.dash.toFixed(2) + 'px';
   }
@@ -187,21 +191,31 @@ function photoInfo(S, key) { const p = S.photos[key]; if (!p) throw new Error('u
 function addFill(g, S, key, diag) {
   const im = el('img', 'fill', g); im.src = photoInfo(S, key).file; return im;
 }
+function parsePos(pos) {   // "50% 50%" | "right center" | "100% 0%" -> [px, py] in 0..1
+  const m = { left: 0, center: .5, right: 1, top: 0, bottom: 1 }; const f = v => v in m ? m[v] : parseFloat(v) / 100;
+  const parts = String(pos || '50% 50%').trim().split(/\s+/); return [f(parts[0]), parts.length > 1 ? f(parts[1]) : .5];
+}
+function placeImg(im, p, fw, fh, b) {   // size the img box to exactly cover fw x fh (object-fit fill), aligned by b.pos; kb x/y then pans it
+  const s = Math.max(fw / p.w, fh / p.h); const bw = p.w * s, bh = p.h * s; const [px, py] = parsePos(b.pos);
+  im.style.width = bw.toFixed(2) + 'px'; im.style.height = bh.toFixed(2) + 'px'; im.style.objectFit = 'fill';
+  im.style.left = ((fw - bw) * px).toFixed(2) + 'px'; im.style.top = ((fh - bh) * py).toFixed(2) + 'px'; im.dataset.cover = s.toFixed(4);
+  im._kb = { w: bw, h: bh, cx: (fw - bw) * px + bw / 2, cy: (fh - bh) * py + bh / 2 };
+}
 function addBand(g, S, key, b, t0, t1) {
   const p = photoInfo(S, key); const band = el('div', 'band', g);
   let w = 1080, h = 782, left = 0, top = 330;
   if (b.band) { w = b.band.w || w; h = b.band.h || Math.min(782, Math.round(w * p.h / p.w)); left = Math.round((1080 - w) / 2); top = 330 + Math.round((782 - h) / 2); }
   band.style.left = left + 'px'; band.style.top = top + 'px'; band.style.width = w + 'px'; band.style.height = h + 'px';
-  const im = el('img', 'sharp', band); im.src = p.file; if (b.pos) im.style.objectPosition = b.pos;
+  const im = el('img', 'sharp', band); im.src = p.file; placeImg(im, p, w, h, b);
   kenBurns(im, b.kb, t0, t1); return band;
 }
 function addFull(g, S, key, b, t0, t1) {
-  const p = photoInfo(S, key); const im = el('img', 'full sharp', g); im.src = p.file; if (b.pos) im.style.objectPosition = b.pos;
+  const p = photoInfo(S, key); const im = el('img', 'full sharp', g); im.src = p.file; placeImg(im, p, 1080, 1920, b);
   kenBurns(im, b.kb, t0, t1); el('div', 'layer fullGrad', g); return im;
 }
 function kenBurns(im, kb, t0, t1) {
   const f = (kb && kb.from) || [1, 0, 0], to = (kb && kb.to) || f;
-  reg(im, { s: f[0], x: f[1], y: f[2] }); tw(im, t0, t1, { s: to[0], x: to[1], y: to[2] }, LIN);
+  const it = reg(im, { s: f[0], x: f[1], y: f[2] }); if (im._kb) it.kb = im._kb; tw(im, t0, t1, { s: to[0], x: to[1], y: to[2] }, LIN);
 }
 function addInset(g, S, key) {
   const p = photoInfo(S, key); const h = Math.round(320 * p.h / p.w); const d = el('div', 'inset', g); d.style.height = h + 'px'; d.style.top = (1090 - h) + 'px';
@@ -256,65 +270,8 @@ function gravel(parent, x0, x1, y0, y1, seed) {
   for (let i = 0; i < 70; i++) sv('circle', { cx: x0 + r() * (x1 - x0), cy: y0 + r() * (y1 - y0), r: 3 + r() * 3, fill: OFF, opacity: .8 }, gr);
   return gr;
 }
-const DIAGRAMS = {
-  // Wood post in soil with a concrete footing; the soil line glows gold as the ROT ZONE.
-  post_rot(svg, t0, opts) {
-    const GY = 400, PX = 560;
-    const soil = sv('rect', { x: 0, y: GY, width: 1080, height: 782 - GY, fill: '#1c1c1c' }, svg); fadeIn(soil, t0, .3);
-    const gline = sv('line', { x1: 0, y1: GY, x2: 1080, y2: GY, stroke: '#434343', 'stroke-width': 4 }, svg); fadeIn(gline, t0, .3);
-    const foot = sv('path', { d: `M${PX-62} ${GY+6} L${PX+62} ${GY+6} L${PX+62} ${GY+300} Q${PX} ${GY+330} ${PX-62} ${GY+300} Z`, fill: '#434343' }, svg); growUp(foot, t0 + .25, .45);
-    const grav = gravel(svg, PX - 70, PX + 70, GY + 300, GY + 345, 5); fadeIn(grav, t0 + .55, .3);
-    const post = sv('rect', { x: PX - 26, y: 110, width: 52, height: GY + 280 - 110, fill: '#6b6b6b', rx: 3 }, svg); growUp(post, t0 + .5, .55);
-    const cap = sv('rect', { x: PX - 34, y: 96, width: 68, height: 16, fill: '#8a8a8a', rx: 3 }, svg); fadeIn(cap, t0 + .9, .3);
-    // rot zone glow
-    const glow = sv('rect', { x: PX - 46, y: GY - 26, width: 92, height: 52, fill: GOLD, opacity: .95, rx: 10 }, svg); glow.style.filter = 'drop-shadow(0 0 18px rgba(255,197,39,.9))';
-    reg(glow, { o: 0, s: .6 }); glow.style.transformBox = 'fill-box'; glow.style.transformOrigin = 'center'; tw(glow, t0 + 1.3, t0 + 1.7, { o: 1, s: 1 }, EOB);
-    for (let i = 0; i < 6; i++) { const a = t0 + 1.8 + i * .7; tw(glow, a, a + .35, { s: 1.12 }, EO); tw(glow, a + .35, a + .7, { s: 1 }, EO); }
-    const lead = sv('line', { x1: PX + 50, y1: GY, x2: PX + 150, y2: GY, stroke: GOLD, 'stroke-width': 4 }, svg); fadeIn(lead, t0 + 1.6, .3);
-    const rz = svText(svg, PX + 162, GY + 16, 'ROT ZONE', 48, GOLD, 'start', 'rotzone'); slideIn(rz, t0 + 1.65);
-    const air = svText(svg, PX + 162, GY - 100, 'AIR', 40, OFF, 'start', 'air'); slideIn(air, t0 + 2.1);
-    const ws = svText(svg, PX + 162, GY + 120, 'WET SOIL', 40, OFF, 'start', 'wetsoil'); slideIn(ws, t0 + 2.3);
-    // blue drip arrows at the line
-    [[PX - 110, 0], [PX + 110, .15]].forEach(([x, dl]) => {
-      const p = sv('path', { d: `M${x} ${GY-90} L${x} ${GY-14} M${x-16} ${GY-34} L${x} ${GY-14} L${x+16} ${GY-34}`, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
-      drawPath(p, t0 + 2.4 + dl, .5);
-    });
-  },
-  // Post + footing with gold dimension arrows: 6 FT above ground, 2-3 FT below, gravel at the bottom, RULE OF THUMB tag.
-  post_depth(svg, t0, opts) {
-    opts = opts || {}; const GY = 420, PX = 600, TOP = 70, BOT = GY + 300;
-    const soil = sv('rect', { x: 0, y: GY, width: 1080, height: 782 - GY, fill: '#1c1c1c' }, svg); fadeIn(soil, t0, .3);
-    const gline = sv('line', { x1: 0, y1: GY, x2: 1080, y2: GY, stroke: '#434343', 'stroke-width': 4 }, svg); fadeIn(gline, t0, .3);
-    const grav = gravel(svg, PX - 70, PX + 70, BOT - 40, BOT, 9); fadeIn(grav, t0 + .3, .3);
-    const foot = sv('path', { d: `M${PX-62} ${GY-8} Q${PX} ${GY-30} ${PX+62} ${GY-8} L${PX+62} ${BOT-40} L${PX-62} ${BOT-40} Z`, fill: '#434343' }, svg); growUp(foot, t0 + .45, .45);
-    const post = sv('rect', { x: PX - 26, y: TOP, width: 52, height: BOT - 52 - TOP, fill: '#6b6b6b', rx: 3 }, svg); growUp(post, t0 + .7, .6);
-    const cap = sv('rect', { x: PX - 34, y: TOP - 14, width: 68, height: 16, fill: '#8a8a8a', rx: 3 }, svg); fadeIn(cap, t0 + 1.1, .3);
-    dimArrow(svg, PX + 110, TOP, GY - 6, '6 FT', t0 + 1.3, 'dim6');
-    dimArrow(svg, PX + 110, GY + 6, BOT, '2-3 FT', t0 + 1.7, 'dim23');
-    const tag = svText(svg, 110, 150, 'RULE OF THUMB', 40, GOLD, 'start', 'tag'); slideIn(tag, t0 + 2.1);
-    if (opts.part === 'full') {
-      const wp = svText(svg, PX - 70, TOP + 60, 'WOOD POST', 40, OFF, 'end', 'woodpost'); slideIn(wp, t0 + 1.0, 30);
-      const l1 = svText(svg, 110, 230, 'ABOUT 1/3 IN THE GROUND', 40, OFF, 'start', 'third'); slideIn(l1, t0 + 2.4);
-      const l2 = svText(svg, 110, 300, '6 FT FENCE: 2-3 FT DEEP', 40, OFF, 'start', 'sixft'); slideIn(l2, t0 + 2.7);
-      const l3 = svText(svg, 430, 760, "STEEL POSTS: MAKER'S FOOTING SPEC", 40, OFF, 'start', 'steel'); slideIn(l3, t0 + 3.2);
-    }
-    if (opts.part === 'water') {   // video 03 beat 4: gravel drains, crowned top sheds rain
-      [[PX - 40, 0], [PX + 40, .12]].forEach(([x, dl]) => { const p = sv('path', { d: `M${x} ${BOT-70} L${x} ${BOT+20} M${x-14} ${BOT} L${x} ${BOT+20} L${x+14} ${BOT}`, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg); drawPath(p, t0 + 1.3 + dl, .5); });
-      [[-1, 0], [1, .12]].forEach(([d, dl]) => { const x0 = PX + d * 40, x1 = PX + d * 130; const p = sv('path', { d: `M${x0} ${GY-40} Q${x0+d*40} ${GY-24} ${x1} ${GY+40} M${x1-d*22} ${GY+34} L${x1} ${GY+40} L${x1-d*6} ${GY+16}`, fill: 'none', stroke: BLUE, 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg); drawPath(p, t0 + 2.0 + dl, .5); });
-      const g1 = svText(svg, 110, 230, 'GRAVEL DRAINS', 40, OFF, 'start', 'gd'); slideIn(g1, t0 + 1.5);
-      const g2 = svText(svg, 110, 300, 'CROWN SHEDS RAIN', 40, OFF, 'start', 'cr'); slideIn(g2, t0 + 2.2);
-    }
-  }
-};
-const CALLOUTS = {
-  wind(svg, t0) {   // #267ECE wind arrows drawing across the panels
-    [[420, 0], [525, .15], [630, .3]].forEach(([y, dl]) => {
-      const p = sv('path', { d: `M80 ${y} C 300 ${y-30}, 520 ${y+30}, 760 ${y} M700 ${y-40} L760 ${y} L700 ${y+40}`, fill: 'none', stroke: BLUE, 'stroke-width': 12, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
-      p.style.filter = 'drop-shadow(0 4px 10px rgba(0,0,0,.6))'; drawPath(p, t0 + .5 + dl, .8);
-      for (let i = 0; i < 4; i++) { const a = t0 + 1.5 + dl + i * 1.1; tw(p, a, a + .5, { x: 30 }, EIO); tw(p, a + .5, a + 1.1, { x: 0 }, EIO); }
-    });
-  }
-};
+const DIAGRAMS = {};   // filled by diagrams/*.js modules (loaded after this script)
+const CALLOUTS = {};   // generic callouts: diagrams/callouts.js; video-specific ones live in their diagram module
 
 /* ---------- beat builder ---------- */
 let PLAN = null, SCRIPT = null, BEATS = [];
@@ -330,7 +287,7 @@ function buildBeat(i, b, S, P) {
   if (b.type === 'diagram') {
     el('div', 'layer topVig', g); el('div', 'layer botVig', g);
     const d = el('div', 'diagram', g); const svg = sv('svg', { viewBox: '0 0 1080 782' }, d);
-    const fn = DIAGRAMS[b.diagram]; if (!fn) throw new Error('unknown diagram ' + b.diagram); fn(svg, t0 + .2, b.opts || {});
+    const fn = DIAGRAMS[b.diagram]; if (!fn) throw new Error('unknown diagram ' + b.diagram); fn(svg, t0 + .2, Object.assign({}, b.opts || {}, { cont: !!b.cont, beatLen: t1 - t0 }));
     if (b.inset) addInset(g, S, b.inset);
   } else if (b.type === 'clip' || b.type === 'myth') {
     throw new Error(b.type + ' beats are built in the next batch');
@@ -338,6 +295,7 @@ function buildBeat(i, b, S, P) {
     if (b.layout === 'full') addFull(g, S, photoKey, b, t0, t1);
     else { addBand(g, S, photoKey, b, t0, t1); el('div', 'layer topVig', g); el('div', 'layer botVig', g); }
   }
+  for (const bl of (b.blurs || [])) { const d = el('div', 'blurbox', g); d.style.left = bl.x + 'px'; d.style.top = bl.y + 'px'; d.style.width = bl.w + 'px'; d.style.height = bl.h + 'px'; if (bl.r !== undefined) d.style.borderRadius = bl.r + 'px'; }
   if (b.callouts) { const c = el('div', 'callout', g); const svg = sv('svg', { viewBox: '0 0 1080 782' }, c); for (const co of b.callouts) { const fn = CALLOUTS[co.type]; if (!fn) throw new Error('unknown callout ' + co.type); fn(svg, t0, co); } }
   if (b.builtRight) {
     const p = pill(g, 'BUILT RIGHT', 'br', grp + 'br', true); reg(p, { o: 1 });
@@ -430,9 +388,30 @@ function qaSample() {
     const eff = fit === 'contain' ? Math.min(sx, sy) : Math.max(sx, sy); maxScale = Math.max(maxScale, eff);
     if (eff > 1.30) fails.push(`sharp photo ${im.src.split('/').pop()} at ${eff.toFixed(3)}x`);
   });
+  document.querySelectorAll('.band img.sharp, img.full.sharp').forEach(im => {   // a panned or zoomed photo must still cover its band / the frame
+    if (effOpacity(im) < 0.05) return; const r = im.getBoundingClientRect(); if (r.width < 1) return;
+    const c = im.classList.contains('full') ? { left: 0, top: 0, right: 1080, bottom: 1920 } : im.parentElement.getBoundingClientRect();
+    if (r.left > c.left + 1 || r.top > c.top + 1 || r.right < c.right - 1 || r.bottom < c.bottom - 1) fails.push(`photo edge exposed ${im.src.split('/').pop()} img(${r.left.toFixed(0)},${r.top.toFixed(0)},${r.right.toFixed(0)},${r.bottom.toFixed(0)}) box(${c.left.toFixed(0)},${c.top.toFixed(0)},${c.right.toFixed(0)},${c.bottom.toFixed(0)})`);
+  });
   return { fails, strings, maxScale };
 }
 window.ready = (async () => { await document.fonts.load('900 100px Outfit'); await document.fonts.load('800 40px Outfit'); await document.fonts.ready; return true; })();
 </script>
+<!-- diagram / callout modules: each registers into DIAGRAMS or CALLOUTS; built the first time a video needs it -->
+<script src="diagrams/fence_posts.js"></script>
+<script src="diagrams/wind.js"></script>
+<script src="diagrams/callouts.js"></script>
+<script src="diagrams/wall_drainage.js"></script>
+<script src="diagrams/paver_layers.js"></script>
+<script src="diagrams/turf_layers.js"></script>
+<script src="diagrams/bedding.js"></script>
+<script src="diagrams/gate_brace.js"></script>
+<script src="diagrams/terrace_spacing.js"></script>
+<script src="diagrams/grading.js"></script>
+<script src="diagrams/edge_restraint.js"></script>
+<script src="diagrams/light_aim.js"></script>
+<script src="diagrams/fence_rules.js"></script>
+<script src="diagrams/wall_base.js"></script>
+<script src="diagrams/clip_myth.js"></script>
 </body>
 </html>

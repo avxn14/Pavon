@@ -35,11 +35,12 @@ def vo_file(i):
 def plan():
     beats = SCRIPT["beats"]; n = len(beats)
     DEF = {"hook": (0.30, 0.30, 2.6), "end": (0.35, 1.60, 3.5)}   # type -> (lead, tail, min length)
-    t = 0.0; scenes = [0.0]; vo = []; sfx = []; skipcap = []
+    t = 0.0; scenes = [0.0]; vo = []; sfx = []; skipcap = []; estimated = False
     for i, b in enumerate(beats):
         lead, tail, mn = DEF.get(b["type"], (0.18, 0.35, 2.4))
         lead = b.get("lead", lead); tail = b.get("tail", tail); mn = b.get("min", mn)
         f = vo_file(i); d = audio_duration(f) if f else None
+        if d is None and os.environ.get("ESTIMATE"): d = round(len(b["vo"].replace("*", "")) * 0.0551, 3); estimated = True   # 0.0551 s/char measured on video 01 at 1.2x
         if d is None: sys.exit(f"missing VO for beat {i+1}: audio/vo/{VID}_b{i+1}.caf (run tools/make.sh to see which beats need new VO)")
         length = max(mn, lead + d + tail)
         start = t + lead
@@ -50,9 +51,10 @@ def plan():
         for s in b.get("sfx", []): sfx.append({"file": s["file"], "start": t + s.get("offset", 0.0), "vol": s.get("vol", 0.4)})
         t += length; scenes.append(round(t, 3))
     total = scenes[-1]
-    plan = {"scenes": scenes, "skipcap": skipcap, "vo": vo, "total": total}
+    plan = {"scenes": scenes, "skipcap": skipcap, "vo": vo, "total": total, "estimated": estimated}
+    if estimated: print("NOTE: plan uses ESTIMATED VO durations (no audio yet); previews/QA only")
     json.dump(plan, open(PLAN, "w"), indent=1)
-    clips = [{"file": vo_file(i), "start": vo[i]["start"], "volume": 1.0} for i in range(n)]
+    clips = [{"file": vo_file(i), "start": vo[i]["start"], "volume": 1.0} for i in range(n) if vo_file(i)]
     mu = SCRIPT.get("music")
     if mu:
         mf = os.path.join(HERE, mu["file"])
