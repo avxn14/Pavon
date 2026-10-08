@@ -279,8 +279,8 @@ function clipTick(L, t) {
 }
 /* ---------- myth card: grey-mark wrong line (struck through in gold) + gold-tick fact row ---------- */
 function mkMythLine(text, sz) { const d = document.createElement('div'); d.className = 'mrow'; d.style.position = 'static'; d.style.fontSize = sz + 'px'; const s = document.createElement('span'); s.textContent = text; d.appendChild(s); return d; }
-function addMyth(g, m, t0, grp) {
-  const card = el('div', 'card', g); reg(card, { y: 900 }); tw(card, t0 + .02, t0 + .52, { y: 0 }, EOX);
+function addMyth(g, m, t0, grp, cont) {   // cont: the previous beat already showed the card (card or myth, no wipe), so only the rows change
+  const card = el('div', 'card', g); if (cont) reg(card, { y: 0 }); else { reg(card, { y: 900 }); tw(card, t0 + .02, t0 + .52, { y: 0 }, EOX); }
   const wr = el('div', 'mrow', g); const xm = el('div', 'xmark', wr); xm.innerHTML = '&#x2715;';
   const sz = fitSize([m.wrong], [48, 44, 40], 754, mkMythLine); wr.style.fontSize = sz + 'px';
   const wt = el('span', 'mt q', wr); wt.textContent = m.wrong; wt.dataset.g = grp + 'wrong';
@@ -372,10 +372,10 @@ function buildBeat(i, b, S, P) {
   for (const bl of (b.blurs || [])) { const d = el('div', 'blurbox', g); d.style.left = bl.x + 'px'; d.style.top = bl.y + 'px'; d.style.width = bl.w + 'px'; d.style.height = bl.h + 'px'; if (bl.r !== undefined) d.style.borderRadius = bl.r + 'px'; }
   if (b.callouts) { const c = el('div', 'callout', g); const svg = sv('svg', { viewBox: '0 0 1080 782' }, c); for (const co of b.callouts) { const fn = CALLOUTS[co.type]; if (!fn) throw new Error('unknown callout ' + co.type); fn(svg, t0, co); } }
   if (b.builtRight) {
-    const p = pill(g, 'BUILT RIGHT', 'br', grp + 'br', true); reg(p, { o: 1 });
+    const p = pill(g, 'BUILT RIGHT', 'br', 'br', true); reg(p, { o: 1 });   // one QA group for every BUILT RIGHT pill: two consecutive [BR] beats crossfade the same pill in the same place
     const tk = p.querySelector('.tk'); reg(tk, { dash: 40 }); tw(tk, t0 + .1, t0 + .5, { dash: 0 }, EO);
   }
-  if (b.label) { const L = el('div', 'label q', g); L.textContent = b.label; L.dataset.g = grp + 'label'; if (b.builtRight) L.style.top = '350px'; reg(L, { o: 0, x: -30 }); tw(L, t0 + .25, t0 + .6, { o: 1, x: 0 }, EO);
+  if (b.label) { const L = el('div', 'label q', g); L.textContent = b.label; L.dataset.g = grp + 'label'; if (b.builtRight) L.style.top = '350px'; reg(L, { o: 0, y: 18 }); tw(L, t0 + .25, t0 + .6, { o: 1, y: 0 }, EO);   // rises in: a sideways slide pushed the plate past x 65 mid-animation (QA)
     if (L.getBoundingClientRect().width > 760) window.FIT_WARNINGS.push('label over 760px: ' + b.label); }
   if (b.type === 'hook') { const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 1 }); }
   if (b.headline) {
@@ -383,8 +383,8 @@ function buildBeat(i, b, S, P) {
     popIn(h.spans, t0 + (b.type === 'hook' ? .05 : .15));
     if (!isLast && !next.wipe && !b.card && !b.myth) popOut(h.spans, t1 - (next.type === 'end' ? .55 : .3));
   }
-  if (b.card) { const prev = S.beats[i - 1]; const cd = addCard(g, b.card, t0, !!(prev && prev.card && !b.wipe), grp); if (!isLast && !next.wipe && next.type === 'end') fadeParts(cd._parts, t1 - .55); }
-  if (b.myth) { const md = addMyth(g, b.myth, t0, grp); if (!isLast && !next.wipe && next.type === 'end') fadeParts(md._parts, t1 - .55); }
+  if (b.card) { const prev = S.beats[i - 1]; const cd = addCard(g, b.card, t0, !!(prev && (prev.card || prev.myth) && !b.wipe), grp); if (!isLast && !next.wipe && next.type === 'end') fadeParts(cd._parts, t1 - .55); }
+  if (b.myth) { const prev = S.beats[i - 1]; const md = addMyth(g, b.myth, t0, grp, !!(prev && (prev.card || prev.myth) && !b.wipe)); if (!isLast && !next.wipe && next.type === 'end') fadeParts(md._parts, t1 - .55); }
   if (b.type === 'end') {
     const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 0, s: .6 }); tw(sp, t0 + .05, t0 + .4, { o: 1, s: 1 }, EOB);
     const lg = el('div', 'logoEnd q qlogo', g); lg.dataset.g = 'logoEnd'; lg.innerHTML = '<img src="logo_gold.png">'; reg(lg, { o: 0, s: .6 }); tw(lg, t0 + .02, t0 + .42, { o: 1, s: 1 }, EOB);

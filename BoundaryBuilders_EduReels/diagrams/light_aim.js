@@ -50,9 +50,9 @@
       tw(rw, ts, ts + .3, { o: 0 }, EO); tw(x1, ts, ts + .3, { o: 0 }, EO);
       const st = svText(svg, 440, 130, 'STAGGERED', 40, GOLD, 'start', 'stag'); slideIn(st, ts + .5);
       markTick(svg, 980, 170, ts + .8);
-      const dg = sv('g', {}, svg); dg.style.filter = SH; const L = { stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }; const y = 236;
-      sv('line', Object.assign({ x1: XS[1], y1: y, x2: XS[2], y2: y }, L), dg); sv('line', Object.assign({ x1: XS[1], y1: y - 18, x2: XS[1], y2: y + 18 }, L), dg); sv('line', Object.assign({ x1: XS[2], y1: y - 18, x2: XS[2], y2: y + 18 }, L), dg);
-      svText(dg, (XS[1] + XS[2]) / 2, y - 24, '~6-8 FT', 40, GOLD, 'middle', 'dim68'); dg.style.transformBox = 'fill-box'; dg.style.transformOrigin = 'left center'; reg(dg, { o: 0, sx: .3 }); tw(dg, ts + 1.1, ts + 1.5, { o: 1, sx: 1 }, EOX);
+      const dg = sv('g', {}, svg); dg.style.filter = SH; const L = { stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }; const y = PY1 + 72, xa = XS[1] + 65, xb = XS[2] + 65;   // between two staggered bottom lights
+      sv('line', Object.assign({ x1: xa, y1: y, x2: xb, y2: y }, L), dg); sv('line', Object.assign({ x1: xa, y1: y - 18, x2: xa, y2: y + 18 }, L), dg); sv('line', Object.assign({ x1: xb, y1: y - 18, x2: xb, y2: y + 18 }, L), dg);
+      svText(dg, (xa + xb) / 2, y + 58, '~6-8 FT', 40, GOLD, 'middle', 'dim68'); dg.style.transformBox = 'fill-box'; dg.style.transformOrigin = 'left center'; reg(dg, { o: 0, sx: .3 }); tw(dg, ts + 1.1, ts + 1.5, { o: 1, sx: 1 }, EOX);
       const rt = svText(svg, 440, 178, 'RULE OF THUMB', 40, OFF, 'start', 'rot'); slideIn(rt, ts + 1.6);
     }
   });

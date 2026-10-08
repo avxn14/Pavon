@@ -16,7 +16,7 @@ Object.assign(DIAGRAMS, {
     const L = { stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' };
     function dimV(x, y0, y1, label, t, group, side) { const gr = sv('g', {}, svg); gr.style.filter = SH;
       sv('line', Object.assign({ x1: x, y1: y0, x2: x, y2: y1 }, L), gr); sv('line', Object.assign({ x1: x - 20, y1: y0, x2: x + 20, y2: y0 }, L), gr); sv('line', Object.assign({ x1: x - 20, y1: y1, x2: x + 20, y2: y1 }, L), gr);
-      if (label) svText(gr, side === 'right' ? x + 30 : x - 30, (y0 + y1) / 2 + 15, label, 40, GOLD, side === 'right' ? 'start' : 'end', group);
+      if (label) { if (side === 'top') svText(gr, x + 22, y0 - 16, label, 40, GOLD, 'start', group); else svText(gr, side === 'right' ? x + 30 : x - 30, (y0 + y1) / 2 + 15, label, 40, GOLD, side === 'right' ? 'start' : 'end', group); }   // 'top' = label to the upper right of the line (clear of the first course)
       gr.style.transformBox = 'fill-box'; gr.style.transformOrigin = 'center bottom'; reg(gr, { o: 0, sy: .3 }); tw(gr, t, t + .45, { o: 1, sy: 1 }, EOX); return gr; }
     function compactor(restY, t) { const g = sv('g', {}, svg); g.style.filter = SH; const cx = 665;
       sv('rect', { x: cx - 60, y: restY - 14, width: 120, height: 14, rx: 4, fill: STEEL }, g); sv('rect', { x: cx - 30, y: restY - 62, width: 60, height: 46, rx: 6, fill: MID, stroke: OFF, 'stroke-width': 3 }, g);
@@ -35,7 +35,7 @@ Object.assign(DIAGRAMS, {
       const g = sv('g', {}, svg); sv('rect', { x: TX0, y: y0, width: TX1 - TX0, height: y1 - y0, fill: MID }, g); gravel(g, TX0 + 5, TX1 - 5, y0 + 4, y1 - 4, seed); growUp(g, ta, .3);
       compactor(y0, ta + .3); const f = sv('rect', { x: TX0, y: y0, width: TX1 - TX0, height: y1 - y0, fill: GOLD }, svg); reg(f, { o: 0 }); tw(f, ta + .6, ta + .66, { o: .7 }, LIN); tw(f, ta + .66, ta + 1.1, { o: 0 }, EO);
     });
-    dimV(TX1 + 30, PAD_T, PAD_B, '6 IN MIN', t1 + 2.6, 'padmin', 'right');
+    dimV(TX1 + 30, PAD_T, PAD_B, '6 IN MIN', t1 + 2.6, 'padmin', 'top');
     const cr = svText(svg, 440, 134, 'COMPACTED', 40, OFF, 'start', 'crushed'); slideIn(cr, t1 + 2.9);
     const cr2 = svText(svg, 440, 182, 'CRUSHED ROCK', 40, OFF, 'start', 'crushed'); slideIn(cr2, t1 + 3.05);
     if (part >= 2) {
