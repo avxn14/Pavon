@@ -9,4 +9,7 @@ folders = sorted({ph.get("folder", "").split(" (")[0] for ph in S["photos"].valu
 files = "; ".join(f"{ph.get('name','?')} ({ph.get('driveId','no id')})" for ph in S["photos"].values())
 skipped = "; ".join(f"{k}: {ph['note']}" for k, ph in S["photos"].items() if ph.get("note")) or "-"
 row = [f"Edu Reel {NN}: {S['title']} ({', '.join(folders)})", "Past", "1 of 1", "Reel", files, skipped, f"{p['date']} {p.get('time','10:00')} America/Vancouver", p["caption"] + "\n\n" + " ".join(p["hashtags"]), status, datetime.date.today().isoformat()]
-print("\t".join(c.replace("\t", " ") for c in row))
+def cell(c):
+    c = c.replace("\t", " ")
+    return '"' + c.replace('"', '""') + '"' if "\n" in c or '"' in c else c
+print("\t".join(cell(c) for c in row))
