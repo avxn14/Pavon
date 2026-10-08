@@ -1,19 +1,21 @@
-/* turf_layers (video 05): an artificial-turf section that slopes gently down away from a house wall at the right edge. opts.part = 1 or 2; opts.cont continues.
+/* turf_layers (video 05): an artificial-turf cross-section drawn as a cutaway block that slopes gently down away from a house wall at the right edge.
+   opts.part = 1 or 2; opts.cont continues the previous beat (part 1 already finished).
    part 1 (beat 2): dark soil and the house wall; the dug-out zone lightens, a dashed excavation line slides in with a gold 4-6 IN dimension; the weed barrier
-     (thin off-white line) draws along the bottom of the cut; the gravel base builds in two lifts (off-white dots), compacted together (two squashes with hit sfx from the
-     script), a gold tint and a gold 3-4 IN dimension; the turf (backing, blades, infill dots) lands on top; a gold slope arrow AWAY FROM HOUSE; the footnote
-     TYPICAL. WET CLAY: MAY NEED MORE BASE OR A DRAIN.
-   part 2 (beat 3, cont): a plastic sheet slides in under the turf, BLUE water pools on it with a grey X; the sheet slides out, the water drains down through
-     the gravel (blue arrows) and a gold tick replaces the X.
-   Band coordinates 1080x782. The section spans the whole band width (the inset, photo A 320x400 at x 72-392 / y 360-760, sits over its left end), so every
-   label lives right of x 430 or above band y 340: dimension labels on dark chips over the layers, WEED BARRIER in the soil, the slope label above the turf,
-   the two footnote lines in the sky above the section (right-aligned at x 960, clear of the small logo which ends at band y 74 and of the house wall at x 1000). */
+     (thin line) draws along the bottom of the cut in GOLD while the voice says "weed barrier", then settles to off-white as the gravel starts; the gravel base
+     builds in two lifts (off-white dots), compacted together (two squashes with hit sfx from the script), a gold tint and a gold 3-4 IN dimension; the turf
+     (backing, blades, infill dots) lands on top; a gold slope arrow AWAY FROM HOUSE; the footnote TYPICAL. WET CLAY: MAY NEED MORE BASE OR A DRAIN.
+   part 2 (beat 3, cont): a plastic sheet slides in under the turf through the cut face, BLUE water pools on it with a grey X; the sheet slides back out,
+     the water drains down through the gravel (blue arrows) and a gold tick replaces the X.
+   Band coordinates 1080x782. The block runs from x 420 to the house wall at x 1000 and every layer sits inside an SVG clipPath at x >= 420, so NOTHING of the
+   section is drawn behind the inset (photo A 320x400 at x 72-392 / y 360-760) or peeks out left of it. Labels: dimension labels on dark chips over the layers,
+   WEED BARRIER in the soil, the slope label above the turf, the two footnote lines in the sky above the section (right-aligned at x 960: two 40 px lines
+   cannot sit bottom-right of the band and stay left of x 920 and clear of the inset, so they go top-right, under the small logo which ends at band y 20). */
 Object.assign(DIAGRAMS, {
   turf_layers(svg, t0, opts) {
     opts = opts || {}; const part = Number(opts.part) || 1;
     const tb = opts.cont ? t0 - 20 : t0;                 // base already finished when a continuation beat starts
     const t1 = part === 1 ? t0 : tb;                     // part 1 animation times
-    const XH = 1000, K = 0.05, X0 = 440, S0 = 400;       // house wall face; slope (rises toward the house); surface y 400 at x 440
+    const XL = 420, XH = 1000, K = 0.05, X0 = 440, S0 = 400;   // block left (cut face), house wall face; slope (rises toward the house); surface y 400 at x 440
     const surf = x => S0 - K * (x - X0);                 // y of the original grade / finished turf surface at x
     const D = 200, GT = 60, TB = 48;                     // offsets below the surface: excavation bottom, gravel top, turf backing top
     const SOIL = '#1c1c1c', MID = '#434343', LIGHT = '#6b6b6b', BLADE = '#9a9a9a', PLASTIC = '#c9d3de';
@@ -65,53 +67,63 @@ Object.assign(DIAGRAMS, {
       growUp(g, t, .5); return g;
     }
 
+    /* ---- the section lives in a clipped group: nothing left of the cut face at x 420 is ever painted (the inset ends at x 392) ---- */
+    const cid = 'tlclip' + part + (opts.cont ? 'c' : '');
+    const defs = sv('defs', {}, svg); const cp = sv('clipPath', { id: cid }, defs); sv('rect', { x: XL, y: 0, width: 1080 - XL, height: 782 }, cp);
+    const sec = sv('g', { 'clip-path': `url(#${cid})` }, svg);
+
     /* ---- base: soil, grade line, house wall (built with tb) ---- */
-    const soil = sv('polygon', { points: `0,${surf(0)} 1080,${surf(1080)} 1080,782 0,782`, fill: SOIL }, svg); fadeIn(soil, tb, .3);
-    const grade = sv('line', { x1: 0, y1: surf(0), x2: XH, y2: surf(XH), stroke: MID, 'stroke-width': 4 }, svg); fadeIn(grade, tb, .3);
+    const soil = sv('polygon', { points: `${XL},${surf(XL)} ${XH},${surf(XH)} ${XH},782 ${XL},782`, fill: SOIL }, sec); fadeIn(soil, tb, .3);
+    const grade = sv('line', { x1: XL, y1: surf(XL), x2: XH, y2: surf(XH), stroke: MID, 'stroke-width': 4 }, sec); fadeIn(grade, tb, .3);
     const house = sv('g', {}, svg);
     sv('rect', { x: XH, y: 90, width: 80, height: surf(XH) - 90 + 2, fill: MID }, house);
     for (let y = 120; y < surf(XH) - 40; y += 30) sv('line', { x1: XH, y1: y, x2: 1080, y2: y, stroke: '#333333', 'stroke-width': 3 }, house);   // siding
     sv('rect', { x: XH, y: surf(XH) - 34, width: 80, height: 36, fill: LIGHT }, house);   // foundation
     fadeIn(house, tb + .1, .3);
 
-    /* ---- part 1: dig out 4-6 IN ---- */
-    const cut = poly(0, XH, 0, D, '#2b2b2b'); fadeIn(cut, t1 + .4, .4); tw(cut, t1 + 4.2, t1 + 4.6, { o: 0 }, EO);   // the dug-out zone (filled again by the base)
-    const dashed = sv('line', { x1: 0, y1: surf(0) + D, x2: XH, y2: surf(XH) + D, stroke: OFF, 'stroke-width': 4, 'stroke-dasharray': '18 14' }, svg);
-    slideIn(dashed, t1 + .5, -40); tw(dashed, t1 + 2.1, t1 + 2.7, { o: 0 }, EO);   // the cut line disappears under the fabric
-    /* ---- gravel base in two lifts, each compacted (squash + hit sfx from the script at beat +3.9 and +4.6) ---- */
-    const lift1 = sv('g', {}, svg); poly(0, XH, D - 70, D, MID, lift1); dots(lift1, 0, XH, D - 64, D - 6, 130, 2.5, 5.5);
-    growUp(lift1, t1 + 2.9, .45); tw(lift1, t1 + 4.4, t1 + 4.5, { sy: .93 }, EO); tw(lift1, t1 + 4.5, t1 + 4.65, { sy: 1 }, EO);
-    const lift2 = sv('g', {}, svg); poly(0, XH, GT, D - 70, MID, lift2); dots(lift2, 0, XH, GT + 6, D - 76, 130, 2.5, 5.5);
-    growUp(lift2, t1 + 3.5, .45); tw(lift2, t1 + 4.4, t1 + 4.5, { sy: .93 }, EO); tw(lift2, t1 + 4.5, t1 + 4.65, { sy: 1 }, EO); tw(lift2, t1 + 4.8, t1 + 4.9, { sy: .94 }, EO); tw(lift2, t1 + 4.9, t1 + 5.05, { sy: 1 }, EO);
-    const glow = poly(0, XH, GT, D, GOLD); reg(glow, { o: 0 }); tw(glow, t1 + 4.9, t1 + 5.3, { o: .18 }, EO); tw(glow, t1 + 5.8, t1 + 6.2, { o: .10 }, EO);   // the base is the layer being talked about
-    /* ---- weed barrier: thin off-white line on the subgrade (drawn above the gravel in z-order so it stays visible) ---- */
-    const barrier = sv('line', { x1: 0, y1: surf(0) + D - 2, x2: XH, y2: surf(XH) + D - 2, stroke: OFF, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg);
-    barrier.style.filter = SH; drawOn(barrier, t1 + 1.9, .7);
+    /* ---- part 1: dig out 4-6 IN (VO at 1.25x: "Dig out four to six inches" beat 0.12-1.70, "lay a weed barrier" 1.94-2.89, "then three to four inches of
+            compacted crushed gravel" 3.14-5.84; t1 = beat + 0.2) ---- */
+    const cut = poly(XL, XH, 0, D, '#2b2b2b', sec); fadeIn(cut, t1 + .3, .4); tw(cut, t1 + 4.0, t1 + 4.4, { o: 0 }, EO);   // the dug-out zone (filled again by the base)
+    const dashed = sv('line', { x1: XL, y1: surf(XL) + D, x2: XH, y2: surf(XH) + D, stroke: OFF, 'stroke-width': 4, 'stroke-dasharray': '18 14' }, sec);
+    slideIn(dashed, t1 + .45, -40); tw(dashed, t1 + 1.9, t1 + 2.4, { o: 0 }, EO);   // the cut line disappears under the fabric
+    /* ---- gravel base in two lifts, each compacted (squash + hit sfx from the script at beat +4.55 and +4.9) ---- */
+    const lift1 = sv('g', {}, sec); poly(XL, XH, D - 70, D, MID, lift1); dots(lift1, XL, XH, D - 64, D - 6, 80, 2.5, 5.5);
+    growUp(lift1, t1 + 2.95, .45); tw(lift1, t1 + 4.35, t1 + 4.45, { sy: .93 }, EO); tw(lift1, t1 + 4.45, t1 + 4.6, { sy: 1 }, EO);
+    const lift2 = sv('g', {}, sec); poly(XL, XH, GT, D - 70, MID, lift2); dots(lift2, XL, XH, GT + 6, D - 76, 80, 2.5, 5.5);
+    growUp(lift2, t1 + 3.45, .45); tw(lift2, t1 + 4.35, t1 + 4.45, { sy: .93 }, EO); tw(lift2, t1 + 4.45, t1 + 4.6, { sy: 1 }, EO); tw(lift2, t1 + 4.7, t1 + 4.8, { sy: .94 }, EO); tw(lift2, t1 + 4.8, t1 + 4.95, { sy: 1 }, EO);
+    const glow = poly(XL, XH, GT, D, GOLD, sec); reg(glow, { o: 0 }); tw(glow, t1 + 4.35, t1 + 4.75, { o: .18 }, EO); tw(glow, t1 + 5.6, t1 + 5.9, { o: .10 }, EO);   // the base is the layer being talked about
+    /* ---- weed barrier: thin line on the subgrade (above the gravel in z-order so it stays visible); a gold copy lights it up while the voice names it ---- */
+    const barrier = sv('line', { x1: XL, y1: surf(XL) + D - 2, x2: XH, y2: surf(XH) + D - 2, stroke: OFF, 'stroke-width': 5, 'stroke-linecap': 'round' }, sec);
+    barrier.style.filter = SH; drawOn(barrier, t1 + 1.75, .6);
+    const barrierG = sv('line', { x1: XL, y1: surf(XL) + D - 2, x2: XH, y2: surf(XH) + D - 2, stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }, sec);
+    barrierG.style.filter = SH; drawOn(barrierG, t1 + 1.75, .6); tw(barrierG, t1 + 3.0, t1 + 3.5, { o: 0 }, EO);   // gold while "lay a weed barrier", off-white once the gravel starts
     /* ---- turf: backing, blades, infill dots ---- */
-    const turf = sv('g', {}, svg);
-    poly(0, XH, TB, GT, LIGHT, turf);
-    for (let x = 3; x < XH; x += 9) { const h = 16 + rnd() * 16, lean = (rnd() - .5) * 8; sv('line', { x1: x, y1: (surf(x) + TB + 1).toFixed(1), x2: (x + lean).toFixed(1), y2: (surf(x) + TB - h).toFixed(1), stroke: BLADE, 'stroke-width': 3.5, 'stroke-linecap': 'round' }, turf); }
-    dots(turf, 0, XH, TB - 10, TB - 2, 120, 1.6, 2.8, .9);
-    growUp(turf, t1 + 5.1, .5); tw(grade, t1 + 5.1, t1 + 5.4, { o: 0 }, EO);
-    /* ---- labels and arrows (on top) ---- */
-    vdim(940, surf(940), surf(940) + D, '4-6 IN', -1, t1 + .9, 'dim46');
-    const wb = svText(svg, 460, 662, 'WEED BARRIER', 40, OFF, 'start', 'wb'); slideIn(wb, t1 + 2.2);
-    vdim(480, surf(480) + GT, surf(480) + D, '3-4 IN', 1, t1 + 3.6, 'dim34');
-    arrow(svg, `M930 ${(surf(930) - 56).toFixed(1)} L560 ${(surf(560) - 56).toFixed(1)}`, [930, surf(930) - 56], [560, surf(560) - 56], GOLD, t1 + 5.4, .6, 8, 26);
-    const sl = svText(svg, 745, 292, 'AWAY FROM HOUSE', 40, OFF, 'middle', 'slope'); slideIn(sl, t1 + 5.6);
-    const f1 = svText(svg, 960, 150, 'TYPICAL. WET CLAY: MAY', 40, OFF, 'end', 'foot'); slideIn(f1, t1 + 4.3);
-    const f2 = svText(svg, 960, 196, 'NEED MORE BASE OR A DRAIN', 40, OFF, 'end', 'foot'); slideIn(f2, t1 + 4.45);
+    const turf = sv('g', {}, sec);
+    poly(XL, XH, TB, GT, LIGHT, turf);
+    for (let x = XL + 3; x < XH; x += 9) { const h = 16 + rnd() * 16, lean = (rnd() - .5) * 8; sv('line', { x1: x, y1: (surf(x) + TB + 1).toFixed(1), x2: (x + lean).toFixed(1), y2: (surf(x) + TB - h).toFixed(1), stroke: BLADE, 'stroke-width': 3.5, 'stroke-linecap': 'round' }, turf); }
+    dots(turf, XL, XH, TB - 10, TB - 2, 70, 1.6, 2.8, .9);
+    growUp(turf, t1 + 4.95, .45); tw(grade, t1 + 4.95, t1 + 5.25, { o: 0 }, EO);
+    /* ---- labels and arrows (on top, outside the clip so their shadows are not cut) ---- */
+    vdim(940, surf(940), surf(940) + D, '4-6 IN', -1, t1 + .7, 'dim46');
+    const wb = svText(svg, 462, 662, 'WEED BARRIER', 40, OFF, 'start', 'wb'); slideIn(wb, t1 + 2.1);
+    vdim(490, surf(490) + GT, surf(490) + D, '3-4 IN', 1, t1 + 3.8, 'dim34');
+    arrow(svg, `M930 ${(surf(930) - 56).toFixed(1)} L560 ${(surf(560) - 56).toFixed(1)}`, [930, surf(930) - 56], [560, surf(560) - 56], GOLD, t1 + 5.05, .5, 8, 26);
+    const sl = svText(svg, 745, 292, 'AWAY FROM HOUSE', 40, OFF, 'middle', 'slope'); slideIn(sl, t1 + 5.15);
+    const f1 = svText(svg, 960, 150, 'TYPICAL. WET CLAY: MAY', 40, OFF, 'end', 'foot'); slideIn(f1, t1 + 4.1);
+    const f2 = svText(svg, 960, 196, 'NEED MORE BASE OR A DRAIN', 40, OFF, 'end', 'foot'); slideIn(f2, t1 + 4.25);
 
     if (part >= 2) {
-      /* ---- part 2: plastic under the turf traps water (grey X); plastic out, water drains through to the gravel (gold tick) ---- */
-      const sheet = poly(0, XH, GT, GT + 8, PLASTIC); sheet.style.filter = SH; reg(sheet, { o: 0, x: 320 }); tw(sheet, t0, t0 + .5, { o: 1, x: 0 }, EO);
-      const water = poly(0, XH, 10, GT, 'rgba(38,126,206,.7)'); growUp(water, t0 + .9, .6);
-      const X = markX(svg, 640, surf(640) + 34, t0 + 1.5);
-      tw(sheet, t0 + 2.3, t0 + 2.7, { x: 340, o: 0 }, EI);
-      tw(X, t0 + 2.3, t0 + 2.55, { o: 0, s: .6 }, EI);
-      tw(water, t0 + 2.5, t0 + 3.1, { sy: .04, o: .25 }, EI);
-      [[688, 0], [714, .1], [740, .2]].forEach(([x, dl]) => arrow(svg, `M${x} ${(surf(x) + 64).toFixed(1)} L${x} ${(surf(x) + 184).toFixed(1)}`, [x, surf(x) + 64], [x, surf(x) + 184], BLUE, t0 + 2.55 + dl, .5, 6, 22));
-      markTick(svg, 640, surf(640) + 34, t0 + 3.0);
+      /* ---- part 2 (VO at 1.25x: "Never plastic underneath." beat 0.18-1.31, "It traps the water." 1.54-2.42; t0 = beat + 0.2): plastic under the turf
+              traps water (grey X); plastic out, water drains through to the gravel (gold tick) ---- */
+      const OUT = XH - XL + 20;   // fully hidden behind the clip when offset by this much to the left
+      const sheet = poly(XL, XH, GT, GT + 8, PLASTIC, sec); sheet.style.filter = SH; reg(sheet, { x: -OUT }); tw(sheet, t0, t0 + .5, { x: 0 }, EO);   // slides in under the turf through the cut face
+      const water = poly(XL, XH, 10, GT, 'rgba(38,126,206,.7)', sec); growUp(water, t0 + .8, .6);
+      const X = markX(svg, 640, surf(640) + 34, t0 + 1.4);
+      tw(sheet, t0 + 2.1, t0 + 2.5, { x: -OUT }, EI);   // the sheet slides back out the way it came
+      tw(X, t0 + 2.1, t0 + 2.35, { o: 0, s: .6 }, EI);
+      tw(water, t0 + 2.3, t0 + 2.9, { sy: .04, o: .25 }, EI);
+      [[688, 0], [714, .1], [740, .2]].forEach(([x, dl]) => arrow(svg, `M${x} ${(surf(x) + 64).toFixed(1)} L${x} ${(surf(x) + 184).toFixed(1)}`, [x, surf(x) + 64], [x, surf(x) + 184], BLUE, t0 + 2.35 + dl, .5, 6, 22));
+      markTick(svg, 640, surf(640) + 34, t0 + 2.8);
     }
   }
 });

@@ -4,29 +4,29 @@
  "category": "LANDSCAPING",
  "series": "YARD TIP #1",
  "target": [24, 34],
- "stretch": 1.2,
+ "stretch": 1.25,
  "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 24},
  "photos": {
   "A": {"file": "photos/jpg/1AR06qZeX2C-2lOWuYVjv57FtHaLALrHV.jpg", "driveId": "1AR06qZeX2C-2lOWuYVjv57FtHaLALrHV", "name": "turf-1.jpg", "folder": "artificial turf backyard Langley (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0)", "w": 1206, "h": 1507},
-  "B": {"file": "photos/jpg/1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd.jpg", "driveId": "1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd", "name": "turf-2.jpg", "folder": "artificial turf backyard Langley (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0)", "w": 1206, "h": 1507},
+  "B": {"file": "photos/jpg/1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd.jpg", "driveId": "1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd", "name": "turf-2.jpg", "folder": "artificial turf backyard Langley (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0)", "w": 1206, "h": 1507, "note": "band at pos 50% 50% (photo rows 317-1190): turf field, fence and the pad corner; the damp patch at the bottom-left of the pad is mostly cropped"},
   "C": {"file": "photos/jpg/13nukFeGiqkrrRS1olcGNMZ_oN0tRlFvu.jpg", "driveId": "13nukFeGiqkrrRS1olcGNMZ_oN0tRlFvu", "name": "IMG_6074.jpg", "folder": "cedar fence (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN)", "w": 1170, "h": 870, "note": "the file has 6 black rows at its bottom edge; pos 50% 0% keeps them out of the band"}
  },
  "beats": [
   {"type": "hook", "photo": "A", "layout": "full", "kb": {"from": [1.0, 150, 0], "to": [1.0, -110, 0]}, "builtRight": true,
    "headline": ["TURF *PUDDLING?*", "CHECK THE *BASE*"],
    "vo": "Puddles on your artificial turf? Turf drains through its base, so that's where to look."},
-  {"type": "diagram", "diagram": "turf_layers", "opts": {"part": 1}, "fill": "A", "inset": "A", "wipe": true,
+  {"type": "diagram", "diagram": "turf_layers", "opts": {"part": 1}, "fill": "A", "inset": "A", "wipe": true, "lead": 0.12, "tail": 0.14,
    "headline": ["*COMPACTED*", "GRAVEL BASE"],
-   "sfx": [{"file": "hit", "offset": 4.6, "vol": 0.35}, {"file": "hit", "offset": 5.0, "vol": 0.35}],
+   "sfx": [{"file": "hit", "offset": 4.55, "vol": 0.35}, {"file": "hit", "offset": 4.9, "vol": 0.35}],
    "vo": "Dig out four to six inches, lay a *weed barrier,* then three to four inches of *compacted crushed gravel.*"},
   {"type": "diagram", "diagram": "turf_layers", "opts": {"part": 2}, "cont": true, "fill": "A", "inset": "A", "tail": 1.6,
    "headline": ["NEVER *PLASTIC*", "UNDER TURF"],
    "vo": "*Never plastic* underneath. It *traps the water.*"},
-  {"type": "photo", "photo": "B", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.0, 0, 0], "to": [1.03, 0, 0]}, "wipe": true,
+  {"type": "photo", "photo": "B", "layout": "band", "pos": "50% 50%", "kb": {"from": [1.0, 0, 0], "to": [1.035, 0, 0]}, "wipe": true,
    "headline": ["SLOPED AWAY.", "*EDGES NAILED*"],
    "callouts": [
-    {"type": "arrow", "pts": [[880, 330], [940, 460]], "color": "gold", "w": 8, "head": 26, "t": 0.5, "dur": 0.6, "label": "SLOPE", "lx": 860, "ly": 520, "size": 40, "anchor": "middle"},
-    {"type": "arrow", "pts": [[821, 254], [370, 708]], "color": "gold", "w": 10, "head": 34, "t": 2.3, "dur": 0.9}
+    {"type": "arrow", "pts": [[930, 340], [930, 470]], "color": "gold", "w": 8, "head": 26, "t": 0.5, "dur": 0.6, "label": "SLOPE", "lx": 930, "ly": 525, "size": 40, "anchor": "middle"},
+    {"type": "arrow", "pts": [[90, 357], [790, 456]], "color": "gold", "w": 10, "head": 34, "t": 2.1, "dur": 0.9}
    ],
    "vo": "The base *slopes away* from the house, and the edges get *nailed down* tight."},
   {"type": "photo", "photo": "C", "layout": "band", "pos": "50% 0%", "kb": {"from": [1.0, 0, 0], "to": [1.05, 0, 0]}, "wipe": true,
