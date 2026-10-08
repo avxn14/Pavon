@@ -28,8 +28,14 @@ OWNER ANSWERS
 OWNER CONFIRM ANSWERS (videos 02-15)
 - (not asked yet; they go in the STEP 2 message)
 
+STEP 2 (in progress 2026-10-08)
+- Tools written: tools/audiofix.py, tools/build.py, tools/frames.py, tools/mp4check.py, tools/check_promo.sh, tools/make.sh; render.py rewritten (plan/preview/all/cover/qa, VID=NN); edu.html template with hook/photo/diagram/card/end (myth + clip stubs for the next batch); diagrams post_rot, post_depth (depth/full/water parts), wind callout.
+- Video 01 photos downloaded and viewed: A = IMG_2817 fallback opener (P1 clip never arrived), B = IMG_2820, C = f24dafda. All clean (no faces/plates/numbers).
+- VO for video 01 generated (6 beats, Sia, flow XryOZB2VYpARXcrikQgW), audiofix 1.2x; plan total 30.42 s. Music bed generated (900 credits charged, 70 s, transcription check returned no words = instrumental; the transcription itself cost 385 credits, more than its 21-credit estimate).
+- QA sampler passes with 0 failures, max sharp scale 1.283.
+
 BUILT / APPROVED / SCHEDULED / LOGGED
-- Built: none. Approved: none. Scheduled: none. Logged: none.
+- Built: 01 (pending final render check). Approved: none. Scheduled: none. Logged: none.
 
 NEXT STEP
 - Wait for the owner's STEP 1 answers, the Winter project files and the P1 clip. Then STEP 2: edu.html template, diagrams post_rot / post_depth / wind arrows, video 01, QA, send it with all [OWNER CONFIRM] questions for 02-15.

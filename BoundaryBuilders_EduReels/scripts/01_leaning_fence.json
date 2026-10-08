@@ -1,0 +1,42 @@
+{
+ "id": "01_leaning_fence",
+ "title": "Leaning fence? The 3 usual causes",
+ "category": "FENCE",
+ "series": "FENCE TIP #1",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 0},
+ "photos": {
+  "A": {"file": "photos/jpg/1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5.jpg", "driveId": "1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5", "name": "IMG_2817.jpg", "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)", "w": 1206, "h": 743, "note": "fallback opener: P1 Video 02 frame 0 not received"},
+  "B": {"file": "photos/jpg/19tLyf1rTcy9CMNimCf23PB9aN1oU-Ind.jpg", "driveId": "19tLyf1rTcy9CMNimCf23PB9aN1oU-Ind", "name": "IMG_2820.jpg", "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)", "w": 1206, "h": 634},
+  "C": {"file": "photos/jpg/1lR5AfM5qLYKw5ZJsHaPZ46pqX_TuRQkq.jpg", "driveId": "1lR5AfM5qLYKw5ZJsHaPZ46pqX_TuRQkq", "name": "f24dafda-6a96-4c78-9228-0792fcf82a75.JPG", "folder": "cedar fence (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN)", "w": 1600, "h": 1200}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.12, 0, 0]}, "builtRight": true,
+   "headline": ["LEANING *FENCE?*", "*3 USUAL CAUSES*"],
+   "vo": "Fence leaning after the wind? It's usually one of three things."},
+  {"type": "diagram", "diagram": "post_rot", "fill": "A", "inset": "C", "wipe": true,
+   "card": {"mark": "badge", "n": 1, "row": "POST *ROT*", "small": "RIGHT AT GROUND LEVEL"},
+   "vo": "One: rot. Wood posts rot first right at ground level, where wet soil meets air."},
+  {"type": "diagram", "diagram": "post_depth", "opts": {"part": "depth"}, "fill": "A", "inset": "C",
+   "card": {"mark": "badge", "n": 2, "row": "POSTS *TOO SHALLOW*", "small": "RULE OF THUMB: 2-3 FT DEEP"},
+   "vo": "Two: shallow posts. A common rule of thumb is two to three feet deep for a six foot fence."},
+  {"type": "photo", "photo": "B", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.04, 0, 0]}, "wipe": true, "builtRight": true,
+   "label": "2X THE WIND = 4X THE PUSH", "callouts": [{"type": "wind"}],
+   "card": {"mark": "badge", "n": 3, "row": "*SOGGY SOIL* + WIND"},
+   "vo": "Three: soggy soil and wind. A solid fence catches wind like a sail, and twice the wind pushes four times as hard."},
+  {"type": "photo", "photo": "C", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.06, 0, 0]}, "wipe": true,
+   "headline": ["PUSH ON", "YOUR *POSTS*"],
+   "vo": "After the first big storm, push on your posts. Wobble at ground level? Get it looked at."},
+  {"type": "end", "photo": "C", "layout": "band", "kb": {"from": [1.06, 0, 0], "to": [1.08, 0, 0]},
+   "prompt": "SEND THIS TO A FENCE OWNER",
+   "vo": "Send this to a fence owner."}
+ ],
+ "cover": {"photo": "C", "layout": "band", "title": ["KEEP FENCES", "*STRAIGHT*"]},
+ "post": {
+  "date": "2026-10-10", "time": "10:00",
+  "caption": "Leaning fence after a Lower Mainland windstorm? It's usually rot at ground level, posts set too shallow, or soggy soil plus wind on a solid fence. After the first big storm, push on your posts and check for wobble at the base.",
+  "hashtags": ["#boundarybuilders", "#fencerepair", "#cedarfence", "#metrovancouver", "#lowermainland"],
+  "alt": "A stained cedar fence down a side yard, an animated diagram of a fence post rotting at ground level, and a new board-on-board cedar fence following a slope."
+ }
+}
