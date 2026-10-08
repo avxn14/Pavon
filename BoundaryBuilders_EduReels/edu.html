@@ -343,6 +343,7 @@ function coverMode() {
   addFill(g, S, c.photo, false);
   const b = { kb: c.kb || { from: [1, 0, 0] }, pos: c.pos, band: c.band };
   if (c.layout === 'full') addFull(g, S, c.photo, b, 0, 1); else { addBand(g, S, c.photo, b, 0, 1); el('div', 'layer topVig', g); }
+  for (const bl of (c.blurs || [])) { const d = el('div', 'blurbox', g); d.style.left = bl.x + 'px'; d.style.top = bl.y + 'px'; d.style.width = bl.w + 'px'; d.style.height = bl.h + 'px'; if (bl.r !== undefined) d.style.borderRadius = bl.r + 'px'; }   // cover privacy boxes, same format as a beat's blurs
   el('div', 'cgrad', g);
   const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 1 });
   const mk = (line, sz) => { const d = document.createElement('div'); d.className = 'ctitle line'; d.style.position = 'static'; d.style.width = 'auto'; d.style.display = 'inline-block'; d.style.fontSize = sz + 'px'; d.innerHTML = goldHtml(line); return d; };

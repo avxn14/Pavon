@@ -25,7 +25,7 @@
 - `sfx`: `[{file:"hit"|"whoosh", offset: seconds after beat start, vol}]` extra sounds (compactor thumps etc.). plan() already adds a whoosh for each wipe, and a hit for each card and for the end card.
 - `lead`/`tail`/`min`: timing overrides (defaults hook .30/.30/2.6, end .35/1.60/3.5, others .18/.35/2.4). Beat length = max(min, lead + VO + tail). Diagram functions get t0 = beat start + 0.2; headline words pop in from beat start + .15 (hook: + .05).
 - `vo`: the spoken line; `*asterisks*` mark gold caption words and are stripped for TTS. The text must match the generated audio exactly (make.sh compares a sha1 with `audio/vo/NN_hashes.json`), so copy the brief's VO lines verbatim.
-- Top level: `id`, `title`, `category`, `series`, `target [24,34]`, `stretch 1.2`, `music {file, volume 0.2, offset}` (different offset per video), `photos {KEY: {file, driveId, name, folder, w, h}}`, `cover {photo, layout, pos, kb, band, title: [..]}`, `post {date, time "10:00", caption, hashtags (5), alt}`.
+- Top level: `id`, `title`, `category`, `series`, `target [24,34]`, `stretch 1.2`, `music {file, volume 0.2, offset}` (different offset per video), `photos {KEY: {file, driveId, name, folder, w, h}}`, `cover {photo, layout, pos, kb, band, blurs, title: [..]}` (cover blurs use the same frame-coordinate boxes as a beat), `post {date, time "10:00", caption, hashtags (5), alt}`.
 
 ## Diagram authoring (`diagrams/<name>.js`)
 - `DIAGRAMS.name = function (svg, t0, opts) {...}`; `svg` is the 1080x782 band SVG. Build with `sv(tag, attrs, parent)` and `svText(parent, x, y, text, size, fill, anchor, group)` (adds class `q` + `data-g` so QA sees it).
