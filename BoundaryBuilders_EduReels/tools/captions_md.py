@@ -20,7 +20,7 @@ rows.sort()
 out = ["# Posting schedule (10:00 AM America/Vancouver unless noted)", "", "| Date | Day | Post | Category | File | Status |", "|---|---|---|---|---|---|"]
 prev = None
 for r in rows:
-    flag = " **(same category as the previous post: check)**" if prev and prev[3] == r[3] and not (prev[0] == "2026-10-11" and r[0] == "2026-10-12") else ""
+    flag = " **(same category as the previous post: check)**" if prev and prev[3] == r[3] and not (prev[5] == "existing post" and r[5] == "existing post") else ""
     out.append(f"| {r[0]} | {r[1]} | {r[2]}{flag} | {r[3]} | {r[4]} | {r[5]} |"); prev = r
 out += ["", "Rules: never two posts in a row in the same category (Oct 11-12 pavers back to back is the owner's existing pair); if a review runs late, slide every later Reel by the same amount, keeping about every 2 days and never on a day that already has a post.", "Reels not yet written appear once their script exists."]
 open(os.path.join(ROOT, "schedule.md"), "w").write("\n".join(out)); print("wrote captions.md and schedule.md for", [S["id"] for S in scripts])

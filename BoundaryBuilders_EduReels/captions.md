@@ -4,7 +4,7 @@ Posting time 10:00 America/Vancouver. Instagram @boundarybuilders_bc, cross-post
 
 ## 01_leaning_fence: Leaning fence? The 3 usual causes
 
-- Post date: 2026-10-10 10:00
+- Post date: 2026-10-13 10:00
 - Series pill: FENCE TIP #1 | Category: FENCE
 - Cover title: KEEP FENCES / *STRAIGHT* (photo C)
 - File: final/01_leaning_fence.mp4 | Cover: final/01_leaning_fence_cover.jpg
@@ -24,7 +24,7 @@ Photos used:
 
 ## 02_wall_drainage: Why retaining walls fail: water
 
-- Post date: 2026-10-13 10:00
+- Post date: 2026-10-15 10:00
 - Series pill: WALL TIP #1 | Category: RETAINING WALLS
 - Cover title: WALL / *DRAINAGE* (photo A)
 - File: final/02_wall_drainage.mp4 | Cover: final/02_wall_drainage_cover.jpg
@@ -43,7 +43,7 @@ Photos used:
 
 ## 03_fence_posts: This is how a fence should be installed: the posts
 
-- Post date: 2026-10-15 10:00
+- Post date: 2026-10-17 10:00
 - Series pill: FENCE TIP #2 | Category: FENCE
 - Cover title: FENCE POSTS / *DONE RIGHT* (photo C)
 - File: final/03_fence_posts.mp4 | Cover: final/03_fence_posts_cover.jpg
@@ -62,7 +62,7 @@ Photos used:
 
 ## 04_pavers_sinking: Pavers sinking? It's usually the base
 
-- Post date: 2026-10-17 10:00
+- Post date: 2026-10-19 10:00
 - Series pill: PAVER TIP #1 | Category: PAVERS
 - Cover title: PAVER BASE / *DONE RIGHT* (photo A)
 - File: final/04_pavers_sinking.mp4 | Cover: final/04_pavers_sinking_cover.jpg
@@ -82,7 +82,7 @@ Photos used:
 
 ## 05_turf_base: Artificial turf puddling? Check the base
 
-- Post date: 2026-10-19 10:00
+- Post date: 2026-10-21 10:00
 - Series pill: YARD TIP #1 | Category: LANDSCAPING
 - Cover title: TURF? IT'S / ALL *BASE* (photo A)
 - File: final/05_turf_base.mp4 | Cover: final/05_turf_base_cover.jpg
@@ -102,7 +102,7 @@ Photos used:
 
 ## 06_bedding_layer: More bedding isn't better
 
-- Post date: 2026-10-21 10:00
+- Post date: 2026-10-23 10:00
 - Series pill: PAVER TIP #2 | Category: PAVERS
 - Cover title: MORE BEDDING / *ISN'T* BETTER (photo C)
 - File: final/06_bedding_layer.mp4 | Cover: final/06_bedding_layer_cover.jpg
@@ -123,7 +123,7 @@ Photos used:
 
 ## 07_gate_sag: Why gates sag: post, brace, cable
 
-- Post date: 2026-10-23 10:00
+- Post date: 2026-10-25 10:00
 - Series pill: FENCE TIP #3 | Category: FENCE
 - Cover title: STOP GATE / *SAG* (photo C)
 - File: final/07_gate_sag.mp4 | Cover: final/07_gate_sag_cover.jpg
@@ -143,7 +143,7 @@ Photos used:
 
 ## 08_wall_permits: Planning a taller wall? Permits, engineers, terracing
 
-- Post date: 2026-10-25 10:00
+- Post date: 2026-10-27 10:00
 - Series pill: WALL TIP #2 | Category: RETAINING WALLS
 - Cover title: TALLER WALL? / *READ THIS* (photo A)
 - File: final/08_wall_permits.mp4 | Cover: final/08_wall_permits_cover.jpg
@@ -164,7 +164,7 @@ Photos used:
 
 ## 09_downspout_drainage: Where does your downspout dump?
 
-- Post date: 2026-10-27 10:00
+- Post date: 2026-10-29 10:00
 - Series pill: YARD TIP #2 | Category: LANDSCAPING
 - Cover title: WHERE DOES / THE *WATER* GO? (photo A)
 - File: final/09_downspout_drainage.mp4 | Cover: final/09_downspout_drainage_cover.jpg
@@ -185,7 +185,7 @@ Photos used:
 
 ## 10_cedar_care: Cedar resists rot, but it's not rot-proof
 
-- Post date: 2026-10-29 10:00
+- Post date: 2026-10-31 10:00
 - Series pill: FENCE TIP #4 | Category: FENCE
 - Cover title: MAKE CEDAR / *LAST* (photo A)
 - File: final/10_cedar_care.mp4 | Cover: final/10_cedar_care_cover.jpg
@@ -208,7 +208,7 @@ Photos used:
 
 ## 11_edge_restraint: Pavers spreading at the edges? Edge restraint
 
-- Post date: 2026-10-31 10:00
+- Post date: 2026-11-02 10:00
 - Series pill: PAVER TIP #3 | Category: PAVERS
 - Cover title: PAVER EDGES / *DONE RIGHT* (photo C)
 - File: final/11_edge_restraint.mp4 | Cover: final/11_edge_restraint_cover.jpg
@@ -228,7 +228,7 @@ Photos used:
 
 ## 12_landscape_lighting: Landscape lighting: light the path, not the neighbours
 
-- Post date: 2026-11-02 10:00
+- Post date: 2026-11-04 10:00
 - Series pill: YARD TIP #3 | Category: LANDSCAPING
 - Cover title: LIGHT IT / *RIGHT* (photo A)
 - File: final/12_landscape_lighting.mp4 | Cover: final/12_landscape_lighting_cover.jpg
@@ -250,7 +250,7 @@ Photos used:
 
 ## 13_fence_rules: How tall can your fence be? Check these first
 
-- Post date: 2026-11-04 10:00
+- Post date: 2026-11-06 10:00
 - Series pill: FENCE TIP #5 | Category: FENCE
 - Cover title: FENCE RULES: / *CHECK FIRST* (photo C)
 - File: final/13_fence_rules.mp4 | Cover: final/13_fence_rules_cover.jpg
@@ -270,7 +270,7 @@ Photos used:
 
 ## 14_wall_base: What's under a wall that lasts
 
-- Post date: 2026-11-06 10:00
+- Post date: 2026-11-08 10:00
 - Series pill: WALL TIP #3 | Category: RETAINING WALLS
 - Cover title: WHAT'S UNDER / A *WALL* (photo C)
 - File: final/14_wall_base.mp4 | Cover: final/14_wall_base_cover.jpg
@@ -290,7 +290,7 @@ Photos used:
 
 ## 15_paver_myths: 3 paver myths
 
-- Post date: 2026-11-08 10:00
+- Post date: 2026-11-10 10:00
 - Series pill: PAVER TIP #4 | Category: PAVERS
 - Cover title: 3 PAVER / *MYTHS* (photo A)
 - File: final/15_paver_myths.mp4 | Cover: final/15_paver_myths_cover.jpg
