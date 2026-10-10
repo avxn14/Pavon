@@ -1,0 +1,179 @@
+{
+ "id": "13_fence_rules",
+ "title": "How tall can your fence be? Check these first",
+ "category": "FENCE",
+ "series": "FENCE TIP #5",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 27
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/1udEzw1JbSzdwrCK4TWC7Vm4x7_BUGw-e.jpg",
+   "driveId": "1udEzw1JbSzdwrCK4TWC7Vm4x7_BUGw-e",
+   "name": "metal-fence-1.jpg",
+   "folder": "metal privacy fence Sep 29 (14iVRt6nCPnXNDTSX87pu2e1YGJUbb6oR)",
+   "w": 1206,
+   "h": 863
+  },
+  "B": {
+   "file": "photos/jpg/1SAa4fsA2uPXUVgcTlfZW8dfmB3m9BIAK.jpg",
+   "driveId": "1SAa4fsA2uPXUVgcTlfZW8dfmB3m9BIAK",
+   "name": "IMG_3142 2.jpg",
+   "folder": "metal fence (1M0MFcU5-zTNn0J8S_Oj6IJ9mlfRB4oGW)",
+   "w": 1206,
+   "h": 801
+  },
+  "C": {
+   "file": "photos/jpg/1xnUdG0iAsItJxYCl9zOw2FauMz2g5OYw.jpg",
+   "driveId": "1xnUdG0iAsItJxYCl9zOw2FauMz2g5OYw",
+   "name": "IMG_3139 3.jpg",
+   "folder": "metal fence (1M0MFcU5-zTNn0J8S_Oj6IJ9mlfRB4oGW)",
+   "w": 1206,
+   "h": 873
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "headline": [
+    "HOW TALL CAN",
+    "YOUR *FENCE* BE?"
+   ],
+   "vo": "How tall can your fence be? It depends where it goes, and on your city."
+  },
+  {
+   "type": "diagram",
+   "diagram": "fence_rules",
+   "opts": {
+    "part": 1
+   },
+   "fill": "A",
+   "inset": "A",
+   "wipe": true,
+   "headline": [
+    "*~4 FT* FRONT,",
+    "*~6 FT* BACK"
+   ],
+   "vo": "In most Lower Mainland cities it's about *four feet* in the front yard and about *six* in the back. Every city is different."
+  },
+  {
+   "type": "diagram",
+   "diagram": "fence_rules",
+   "opts": {
+    "part": 2
+   },
+   "fill": "A",
+   "inset": "A",
+   "headline": [
+    "CORNER LOT?",
+    "*LOWER* LIMITS"
+   ],
+   "vo": "*Corner lots* have a sightline zone near the corner where fences and hedges stay around *one metre*."
+  },
+  {
+   "type": "diagram",
+   "diagram": "fence_rules",
+   "opts": {
+    "part": 3
+   },
+   "fill": "A",
+   "inset": "A",
+   "headline": [
+    "FENCE ON A WALL?",
+    "IT CAN *ADD UP*"
+   ],
+   "vo": "Putting a fence on a *retaining wall*? Some cities count them *together*."
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.05,
+     -20,
+     0
+    ]
+   },
+   "wipe": true,
+   "headline": [
+    "PROPERTY LINE?",
+    "*GET A SURVEY*"
+   ],
+   "vo": "And only a *B.C. Land Surveyor* can confirm your property line."
+  },
+  {
+   "type": "end",
+   "photo": "C",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "prompt": "SEND THIS TO A NEIGHBOUR",
+   "vo": "Send this to your neighbour."
+  }
+ ],
+ "cover": {
+  "photo": "C",
+  "layout": "band",
+  "kb": {
+   "from": [
+    1.02,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "FENCE RULES:",
+   "*CHECK FIRST*"
+  ]
+ },
+ "post": {
+  "date": "2026-11-06",
+  "time": "10:00",
+  "caption": "How tall can your fence be in the Lower Mainland? Height limits are typically about 4 ft in front yards and 6 ft in back, corner lots are lower near the corner, and in some cities a fence on a retaining wall counts as one combined height. Check your city's bylaw before you build; only a BC Land Surveyor can confirm your property line.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#fenceinstallation",
+   "#newfence",
+   "#metrovancouver",
+   "#lowermainland"
+  ],
+  "alt": "A black steel privacy fence along a lawn, animated diagrams of typical front and back yard fence heights, a corner-lot sightline and a fence on a retaining wall, and a wood-grain metal fence with a slat topper."
+ }
+}

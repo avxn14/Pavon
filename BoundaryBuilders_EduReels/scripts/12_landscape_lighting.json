@@ -1,0 +1,46 @@
+{
+ "id": "12_landscape_lighting",
+ "title": "Landscape lighting: light the path, not the neighbours",
+ "category": "LANDSCAPING",
+ "series": "YARD TIP #3",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 21},
+ "photos": {
+  "A": {"file": "photos/jpg/1AbkyRm856kbTbRDbF2_b8J2aV2ES8ryo.jpg", "driveId": "1AbkyRm856kbTbRDbF2_b8J2aV2ES8ryo", "name": "Looks like a cozy Friday night.jpg", "folder": "Port Moody kitchen outdoor (1j66aiXv_OosbU-dB30R7AJTANO9bzcI3)", "w": 1170, "h": 878, "note": "owner confirmed the set as their job (2026-10-08); band at 0.92-0.95x (heavy JPEG compression, so no push)"},
+  "B": {"file": "photos/jpg/1Kd7OuT3tJN_DrFqLVfG0oUBI-HD0QgoN.jpg", "driveId": "1Kd7OuT3tJN_DrFqLVfG0oUBI-HD0QgoN", "name": "707378295_18394604746082647_4562082735756689699_n.jpg", "folder": "maple ridge front yard (1DNchULD0CaeZVE11VLzMRzgiK6jmKPTq)", "w": 640, "h": 640, "note": "owner confirmed the set (2026-10-08); 780x780 band at 1.22x, push to 1.04"},
+  "C": {"file": "photos/jpg/1TdtF4Jlsp-SdBY6o4E0bekhrvLPtAaMh.jpg", "driveId": "1TdtF4Jlsp-SdBY6o4E0bekhrvLPtAaMh", "name": "508631634_17911923963149240_3825814473361652313_n.jpg", "folder": "Willson res (1iPtGiZWph9LachWNLI9C2zLemiJ_oI3m)", "w": 640, "h": 427, "note": "owner confirmed the set (2026-10-08); 800x534 band at 1.25x, push to 1.03"},
+  "D": {"file": "photos/jpg/1mqJvmzLKA7strN4qXS6SXSx2WG06-wo-.jpg", "driveId": "1mqJvmzLKA7strN4qXS6SXSx2WG06-wo-", "name": "For this front entrance we poured new concrete stairs and finished them off with ...Vene-3.jpg", "folder": "burnaby entrance (1iX7xOF44ClD9LfOMnpKCTbU-i8OFE1hU)", "w": 1170, "h": 878, "note": "owner confirmed the set (2026-10-08); no product name is visible in the photo itself"},
+  "E": {"file": "photos/jpg/1k5RLq4pYoNn-IdoXy4BJdjhZ3FrCBgGN.jpg", "driveId": "1k5RLq4pYoNn-IdoXy4BJdjhZ3FrCBgGN", "name": "707898968_18394604776082647_6059246699742964234_n.jpg", "folder": "maple ridge front yard (1DNchULD0CaeZVE11VLzMRzgiK6jmKPTq)", "w": 640, "h": 640, "note": "780x780 band at 1.22x; the porch decor is small and generic at this size (no names or numbers), so the whole dusk porch stays in frame"}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.03, 0, 0]},
+   "builtRight": true, "headline": ["BLINDING YOUR", "*NEIGHBOURS?*"],
+   "vo": "Yard lights blinding the neighbours? Here's how to light it right."},
+  {"type": "photo", "photo": "B", "layout": "band", "band": {"w": 780, "h": 780}, "kb": {"from": [1.0, 0, 0], "to": [1.04, 0, 0]}, "wipe": true,
+   "headline": ["LIGHT THE PATH", "NOT *NEIGHBOURS*"],
+   "callouts": [{"type": "light_aim_mini", "x": 600, "y": 110, "t": 0.5}],
+   "vo": "Aim light *down* at paths, steps and features, with *shielded* fixtures. No glare into windows or the sky."},
+  {"type": "photo", "photo": "C", "layout": "band", "band": {"w": 800, "h": 534}, "kb": {"from": [1.0, 0, 0], "to": [1.03, 0, 0]},
+   "label": "3000K OR LOWER",
+   "headline": ["*WARM* LIGHT,", "ON A TIMER"],
+   "vo": "Keep it *warm*, three thousand kelvin or lower, and put it on a *timer* or sensor."},
+  {"type": "diagram", "diagram": "light_aim", "fill": "D", "inset": "D", "wipe": true,
+   "headline": ["STAGGER THEM.", "*SKIP THE RUNWAY*"],
+   "vo": "Rule of thumb: *stagger* path lights side to side. A straight double row looks like a *runway*."},
+  {"type": "photo", "photo": "D", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.05, 0, 0]},
+   "label": "BURYING CABLE? BC 1 CALL FIRST",
+   "card": {"mark": "tick", "row": "COVERED *GFCI* OUTLET", "small": "HARD-WIRED? ELECTRICAL PERMIT"},
+   "vo": "Plug-in transformers go into a covered *G.F.C.I.* outlet. Hard-wired circuits need an *electrical permit*."},
+  {"type": "end", "photo": "E", "layout": "band", "band": {"w": 780, "h": 780}, "kb": {"from": [1.0, 0, 0], "to": [1.03, 0, 0]},
+   "prompt": "SAVE THIS FOR DARK NIGHTS",
+   "vo": "Save this for dark nights."}
+ ],
+ "cover": {"photo": "A", "layout": "band", "kb": {"from": [1.0, 0, 0]}, "title": ["LIGHT IT", "*RIGHT*"]},
+ "post": {
+  "date": "2026-11-04", "time": "10:00",
+  "caption": "Landscape lighting for dark Lower Mainland evenings: aim light down at paths and steps, keep it warm (3000K or lower) and on a timer, and stagger path lights instead of lining up a runway. Plug transformers into a covered GFCI outlet; hard-wired circuits need an electrical permit, and burying cable means a free BC 1 Call locate first.",
+  "hashtags": ["#boundarybuilders", "#landscapelighting", "#outdoorlighting", "#landscaping", "#metrovancouver"],
+  "alt": "A dusk patio with a fire table and path lights, a night walkway lined with path lights, and lit stone steps."
+ }
+}

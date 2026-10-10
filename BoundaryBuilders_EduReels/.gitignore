@@ -1,0 +1,30 @@
+# Boundary Builders Edu Reels: what stays out of git.
+#
+# The owner's photos, clips, audio, rendered frames and finished videos are large
+# binaries and the owner's own work; they are never committed.
+photos/
+clips/
+frames/
+renders/
+audio/
+qa/
+final/
+*.mp4
+*.mov
+*.MP4
+*.caf
+*.mp3
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.HEIC
+
+# render scratch
+renders/chrome-profile*/
+renders/*.fifo
+renders/*_preview/
+renders/*_video.mp4
+renders/*.log
+__pycache__/
+*.pyc
