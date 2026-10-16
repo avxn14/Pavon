@@ -1,0 +1,7 @@
+[
+ {"scene":1,"time":"0-3 s","photo":"3.jpg","crop":[0,0,2000,1125],"move":"slow push-in toward the front panels (1.00 to 1.10)","text":["WINTER SALE","Metal Fence – $220/panel"]},
+ {"scene":2,"time":"3-7 s","photo":"1.jpg","crop":[0,470,1040,1010],"move":"close-up of the ribbed finish, slow pan left to right","text":["Tired of fixing your wood fence every year?"]},
+ {"scene":3,"time":"7-11 s","photo":"2.jpg","crop":[450,0,1500,788],"move":"slow drift right with a 1.08 zoom","text":["No rot. No painting. Built for BC rain."]},
+ {"scene":4,"time":"11-14 s","photo":"4.jpg","crop":[0,0,1130,846],"move":"slow pull-back along the run","text":["8 years building fences across Metro Vancouver"],"note":"No drone shot was attached. This long sidewalk run stands in as the wide scale shot unless you send one."},
+ {"scene":5,"time":"14-18 s","photo":null,"crop":null,"move":"logo pops in, lines slide up one at a time, holds to the end","text":["Get your price in 2 minutes","Tap GET QUOTE ↓"]}
+]
