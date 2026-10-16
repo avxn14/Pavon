@@ -1,0 +1,23 @@
+{
+ "id": "winter_sale_ad",
+ "duration": 18.0,
+ "formats": {
+  "916": {"w": 1080, "h": 1920, "safe": [288, 1440], "bandTop": 470, "bandH": 608, "xfade": 0.35, "wipeDur": 0.6,
+          "top": {"y": 300, "h": 140}, "topSizes": [124, 112, 100], "bottom": {"y": 1110, "h": 320}, "sizes": [96, 88, 80, 72, 66],
+          "logoW": 480, "logoY": 700, "endLine": {"y": 1000, "h": 190}, "endSizes": [88, 80, 72], "ctaY": 1240, "ctaSize": 62},
+  "45":  {"w": 1080, "h": 1350, "safe": [190, 1160], "bandTop": 318, "bandH": 608, "xfade": 0.35, "wipeDur": 0.6,
+          "top": {"y": 196, "h": 110}, "topSizes": [100, 92, 84], "bottom": {"y": 950, "h": 210}, "sizes": [88, 80, 72, 66, 60],
+          "logoW": 440, "logoY": 420, "endLine": {"y": 690, "h": 180}, "endSizes": [84, 76, 70], "ctaY": 920, "ctaSize": 60}
+ },
+ "scenes": [
+  {"scene": 1, "type": "photo", "t0": 0.0, "t1": 3.0, "photo": "6.jpg", "file": "photos/crops/s1.jpg", "fill": "photos/fills/s1.jpg",
+   "zoom": [1.0, 1.08], "anchor": [0.62, 0.55], "top": "WINTER SALE", "bottom": "Metal Fence – $220/panel"},
+  {"scene": 2, "type": "photo", "t0": 3.0, "t1": 7.0, "photo": "3.jpg", "file": "photos/crops/s2.jpg", "fill": "photos/fills/s2.jpg",
+   "zoom": [1.0, 1.06], "anchor": [0.42, 0.5], "bottom": "Tired of fixing your wood fence every year?"},
+  {"scene": 3, "type": "photo", "t0": 7.0, "t1": 11.0, "photo": "4.jpg", "file": "photos/crops/s3.jpg", "fill": "photos/fills/s3.jpg",
+   "zoom": [1.04, 1.04], "anchor": [0.5, 0.5], "drift": [-22, 0], "bottom": "No rot. No painting. Built for BC rain."},
+  {"scene": 4, "type": "photo", "t0": 11.0, "t1": 14.0, "photo": "2.jpg", "file": "photos/crops/s4.jpg", "fill": "photos/fills/s4.jpg",
+   "zoom": [1.08, 1.0], "anchor": [0.55, 0.5], "bottom": "8 years building fences across Metro Vancouver"},
+  {"scene": 5, "type": "end", "t0": 14.0, "t1": 18.0, "lines": ["Get your price in 2 minutes", "Tap GET QUOTE ↓"]}
+ ]
+}
