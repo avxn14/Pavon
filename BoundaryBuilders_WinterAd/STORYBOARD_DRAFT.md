@@ -6,7 +6,7 @@ middle 60% of the frame (y 288-1440 of 1920). Accent colour gold #FFC527 from th
 
 | Scene | Time | Photo | Crop / move | Text (exact) |
 |---|---|---|---|---|
-| 1 | 0-3 s | 6.jpg (owner's pick, received 2026-10-16: wide run of charcoal panels, black posts, house, cherry tree, blue sky), region x 0-1485, y 0-1114 (ends at the last black post; drops the lighter panel section and the white object at the far right) | slow push-in toward the fence and house (1.00 -> 1.10) | "WINTER SALE" / "Metal Fence – $220/panel" |
+| 1 | 0-3 s | 6.jpg (owner's pick, received 2026-10-16: wide run of charcoal panels, black posts, house, cherry tree, blue sky), region x 40-1456, y 40-1102 (4:3; ends before the dusty last post, drops the lighter silver-capped section, the white object at the far right and a litter speck at the left edge) | slow push-in (1.00 -> 1.08) anchored toward the sunlit panels and the house, right of centre | "WINTER SALE" / "Metal Fence – $220/panel" |
 | 2 | 3-7 s | 1.jpg, the two left panels + black post (region about x 0-1040, y 470-1010) | starts on two panels and pushes in to 1.2x onto the ribbed finish (close-up), drifting right | "Tired of fixing your wood fence every year?" |
 | 3 | 7-11 s | 2.jpg, region about x 450-1500, y 0-788 (drops the pool cover, hose and the photographer's shadow) | fence corner with the lawn; slow drift right + zoom 1.08 | "No rot. No painting. Built for BC rain." |
 | 4 | 11-14 s | 4.jpg, region x 0-1130, full height (drops the far-right end) | NO DRONE SHOT WAS ATTACHED: the long sidewalk run stands in as the "scale" shot; slow pull-back along the run | "8 years building fences across Metro Vancouver" |

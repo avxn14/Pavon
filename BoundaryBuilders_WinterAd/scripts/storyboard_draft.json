@@ -4,12 +4,12 @@
   "time": "0-3 s",
   "photo": "6.jpg",
   "crop": [
-   0,
-   0,
-   1485,
-   1114
+   40,
+   40,
+   1456,
+   1102
   ],
-  "move": "slow push-in toward the fence and the house (1.00 to 1.10); ends at the last black post so the different panel section on the far right stays out",
+  "move": "slow push-in (1.00 to 1.08) anchored toward the sunlit panels and the house, right of centre; the frame never reaches the dusty last post or the mismatched section beyond it",
   "text": [
    "WINTER SALE",
    "Metal Fence – $220/panel"
