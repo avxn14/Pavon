@@ -47,3 +47,13 @@ ATTACHED PHOTOS (saved as photos/src/1.jpg .. 5.jpg; 100% tiles in photos/tiles/
 BRAND (from the repo's Edu Reels project, same owner): logo_gold.png = gold slanted BOUNDARY BUILDERS wordmark (279x120), font Outfit, colours near-black #020101 / #110000, gold #FFC527 accent, off-white #F9F9F9, greys #222222 #434343.
 
 ADDENDUM 2026-10-16 (owner's chat message after seeing the first draft): the owner attached a sixth photo (saved as photos/src/6.jpg, 2000x1125: the same charcoal two-tone fence job as 3.jpg seen from the other side, with the mansard-roof house and the cherry tree) and wrote: "replace the scene 1 picture with remove the current one". Read as: 6.jpg becomes the scene 1 photo and 3.jpg leaves scene 1. Whether 3.jpg may still be used elsewhere (it is the only photo sharp enough for the scene 2 close-up of the finish) is an open question put to the owner in the storyboard.
+
+ADDENDUM 2026-10-16 (later): the owner approved the storyboard ("approved"), asked for a less tight scene 2 crop (option B
+chosen: photo 3 at x 0-1140, y 280-921), and then wrote "yes we need the voiceover too" when offered music. So the ad
+carries music AND a voice-over, both generated on the owner's ElevenLabs plan: music bed eleven_music_v2_5 (900 credits,
+20 s, instrumental prompt), voice Sia (qTRV75fy2dUja4REMifv, eleven_multilingual_v2, 245 credits for five lines, each
+sped 1.2x with tools/audiofix.py). Voice lines read the on-screen text: "Winter sale. Metal fence, two hundred and twenty
+dollars a panel." / "Tired of fixing your wood fence every year?" / "No rot. No painting. Built for B.C. rain." /
+"Eight years building fences across Metro Vancouver." / "Get your price in two minutes. Tap Get Quote."
+Scene boundaries were re-timed to the voice: 0-4.6 / 4.6-7.6 / 7.6-11.1 / 11.1-14.0 / 14.0-18.0 (the opener runs
+4.6 s instead of the brief's 3 s so the price line is spoken in full; the rest keep about 3 s each).
