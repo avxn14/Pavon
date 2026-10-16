@@ -2,39 +2,39 @@
  {
   "file": "audio/vo/b1.caf",
   "start": 0.2,
-  "volume": 1.0
+  "volume": 2.6
  },
  {
   "file": "audio/vo/b2.caf",
   "start": 4.867,
-  "volume": 1.0
+  "volume": 2.6
  },
  {
   "file": "audio/vo/b3.caf",
   "start": 7.867,
-  "volume": 1.0
+  "volume": 2.6
  },
  {
   "file": "audio/vo/b4.caf",
   "start": 11.367,
-  "volume": 1.0
+  "volume": 2.6
  },
  {
   "file": "audio/vo/b5.caf",
   "start": 14.267,
-  "volume": 1.0
+  "volume": 2.6
  },
  {
   "file": "audio/music/bed.mp3",
   "start": 0.0,
-  "volume": 0.18,
+  "volume": 0.3,
   "fadeOut": 17.0,
   "offset": 0.0
  },
  {
   "file": "audio/sfx/whoosh.mp3",
   "start": 13.7,
-  "volume": 0.5
+  "volume": 0.45
  },
  {
   "file": "audio/sfx/hit.mp3",

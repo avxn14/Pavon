@@ -205,6 +205,11 @@
   14.0,
   18.0
  ],
- "music_volume": 0.18,
- "music_offset": 0.0
+ "music_volume": 0.3,
+ "music_offset": 0.0,
+ "vo_volume": 2.6,
+ "sfx_volume": {
+  "whoosh": 0.45,
+  "hit": 0.4
+ }
 }
