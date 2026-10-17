@@ -53,12 +53,12 @@
   "time": "11-14 s",
   "photo": "2.jpg",
   "crop": [
-   400,
-   156,
+   460,
+   170,
    1500,
-   775
+   755
   ],
-  "move": "slow pull-out 1.08 to 1.00 from the fence corner to show the whole fenced yard",
+  "move": "slow pull-out 1.05 to 1.00 from the fence corner to show the whole fenced yard",
   "text": [
    "8 years building fences across Metro Vancouver"
   ],

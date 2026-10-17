@@ -9,10 +9,10 @@ html,body{margin:0;padding:0;background:#000;}
 #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#020101;font-family:'Outfit',sans-serif;color:#F9F9F9;-webkit-font-smoothing:antialiased;}
 #stage *{box-sizing:border-box;}
 .scene{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;}
-img.fill{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:blur(26px) brightness(.40) saturate(1.1);transform-origin:50% 50%;}
+img.fill{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:blur(26px) brightness(.48) saturate(1.1);transform-origin:50% 50%;}
 .vigTop{position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 22%);}
 .vigBot{position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 30%);}
-.band{position:absolute;left:0;width:1080px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.band{position:absolute;left:0;width:1080px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.5);}
 .band img.sharp{position:absolute;left:0;top:0;filter:saturate(1.08) contrast(1.04);}
 .txt{position:absolute;left:65px;width:950px;text-align:center;font-weight:900;line-height:1.04;letter-spacing:-1px;text-shadow:0 6px 30px rgba(0,0,0,.7), 0 2px 8px rgba(0,0,0,.6);}
 .txt .line{display:block;white-space:nowrap;transform-origin:50% 50%;}
@@ -96,7 +96,7 @@ function addText(g, text, zone, t0, tEnd, opts) {
   const lines = [];
   fit.lines.forEach((ln, i) => {
     const sp = el('span', 'line', d); sp.textContent = ln; lines.push(sp); STRINGS.push(ln);
-    const ts = t0 + (opts.delay || 0) + i * .28;
+    const ts = t0 + (opts.delay || 0) + i * .22;
     reg(sp, { o: 0, y: 30, s: .96 }); tw(sp, ts, ts + .55, { o: 1, y: 0, s: 1 }, EOX);
     if (tEnd != null) tw(sp, tEnd - .3, tEnd - .05, { o: 0, y: opts.exitY != null ? opts.exitY : -14 }, EIO);
   });
@@ -109,13 +109,11 @@ function addBand(g, sc, t0, t1) {
   const band = el('div', 'band', g); band.style.top = top + 'px'; band.style.height = h + 'px';
   const im = el('img', 'sharp', band); im.src = sc.file; im.dataset.photo = sc.photo;
   const s = Math.max(w / p.w, h / p.h); const bw = p.w * s, bh = p.h * s; const ax = (sc.anchor || [.5, .5])[0], ay = (sc.anchor || [.5, .5])[1];
-  const kb = { w: bw, h: bh, cx: (w - bw) * .5 + bw / 2, cy: (h - bh) * .5 + bh / 2 }; im.dataset.cover = s.toFixed(4);
-  const zf = sc.zoom ? sc.zoom[0] : 1, zt = sc.zoom ? sc.zoom[1] : 1;
-  // zoom about the anchor point: the extra size (z-1)*bw is distributed so the anchor stays put
-  const panF = [(.5 - ax) * bw * (zf - 1), (.5 - ay) * bh * (zf - 1)], panT = [(.5 - ax) * bw * (zt - 1), (.5 - ay) * bh * (zt - 1)];
-  const dx = (sc.drift || [0, 0])[0], dy = (sc.drift || [0, 0])[1];
-  const it = reg(im, { s: zf, x: panF[0], y: panF[1] }); it.kb = kb;
-  tw(im, t0, t1, { s: zt, x: panT[0] + dx, y: panT[1] + dy }, LIN);
+  im.style.width = bw.toFixed(3) + 'px'; im.style.height = bh.toFixed(3) + 'px'; im.style.left = ((w - bw) / 2).toFixed(3) + 'px'; im.style.top = ((h - bh) / 2).toFixed(3) + 'px';
+  im.style.transformOrigin = (ax * 100).toFixed(2) + '% ' + (ay * 100).toFixed(2) + '%'; im.dataset.cover = s.toFixed(4);
+  const zf = sc.zoom ? sc.zoom[0] : 1, zt = sc.zoom ? sc.zoom[1] : 1; const dx = (sc.drift || [0, 0])[0], dy = (sc.drift || [0, 0])[1];
+  // Ken Burns as a CSS transform about the anchor: sub-pixel positions every frame, so the move never steps or freezes
+  reg(im, { s: zf, x: 0, y: 0 }); tw(im, t0, t1, { s: zt, x: dx, y: dy }, LIN);
   return band;
 }
 function addFill(g, sc, t0, t1) {
@@ -126,17 +124,17 @@ function buildPhotoScene(sc, i, n) {
   const g = el('div', 'scene', $('scenes')); g.dataset.scene = sc.scene;
   const t0 = sc.t0, t1 = sc.t1; const xf = F.xfade;
   if (i === 0) reg(g, { o: 1 }); else { reg(g, { o: 0 }); tw(g, t0 - xf, t0, { o: 1 }, EIO); }
-  const next = S.scenes[i + 1]; const hardOut = next && next.type === 'end';   // the wipe hides us, no fade needed
+  const next = S.scenes[i + 1]; const hardOut = next && next.type === 'end';   // the wipe hides the picture; the text leaves just before the sweep reaches it
   tw(g, t1 + (hardOut ? 0 : .02), t1 + (hardOut ? 0 : .02), { o: 0 });
   addFill(g, sc, t0 - xf, t1); addBand(g, sc, t0 - xf, t1);
-  const tEnd = hardOut ? null : t1;
+  const tEnd = hardOut ? next.t0 - F.wipeDur / 2 + .05 : t1;
   if (sc.top) {
     const r = addText(g, sc.top, F.top, t0, tEnd, { cls: 'sale', sizes: F.topSizes, maxLines: 1, delay: .1, exitY: 10 });
     // gold underline bar under the top line, scaleX in from the left
     const lw = measureW(r.fit.lines[0], r.fit.size, 'sale'); const bar = el('div', 'bar', g); bar.style.width = Math.round(lw) + 'px'; bar.style.left = Math.round(540 - lw / 2) + 'px'; bar.style.top = (F.top.y + Math.round(r.fit.size * 1.04) + 14) + 'px';
     reg(bar, { o: 0, sx: 0 }); tw(bar, t0 + .45, t0 + .9, { o: 1, sx: 1 }, EO); if (tEnd != null) tw(bar, tEnd - .3, tEnd - .05, { o: 0 }, EIO);
   }
-  if (sc.bottom) addText(g, sc.bottom, F.bottom, t0, tEnd, { delay: sc.top ? .55 : .15, sizes: F.sizes, maxLines: 3 });
+  if (sc.bottom) addText(g, sc.bottom, F.bottom, t0, tEnd, { delay: sc.top ? .5 : .1, sizes: F.sizes, maxLines: 3 });
   return g;
 }
 function buildEndScene(sc, i) {
@@ -144,11 +142,11 @@ function buildEndScene(sc, i) {
   const t0 = sc.t0; reg(g, { o: 0 }); tw(g, t0, t0, { o: 1 });
   // logo: real PNG wordmark, scaled by width
   const lg = el('div', 'logo', g); const im = el('img', '', lg); im.src = 'logo_gold.png'; im.style.width = F.logoW + 'px'; lg.style.top = F.logoY + 'px';
-  reg(lg, { o: 0, s: .8, y: 20 }); tw(lg, t0 + .35, t0 + .9, { o: 1, s: 1, y: 0 }, EOB);
-  if (sc.lines && sc.lines[0]) addText(g, sc.lines[0], F.endLine, t0, null, { delay: .85, sizes: F.endSizes, maxLines: 2 });
+  reg(lg, { o: 0, s: .8, y: 20 }); tw(lg, t0 + .1, t0 + .6, { o: 1, s: 1, y: 0 }, EOB);
+  if (sc.lines && sc.lines[0]) addText(g, sc.lines[0], F.endLine, t0, null, { delay: .6, sizes: F.endSizes, maxLines: 2 });
   if (sc.lines && sc.lines[1]) {
     const c = el('div', 'cta', g); c.textContent = sc.lines[1]; c.style.fontSize = F.ctaSize + 'px'; c.style.top = F.ctaY + 'px'; STRINGS.push(sc.lines[1]); STRINGS_FULL.push(sc.lines[1]);
-    reg(c, { o: 0, s: .85, y: 24, tx: '-50%' }); tw(c, t0 + 1.4, t0 + 1.95, { o: 1, s: 1, y: 0 }, EOB);
+    reg(c, { o: 0, s: .85, y: 24, tx: '-50%' }); tw(c, t0 + 1.2, t0 + 1.75, { o: 1, s: 1, y: 0 }, EOB);
   }
   return g;
 }

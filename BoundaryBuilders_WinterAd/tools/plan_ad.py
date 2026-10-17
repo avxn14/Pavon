@@ -26,7 +26,7 @@ F = S["formats"]["916"]; wipe0 = end["t0"] - F["wipeDur"] / 2
 music = os.path.join(ROOT, "audio", "music", "bed.mp3")
 if os.path.exists(music): clips.append({"file": "audio/music/bed.mp3", "start": 0.0, "volume": S.get("music_volume", 0.3), "fadeOut": total - 1.0, "offset": S.get("music_offset", 0.0)})
 clips.append({"file": "audio/sfx/whoosh.mp3", "start": round(wipe0, 3), "volume": S.get("sfx_volume", {}).get("whoosh", 0.45)})
-clips.append({"file": "audio/sfx/hit.mp3", "start": round(end["t0"] + 1.4, 3), "volume": S.get("sfx_volume", {}).get("hit", 0.4)})
+clips.append({"file": "audio/sfx/hit.mp3", "start": round(end["t0"] + 1.2, 3), "volume": S.get("sfx_volume", {}).get("hit", 0.4)})
 json.dump(S, open(os.path.join(ROOT, "scripts", "ad.json"), "w"), indent=1, ensure_ascii=False)
 json.dump(clips, open(os.path.join(ROOT, "audio", "clips.json"), "w"), indent=1)
 print("wrote scripts/ad.json timings and audio/clips.json:", [(c["file"].split("/")[-1], c["start"]) for c in clips])

@@ -6,7 +6,7 @@
  },
  {
   "file": "audio/vo/b2.caf",
-  "start": 4.867,
+  "start": 5.0,
   "volume": 2.6
  },
  {
@@ -38,7 +38,7 @@
  },
  {
   "file": "audio/sfx/hit.mp3",
-  "start": 15.4,
+  "start": 15.2,
   "volume": 0.4
  }
 ]
