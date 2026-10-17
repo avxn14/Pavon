@@ -1,0 +1,17 @@
+BOUNDARY BUILDERS WINTER SALE AD: hand-off (2026-10-17)
+
+DELIVERED: final/BoundaryBuilders_WinterSale_916.mp4 (1080x1920) and final/BoundaryBuilders_WinterSale_45.mp4 (1080x1350),
+18.0 s, 30 fps, H.264 + AAC 48 kHz stereo (voice + music + whoosh/hit), about 19.4 / 19.7 MB. Sent to the owner as chat files.
+final/ is git-ignored, so the chat copies are the durable ones; a rebuild is one command (below).
+
+PIPELINE: scripts/ad.json (scenes, crops, text, boundaries, mix levels) -> render_ad.py (FMT=916|45; preview/all/qa) ->
+tools/build.py encode + mux (audio/clips.json from tools/plan_ad.py) -> tools/make_ad.sh [916 45] with MUSIC=audio/clips.json.
+Photo crops: photos/crops/sN.jpg (exact pixels from photos/src), fills photos/fills/sN.jpg. Voice: audio/vo/b1..b5.mp3 (+ .caf at 1.2x),
+music audio/music/bed.mp3 (ElevenLabs flow tVgFmJ6UKqmcy9XmLUPb). Rebuild: python3 tools/plan_ad.py && BITRATE=10M MUSIC=audio/clips.json tools/make_ad.sh
+Checks: render_ad.py qa (safe zones x 65-1015, y 288-1440 / 190-1160; photo scale <= 1.10; end hold; exact brief lines), tools/motion_check.py
+(0 frozen band frames), ebur128 about -18 LUFS, true peak -3.8 dBFS. Two independent review workflows ran (storyboard, finished files).
+
+OPEN WITH THE OWNER: none blocking. Optional: the opener runs 4.75 s (brief said 3 s) so the price line is spoken in full; price line wraps
+"Metal Fence –" / "$220/panel" at 96 px (single line would need 72 px); gold wipe into the end card is a brand element not on the storyboard;
+"WINTER SALE" is gold and the CTA is dark-on-gold (brief's literal wording was white text). Photos 1 and 5 unused; photo 3 used for scene 2 (option B).
+ElevenLabs credits spent on this ad: music 900, voice 245, transcription check 110 = 1,255 (about USD 0.25).
