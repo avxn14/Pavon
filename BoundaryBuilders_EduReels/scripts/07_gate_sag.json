@@ -1,0 +1,212 @@
+{
+ "id": "07_gate_sag",
+ "title": "Why gates sag: post, brace, cable",
+ "category": "FENCE",
+ "series": "FENCE TIP #3",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 36
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/1K85WQqstmFnjIKqeWBkhmP5P3alzx3Dq.jpg",
+   "driveId": "1K85WQqstmFnjIKqeWBkhmP5P3alzx3Dq",
+   "name": "IMG_2819.jpg",
+   "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)",
+   "w": 1206,
+   "h": 741,
+   "note": "band aligned to the right edge so the AC unit (and the left post) are out of frame; the right post carries the right leaf's hinges (checked at 3x), so it is the ringed hinge post"
+  },
+  "B": {
+   "file": "photos/jpg/1b-c8GaJzM9DS5QXoZ1oxeBMrKxHun_gu.jpg",
+   "driveId": "1b-c8GaJzM9DS5QXoZ1oxeBMrKxHun_gu",
+   "name": "6108866c-d250-4857-8907-ac2edb12aeb3.JPG",
+   "folder": "aluminium gate (1mM5RUh6M_nlPzU3mp1X9ULEI8XDV1gAZ)",
+   "w": 1200,
+   "h": 1600
+  },
+  "C": {
+   "file": "photos/jpg/1SFIuh1EadEE9cSGy-smG6LRMllltr0AL.jpg",
+   "driveId": "1SFIuh1EadEE9cSGy-smG6LRMllltr0AL",
+   "name": "252e255b-2b87-4c3b-a819-f60933b9eaf2.JPG",
+   "folder": "aluminium gate (1mM5RUh6M_nlPzU3mp1X9ULEI8XDV1gAZ)",
+   "w": 1600,
+   "h": 1200
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "band",
+   "pos": "100% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.03,
+     0,
+     0
+    ]
+   },
+   "builtRight": true,
+   "headline": [
+    "GATE *SAGGING?*",
+    "CHECK THE *POST*"
+   ],
+   "vo": "Gate sagging? Most sagging gates start at the post."
+  },
+  {
+   "type": "photo",
+   "photo": "A",
+   "layout": "band",
+   "pos": "100% 50%",
+   "kb": {
+    "from": [
+     1.03,
+     0,
+     0
+    ],
+    "to": [
+     1.06,
+     0,
+     0
+    ]
+   },
+   "headline": [
+    "HINGE POST =",
+    "*STRONGEST*"
+   ],
+   "callouts": [
+    {
+     "type": "ring",
+     "x": 862,
+     "y": 288,
+     "r": 168,
+     "w": 10,
+     "t": 0.5
+    }
+   ],
+   "vo": "The *hinge post* carries the gate like a lever. Make it the *strongest* post you have, set in concrete."
+  },
+  {
+   "type": "diagram",
+   "diagram": "gate_brace",
+   "opts": {
+    "part": 1
+   },
+   "fill": "A",
+   "inset": "A",
+   "wipe": true,
+   "headline": [
+    "LOW HINGE TO",
+    "*HIGH LATCH*"
+   ],
+   "vo": "Wood gate brace? *Bottom hinge corner* up to *top latch corner*. Backwards, it sags.",
+   "insetBox": {
+    "h": 240,
+    "pos": "100% 50%"
+   }
+  },
+  {
+   "type": "diagram",
+   "diagram": "gate_brace",
+   "opts": {
+    "part": 2
+   },
+   "cont": true,
+   "fill": "A",
+   "inset": "A",
+   "headline": [
+    "A CABLE GOES",
+    "THE *OTHER WAY*"
+   ],
+   "vo": "An *anti-sag cable* runs the opposite way, and the *turnbuckle* lifts the latch side.",
+   "insetBox": {
+    "h": 240,
+    "pos": "100% 50%"
+   }
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     60,
+     0
+    ],
+    "to": [
+     1.04,
+     -60,
+     0
+    ]
+   },
+   "wipe": true,
+   "headline": [
+    "WELDED FRAMES",
+    "*STAY SQUARE*"
+   ],
+   "vo": "Welded metal frames *stay square* longer, but they still need a solid post."
+  },
+  {
+   "type": "end",
+   "photo": "C",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "builtRight": true,
+   "prompt": "COMMENT: DOES YOUR GATE SAG?",
+   "vo": "Does your gate sag? Comment below."
+  }
+ ],
+ "cover": {
+  "photo": "C",
+  "layout": "band",
+  "kb": {
+   "from": [
+    1.02,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "STOP GATE",
+   "*SAG*"
+  ]
+ },
+ "post": {
+  "date": "2026-10-25",
+  "time": "10:00",
+  "caption": "Why gates sag around the Lower Mainland: it usually starts at the hinge post, so make that the strongest post on the run. On a wood gate the brace runs from the bottom hinge corner up to the top latch corner; an anti-sag cable runs the opposite way.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#fencegate",
+   "#gateinstallation",
+   "#cedarfence",
+   "#metrovancouver"
+  ],
+  "alt": "A wide cedar gate on heavy posts, an animated diagram showing the correct diagonal brace and anti-sag cable directions, and a black metal gate with a welded frame."
+ }
+}

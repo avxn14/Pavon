@@ -1,0 +1,264 @@
+{
+ "id": "10_cedar_care",
+ "title": "Cedar resists rot, but it's not rot-proof",
+ "category": "FENCE",
+ "series": "FENCE TIP #4",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 9
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/1RKKO9ZxZzcIpanR02noBVt6sl7VK4www.jpg",
+   "driveId": "1RKKO9ZxZzcIpanR02noBVt6sl7VK4www",
+   "name": "IMG_8778 2.jpg (HEIC)",
+   "folder": "cedar fence (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN)",
+   "w": 4032,
+   "h": 2268
+  },
+  "B": {
+   "file": "photos/jpg/1VLBo-vVEj2-tuGvQ6ingF3zPgWCYBLd7.jpg",
+   "driveId": "1VLBo-vVEj2-tuGvQ6ingF3zPgWCYBLd7",
+   "name": "1a178ecb-7bbc-4b88-aaf9-eb487c19720f.JPG",
+   "folder": "cedar fence (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN)",
+   "w": 1600,
+   "h": 1200,
+   "note": "band at 0.88x aligned top-right so the hose and pots at the left edge are out of frame"
+  },
+  "C": {
+   "file": "photos/jpg/1GUGHS9RH1vGSkGXw3IQSWIPG1aR_J-Js.jpg",
+   "driveId": "1GUGHS9RH1vGSkGXw3IQSWIPG1aR_J-Js",
+   "name": "IMG_2822.jpg",
+   "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)",
+   "w": 1206,
+   "h": 1477,
+   "note": "band on the upper fence with the capped posts (the black cap on the left post is a solar cap light, not a sign)"
+  },
+  "D": {
+   "file": "photos/jpg/1rkPG4anKkrutIeLtbrIPgutafGKPynh4.jpg",
+   "driveId": "1rkPG4anKkrutIeLtbrIPgutafGKPynh4",
+   "name": "langford-07.jpg",
+   "folder": "overlapping cedar fence Langford (1SbVe7jbKClMxsn3E4nOtSLO334zWtM0g)",
+   "w": 1440,
+   "h": 1080,
+   "note": "Vancouver Island job, no location named; checked at 100%: no dark streaks at the nails"
+  },
+  "E": {
+   "file": "photos/jpg/1B9P2lNHZGPxQ-uRaLZ6emltm5rEE-R4F.jpg",
+   "driveId": "1B9P2lNHZGPxQ-uRaLZ6emltm5rEE-R4F",
+   "name": "IMG_2821.jpg",
+   "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)",
+   "w": 1206,
+   "h": 637
+  },
+  "F": {
+   "file": "photos/jpg/1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5.jpg",
+   "driveId": "1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5",
+   "name": "IMG_2817.jpg",
+   "folder": "old fence (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip)",
+   "w": 1206,
+   "h": 743
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     80,
+     0
+    ],
+    "to": [
+     1.03,
+     -80,
+     0
+    ]
+   },
+   "builtRight": true,
+   "headline": [
+    "CEDAR IS",
+    "*ROT-PROOF?*"
+   ],
+   "vo": "Is cedar *rot-proof*? Not quite. It resists rot, and here's how to make it last."
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "band",
+   "pos": "100% 0%",
+   "kb": {
+    "from": [
+     1.3,
+     -135,
+     20
+    ],
+    "to": [
+     1.3,
+     -155,
+     20
+    ]
+   },
+   "wipe": true,
+   "headline": [
+    "KEEP CEDAR",
+    "*OFF THE DIRT*"
+   ],
+   "callouts": [
+    {
+     "type": "ring",
+     "x": 770,
+     "y": 712,
+     "r": 70,
+     "t": 0.6
+    }
+   ],
+   "vo": "Keep the boards *off the dirt*. A treated *kickboard* takes the ground moisture and is easy to replace.",
+   "note": "band at 1.3x on the 0.675 cover scale (0.88x effective), panned 135-155 px left so the barrel, wheelbarrow and pots at the left edge of the photo are out of frame; the ring sits on the kickboard"
+  },
+  {
+   "type": "photo",
+   "photo": "C",
+   "layout": "band",
+   "pos": "50% 55%",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.05,
+     0,
+     0
+    ]
+   },
+   "wipe": true,
+   "headline": [
+    "CUT ENDS DRINK",
+    "*11X FASTER*"
+   ],
+   "callouts": [
+    {
+     "type": "ring",
+     "x": 134,
+     "y": 318,
+     "r": 66,
+     "t": 0.5
+    },
+    {
+     "type": "ring",
+     "x": 612,
+     "y": 324,
+     "r": 58,
+     "t": 0.8
+    }
+   ],
+   "vo": "*Cut ends* soak up water about *eleven times faster*, so post tops get *caps*."
+  },
+  {
+   "type": "photo",
+   "photo": "D",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.06,
+     0,
+     0
+    ]
+   },
+   "wipe": true,
+   "builtRight": true,
+   "headline": [
+    "BLACK STREAKS?",
+    "CHECK THE *NAILS*"
+   ],
+   "vo": "*Black streaks* at the nails? That's the wrong *fasteners* reacting with the cedar. Use *stainless* or *hot-dip galvanized*."
+  },
+  {
+   "type": "photo",
+   "photo": "E",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "label": "DRY WOOD. DRY DAY.",
+   "headline": [
+    "DON'T WAIT",
+    "TO *STAIN*"
+   ],
+   "vo": "Built a fence this fall? Don't leave it bare all winter. Once it's *dry*, *stain* it within a couple of weeks, on a dry day."
+  },
+  {
+   "type": "end",
+   "photo": "F",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "prompt": "SAVE THIS FOR YOUR FENCE",
+   "vo": "Save this for your fence."
+  }
+ ],
+ "cover": {
+  "photo": "A",
+  "layout": "full",
+  "pos": "50% 50%",
+  "kb": {
+   "from": [
+    1.0,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "MAKE CEDAR",
+   "*LAST*"
+  ]
+ },
+ "post": {
+  "date": "2026-10-31",
+  "time": "10:00",
+  "caption": "Cedar fences in the Lower Mainland resist rot, but cedar isn't rot-proof. Keep the boards off the soil with a kickboard, cap the posts (cut ends soak up water about 11x faster), use stainless or hot-dip galvanized fasteners, and stain new cedar within a couple of weeks once it's dry, on a dry day that meets the stain label's temperature.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#cedarfence",
+   "#woodfence",
+   "#fencestaining",
+   "#metrovancouver"
+  ],
+  "alt": "A new framed cedar fence, close-ups of a kickboard, post caps and overlapping boards, and an orange-stained cedar fence."
+ }
+}

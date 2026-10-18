@@ -1,0 +1,59 @@
+BOUNDARY BUILDERS WINTER SALE VIDEO AD (owner's request, received 2026-10-16, verbatim)
+
+I need a short video ad for Facebook and Instagram for my fencing company, Boundary Builders (boundarybuilders.ca), in Metro Vancouver, BC. Use ONLY the photos I've attached. They're real jobs we built. Don't add stock footage, AI-generated people, or fences that aren't ours.
+
+GOAL
+A 16-18 second video that stops people scrolling and gets homeowners to tap "Get Quote" for a metal fence during our Winter Sale. Most people watch with the sound OFF, so the text on screen has to tell the whole story.
+
+FORMAT
+- Main version: vertical 9:16, 1080x1920, MP4
+- Second version: 4:5, 1080x1350, MP4 (same content, re-framed)
+- Keep all text out of the top 15% and bottom 25% of the 9:16 frame (Instagram/Facebook buttons cover those areas)
+- Big, bold, easy-to-read text: white or light text with a dark shadow or bar behind it so it reads on any photo
+- Style: clean, modern, premium. Black, white and one accent colour (pull it from my logo if I attached one)
+
+ANIMATION
+- Every photo slowly zooms or pans (Ken Burns style). Nothing sits still
+- Quick, smooth cuts (about 3 seconds per photo), no cheesy transitions like spins or page curls
+- Text pops or slides in, one line at a time
+- Optional: light, upbeat background music with no lyrics, but the video must work fully on mute
+
+SCENES (use my best photo for scene 1)
+1. (0-3s) Best wide shot of a finished black metal fence
+   Text: "WINTER SALE"
+   Text: "Metal Fence – $220/panel"
+2. (3-7s) Close-up of the metal finish
+   Text: "Tired of fixing your wood fence every year?"
+3. (7-11s) Fence with the house/yard
+   Text: "No rot. No painting. Built for BC rain."
+4. (11-14s) Drone shot
+   Text: "8 years building fences across Metro Vancouver"
+5. (14-18s) Logo (or a clean dark background with "Boundary Builders")
+   Text: "Get your price in 2 minutes"
+   Text: "Tap GET QUOTE ↓"
+
+RULES
+- Spell everything exactly as written above. Check the spelling of "Boundary Builders" and "$220/panel"
+- Don't invent claims, prices, phone numbers, reviews or discounts
+- Don't show any gates
+- If a photo is blurry or doesn't fit a scene, skip it and tell me which one you skipped
+- Before making the final video, show me a quick storyboard (which photo goes in which scene plus the text) so I can approve it
+
+When done, give me both MP4 files.
+
+ATTACHED PHOTOS (saved as photos/src/1.jpg .. 5.jpg; 100% tiles in photos/tiles/N_x<left>_y<top>.jpg)
+1.jpg 1600x1200  2.jpg 1500x1125  3.jpg 2000x1125  4.jpg 1206x846  5.jpg 1206x711
+
+BRAND (from the repo's Edu Reels project, same owner): logo_gold.png = gold slanted BOUNDARY BUILDERS wordmark (279x120), font Outfit, colours near-black #020101 / #110000, gold #FFC527 accent, off-white #F9F9F9, greys #222222 #434343.
+
+ADDENDUM 2026-10-16 (owner's chat message after seeing the first draft): the owner attached a sixth photo (saved as photos/src/6.jpg, 2000x1125: the same charcoal two-tone fence job as 3.jpg seen from the other side, with the mansard-roof house and the cherry tree) and wrote: "replace the scene 1 picture with remove the current one". Read as: 6.jpg becomes the scene 1 photo and 3.jpg leaves scene 1. Whether 3.jpg may still be used elsewhere (it is the only photo sharp enough for the scene 2 close-up of the finish) is an open question put to the owner in the storyboard.
+
+ADDENDUM 2026-10-16 (later): the owner approved the storyboard ("approved"), asked for a less tight scene 2 crop (option B
+chosen: photo 3 at x 0-1140, y 280-921), and then wrote "yes we need the voiceover too" when offered music. So the ad
+carries music AND a voice-over, both generated on the owner's ElevenLabs plan: music bed eleven_music_v2_5 (900 credits,
+20 s, instrumental prompt), voice Sia (qTRV75fy2dUja4REMifv, eleven_multilingual_v2, 245 credits for five lines, each
+sped 1.2x with tools/audiofix.py). Voice lines read the on-screen text: "Winter sale. Metal fence, two hundred and twenty
+dollars a panel." / "Tired of fixing your wood fence every year?" / "No rot. No painting. Built for B.C. rain." /
+"Eight years building fences across Metro Vancouver." / "Get your price in two minutes. Tap Get Quote."
+Scene boundaries were re-timed to the voice: 0-4.6 / 4.6-7.6 / 7.6-11.1 / 11.1-14.0 / 14.0-18.0 (the opener runs
+4.6 s instead of the brief's 3 s so the price line is spoken in full; the rest keep about 3 s each).

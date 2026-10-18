@@ -1,0 +1,43 @@
+{
+ "id": "15_paver_myths",
+ "title": "3 paver myths",
+ "category": "PAVERS",
+ "series": "PAVER TIP #4",
+ "target": [24, 34],
+ "stretch": 1.2,
+ "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 37},
+ "photos": {
+  "A": {"file": "photos/jpg/1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R.jpg", "driveId": "1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R", "name": "7", "folder": "north van pool (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi)", "w": 1170, "h": 878, "note": "hook and cover: band push-in on the joints, bottom-aligned so the worker on the deck stays out of frame (1.16-1.20x effective)"},
+  "B": {"file": "photos/jpg/1zvtzlWGETSYSniVrCM-mzrYsJiicQxvq.jpg", "driveId": "1zvtzlWGETSYSniVrCM-mzrYsJiicQxvq", "name": "IMG_1572.jpg", "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)", "w": 1206, "h": 831, "note": "stands in for the spec's IMG_2934 (over the Drive connector's 6 MB limit): paver walkway with a soldier border beside bare soil; same folder and camera series as the owner's confirmed IMG_0958. OWNER: say if this one is not yours."},
+  "C": {"file": "photos/jpg/1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC.jpg", "driveId": "1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC", "name": "IMG_2940.jpg", "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)", "w": 2160, "h": 3840, "note": "checked at 100%: no white residue on the pavers; same framing as video 04 (photo rows 1560 and below)"},
+  "D": {"file": "photos/jpg/1UgOmUKs3No4gtQ_6AY39VJ_OWOHOG0rQ.jpg", "driveId": "1UgOmUKs3No4gtQ_6AY39VJ_OWOHOG0rQ", "name": "IMG_0954.jpg", "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)", "w": 1206, "h": 1603, "note": "stands in for the spec's IMG_2932 (over 6 MB): soldier course beside river rock, full-bleed 1.20x pan only (also video 09's opener)"},
+  "E": {"file": "photos/jpg/1QRdMKw2LG2QupfRg-fYCWpc2z5LDtK_Y.jpg", "driveId": "1QRdMKw2LG2QupfRg-fYCWpc2z5LDtK_Y", "name": "Huge interlock patio and fireplace feature from a few years back! (first file)", "folder": "Langley fire pit (1_nnJ13NFdeyQkLSULJDX3YvKCQ27nCRu)", "w": 1170, "h": 878, "note": "stands in for the spec's IMG_2939 (over 6 MB): patio with a curved border and fire pit, band bottom-aligned at 1.08x+ (also video 04's end card)"}
+ },
+ "beats": [
+  {"type": "hook", "photo": "A", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.26, -40, 0], "to": [1.3, -40, 0]},
+   "headline": ["3 PAVER", "*MYTHS*"],
+   "vo": "Three paver myths we hear all the time."},
+  {"type": "photo", "photo": "B", "layout": "band", "kb": {"from": [1.0, 0, 0], "to": [1.05, 0, 0]}, "wipe": true, "builtRight": true,
+   "myth": {"wrong": "FABRIC STOPS JOINT WEEDS", "fact": "SEEDS *BLOW IN* ON TOP", "strikeAt": 2.4, "factAt": 5.4},
+   "vo": "One: fabric stops joint weeds. Nope. Fabric keeps clay out of the base, but joint weeds grow from *seeds that blow in* on top."},
+  {"type": "photo", "photo": "C", "layout": "full", "kb": {"from": [1.7, 0, -670], "to": [1.76, 0, -645]}, "builtRight": true,
+   "myth": {"wrong": "WHITE HAZE = BAD PAVERS", "fact": "NORMAL. IT *FADES*", "strikeAt": 2.0, "factAt": 3.2},
+   "vo": "Two: white haze means bad pavers. No. It's efflorescence. It's cosmetic and *it fades*."},
+  {"type": "photo", "photo": "D", "layout": "full", "pos": "50% 50%", "kb": {"from": [1.0, 40, 0], "to": [1.0, -40, 0]},
+   "myth": {"wrong": "BLAST IT CLEAN", "fact": "IT CAN *EMPTY* JOINTS", "strikeAt": 1.6, "factAt": 2.3},
+   "vo": "Three: blast it with the pressure washer. Careful, that can *empty your joints*."},
+  {"type": "photo", "photo": "E", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.08, 0, -32.4], "to": [1.12, 0, -48.6]}, "wipe": true,
+   "card": {"mark": "tick", "row": "*DRY PAVERS, DRY DAY*", "small": "TOPPING UP POLYMERIC SAND"},
+   "vo": "Topping up *polymeric sand*? It needs *dry pavers* and a *dry day*."},
+  {"type": "end", "photo": "E", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.12, 0, -48.6], "to": [1.14, 0, -56.7]},
+   "prompt": "WHICH ONE DID YOU BELIEVE?",
+   "vo": "Which one did you believe? Comment below."}
+ ],
+ "cover": {"photo": "A", "layout": "band", "pos": "50% 100%", "kb": {"from": [1.28, -40, 0]}, "title": ["3 PAVER", "*MYTHS*"]},
+ "post": {
+  "date": "2026-11-10", "time": "10:00",
+  "caption": "3 paver myths we hear around Metro Vancouver: fabric under the base doesn't stop joint weeds (the seeds blow in from above), white haze on new pavers is efflorescence and fades, and pressure washing can empty your joints. Topping up polymeric sand? Dry pavers and a dry day.",
+  "hashtags": ["#boundarybuilders", "#pavers", "#interlock", "#patiomaintenance", "#metrovancouver"],
+  "alt": "Close-ups of tight paver joints on a pool deck, a paver walkway, a backyard patio and a soldier course beside river rock, with on-screen myth and fact text about joint weeds, white haze and pressure washing."
+ }
+}

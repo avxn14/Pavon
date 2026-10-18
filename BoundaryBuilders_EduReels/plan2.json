@@ -1,0 +1,58 @@
+{
+ "scenes": [
+  0.0,
+  3.07,
+  6.3,
+  8.42,
+  12.78,
+  14.34,
+  16.18,
+  17.9,
+  22.3
+ ],
+ "skipcap": [
+  0
+ ],
+ "vo": [
+  {
+   "start": 0.1,
+   "dur": 2.82,
+   "text": "Winters are the best time to get *competitive pricing.*"
+  },
+  {
+   "start": 3.17,
+   "dur": 2.98,
+   "text": "Boundary Builders metal fencing \u2014 just *$220* a panel."
+  },
+  {
+   "start": 6.4,
+   "dur": 1.87,
+   "text": "*Materials and installation* included."
+  },
+  {
+   "start": 8.52,
+   "dur": 4.11,
+   "text": "And the best part? *No phone call* needed \u2014 just three quick steps on our website."
+  },
+  {
+   "start": 12.88,
+   "dur": 1.31,
+   "text": "One: *pick your fence style.*"
+  },
+  {
+   "start": 14.44,
+   "dur": 1.59,
+   "text": "Two: *enter your measurements.*"
+  },
+  {
+   "start": 16.28,
+   "dur": 1.47,
+   "text": "Three: *see your instant price.*"
+  },
+  {
+   "start": 18.0,
+   "dur": 2.62,
+   "text": "Just *tap the link below* and get your *free quote* in minutes."
+  }
+ ]
+}

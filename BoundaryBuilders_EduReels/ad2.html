@@ -1,0 +1,361 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Boundary Builders Winter Promo + Instant Quote Reel</title>
+<style>
+@font-face{font-family:'Outfit';src:url('Outfit-500.woff2') format('woff2');font-weight:100 900;font-display:block;}
+html,body{margin:0;padding:0;background:#000;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#020101;font-family:'Outfit',sans-serif;color:#fff;-webkit-font-smoothing:antialiased;}
+#stage *{box-sizing:border-box;}
+.abs{position:absolute;}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px;}
+.gold{color:#FFC527;}
+.flake{position:absolute;left:0;top:0;border-radius:50%;background:#fff;}
+.hl{position:absolute;left:60px;width:960px;text-align:center;font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-1px;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.6);}
+.hl .line{white-space:nowrap;}
+.hl .w{display:inline-block;margin:0 .11em;}
+.pill{position:absolute;display:inline-block;background:#FFC527;color:#111;font-weight:800;font-size:36px;letter-spacing:2.5px;text-transform:uppercase;padding:16px 32px 14px;border-radius:999px;white-space:nowrap;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+.bar{position:absolute;height:10px;background:#FFC527;border-radius:5px;transform-origin:left center;}
+#wipe{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#FFC527;}
+#wipe:after{content:"";position:absolute;left:0;top:-140px;width:1080px;height:140px;background:#020101;}
+#logoSmall{position:absolute;left:768px;top:290px;width:264px;}
+#logoSmall img{width:264px;display:block;}
+
+/* wood photo: blurred fill + sharp band */
+#woodBlur img{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;filter:blur(26px) brightness(.5) saturate(1.1);transform:scale(1.3);transform-origin:50% 50%;}
+#woodBand{position:absolute;left:0;top:330px;width:1080px;height:782px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);}
+#woodBand img{position:absolute;left:0;top:0;width:1080px;height:782px;object-fit:cover;transform-origin:50% 50%;filter:saturate(1.1) contrast(1.05);}
+#topVig{background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 22%);}
+#botVig{background:linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);}
+
+/* scene 1-2 text */
+#h1a{top:1150px;}
+#h1b{top:1118px;font-size:96px;}
+#promoPill{left:72px;top:300px;}
+#price{position:absolute;left:60px;top:1150px;width:960px;display:flex;align-items:flex-end;justify-content:center;gap:26px;}
+#priceNum{font-weight:900;font-size:240px;line-height:.86;color:#FFC527;letter-spacing:-8px;text-shadow:0 8px 36px rgba(0,0,0,.6);}
+#pricePer{font-weight:800;font-size:56px;line-height:.95;text-transform:uppercase;padding-bottom:14px;text-align:left;text-shadow:0 4px 18px rgba(0,0,0,.6);}
+#priceBar{left:300px;top:1372px;width:480px;}
+#priceTag{left:72px;top:300px;}
+
+/* scene 3 card */
+#card{position:absolute;left:0;top:1130px;width:1080px;height:900px;background:#050507;border-radius:40px 40px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.5);}
+.row{position:absolute;left:84px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:62px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;}
+.tick{width:74px;height:74px;border-radius:50%;background:#FFC527;color:#111;display:inline-flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;flex:0 0 74px;}
+#row1{top:1196px;} #row2{top:1306px;}
+
+/* scene 4 gray photo */
+#gray{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;object-position:50% 0%;transform-origin:50% 35%;filter:contrast(1.1) saturate(1.12) brightness(.96);}
+#grayBlur img{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;object-position:50% 0%;filter:blur(22px) brightness(.45) saturate(1.1);transform:scale(1.15);transform-origin:50% 50%;}
+#grayGrad{background:linear-gradient(to top, rgba(2,1,1,.94) 0%, rgba(2,1,1,.84) 36%, rgba(2,1,1,0) 60%);}
+#h4a{top:1130px;font-size:92px;}
+#h4b{top:1100px;font-size:100px;}
+
+/* phone */
+#phone{position:absolute;left:260px;top:370px;width:560px;height:1120px;border-radius:64px;background:#0b0b0d;border:3px solid #34343a;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 0 2px #1a1a1e;transform-origin:50% 0;}
+#screen{position:absolute;left:14px;top:14px;width:526px;height:1086px;border-radius:50px;overflow:hidden;background:#fff;}
+#screen img{position:absolute;left:0;top:0;width:526px;display:block;}
+#notch{position:absolute;left:203px;top:26px;width:120px;height:34px;border-radius:20px;background:#0b0b0d;}
+#stepLabel{position:absolute;left:60px;top:272px;width:960px;text-align:center;font-weight:900;font-size:58px;letter-spacing:1px;text-transform:uppercase;text-shadow:0 6px 24px rgba(0,0,0,.7);}
+.badge{position:absolute;left:206px;top:318px;width:116px;height:116px;border-radius:50%;background:#FFC527;color:#111;font-weight:900;font-size:66px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.5);border:6px solid #0b0b0d;}
+
+/* scene 7 */
+#cta{position:absolute;left:120px;top:1090px;width:840px;height:140px;border-radius:999px;background:#FFC527;color:#111;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:54px;letter-spacing:1px;text-transform:uppercase;box-shadow:0 24px 60px rgba(255,197,39,.35);}
+#ring{position:absolute;left:850px;top:1140px;width:120px;height:120px;border-radius:50%;border:6px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.35);}
+#tap{position:absolute;left:890px;top:1180px;width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.5);}
+#sub{position:absolute;left:60px;top:1252px;width:960px;text-align:center;font-weight:600;font-size:40px;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.6);}
+#sub b{color:#FFC527;font-weight:800;}
+#logoEnd{position:absolute;left:400px;top:1318px;width:280px;}
+#logoEnd img{width:280px;display:block;}
+
+/* captions */
+#cap{position:absolute;left:60px;top:1440px;width:960px;text-align:center;font-weight:800;font-size:52px;line-height:1.15;transform-origin:50% 50%;}
+#cap span.c{display:inline-block;background:rgba(0,0,0,.66);padding:14px 30px 12px;border-radius:18px;}
+#cap .g{color:#FFC527;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="woodBlur"><img src="fence_wood.jpg"></div>
+  <div class="layer" id="grayWrap"><img id="gray" src="fence_gray_crop.jpg"></div>
+  <div class="layer" id="grayBlur"><img src="fence_gray_crop.jpg"></div>
+  <div class="layer" id="grayGrad"></div>
+  <div id="woodBand"><img id="wood" src="fence_wood.jpg"></div>
+  <div class="layer" id="snow"></div>
+  <div class="layer" id="topVig"></div>
+  <div class="layer" id="botVig"></div>
+
+  <!-- scene 1/2/3 -->
+  <div class="hl" id="h1a"></div>
+  <div class="hl gold" id="h1b"></div>
+  <div class="pill" id="promoPill">Winter Promotion</div>
+  <div id="price"><div id="priceNum">$220</div><div id="pricePer">Per<br>Panel</div></div>
+  <div class="bar" id="priceBar"></div>
+  <div class="pill" id="priceTag">$220 / Panel</div>
+  <div id="card"></div>
+  <div class="row" id="row1"><span class="tick">&#x2713;</span><span>Materials Included</span></div>
+  <div class="row" id="row2"><span class="tick">&#x2713;</span><span>Installation Included</span></div>
+
+  <!-- scene 4 -->
+  <div class="hl" id="h4a"></div>
+  <div class="hl gold" id="h4b"></div>
+
+  <!-- phone -->
+  <div id="stepLabel"></div>
+  <div id="phone">
+    <div id="screen">
+      <img id="shot1" src="shots/shot1_style.png">
+      <img id="shot2" src="shots/shot2_measure.png">
+      <img id="shot3" src="shots/shot3_result_total.png">
+    </div>
+    <div id="notch"></div>
+  </div>
+  <div class="badge" id="b1">1</div>
+  <div class="badge" id="b2">2</div>
+  <div class="badge" id="b3">3</div>
+
+  <!-- scene 7 -->
+  <div id="cta">Get Your Instant Price</div>
+  <div id="ring"></div>
+  <div id="tap"></div>
+  <div id="sub">No call needed — <b>tap the link below</b></div>
+  <div id="logoEnd"><img src="logo_gold.png"></div>
+
+  <div id="wipe"></div>
+  <div id="logoSmall"><img src="logo_gold.png"></div>
+  <div id="cap"></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const EO  = t => 1 - Math.pow(1 - t, 3);
+const EI  = t => t * t * t;
+const EIO = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const EOB = t => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const EOX = t => t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const LIN = t => t;
+
+const items = []; const byEl = new Map();
+function reg(el, base) {
+  const it = { el, base: Object.assign({ o: 1, x: 0, y: 0, s: 1, sx: 1, sy: 1, r: 0, b: 0 }, base || {}), tws: [] };
+  items.push(it); byEl.set(el, it); return it;
+}
+function tw(el, t0, t1, to, ease, from) { (byEl.get(el) || reg(el)).tws.push({ t0, t1, to, ease: ease || EO, from }); }
+function words(parent, text) {
+  const spans = [];
+  text.split('|').forEach(line => {
+    const d = document.createElement('div'); d.className = 'line';
+    line.split(' ').forEach(wd => { const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = wd; d.appendChild(sp); spans.push(sp); });
+    parent.appendChild(d);
+  });
+  return spans;
+}
+function popIn(spans, t0, stag = .07, dur = .5) { spans.forEach((sp, i) => { reg(sp, { o: 0, y: 70, s: .6 }); tw(sp, t0 + i * stag, t0 + i * stag + dur, { o: 1, y: 0, s: 1 }, EOB); }); }
+function popOut(spans, t0, dur = .26) { spans.forEach((sp, i) => tw(sp, t0 + i * .02, t0 + i * .02 + dur, { o: 0, y: -80, s: .9 }, EI)); }
+
+/* snow */
+let seed = 7; const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const flakes = [];
+(function () {
+  const host = $('snow');
+  for (let i = 0; i < 70; i++) {
+    const d = document.createElement('div'); d.className = 'flake';
+    const z = rnd(); const size = 3 + z * 9;
+    d.style.width = d.style.height = size + 'px';
+    d.style.filter = 'blur(' + ((1 - z) * 2.4).toFixed(2) + 'px)';
+    d.style.opacity = (.18 + z * .5).toFixed(2);
+    host.appendChild(d);
+    flakes.push({ d, x: rnd() * 1080, y: rnd() * 1920, sp: 45 + z * 120, amp: 18 + rnd() * 44, ph: rnd() * 6.28, fr: .35 + rnd() * .7 });
+  }
+})();
+function snowTick(t) {
+  for (const f of flakes) {
+    const y = ((f.y + f.sp * t) % 2000) - 40;
+    const x = f.x + Math.sin(t * f.fr + f.ph) * f.amp;
+    f.d.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+  }
+}
+
+/* captions */
+let CAPS = [];
+function buildCaps(vo, skip) {
+  CAPS = [];
+  vo.forEach((line, li) => {
+    if ((skip || []).includes(li)) return;
+    goldOpen = false;
+    const raw = line.text.replace(/—/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+    const n = raw.length, nChunks = Math.ceil(n / 3), per = Math.ceil(n / nChunks);
+    const chunks = []; for (let i = 0; i < n; i += per) chunks.push(raw.slice(i, i + per));
+    const usable = Math.max(0.6, line.dur - 0.15);
+    let t = line.start;
+    for (const ch of chunks) {
+      const d = usable * (ch.length / n);
+      // gold markup: *word* or *multi word phrase* spanning words
+      const html = ch.map(w => w).join(' ');
+      CAPS.push({ t0: t, t1: t + d + 0.04, html: goldify(html) });
+      t += d;
+    }
+  });
+}
+let goldOpen = false;
+function goldify(s) {
+  // stateful across chunks so a *phrase* spanning chunks stays gold
+  let out = goldOpen ? '<span class="g">' : '';
+  for (const ch of s) {
+    if (ch === '*') { goldOpen = !goldOpen; out += goldOpen ? '<span class="g">' : '</span>'; }
+    else out += ch;
+  }
+  if (goldOpen) out += '</span>';
+  return out;
+}
+function capTick(t) {
+  const el = $('cap'); const c = CAPS.find(c => t >= c.t0 && t < c.t1);
+  if (!c) { el.style.opacity = 0; el.style.visibility = 'hidden'; return; }
+  if (el.dataset.k !== c.html) { el.innerHTML = '<span class="c">' + c.html + '</span>'; el.dataset.k = c.html; }
+  const k = Math.min(1, (t - c.t0) / 0.16); const s = .84 + .16 * EOB(k);
+  el.style.opacity = 1; el.style.visibility = 'visible'; el.style.transform = 'scale(' + s.toFixed(3) + ')';
+}
+
+function seek(t) {
+  for (const it of items) {
+    const p = Object.assign({}, it.base);
+    for (const w of it.tws) {
+      if (t < w.t0) continue;
+      const from = Object.assign({}, p, w.from || {});
+      let k = w.t1 > w.t0 ? Math.min(1, (t - w.t0) / (w.t1 - w.t0)) : 1; k = w.ease(k);
+      for (const key in w.to) p[key] = from[key] + (w.to[key] - from[key]) * k;
+    }
+    const s = it.el.style;
+    s.opacity = Math.max(0, Math.min(1, p.o)); s.visibility = p.o <= 0.001 ? 'hidden' : 'visible';
+    s.transform = 'translate(' + p.x.toFixed(2) + 'px,' + p.y.toFixed(2) + 'px) rotate(' + p.r.toFixed(2) + 'deg) scale(' + (p.s * p.sx).toFixed(4) + ',' + (p.s * p.sy).toFixed(4) + ')';
+    s.filter = p.b > 0.01 ? 'blur(' + p.b.toFixed(2) + 'px)' : '';
+  }
+  snowTick(t); capTick(t);
+}
+
+const DEFAULT_PLAN = {
+  scenes: [0, 3.0, 5.5, 7.4, 11.2, 12.7, 14.2, 15.8, 20.2],
+  skipcap: [0],
+  vo: [
+    { start: 0.1, dur: 2.7, text: "Winters are the best time to get *competitive pricing.*" },
+    { start: 3.1, dur: 2.2, text: "Boundary Builders metal fencing — just *$220* a panel." },
+    { start: 5.6, dur: 1.6, text: "*Materials and installation* included." },
+    { start: 7.5, dur: 3.5, text: "And the best part? *No phone call* needed — just three quick steps on our website." },
+    { start: 11.3, dur: 1.2, text: "One: *pick your fence style.*" },
+    { start: 12.8, dur: 1.2, text: "Two: *enter your measurements.*" },
+    { start: 14.3, dur: 1.3, text: "Three: *see your instant price.*" },
+    { start: 15.9, dur: 2.7, text: "Just *tap the link below* and get your *free quote* in minutes." }
+  ]
+};
+
+function init(plan) {
+  plan = plan || DEFAULT_PLAN;
+  const [s1, s2, s3, s4, s5, s6, s7, s8, end] = plan.scenes;   // s5/s6/s7 = steps 1/2/3, s8 = close
+  const L1 = s2 - s1, L4 = s5 - s4;
+  const b1 = s1 + L1 * 0.46;                 // scene 1 second beat
+  const p4a = s4 + L4 * 0.30, p4b = s4 + L4 * 0.66;   // scene 4 beats: "no phone call", phone enters
+
+  // ---- global layers
+  reg($('snow'), { o: .8 });
+  reg($('topVig'), { o: 1 }); reg($('botVig'), { o: 1 });
+  reg($('logoSmall'), { o: .92 }); tw($('logoSmall'), p4b - .1, p4b + .2, { o: 0 }, EI);
+
+  // ---- wood photo (scenes 1-3): sharp band + blurred fill, visible from frame 0
+  reg($('woodBlur'), { o: 1 }); tw($('woodBlur'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  reg($('woodBand'), { o: 1, s: 1 }); tw($('woodBand'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  reg($('wood'), { s: 1.0 }); tw($('wood'), s1, s4, { s: 1.07 }, LIN);
+
+  // scene 1: hook typography below the photo
+  const h1a = words($('h1a'), 'WINTERS ARE|THE BEST TIME');
+  const h1b = words($('h1b'), 'TO GET|COMPETITIVE|PRICING');
+  popIn(h1a, s1 + .08); popOut(h1a, b1 - .28);
+  popIn(h1b, b1 - .02); popOut(h1b, s2 - .28);
+
+  // scene 2: price slam below the photo, promo pill on the photo corner
+  reg($('promoPill'), { o: 0, s: .5 }); tw($('promoPill'), s2 + .05, s2 + .45, { o: 1, s: 1 }, EOB); tw($('promoPill'), s3 + .1, s3 + .35, { o: 0, s: .8 }, EI);
+  reg($('price'), { o: 0, s: 2.3 }); tw($('price'), s2 + .45, s2 + .85, { o: 1, s: 1 }, EOX); tw($('price'), s3 - .05, s3 + .25, { o: 0, s: .9, y: -40 }, EI);
+  reg($('pricePer'), { o: 0, x: -40 }); tw($('pricePer'), s2 + .8, s2 + 1.15, { o: 1, x: 0 }, EO);
+  reg($('priceBar'), { o: 1, sx: 0 }); tw($('priceBar'), s2 + 1.0, s2 + 1.5, { sx: 1 }, EOX); tw($('priceBar'), s3 - .05, s3 + .2, { sx: 0 }, EI);
+
+  // scene 3: card covers only the lower part; photo band stays fully visible above it
+  reg($('card'), { o: 1, y: 900 }); tw($('card'), s3 - .02, s3 + .5, { y: 0 }, EOX); tw($('card'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  reg($('priceTag'), { o: 0, s: .5 }); tw($('priceTag'), s3 + .25, s3 + .65, { o: 1, s: 1 }, EOB); tw($('priceTag'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  reg($('row1'), { o: 0, x: -50 }); tw($('row1'), s3 + .3, s3 + .66, { o: 1, x: 0 }, EOX); tw($('row1'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  reg($('row2'), { o: 0, x: -50 }); tw($('row2'), s3 + .62, s3 + .98, { o: 1, x: 0 }, EOX); tw($('row2'), s4 - .02, s4 + .02, { o: 0 }, LIN);
+  const t1 = $('row1').querySelector('.tick'), t2 = $('row2').querySelector('.tick');
+  reg(t1, { s: .4 }); tw(t1, s3 + .34, s3 + .73, { s: 1 }, EOB);
+  reg(t2, { s: .4 }); tw(t2, s3 + .66, s3 + 1.05, { s: 1 }, EOB);
+
+  // ---- wipe into scene 4
+  reg($('wipe'), { o: 1, y: 1920 });
+  tw($('wipe'), s4 - .30, s4 + .22, { y: -2100 }, EIO, { y: 1920 });
+
+  // ---- scene 4: second real job photo (gray panels), then the phone enters over it
+  reg($('grayWrap'), { o: 0 }); tw($('grayWrap'), s4 - .05, s4 + .3, { o: 1 }, EO); tw($('grayWrap'), p4b, p4b + .5, { o: 0 }, EO);
+  reg($('gray'), { s: 1.12 }); tw($('gray'), s4 - .05, s4 + .7, { s: 1.0 }, EOX); tw($('gray'), s4 + .7, p4b + .5, { s: 1.06 }, LIN);
+  reg($('grayGrad'), { o: 0 }); tw($('grayGrad'), s4 - .05, s4 + .3, { o: 1 }, EO); tw($('grayGrad'), p4b, p4b + .5, { o: 0 }, EO);
+  reg($('grayBlur'), { o: 0 }); tw($('grayBlur'), p4b - .1, p4b + .45, { o: 1 }, EO);
+  const h4a = words($('h4a'), 'AND THE|BEST PART?');
+  const h4b = words($('h4b'), 'NO PHONE|CALL NEEDED');
+  popIn(h4a, s4 + .05, .08, .5); popOut(h4a, p4a - .25);
+  popIn(h4b, p4a - .02, .08, .5); popOut(h4b, p4b - .22);
+  tw($('snow'), s4 - .1, s4 + .3, { o: .25 }); tw($('snow'), p4b, p4b + .4, { o: .6 });
+
+  // ---- phone enters (end of scene 4), steps 1-3, close
+  reg($('phone'), { o: 0, y: 1500, s: 1 }); tw($('phone'), p4b, p4b + .7, { o: 1, y: 0 }, EOX);
+  reg($('stepLabel'), { o: 0, y: 20 });
+  const setLabel = (t0, text, gold) => {
+    tw($('stepLabel'), t0 - .22, t0 - .02, { o: 0, y: -20 }, EI);
+    tw($('stepLabel'), t0, t0 + .35, { o: 1, y: 0 }, EOB, { o: 0, y: 24 });
+    labelSwaps.push({ t: t0, text, gold });
+  };
+  setLabel(p4b + .25, '3 STEPS ON OUR WEBSITE', true);
+  setLabel(s5 + .05, '1 · PICK YOUR STYLE', false);
+  setLabel(s6 + .05, '2 · ENTER MEASUREMENTS', false);
+  setLabel(s7 + .05, '3 · SEE YOUR PRICE', false);
+  setLabel(s8 + .35, 'NO CALL · NO WAITING', true);
+  // screens: slide left one after another
+  reg($('shot1'), { x: 0 }); reg($('shot2'), { x: 526 }); reg($('shot3'), { x: 526 });
+  tw($('shot1'), s6, s6 + .45, { x: -526 }, EIO); tw($('shot2'), s6, s6 + .45, { x: 0 }, EIO);
+  tw($('shot2'), s7, s7 + .45, { x: -526 }, EIO); tw($('shot3'), s7, s7 + .45, { x: 0 }, EIO);
+  // badges
+  [['b1', s5], ['b2', s6], ['b3', s7]].forEach(([id, t0], i) => {
+    reg($(id), { o: 0, s: .4 }); tw($(id), t0 + .1, t0 + .5, { o: 1, s: 1 }, EOB);
+    if (i < 2) tw($(id), [s6, s7][i] - .05, [s6, s7][i] + .2, { o: 0, s: .6 }, EI);
+  });
+  tw($('b3'), s8 - .05, s8 + .3, { o: 0, s: .6 }, EI);
+
+  // ---- close: phone shrinks up, CTA + subtext + logo come in, everything holds
+  tw($('phone'), s8, s8 + .6, { s: .62, y: -20 }, EIO);
+  reg($('cta'), { o: 0, s: .85, y: 60 }); tw($('cta'), s8 + .35, s8 + .8, { o: 1, s: 1, y: 0 }, EOB);
+  for (let i = 0; i < 10; i++) { const a = s8 + 1.0 + i * .62; tw($('cta'), a, a + .25, { s: 1.035 }, EO); tw($('cta'), a + .25, a + .55, { s: 1 }, EO); }
+  reg($('tap'), { o: 0, s: .4 }); tw($('tap'), s8 + .8, s8 + 1.05, { o: 1, s: 1 }, EOB);
+  reg($('ring'), { o: 0, s: .4 });
+  for (let i = 0; i < 10; i++) { const a = s8 + .95 + i * .62; tw($('ring'), a, a + .55, { o: 0, s: 2.0 }, EO, { o: .9, s: .5 }); }
+  reg($('sub'), { o: 0, y: 24 }); tw($('sub'), s8 + .7, s8 + 1.05, { o: 1, y: 0 });
+  reg($('logoEnd'), { o: 0, s: .6 }); tw($('logoEnd'), s8 + .9, s8 + 1.3, { o: 1, s: 1 }, EOB);
+
+  buildCaps(plan.vo, plan.skipcap);
+  seek(0);
+}
+
+let labelSwaps = [];
+const _seek = seek;
+seek = function (t) {
+  // label text follows the most recent swap at time t
+  let cur = null; for (const l of labelSwaps) if (t >= l.t - .22) cur = l;
+  const el = $('stepLabel');
+  if (cur && el.dataset.k !== cur.text) { el.textContent = cur.text; el.dataset.k = cur.text; el.style.color = cur.gold ? '#FFC527' : '#fff'; }
+  _seek(t);
+};
+
+window.ready = (async () => {
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(im => im.complete ? im.decode().catch(() => { }) : new Promise(r => { im.onload = () => im.decode().then(r, r); im.onerror = r; })));
+  return true;
+})();
+if (location.search.indexOf('demo') >= 0) { window.ready.then(() => { init(); const t0 = performance.now(); (function loop() { seek(((performance.now() - t0) / 1000) % DEFAULT_PLAN.scenes[8]); requestAnimationFrame(loop); })(); }); }
+</script>
+</body>
+</html>
