@@ -1,0 +1,5 @@
+photos/
+out/
+*.jpg
+*.png
+!logo_gold.png
