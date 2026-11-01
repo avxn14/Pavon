@@ -95,7 +95,11 @@ function addShot(sc, i) {
     const fi = el('img', 'fill', g); fi.src = sc.fill || 'photos/fills/s1.jpg'; el('div', 'tint', g);
     const ph = el('div', 'phone', g); ph.style.width = F.phoneW + 'px'; ph.style.height = F.phoneH + 'px'; ph.style.top = F.phoneY + 'px';
     const scr = el('div', 'screen', ph);
-    if (sc.screenshot) { const im = el('img', '', scr); im.src = sc.screenshot; reg(im, { y: 0 }); tw(im, t0 + .6, t1, { y: -(sc.scroll || 0) }, LIN); }
+    if (sc.screens && sc.screens.length) {   // real screens of the quote page, tapped through: each slides in from the right
+      const n = sc.screens.length, seg = (t1 - t0) / n, sw = F.phoneW - 28;
+      sc.screens.forEach((src, i) => { const im = el('img', '', scr); im.src = src; im.style.width = '100%'; im.style.height = 'auto';
+        if (i === 0) reg(im, { x: 0 }); else { reg(im, { x: sw + 10 }); tw(im, t0 + i * seg, t0 + i * seg + .16, { x: 0 }, EOX); } });
+    } else if (sc.screenshot) { const im = el('img', '', scr); im.src = sc.screenshot; reg(im, { y: 0 }); tw(im, t0 + .6, t1, { y: -(sc.scroll || 0) }, LIN); }
     else { const p = el('div', 'ph', scr); p.innerHTML = PREVIEW ? '<b>boundarybuilders.ca/quote</b>estimator screen<br>recording to be supplied' : '<b>boundarybuilders.ca/quote</b>'; }
     el('div', 'notch', ph);
     reg(ph, { o: 1, s: .95, y: 24, tx: '-50%' }); tw(ph, t0, t0 + .55, { s: 1, y: 0 }, EOX);   // visible from the cut
@@ -141,7 +145,7 @@ async function init(script, fmt, preview) {
   S = script; F = S.formats[fmt]; W = F.w; H = F.h; PREVIEW = !!preview;
   const st = $('stage'); st.style.width = W + 'px'; st.style.height = H + 'px';
   for (const sc of S.shots) if (sc.type !== 'end' && sc.type !== 'phone') { const a = new Image(); a.src = sc.file; await a.decode(); sc.img = { w: a.naturalWidth, h: a.naturalHeight }; const b = new Image(); b.src = sc.fill; await b.decode(); }
-  for (const sc of S.shots) if (sc.type === 'phone' && sc.screenshot) { const a = new Image(); a.src = sc.screenshot; await a.decode(); }
+  for (const sc of S.shots) if (sc.type === 'phone') { for (const src of (sc.screens || (sc.screenshot ? [sc.screenshot] : []))) { const a = new Image(); a.src = src; await a.decode(); } }
   const lg = new Image(); lg.src = 'logo_gold.png'; await lg.decode();
   S.shots.forEach((sc, i) => SHOTS.push({ sc, g: addShot(sc, i) }));
   S.captions.forEach(c => addCaption(c));
