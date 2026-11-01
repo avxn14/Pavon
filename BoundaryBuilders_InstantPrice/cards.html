@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Boundary Builders instant-price ad set</title>
+<style>
+@font-face{font-family:'Outfit';src:url('Outfit-500.woff2') format('woff2');font-weight:100 900;font-display:block;}
+html,body{margin:0;padding:0;background:#000;}
+#c{position:relative;overflow:hidden;background:#F5C400;font-family:'Outfit',sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased;}
+#c *{box-sizing:border-box;}
+.block{position:absolute;left:80px;width:920px;}
+.l1{font-weight:900;line-height:1.04;letter-spacing:-1.5px;}
+.nw{white-space:nowrap;}
+.l2{font-weight:600;line-height:1.2;margin-top:14px;}
+.pill{display:inline-block;margin-top:18px;background:#1A1A1A;color:#F5C400;font-weight:700;line-height:1;padding:15px 26px 13px;border-radius:999px;white-space:nowrap;letter-spacing:.3px;}
+.l4{display:block;font-weight:600;line-height:1.2;margin-top:16px;color:#1A1A1A;}
+.phone{position:absolute;background:#FFFFFF;border-radius:58px;padding:14px;box-shadow:0 34px 70px rgba(0,0,0,.22), 0 6px 14px rgba(0,0,0,.10);}
+.phone .screen{position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#F3F3F3;}
+.phone .screen img{display:block;width:100%;height:auto;}
+.card{position:absolute;background:#FFFFFF;border-radius:30px;padding:10px;box-shadow:0 24px 50px rgba(0,0,0,.18), 0 4px 10px rgba(0,0,0,.08);}
+.card img{display:block;width:100%;height:auto;border-radius:22px;}
+</style>
+</head>
+<body>
+<div id="c">
+  <div class="block" id="block">
+    <div class="l1" id="l1">See your fence price <span class="nw">in 2 minutes.</span></div>
+    <div class="l2" id="l2">No phone call. No waiting a week.</div>
+    <div class="pill" id="pill">Metal $220/panel · Cedar $210/panel · installed</div>
+    <div class="l4" id="l4">Winter Sale pricing until [SALE END DATE]</div>
+  </div>
+  <div class="phone" id="phone"><div class="screen"><img id="shot" src="assets/estimator_step1.png"></div></div>
+  <div class="card" id="card"><img id="photo" src="assets/fence_black_house.jpg"></div>
+</div>
+<script>
+// Text block on top (L1-L4). Below it: phone mockup on the left, sized to fill the height down to phoneBottom;
+// fence photo card on the right, vertically centred on the phone. Only text is bound to the Meta safe zones.
+const q = new URLSearchParams(location.search); const f = q.get('f') || '1x1';
+const F = {
+  '1x1':  { w: 1080, h: 1080, blockTop: 56,  l1: 60, l2: 32, pill: 24, l4: 24, gap: 40, phoneBottom: 1040, colGap: 40 },
+  '4x5':  { w: 1080, h: 1350, blockTop: 110, l1: 68, l2: 36, pill: 26, l4: 26, gap: 44, phoneBottom: 1300, colGap: 40 },
+  '9x16': { w: 1080, h: 1920, blockTop: 290, l1: 76, l2: 40, pill: 28, l4: 28, gap: 48, phoneBottom: 1536, colGap: 40 },
+}[f];
+const c = document.getElementById('c'); c.style.width = F.w + 'px'; c.style.height = F.h + 'px';
+if (q.get('shot')) document.getElementById('shot').src = q.get('shot'); if (q.get('photo')) document.getElementById('photo').src = q.get('photo');
+const b = document.getElementById('block'); b.style.top = F.blockTop + 'px';
+for (const id of ['l1', 'l2', 'pill', 'l4']) document.getElementById(id).style.fontSize = F[id] + 'px';
+const ph = document.getElementById('phone'), cd = document.getElementById('card');
+window.ready = (async () => {
+  await document.fonts.load('900 60px Outfit'); await document.fonts.load('700 26px Outfit'); await document.fonts.load('600 30px Outfit'); await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.complete ? Promise.resolve() : i.decode().catch(() => {})));
+  const blockBottom = b.getBoundingClientRect().bottom;
+  const top = Math.round(blockBottom + F.gap), h = F.phoneBottom - top, sh = h - 28, sw = Math.round(sh * 430 / 932), pw = sw + 28;
+  ph.style.left = '80px'; ph.style.top = top + 'px'; ph.style.width = pw + 'px'; ph.style.height = h + 'px';
+  const cx = 80 + pw + F.colGap, cw = (F.w - 80) - cx; cd.style.left = cx + 'px'; cd.style.width = cw + 'px';
+  const im = document.getElementById('photo'); const chh = Math.round((cw - 20) * im.naturalHeight / im.naturalWidth) + 20;
+  cd.style.top = Math.round(top + (h - chh) / 2) + 'px';
+  return true;
+})();
+window.layoutInfo = () => {
+  const r = e => { const b = e.getBoundingClientRect(); return [Math.round(b.left), Math.round(b.top), Math.round(b.right), Math.round(b.bottom)]; };
+  const texts = ['l1', 'l2', 'pill', 'l4'].map(id => ({ id, box: r(document.getElementById(id)) }));
+  const area = texts.reduce((s, t) => s + (t.box[2] - t.box[0]) * (t.box[3] - t.box[1]), 0);
+  return JSON.stringify({ f, texts, textAreaPct: +(100 * area / (F.w * F.h)).toFixed(1), phone: r(ph), card: r(cd), strings: ['l1', 'l2', 'pill', 'l4'].map(id => document.getElementById(id).textContent) });
+};
+</script>
+</body>
+</html>
