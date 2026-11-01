@@ -84,7 +84,7 @@ function fitText(text, sizes, maxW, maxLines) {
 /* ---------- photo shots ---------- */
 function addShot(sc, i) {
   const g = el('div', 'shot', $('shots')); g.dataset.shot = sc.id || i; const t0 = sc.t0, t1 = sc.t1;
-  reg(g, { o: i === 0 ? 1 : 0 }); if (i > 0) tw(g, t0, t0, { o: 1 }); tw(g, t1, t1, { o: 0 });   // straight cuts
+  reg(g, { o: i === 0 ? 1 : 0 }); if (i > 0) tw(g, t0, t0, { o: 1 }); if (t1 < S.duration) tw(g, t1, t1, { o: 0 });   // straight cuts; the last shot holds to the end
   if (sc.type === 'end') {
     g.classList.add('end');
     const lg = el('div', 'logo', g); const im = el('img', '', lg); im.src = 'logo_gold.png'; im.style.width = F.logoW + 'px'; lg.style.top = F.logoY + 'px';
@@ -117,7 +117,7 @@ function addCaption(c) {
   const g = el('div', 'cap', $('caps')); const t0 = c.t0, t1 = c.t1;
   if (c.pill) {   // end-card CTA pill, centred
     const pl = el('div', 'pill', $('caps')); pl.textContent = c.pill; pl.style.fontSize = F.pillSize + 'px'; pl.style.top = F.pillY + 'px'; STRINGS_FULL.push(c.pill);
-    reg(pl, { o: 0, s: .86, y: 26, tx: '-50%' }); tw(pl, t0 + .35, t0 + .9, { o: 1, s: 1, y: 0 }, EOB); if (t1 < S.duration) tw(pl, t1, t1, { o: 0 });
+    reg(pl, { o: 0, s: .86, y: 26, tx: '-50%' }); tw(pl, t0 + .12, t0 + .5, { o: 1, s: 1, y: 0 }, EOB);   // settled by t0+0.5 so the 2 s end card holds still for 1.5 s if (t1 < S.duration) tw(pl, t1, t1, { o: 0 });
     g.remove(); return;
   }
   const fit = fitText(c.text, F.capSizes, F.capMaxW, 2); const lines = [];
