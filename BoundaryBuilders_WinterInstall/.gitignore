@@ -1,0 +1,11 @@
+photos/
+renders/
+final/
+qa/
+audio/
+*.mp4
+*.png
+*.jpg
+*.mp3
+!logo_gold.png
+__pycache__/
