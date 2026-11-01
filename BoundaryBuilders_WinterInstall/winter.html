@@ -27,7 +27,7 @@ img.fill{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;
 .phone .screen img{position:absolute;left:0;top:0;width:100%;height:auto;}
 .phone .notch{position:absolute;left:50%;top:14px;width:150px;height:34px;margin-left:-75px;background:#111;border-radius:0 0 22px 22px;}
 .phone .ph{position:absolute;left:0;right:0;top:46%;text-align:center;color:#7a7a7a;font-weight:600;font-size:26px;line-height:1.3;padding:0 30px;}
-.phone .ph b{display:block;color:#1A1A1A;font-weight:800;font-size:30px;margin-bottom:8px;}
+.phone .ph b{display:block;color:#1A1A1A;font-weight:800;font-size:23px;margin-bottom:8px;letter-spacing:-.2px;}
 #measure{position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;}
 </style>
 </head>
@@ -64,7 +64,7 @@ function seek(t) {
   window.CUR_T = t;
 }
 function el(tag, cls, parent) { const e = document.createElement(tag); if (cls) e.className = cls; if (parent) parent.appendChild(e); return e; }
-let F = null, S = null, W = 1080, H = 1920;
+let F = null, S = null, W = 1080, H = 1920, PREVIEW = false;
 function measureW(text, sz) { const m = $('measure'); m.innerHTML = ''; const d = el('div', 'cap', m); d.style.position = 'static'; d.style.width = 'auto'; const b = el('span', 'bar', d); b.style.fontSize = sz + 'px'; b.textContent = text; return b.getBoundingClientRect().width; }
 function splitN(words, n, sz, maxW) {
   if (n === 1) { const w = measureW(words.join(' '), sz); return w <= maxW ? { w, lines: [words.join(' ')] } : null; }
@@ -96,7 +96,7 @@ function addShot(sc, i) {
     const ph = el('div', 'phone', g); ph.style.width = F.phoneW + 'px'; ph.style.height = F.phoneH + 'px'; ph.style.top = F.phoneY + 'px';
     const scr = el('div', 'screen', ph);
     if (sc.screenshot) { const im = el('img', '', scr); im.src = sc.screenshot; reg(im, { y: 0 }); tw(im, t0 + .6, t1, { y: -(sc.scroll || 0) }, LIN); }
-    else { const p = el('div', 'ph', scr); p.innerHTML = '<b>boundarybuilders.ca/quote</b>estimator screenshot<br>to be supplied'; }
+    else { const p = el('div', 'ph', scr); p.innerHTML = PREVIEW ? '<b>boundarybuilders.ca/quote</b>estimator screen<br>recording to be supplied' : '<b>boundarybuilders.ca/quote</b>'; }
     el('div', 'notch', ph);
     reg(ph, { o: 1, s: .95, y: 24, tx: '-50%' }); tw(ph, t0, t0 + .55, { s: 1, y: 0 }, EOX);   // visible from the cut
     return g;
@@ -110,6 +110,7 @@ function addShot(sc, i) {
   im.style.transformOrigin = (ax * 100).toFixed(2) + '% ' + (ay * 100).toFixed(2) + '%';
   const zf = sc.zoom ? sc.zoom[0] : 1, zt = sc.zoom ? sc.zoom[1] : 1; const dx = (sc.drift || [0, 0])[0], dy = (sc.drift || [0, 0])[1];
   reg(im, { s: zf, x: 0, y: 0 }); tw(im, t0, t1, { s: zt, x: dx, y: dy }, LIN);
+  if (sc.placeholder && PREVIEW) { const pt = el('div', 'tag', g); pt.textContent = sc.placeholder; pt.style.fontSize = '28px'; pt.style.left = (left + 24) + 'px'; pt.style.top = (top + 24) + 'px'; pt.style.background = '#FFFFFF'; pt.style.color = '#1A1A1A'; pt.style.letterSpacing = '1.5px'; pt.dataset.preview = '1'; }
   return g;
 }
 /* ---------- captions (own timing, a dark backing bar per line) ---------- */
@@ -136,8 +137,8 @@ function addCaption(c) {
     tg.style.top = (F.capTop - bh - 14) + 'px';
   }
 }
-async function init(script, fmt) {
-  S = script; F = S.formats[fmt]; W = F.w; H = F.h;
+async function init(script, fmt, preview) {
+  S = script; F = S.formats[fmt]; W = F.w; H = F.h; PREVIEW = !!preview;
   const st = $('stage'); st.style.width = W + 'px'; st.style.height = H + 'px';
   for (const sc of S.shots) if (sc.type !== 'end' && sc.type !== 'phone') { const a = new Image(); a.src = sc.file; await a.decode(); sc.img = { w: a.naturalWidth, h: a.naturalHeight }; const b = new Image(); b.src = sc.fill; await b.decode(); }
   for (const sc of S.shots) if (sc.type === 'phone' && sc.screenshot) { const a = new Image(); a.src = sc.screenshot; await a.decode(); }

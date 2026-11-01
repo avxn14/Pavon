@@ -74,7 +74,7 @@ class Page:
             r = c.call("Runtime.evaluate", {"expression": "document.readyState==='complete' && !!window.ready", "returnByValue": True}, session=s)
             if r.get("result", {}).get("value"): break
             time.sleep(0.05)
-        r = self.ev("(async()=>{await window.ready; await init(" + json.dumps(SCRIPT) + "," + json.dumps(FMT) + "); return 'ok';})()", True)
+        r = self.ev("(async()=>{await window.ready; await init(" + json.dumps(SCRIPT) + "," + json.dumps(FMT) + "," + ("true" if os.environ.get("PREVIEW") == "1" else "false") + "); return 'ok';})()", True)
         assert r == "ok", r
     def ev(self, expr, awaitP=False):
         r = self.c.call("Runtime.evaluate", {"expression": expr, "awaitPromise": awaitP, "returnByValue": True}, session=self.s)
