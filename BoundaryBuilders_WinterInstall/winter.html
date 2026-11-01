@@ -106,9 +106,13 @@ function addShot(sc, i) {
     return g;
   }
   const fi = el('img', 'fill', g); fi.src = sc.fill; reg(fi, { s: 1.2 }); el('div', 'tint', g);
-  const w = sc.bandW || 1080, h = Math.round(w * 9 / 16), left = Math.round((1080 - w) / 2), top = F.bandTop + Math.round((F.bandH - h) / 2);
+  const p = sc.img; let w, h, left, top;
+  if (sc.full) {   // the whole photo, uncropped: full width at its own aspect (capped in height), centred on the band line
+    w = 1080; h = Math.round(1080 * p.h / p.w); if (h > F.bandMaxH) { h = F.bandMaxH; w = Math.round(F.bandMaxH * p.w / p.h); }
+    left = Math.round((1080 - w) / 2); top = F.bandCY - Math.round(h / 2);
+  } else { w = sc.bandW || 1080; h = Math.round(w * 9 / 16); left = Math.round((1080 - w) / 2); top = F.bandTop + Math.round((F.bandH - h) / 2); }
   const band = el('div', 'band', g); band.style.left = left + 'px'; band.style.top = top + 'px'; band.style.width = w + 'px'; band.style.height = h + 'px';
-  const im = el('img', 'sharp', band); im.src = sc.file; im.dataset.photo = sc.photo; const p = sc.img;
+  const im = el('img', 'sharp', band); im.src = sc.file; im.dataset.photo = sc.photo;
   const s = Math.max(w / p.w, h / p.h); const bw = p.w * s, bh = p.h * s; const ax = (sc.anchor || [.5, .5])[0], ay = (sc.anchor || [.5, .5])[1];
   im.style.width = bw.toFixed(3) + 'px'; im.style.height = bh.toFixed(3) + 'px'; im.style.left = ((w - bw) / 2).toFixed(3) + 'px'; im.style.top = ((h - bh) / 2).toFixed(3) + 'px';
   im.style.transformOrigin = (ax * 100).toFixed(2) + '% ' + (ay * 100).toFixed(2) + '%';
