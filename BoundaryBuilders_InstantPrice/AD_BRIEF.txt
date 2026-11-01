@@ -15,3 +15,5 @@ RULES: no invented UI elements with fake prices; if the screenshot shows a price
 NOTE: no files arrived with this message. Assets used: assets/fence_black_house.jpg (= 15.jpg from the Winter install ad, the owner's photo), alternatives
 fence_black_corner.jpg (13.jpg) and fence_black_cedar.jpg (metal-fence-1.jpg from the Edu Reels Drive set); estimator screens = the owner's Instant Quote artifact
 rendered locally at phone size on 2026-11-01 (estimator_step1.png, estimator_colour.png with the real $29/lf, estimator_price_ready.png).
+
+ADDENDUM 2026-11-01 (owner, after seeing preview.png): "the sale end december 31" -> Line 4 = "Winter Sale pricing until December 31"; taken as the OK for the finals.

@@ -10,4 +10,4 @@ screenshotted with headless Chromium.
 
 Assets (git-ignored, see AD_BRIEF.txt): owner's fence photo `assets/fence_black_house.jpg`, estimator step-1 screen
 `assets/estimator_step1.png` rendered from the owner's Instant Quote artifact (no price on that screen; nothing invented).
-Line 4 still carries the `[SALE END DATE]` placeholder until the owner gives the date.
+Line 4 reads "Winter Sale pricing until December 31" (owner's date, 2026-11-01).
