@@ -277,10 +277,20 @@
     "f07": {
       "screenshot": "inputs/f07_screenshot.png",
       "photo": "inputs/brown_topper_sunny.jpg",
-      "photo_focal": [
-        0.3,
-        0.55
-      ],
+      "photo_focal": {
+        "1x1": [
+          0.3,
+          0.55
+        ],
+        "4x5": [
+          0.68,
+          0.6
+        ],
+        "9x16": [
+          0.68,
+          0.6
+        ]
+      },
       "text": {
         "headline": "See your fence price in 2 minutes.",
         "medium": "No phone call. No waiting a week.",
@@ -295,10 +305,20 @@
         "inputs/black_pergola_site.jpg"
       ],
       "focals": [
-        [
-          0.7,
-          0.58
-        ],
+        {
+          "1x1": [
+            0.78,
+            0.5
+          ],
+          "4x5": [
+            0.78,
+            0.39
+          ],
+          "9x16": [
+            0.72,
+            0.42
+          ]
+        },
         [
           0.62,
           0.48
@@ -318,7 +338,7 @@
         "cta": "Get your price in 2 minutes"
       },
       "zoom": [
-        0.85,
+        1.0,
         0.7,
         0.7
       ]

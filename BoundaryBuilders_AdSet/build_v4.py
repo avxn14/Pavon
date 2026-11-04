@@ -24,10 +24,25 @@ B.NOWRAP[:] = ["in 2 minutes.", "fence price", "Winter Sale", "$220/panel", "$21
 
 def smooth(t): t = min(1.0, max(0.0, t)); return t * t * (3 - 2 * t)
 
+SS = 4
+def aa_mask(size, box, radius):
+    """anti-aliased rounded-rectangle mask: drawn at 4x, reduced with LANCZOS"""
+    W, H = size; m = Image.new("L", (W * SS, H * SS), 0)
+    x0, y0, x1, y1 = box; ImageDraw.Draw(m).rounded_rectangle((x0 * SS, y0 * SS, x1 * SS - 1, y1 * SS - 1), radius=radius * SS, fill=255)
+    return m.resize((W, H), Image.LANCZOS)
+
 class Canvas(B.Canvas):
-    """build_ads.Canvas + a mask of where the photo is visible (for the 'photo share' QA column)"""
+    """build_ads.Canvas + a mask of where the photo is visible (for the 'photo share' QA column) + anti-aliased shapes"""
     def __init__(self, w, h, bg=CH):
         super().__init__(w, h, bg); self.pmask = np.zeros((h, w), bool)
+    def fill_round(self, box, radius, color):
+        """anti-aliased filled rounded rectangle (drawn in a local window so it stays fast)"""
+        x0, y0, x1, y1 = [int(round(v)) for v in box]; pad = 2
+        wx0, wy0, wx1, wy1 = max(0, x0 - pad), max(0, y0 - pad), min(self.w, x1 + pad), min(self.h, y1 + pad)
+        m = aa_mask((wx1 - wx0, wy1 - wy0), (x0 - wx0, y0 - wy0, x1 - wx0, y1 - wy0), radius)
+        self.im.paste(Image.new("RGB", m.size, color), (wx0, wy0), m)
+    def paste_rounded(self, im, xy, radius):
+        m = aa_mask(im.size, (0, 0, im.width, im.height), radius); self.im.paste(im, (int(xy[0]), int(xy[1])), m)
     def cover_mask(self, box, radius=0):
         x0, y0, x1, y1 = [int(round(v)) for v in box]; m = Image.new("L", (self.w, self.h), 0)
         ImageDraw.Draw(m).rounded_rectangle((x0, y0, x1, y1), radius=radius, fill=255); self.pmask &= ~(np.asarray(m) > 0)
@@ -71,18 +86,22 @@ def soft_text(cv, xy, s, fnt, fill, anchor="ls", spacing=0, shadow=0.0):
 
 def chip(cv, x, y, text, fnt, h=64, padx=22):
     d = cv.d; w = int(d.textlength(text, font=fnt) + 2 * padx + 3 * (len(text) - 1)); box = (x, y, x + w, y + h)
-    d.rounded_rectangle(box, radius=12, fill=YE); cv.cover_mask(box, 12)
+    cv.fill_round(box, 12, YE); cv.cover_mask(box, 12)
     cv.text((x + padx, y + h / 2), text, fnt, CH, anchor="lm", spacing=3); return box
 
 def cta(cv, x, y, text, fnt, h=96, padx=40, on_photo=False):
     d = cv.d; aw = d.textlength("→", font=fnt); w = int(d.textlength(text, font=fnt) + 18 + aw + 2 * padx); box = (x, y, x + w, y + h)
     if on_photo: cv.shadow(box, h // 2, blur=16, offset=(0, 8), alpha=55)
-    cv.d.rounded_rectangle(box, radius=h // 2, fill=YE); cv.cover_mask(box, h // 2)
+    cv.fill_round(box, h // 2, YE); cv.cover_mask(box, h // 2)
     tb = cv.text((x + padx, y + h / 2), text, fnt, CH, anchor="lm")
     cv.d.text((tb[2] + 18, y + h / 2), "→", font=fnt, fill=CH, anchor="lm"); return box
 
-def logo(cv, x_right, y_center, width=190):
-    lg = Image.open(CFG["logo"]).convert("RGBA"); lg = lg.resize((width, round(lg.height * width / lg.width)), Image.LANCZOS)
+def logo(cv, x_right, y_center, width=190, on_charcoal=False):
+    lg = Image.open(CFG["logo"]).convert("RGBA")
+    if on_charcoal:   # the file's backing plate is #222222; on the #1A1A1A band it would read as a lighter box
+        a = np.asarray(lg).copy(); rgb = a[..., :3].astype(int)
+        plate = (a[..., 3] > 0) & (np.abs(rgb - 34).max(axis=2) <= 12); a[plate, :3] = 26; lg = Image.fromarray(a, "RGBA")
+    lg = lg.resize((width, round(lg.height * width / lg.width)), Image.LANCZOS)
     x, y = int(x_right - width), int(y_center - lg.height / 2); cv.im.paste(lg, (x, y), lg)
     box = (x, y, x + lg.width, y + lg.height); cv.boxes.append(box); cv.fonts.append(999); cv.contrasts.append(99); cv.cover_mask(box); return box
 
@@ -143,7 +162,7 @@ def f06(size):
         mask = Image.fromarray(np.repeat((a * 255).astype(np.uint8)[:, None], W, axis=1), "L")
         cv.im = Image.composite(Image.new("RGB", cv.im.size, CH), cv.im, mask); cv.pmask &= ~(np.repeat(a[:, None], W, axis=1) > 0.65)
     f06_block(cv, top, T, one_line)
-    logo(cv, W - M, top + 32)
+    logo(cv, W - M, top + 32, on_charcoal=True)
     cv.meta = dict(photo_scale=round(s, 2), fence_clearance=int(min(fence_top_out(cfg, geo, x) - b[3] for _, b in boxes for x in range(b[0], b[2] + 1, 8))))
     return cv
 
@@ -161,13 +180,13 @@ def f08(size):
         r1 = (0, 0, W, 620); r2 = (0, 628, (W - G) // 2, st); r3 = ((W - G) // 2 + G, 628, W, st)
     else:
         lw = 664; r1 = (0, 0, lw, st); hh = (st - G) // 2; r2 = (lw + G, 0, W, hh); r3 = (lw + G, hh + G, W, st)
-    for p, f, r, z in zip(ph, foc, (r1, r2, r3), cfg.get("zoom", [0, 0, 0])): tile(cv, p, r, f, z)
+    for p, f, r, z in zip(ph, foc, (r1, r2, r3), cfg.get("zoom", [0, 0, 0])): tile(cv, p, r, f[size] if isinstance(f, dict) else f, z)
     # soften the seam: the bottom 96 px of the collage melt into the charcoal sheet
     a = np.array([smooth((y - (st - 96)) / 96) if y < st else 1.0 for y in range(H)]); a[:max(0, st - 96)] = 0
     mask = Image.fromarray(np.repeat((a * 255).astype(np.uint8)[:, None], W, axis=1), "L")
     cv.im = Image.composite(Image.new("RGB", cv.im.size, CH), cv.im, mask); cv.pmask &= ~(np.repeat(a[:, None], W, axis=1) > 0.65)
     chip(cv, M, st - 32, T["tag"], fb)
-    b1 = st + 32 + 28 + CAP(44); logo(cv, W - M, b1 - CAP(44) // 2 - 4, 190)
+    b1 = st + 32 + 28 + CAP(44); logo(cv, W - M, b1 - CAP(44) // 2 - 4, 190, on_charcoal=True)
     b1 = st + 32 + 28 + CAP(44); cv.text((M, b1), T["calc"], fb, WH2, anchor="ls")
     b2 = b1 + DESC(44) + 28 + CAP(112); tw = d.textlength(total, font=fbig); cv.text((M, b2), total, fbig, YE, anchor="ls")
     cv.text((M + tw + 20, b2), T["total_suffix"], fb, WH, anchor="ls")
@@ -190,7 +209,7 @@ def f07(size):
     # left: the whole phone (plain white rounded frame, no maker marks), as tall as the content area allows
     shot = load(cfg["screenshot"]); ph_h = cbot - ctop; sh = ph_h - 24; sw = round(sh * shot.width / shot.height); pw = sw + 24
     cv.shadow((M, ctop, M + pw, cbot), 48, blur=34, offset=(0, 22), alpha=80)
-    cv.d.rounded_rectangle((M, ctop, M + pw, cbot), radius=48, fill=WH); cv.cover_mask((M, ctop, M + pw, cbot), 48)
+    cv.fill_round((M, ctop, M + pw, cbot), 48, WH); cv.cover_mask((M, ctop, M + pw, cbot), 48)
     cv.paste_rounded(shot.resize((sw, sh), Image.LANCZOS), (M + 12, ctop + 12), 38)
     # right column: fence photo card, then the charcoal price pill (left-aligned lines), then the date line
     rx = M + pw + G; rw = W - M - rx
@@ -200,12 +219,13 @@ def f07(size):
     small = wrap(d, sub(T["small"]), fb, rw); small_h = len(small) * lh
     card_h = cbot - ctop - 28 - pill_h - 24 - small_h
     card = (rx, ctop, W - M, ctop + card_h)
-    cv.shadow(card, 32, blur=28, offset=(0, 16), alpha=60)
-    cv.paste_rounded(B.cover(load(cfg["photo"]), rw, card_h, cfg["photo_focal"]), (rx, ctop), 32); cv.pmask[ctop:ctop + card_h, rx:W - M] = True
-    py = card[3] + 28; pwid = int(max(d.textlength(l, font=fb) for l in pill_lines) + 56)
-    cv.d.rounded_rectangle((rx, py, rx + pwid, py + pill_h), radius=28, fill=CH)
+    cv.shadow(card, 32, blur=16, offset=(0, 8), alpha=40)
+    foc = cfg["photo_focal"]; foc = foc[size] if isinstance(foc, dict) else foc
+    cv.paste_rounded(B.cover(load(cfg["photo"]), rw, card_h, foc), (rx, ctop), 32); cv.pmask[ctop:ctop + card_h, rx:W - M] = True
+    py = card[3] + 28; pwid = rw
+    cv.fill_round((rx, py, rx + pwid, py + pill_h), 32, CH)
     cv.contrasts.append(B.contrast(B.lum(YE), B.lum(CH))); cv.boxes.append((rx, py, rx + pwid, py + pill_h)); cv.fonts.append(44)
-    yb = py + 17 + CAP(44) + 4
+    yb = py + 17 + CAP(44) + 14
     for l in pill_lines: cv.d.text((rx + 28, yb), l, font=fb, fill=YE, anchor="ls"); yb += lh
     yb = py + pill_h + 24 + CAP(44)
     for l in small: cv.text((rx, yb), l, fb, CH, anchor="ls"); yb += lh
@@ -254,6 +274,11 @@ if __name__ == "__main__":
             q["flags"] = ", ".join(flags) or "ok"; q.update({k: v for k, v in getattr(cv, "meta", {}).items()}); qa.append(q)
     rows = [(n, f"{OUT}/{n}") for k in ("f06", "f07", "f08") for s in ("1x1", "4x5", "9x16") for n in [f"{k}_{s}.png"] if os.path.exists(f"{OUT}/{n}")]
     contact_sheet(rows, f"{OUT}/preview_contact_sheet.png")
+    import json as _j
+    store = f"{OUT}/qa.json"; old = {}
+    if os.path.exists(store): old = {r["file"]: r for r in _j.load(open(store))}
+    for r in qa: old[r["file"]] = {k: (float(v) if hasattr(v, "item") else v) for k, v in r.items()}
+    qa = [old[k] for k in sorted(old)]; _j.dump(qa, open(store, "w"), indent=1)
     hdr = ["file", "size", "photo_pct", "text_area_pct", "smallest_font_px", "lowest_contrast", "file_kb", "png_mode", "safe_zone_9x16", "flags"]
     md = "| " + " | ".join(hdr) + " |\n|" + "---|" * len(hdr) + "\n" + "\n".join("| " + " | ".join(str(r.get(h, "")) for h in hdr) + " |" for r in qa)
     open(f"{OUT}/qa.md", "w").write(md + "\n"); print(md)
