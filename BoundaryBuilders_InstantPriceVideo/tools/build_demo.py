@@ -7,8 +7,18 @@ puts `lead` seconds of the first frame up front and holds the final screen to `h
 import os, sys, json, subprocess, shutil, bisect
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); CAP = os.path.join(HERE, "capture"); FPS = 30
 landing = float(sys.argv[1]) if len(sys.argv) > 1 else 12.6; lead = 1.0; hold_to = 31.0; keep_tap = 0.45; keep_next = 0.62; contact_hold = 0.55
-fr = json.load(open(os.path.join(CAP, "frames.json"))); ev = json.load(open(os.path.join(CAP, "events.json"))); T0 = json.load(open(os.path.join(CAP, "price.json")))["T0"]
+fr = json.load(open(os.path.join(CAP, "frames.json"))); ev = json.load(open(os.path.join(CAP, "events.json"))); PJ = json.load(open(os.path.join(CAP, "price.json"))); T0 = PJ["T0"]
 ts = [t - T0 for t, _ in fr]; names = [f for _, f in fr]
+# the result pane fades in after the DOM says it is visible: the landing is the first captured frame after result:clean whose
+# price box holds dark ink (the "working out your price" screen is blank there)
+from PIL import Image
+pr = PJ["price"]; box = (int(pr["x"]), int(pr["y"]), int(pr["x"] + pr["w"]), int(pr["y"] + pr["h"]))
+ev["landing"] = ev["result:clean"]
+for t, f in zip(ts, names):
+    if t < ev["result:clean"]: continue
+    g = Image.open(os.path.join(CAP, "raw", f)).convert("L").crop(box)
+    if sum(1 for v in g.getdata() if v < 110) > 40: ev["landing"] = t; break
+print(f"result pane visible at {ev['landing']:.3f}s (DOM said {ev['result:clean']:.3f}s)")
 def frame_at(t):
     i = bisect.bisect_right(ts, t) - 1; return names[max(0, i)]
 order = ["pick:Fence", "next:Fence", "pick:Metal", "next:Metal", "pick:Black", "next:Black", "pick:No gate", "next:No gate", "type:start", "type:end", "next:measure", "pick:clear", "next:extras", "contact:shown"]
@@ -25,13 +35,14 @@ def segments(trim):
     seg.append((ev["contact:shown"], ev["contact:shown"] + contact_hold, 1.0))  # empty form glimpse
     # CUT: contact:shown+hold .. result:clean (typing of placeholder details, submit, 'working out your price' is partly kept below)
     seg.append((ev["calc:visible"] + 0.05, ev["result:visible"], 1.5))      # working-out animation at 1.5x
-    seg.append((ev["result:clean"], ev["end"], 1.0))                        # count-up and settle at 1x
+    seg.append((ev["result:clean"], ev["landing"], 1.5))                    # result pane fading in
+    seg.append((ev["landing"], ev["end"], 1.0))                             # price visible: count-up and settle at 1x
     return seg
 def out_len(seg): return sum((b - a) / s for a, b, s in seg)
 def landing_time(seg):
     t = 0.0
     for a, b, s in seg:
-        if abs(a - ev["result:clean"]) < 1e-9: return t
+        if abs(a - ev["landing"]) < 1e-9: return t
         t += (b - a) / s
     return t
 lo, hi = 1.0, 40.0
@@ -52,7 +63,7 @@ def src_time_at(t_out):
         if t <= d: return a + t * s
         t -= d
     return last_src
-cut_lo, cut_hi = ev["contact:shown"] + contact_hold, ev["result:clean"]
+cut_lo = ev["contact:shown"] + contact_hold
 for i in range(n_total):
     st = src_time_at(i / FPS)
     if cut_lo <= st < ev["calc:visible"] + 0.05: st = cut_lo - 0.001          # never show the filled form
