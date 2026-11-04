@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Boundary Builders Winter install ad template</title>
+<style>
+@font-face{font-family:'Outfit';src:url('Outfit-500.woff2') format('woff2');font-weight:100 900;font-display:block;}
+html,body{margin:0;padding:0;background:#000;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#1A1A1A;font-family:'Outfit',sans-serif;color:#FFFFFF;-webkit-font-smoothing:antialiased;}
+#stage *{box-sizing:border-box;}
+.shot{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;}
+img.fill{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:blur(30px) brightness(.5) saturate(.9);transform-origin:50% 50%;}
+.tint{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(26,26,26,.80);}
+.band{position:absolute;left:0;width:1080px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.45);}
+.band img.sharp{position:absolute;left:0;top:0;filter:saturate(1.05) contrast(1.03);}
+.cap{position:absolute;left:72px;width:936px;}
+.cap .line{display:block;}
+.cap .bar{display:inline-block;background:rgba(17,17,17,.94);color:#FFFFFF;font-weight:800;line-height:1.08;padding:14px 26px 12px;border-radius:10px;letter-spacing:-.3px;white-space:nowrap;transform-origin:0% 50%;}
+.cap .line + .line{margin-top:10px;}
+.tag{position:absolute;left:72px;display:inline-block;background:#F5C400;color:#1A1A1A;font-weight:900;font-size:40px;line-height:1;letter-spacing:3px;text-transform:uppercase;padding:18px 28px 16px;border-radius:8px;white-space:nowrap;transform-origin:0% 50%;}
+.end{background:#1A1A1A;}
+.logo{position:absolute;left:0;width:1080px;text-align:center;transform-origin:50% 50%;}
+.logo img{display:inline-block;}
+.pill{position:absolute;left:50%;display:inline-block;background:#F5C400;color:#1A1A1A;font-weight:900;line-height:1;padding:26px 54px 22px;border-radius:999px;white-space:nowrap;box-shadow:0 14px 40px rgba(0,0,0,.45);transform-origin:50% 50%;}
+.phone{position:absolute;left:50%;border-radius:54px;background:#111;border:4px solid #3a3a3a;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;transform-origin:50% 50%;}
+.phone .screen{position:absolute;left:14px;top:14px;right:14px;bottom:14px;border-radius:40px;background:#F3F3F3;overflow:hidden;}
+.phone .screen img{position:absolute;left:0;top:0;width:100%;height:auto;}
+.phone .notch{position:absolute;left:50%;top:14px;width:150px;height:34px;margin-left:-75px;background:#111;border-radius:0 0 22px 22px;}
+.phone .ph{position:absolute;left:0;right:0;top:46%;text-align:center;color:#7a7a7a;font-weight:600;font-size:26px;line-height:1.3;padding:0 30px;}
+.phone .ph b{display:block;color:#1A1A1A;font-weight:800;font-size:23px;margin-bottom:8px;letter-spacing:-.2px;}
+#measure{position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="shots"></div>
+  <div id="caps"></div>
+  <div id="measure"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const EO  = t => 1 - Math.pow(1 - t, 3);
+const EIO = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const EOB = t => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const EOX = t => t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const LIN = t => t;
+window.FIT_WARNINGS = []; window.STRINGS_FULL = []; window.SHOTS = []; window.CAPS = [];
+const items = []; const byEl = new Map();
+function reg(el, base) { const it = { el, base: Object.assign({ o: 1, x: 0, y: 0, s: 1, sx: 1 }, base || {}), tws: [] }; items.push(it); byEl.set(el, it); return it; }
+function tw(el, t0, t1, to, ease, from) { (byEl.get(el) || reg(el)).tws.push({ t0, t1, to, ease: ease || EO, from }); }
+function seek(t) {
+  for (const it of items) {
+    const p = Object.assign({}, it.base);
+    for (const w of it.tws) {
+      if (t < w.t0) continue;
+      const from = Object.assign({}, p, w.from || {});
+      let k = w.t1 > w.t0 ? Math.min(1, (t - w.t0) / (w.t1 - w.t0)) : 1; k = w.ease(k);
+      for (const key in w.to) p[key] = from[key] + (w.to[key] - from[key]) * k;
+    }
+    const s = it.el.style;
+    s.opacity = Math.max(0, Math.min(1, p.o)); s.visibility = p.o <= 0.001 ? 'hidden' : 'visible';
+    s.transform = 'translate(' + (it.base.tx || '0px') + ') translate(' + p.x.toFixed(2) + 'px,' + p.y.toFixed(2) + 'px) scale(' + (p.s * p.sx).toFixed(4) + ',' + p.s.toFixed(4) + ')';
+  }
+  window.CUR_T = t;
+}
+function el(tag, cls, parent) { const e = document.createElement(tag); if (cls) e.className = cls; if (parent) parent.appendChild(e); return e; }
+let F = null, S = null, W = 1080, H = 1920, PREVIEW = false;
+function measureW(text, sz) { const m = $('measure'); m.innerHTML = ''; const d = el('div', 'cap', m); d.style.position = 'static'; d.style.width = 'auto'; const b = el('span', 'bar', d); b.style.fontSize = sz + 'px'; b.textContent = text; return b.getBoundingClientRect().width; }
+function splitN(words, n, sz, maxW) {
+  if (n === 1) { const w = measureW(words.join(' '), sz); return w <= maxW ? { w, lines: [words.join(' ')] } : null; }
+  let best = null;
+  for (let i = 1; i <= words.length - (n - 1); i++) {
+    const head = words.slice(0, i).join(' '); const hw = measureW(head, sz); if (hw > maxW) break;
+    const rest = splitN(words.slice(i), n - 1, sz, maxW); if (!rest) continue;
+    const w = Math.max(hw, rest.w); if (!best || w < best.w) best = { w, lines: [head].concat(rest.lines) };
+  }
+  return best;
+}
+function fitText(text, sizes, maxW, maxLines) {
+  const words = []; for (const w of text.split(' ')) { if (/^[–—-]$/.test(w) && words.length) words[words.length - 1] += ' ' + w; else words.push(w); }
+  for (const sz of sizes) for (let n = 1; n <= maxLines; n++) { const r = splitN(words, n, sz, maxW); if (r) return { size: sz, lines: r.lines }; }
+  FIT_WARNINGS.push('did not fit: ' + text); const sz = sizes[sizes.length - 1]; return { size: sz, lines: (splitN(words, maxLines, sz, 1e9) || { lines: [text] }).lines };
+}
+/* ---------- photo shots ---------- */
+function addShot(sc, i) {
+  const g = el('div', 'shot', $('shots')); g.dataset.shot = sc.id || i; const t0 = sc.t0, t1 = sc.t1;
+  reg(g, { o: i === 0 ? 1 : 0 }); if (i > 0) tw(g, t0, t0, { o: 1 }); if (t1 < S.duration) tw(g, t1, t1, { o: 0 });   // straight cuts; the last shot holds to the end
+  if (sc.type === 'end') {
+    g.classList.add('end');
+    const lg = el('div', 'logo', g); const im = el('img', '', lg); im.src = 'logo_gold.png'; im.style.width = F.logoW + 'px'; lg.style.top = F.logoY + 'px';
+    reg(lg, { o: 1, s: .84, y: 12 }); tw(lg, t0, t0 + .5, { s: 1, y: 0 }, EOB);   // visible from the cut, settles in
+    return g;
+  }
+  if (sc.type === 'phone') {
+    const fi = el('img', 'fill', g); fi.src = sc.fill || 'photos/fills/s1.jpg'; el('div', 'tint', g);
+    const ph = el('div', 'phone', g); ph.style.width = F.phoneW + 'px'; ph.style.height = F.phoneH + 'px'; ph.style.top = F.phoneY + 'px';
+    const scr = el('div', 'screen', ph);
+    if (sc.screens && sc.screens.length) {   // real screens of the quote page, tapped through: each slides in from the right
+      const n = sc.screens.length, seg = (t1 - t0) / n, sw = F.phoneW - 28;
+      sc.screens.forEach((src, i) => { const im = el('img', '', scr); im.src = src; im.style.width = '100%'; im.style.height = 'auto';
+        if (i === 0) reg(im, { x: 0 }); else { reg(im, { x: sw + 10 }); tw(im, t0 + i * seg, t0 + i * seg + .16, { x: 0 }, EOX); } });
+    } else if (sc.screenshot) { const im = el('img', '', scr); im.src = sc.screenshot; reg(im, { y: 0 }); tw(im, t0 + .6, t1, { y: -(sc.scroll || 0) }, LIN); }
+    else { const p = el('div', 'ph', scr); p.innerHTML = PREVIEW ? '<b>boundarybuilders.ca/quote</b>estimator screen<br>recording to be supplied' : '<b>boundarybuilders.ca/quote</b>'; }
+    el('div', 'notch', ph);
+    reg(ph, { o: 1, s: .95, y: 24, tx: '-50%' }); tw(ph, t0, t0 + .55, { s: 1, y: 0 }, EOX);   // visible from the cut
+    return g;
+  }
+  const fi = el('img', 'fill', g); fi.src = sc.fill; reg(fi, { s: 1.2 }); el('div', 'tint', g);
+  const p = sc.img; let w, h, left, top;
+  if (sc.full) {   // the whole photo, uncropped: full width at its own aspect (capped in height), centred on the band line
+    w = 1080; h = Math.round(1080 * p.h / p.w); if (h > F.bandMaxH) { h = F.bandMaxH; w = Math.round(F.bandMaxH * p.w / p.h); }
+    left = Math.round((1080 - w) / 2); top = F.bandCY - Math.round(h / 2);
+  } else { w = sc.bandW || 1080; h = Math.round(w * 9 / 16); left = Math.round((1080 - w) / 2); top = F.bandTop + Math.round((F.bandH - h) / 2); }
+  const band = el('div', 'band', g); band.style.left = left + 'px'; band.style.top = top + 'px'; band.style.width = w + 'px'; band.style.height = h + 'px';
+  const im = el('img', 'sharp', band); im.src = sc.file; im.dataset.photo = sc.photo;
+  const s = Math.max(w / p.w, h / p.h); const bw = p.w * s, bh = p.h * s; const ax = (sc.anchor || [.5, .5])[0], ay = (sc.anchor || [.5, .5])[1];
+  im.style.width = bw.toFixed(3) + 'px'; im.style.height = bh.toFixed(3) + 'px'; im.style.left = ((w - bw) / 2).toFixed(3) + 'px'; im.style.top = ((h - bh) / 2).toFixed(3) + 'px';
+  im.style.transformOrigin = (ax * 100).toFixed(2) + '% ' + (ay * 100).toFixed(2) + '%';
+  const zf = sc.zoom ? sc.zoom[0] : 1, zt = sc.zoom ? sc.zoom[1] : 1; const dx = (sc.drift || [0, 0])[0], dy = (sc.drift || [0, 0])[1];
+  reg(im, { s: zf, x: 0, y: 0 }); tw(im, t0, t1, { s: zt, x: dx, y: dy }, LIN);
+  if (sc.placeholder && PREVIEW) { const pt = el('div', 'tag', g); pt.textContent = sc.placeholder; pt.style.fontSize = '28px'; pt.style.left = (left + 24) + 'px'; pt.style.top = (top + 24) + 'px'; pt.style.background = '#FFFFFF'; pt.style.color = '#1A1A1A'; pt.style.letterSpacing = '1.5px'; pt.dataset.preview = '1'; }
+  return g;
+}
+/* ---------- captions (own timing, a dark backing bar per line) ---------- */
+function addCaption(c) {
+  const g = el('div', 'cap', $('caps')); const t0 = c.t0, t1 = c.t1;
+  if (c.pill) {   // end-card CTA pill, centred
+    const pl = el('div', 'pill', $('caps')); pl.textContent = c.pill; pl.style.fontSize = F.pillSize + 'px'; pl.style.top = F.pillY + 'px'; STRINGS_FULL.push(c.pill);
+    reg(pl, { o: 0, s: .86, y: 26, tx: '-50%' }); tw(pl, t0 + .12, t0 + .5, { o: 1, s: 1, y: 0 }, EOB);   // settled by t0+0.5 so the 2 s end card holds still for 1.5 s if (t1 < S.duration) tw(pl, t1, t1, { o: 0 });
+    g.remove(); return;
+  }
+  const fit = fitText(c.text, F.capSizes, F.capMaxW, 2); const lines = [];
+  g.style.top = F.capTop + 'px';
+  fit.lines.forEach((ln, i) => {
+    const L = el('span', 'line', g); const b = el('span', 'bar', L); b.style.fontSize = fit.size + 'px'; b.textContent = ln; lines.push(b);
+    const ts = t0 + (c.delay || .12) + i * .16; reg(b, { o: 0, y: 22, sx: .97 }); tw(b, ts, ts + .45, { o: 1, y: 0, sx: 1 }, EOX);
+    if (t1 < S.duration) tw(b, t1 - .22, t1 - .02, { o: 0, y: -10 }, EIO);
+  });
+  STRINGS_FULL.push(c.text);
+  if (c.tag) {
+    const tg = el('div', 'tag', $('caps')); tg.textContent = c.tag; tg.style.fontSize = F.tagSize + 'px'; tg.style.top = F.tagTop + 'px'; STRINGS_FULL.push(c.tag);
+    reg(tg, { o: 0, sx: .6, y: 0 }); tw(tg, t0 + .04, t0 + .4, { o: 1, sx: 1 }, EOX); if (t1 < S.duration) tw(tg, t1 - .22, t1 - .02, { o: 0 }, EIO);
+    // a 2-line caption sits lower, so lift the tag above the caption block
+    const blockH = fit.lines.length * (Math.round(fit.size * 1.08) + 26) + (fit.lines.length - 1) * 10; const bh = Math.round(F.tagSize + 34);
+    tg.style.top = (F.capTop - bh - 14) + 'px';
+  }
+}
+async function init(script, fmt, preview) {
+  S = script; F = S.formats[fmt]; W = F.w; H = F.h; PREVIEW = !!preview;
+  const st = $('stage'); st.style.width = W + 'px'; st.style.height = H + 'px';
+  for (const sc of S.shots) if (sc.type !== 'end' && sc.type !== 'phone') { const a = new Image(); a.src = sc.file; await a.decode(); sc.img = { w: a.naturalWidth, h: a.naturalHeight }; const b = new Image(); b.src = sc.fill; await b.decode(); }
+  for (const sc of S.shots) if (sc.type === 'phone') { for (const src of (sc.screens || (sc.screenshot ? [sc.screenshot] : []))) { const a = new Image(); a.src = src; await a.decode(); } }
+  const lg = new Image(); lg.src = 'logo_gold.png'; await lg.decode();
+  S.shots.forEach((sc, i) => SHOTS.push({ sc, g: addShot(sc, i) }));
+  S.captions.forEach(c => addCaption(c));
+  seek(0); return true;
+}
+function effOpacity(e) { let o = 1; while (e && e !== document.body) { const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') return 0; o *= parseFloat(cs.opacity || '1'); e = e.parentElement; } return o; }
+window.qaSample = function () {
+  const out = { t: window.CUR_T, texts: [], imgs: [], shots: 0 };
+  for (const { g } of SHOTS) { if (effOpacity(g) < .02) continue; out.shots++; for (const im of g.querySelectorAll('img.sharp')) { const r = im.getBoundingClientRect(); out.imgs.push({ photo: im.dataset.photo, scale: +(r.width / im.naturalWidth).toFixed(4) }); } for (const e of g.querySelectorAll('.logo img')) { const o = effOpacity(e); if (o < .02) continue; const r = e.getBoundingClientRect(); out.texts.push({ t: '[logo]', x0: r.left, y0: r.top, x1: r.right, y1: r.bottom, o: +o.toFixed(2) }); } }
+  for (const e of document.querySelectorAll('#caps .bar, #caps .tag, #caps .pill')) { const o = effOpacity(e); if (o < .02) continue; const r = e.getBoundingClientRect(); out.texts.push({ t: e.textContent, x0: r.left, y0: r.top, x1: r.right, y1: r.bottom, o: +o.toFixed(2) }); }
+  return out;
+};
+window.ready = (async () => { await document.fonts.load('900 60px Outfit'); await document.fonts.load('800 60px Outfit'); await document.fonts.load('600 26px Outfit'); await document.fonts.ready; return true; })();
+</script>
+</body>
+</html>

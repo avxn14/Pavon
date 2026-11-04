@@ -1,0 +1,95 @@
+/* Boundary Builders instant-price video ad: EVERYTHING editable lives here (text, prices, timings, file paths, layout).
+   Times are in seconds of video time. Files are relative to public/.
+   Beats come from the voice-over: run `python3 tools/retime.py` after dropping audio/voiceover.mp3 + audio/voiceover.words.json. */
+export type Format = '4x5' | '9x16';
+
+export const config = {
+  fps: 30,
+  durationSeconds: 28,   // voice-over is 24.6 s; end card holds ~5 s
+
+  colors: { yellow: '#F5C400', charcoal: '#1A1A1A', white: '#FFFFFF' },
+  font: { family: 'Outfit', file: 'fonts/Outfit-Variable.woff2' },
+
+  text: {
+    headlineLead: 'See your fence price',          // headline = lead + ' ' + tail; the tail never breaks across lines
+    headlineTail: 'in 2 minutes.',
+    subhead: 'No phone call. No waiting a week.',
+    pill: { metal: 'Metal $220/panel', cedar: 'Cedar $210/panel', tail: 'installed' },   // shown as "Metal $220/panel · Cedar $210/panel · installed"
+    line4: 'Winter Sale pricing until December 31',
+    site: 'boundarybuilders.ca',
+    urgency: ['Don’t wait for spring', 'We install all winter', 'Last chance to lock in this price'],
+    sticker: 'WINTER SALE\u00a0·\u00a0ENDS DEC 31\u00a0·\u00a0',   // non-breaking spaces keep the gaps even around the ring
+    endCard: {
+      title: 'Last chance.',
+      sub: 'Winter Sale pricing ends December 31',
+      button: 'Get your price → boundarybuilders.ca',
+      row: '8+ years in business · 22+ years crew experience',
+      fine: 'Per panel, installed, plus tax. Online price is an estimate; final price confirmed on site.',
+    },
+  },
+
+  // Rotating fence photos (right-hand card), in order. Each shows for `photoEverySeconds`, the last one until the end card.
+  photos: [
+    { file: 'fences/black_metal.jpg',  label: 'Black Metal · $220/panel' },
+    { file: 'fences/brown_metal.jpg',  label: 'Brown Metal · $220/panel' },
+    { file: 'fences/cedar.jpg',        label: 'Cedar · $210/panel' },
+    { file: 'fences/composite.jpg',    label: 'Composite' },
+    { file: 'fences/black_metal.jpg',  label: 'Black Metal · $220/panel' },
+  ],
+  photoEverySeconds: 4,
+  crossfadeSeconds: 0.6,
+  photoZoom: 1.06,
+
+  // Screen recording of the quote flow inside the phone (built by tools/build_demo.py from the capture)
+  demo: {
+    file: 'demo/demo.mp4',
+    firstFrame: 'demo/first.png',
+    lastFrame: 'demo/last.png',
+    landing: 10.92,                 // seconds INTO THE FILE where the price screen is on; it is placed at beats.priceScreen in the video
+    priceFocus: [0.5533, 0.3868],  // where the price sits in the recording (fraction of width/height), from capture/demo_meta.json
+    zoomOrigin: [0.15, 0.42],      // the slow zoom scales about this point: keeps the page's left edge on screen while the price drifts to centre
+    zoomTo: 1.18,
+    zoomSeconds: 13,
+  },
+
+  logo: 'img/logo_gold.png',   // the wordmark as used on the site header (black badge, gold letters); img/logo_charcoal.png is a one-colour fallback
+
+  audio: {
+    voiceover: 'audio/voiceover.mp3',   // slot: drop the ElevenLabs file here
+    music: 'audio/music.mp3',           // slot: light upbeat instrumental
+    voStart: 1.0,                       // video time at which the voice-over file begins (headline alone for the first second)
+    musicVolume: 0.16,
+    musicFadeOut: 1.5,
+  },
+
+  // When things happen (video seconds). from the voice-over's word timestamps (see tools/retime.py).
+  beats: {
+    urgency1: 2.68,      // "Don't put it off till spring"  -> "Don't wait for spring"
+    priceScreen: 10.92,  // "...and there's your price"      -> recording lands on the price screen
+    metal: 12.08,        // "Metal, two-twenty a panel"      -> price pill pops, Metal highlighted
+    cedar: 13.68,        // "Cedar, two-ten"                 -> Cedar highlighted
+    urgency2: 16.04,     // "And yes, we're installing all winter" -> "We install all winter"
+    urgency3: 21.38,     // "This is your last chance"       -> "Last chance to lock in this price"
+    lastChance: 21.96,   // "last chance"                    -> sticker pulses
+    endCard: 23.04,      // "Lock it in at boundary builders dot C-A" -> end card
+  },
+
+  // Entrance timing of the opening (headline is on from frame 1)
+  intro: { subhead: 0.15, pill: 0.3, line4: 0.45, phone: 0.35, card: 0.55, sticker: 0.95 },   // the site line enters with the first urgency line
+  sticker: { diameter: 164, rotateSeconds: 24, inset: 40 },   // inset: how far the sticker's centre sits in from the card's right edge
+
+  // Geometry per format (pixels). 4x5 = the approved image, 1:1 with cards.html. 9x16 keeps text out of the top 250 / bottom 650 px.
+  layout: {
+    '4x5':  { width: 1080, height: 1350, block: { x: 80, y: 104, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 38, site: 26, photoPill: 26 },
+              phone: { x: 80, y: 462, w: 389, h: 808 }, card: { x: 509, y: 691, w: 491, h: 350 }, urgencyY: 1075, siteY: 1185, endCenterY: 690 },
+    '9x16': { width: 1080, height: 1920, block: { x: 80, y: 250, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 36, site: 26, photoPill: 26 },
+              phone: { x: 80, y: 614, w: 319, h: 656 }, card: { x: 439, y: 614, w: 561, h: 400 }, urgencyY: 1048, siteY: 1162, endCenterY: 760 },
+  } as Record<Format, Layout>,
+};
+
+export type Layout = {
+  width: number; height: number; block: { x: number; y: number; w: number };
+  sizes: { h1: number; h2: number; pill: number; l4: number; urgency: number; site: number; photoPill: number };
+  phone: { x: number; y: number; w: number; h: number }; card: { x: number; y: number; w: number; h: number };
+  urgencyY: number; siteY: number; endCenterY: number;
+};

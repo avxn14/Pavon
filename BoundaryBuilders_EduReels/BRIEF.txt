@@ -1,0 +1,721 @@
+BOUNDARY BUILDERS: 15 EDUCATIONAL INSTAGRAM REELS FROM MY REAL JOB PHOTOS
+PRODUCTION BRIEF (~/Downloads/BoundaryBuilders_EduReels/BRIEF.txt)
+
+Work solo in this chat (no multi-agent workflow); I'm saving my weekly usage.
+
+Today is Wed Oct 7, 2026 (Oct 1 2026 was a Thursday, Nov 1 2026 is a Sunday). If you're reading this on a later day, slide the dates in the posting plan. You have no memory of my earlier chats, so everything you need is in this brief. Read all of it before you start. If this chat gets long or I continue in a new chat, read ~/Downloads/BoundaryBuilders_EduReels/STATUS.txt first and carry on from there (see WORKFLOW).
+
+WHO I AM
+- Boundary Builders. Website boundarybuilders.ca, phone (778) 885-1042.
+- Fence, hardscape and landscaping contractor in Metro Vancouver, the Fraser Valley and the Lower Mainland, BC. Own crew, licensed and insured, 7-8+ years.
+- I build cedar, metal (wood-grain metal boards in black steel frames, corrugated metal privacy), aluminium, composite, vinyl and chain-link fences and gates; paver/interlock patios, pool decks, walkways and entrances; retaining walls; artificial turf; sod; outdoor kitchens and fire pits; landscape lighting.
+- I'm not a designer. I want finished, ready-to-post videos built from my REAL job photos.
+- My Instagram handle is not in this brief. Don't guess it. Metricool getBrandSettings can show it.
+
+WHAT I WANT
+- 15 educational Instagram Reels, 1080x1920, for organic reach and engagement. These are NOT ads.
+- Topics like "this is how your fence should be installed", "if your fence is leaning, these are the 3 most common causes", "are your pavers sinking? this is how pavers should be installed", plus retaining wall and landscaping problems.
+- Fully animated, modern and professional: on-screen text, voice-over and burned-in captions. Same animation style as my Winter fence Reel and the same colours as my website.
+- One Reel about every 2 days, between the photo carousels I already have scheduled, so my account posts almost every day.
+
+MY HARD RULES (don't break these)
+1. REAL PHOTOS ONLY. Never AI-generate, AI-edit or AI-upscale any image or video of my work. Banned: creative_generate_image, creative_edit_image, creative_generate_video; creative_generate_in_flow, creative_add_flow_node or creative_run_flow_nodes with any image, video, image-transform, upscale, background-removal, avatar or lip-sync node or model (for example topaz-image-upscale, topaz-video-upscale, eleven_image_transform, birefnet-v2-bg-removal, flux, gemini or gpt-image models, kling, seedance, veo, runway); and any Adobe, Firefly or Canva feature that changes pixels with AI (generative expand or fill, canvas extension, social variations or magic resize that fill edges, AI upscaling or super resolution, AI denoise or sharpen, object, person, sky or background removal, "enhance"). The only processing allowed on my photos is sips (format, sRGB, downscale) and CSS in edu.html (crop, position, slow Ken Burns move, the grade filters, blur). To hide a hose, bin, worker, truck or house number, crop it out or cover it with a plain CSS/SVG blur box. Never paint it out.
+2. NEVER UPSCALE A SHARP PHOTO PAST 1.3x its native pixels, at any frame, including during the Ken Burns zoom. I rejected soft results before. Crop instead, or use the sharp band over a blurred fill. Small photos stay small, sharp bands. QA checks this (see LAYOUT).
+3. DIAGRAMS ARE OK. This is an assumption, and I can veto it after video 1. Animated vector graphics drawn in SVG/CSS (cross-sections, arrows, dimension lines, labels, ticks, icons) are not photos, so they're allowed for the "how it should be built" beats. My real photo stays on screen during them (see DIAGRAM SCENES). If I veto, move that information into text over the photos.
+4. OPEN ON THE REAL PHOTO AT FRAME 0. No fade from black and no title card before my work is seen. The hook headline is fully on screen by about 0.9s, the VO starts at 0.3s, and the spoken hook question lands by about 1.5-2s while that photo is on screen.
+5. Text cards and checklists cover at most the lower ~40% of the frame (card top at y 1152 or lower) so the work stays visible.
+6. NEVER END ON A BLANK OR FADING FRAME. Hold a fully populated end frame for at least the last 1.5s. The music can fade out; the picture can't.
+7. Burned-in captions on every beat for sound-off viewers, except the hook (the headline is the sound-off text there, as in ad2's skipcap [0]) and the end card (the prompt pill is).
+8. PRIVACY: blur or crop faces, licence plates, house numbers, business signs and other companies' truck or van lettering. Check every photo at 100% before you use it.
+9. ZERO PRICING OR PROMO (see NO PROMO RULES).
+10. MY WORK NEVER LOOKS LIKE THE PROBLEM (see PROBLEM WORDS OVER MY OWN WORK).
+11. STOP FOR REVIEW. Build the template and video 1, show me, and stop. Do the rest in batches with a stop after each batch.
+12. Nothing gets scheduled or published until I type OK in this chat for those specific videos.
+
+NO PROMO RULES
+- None of these anywhere: not in the voice-over, on-screen text, captions, hashtags, alt text, cover, end card or file names. Banned: dollar amounts or the "$" sign, per-panel / per-sq-ft / per-foot rates, price, pricing, cost, sale, deal, promo, promotion, discount, offer, special, free quote, quote, instant price, book now, limited time, call now, call us, call today, contact us, hire us, DM for pricing, starting at, cheap, affordable, budget, estimate, estimates, free estimate, financing, warranty, guarantee, guaranteed, lowest, best price, per square foot, sq ft, link in bio. Don't ban "save", "free" or "off" on their own: SAVE THIS, the free BC 1 Call locate and OFF THE DIRT are fine.
+- Drop every promo element from the Winter Reel: price numerals, the WINTER PROMOTION pill, the GET YOUR INSTANT PRICE button, the tap ring, the phone quote-tool mockup and the snow particles.
+- End card = centred gold logo + boundarybuilders.ca + one engagement prompt (save / send / follow / comment question). No phone number and no offer.
+- Automatic check before every export: write tools/check_promo.sh. It runs grep -n -F '$' plus grep -n -i -w -E with the banned words and phrases over scripts/*.json (VO, on-screen text, cover titles, captions, hashtags, alt text), captions.md, and the list of visible on-screen strings that render.py qa mode dumps. It doesn't scan HTML/JS source, because code legitimately contains $. The -w flag stops "ideal" matching "deal". Any hit stops the build, and you show me the line.
+
+PHOTOS: WHERE THEY ARE AND HOW TO GET THEM
+Google Drive tools: load them with ToolSearch query select:mcp__789a6911-e163-4f72-b8b0-f7c76b57ca88__search_files,mcp__789a6911-e163-4f72-b8b0-f7c76b57ca88__download_file_content,mcp__789a6911-e163-4f72-b8b0-f7c76b57ca88__get_file_metadata
+- List a folder: search_files with query parentId = '<folder id>', pageSize 100, and follow nextPageToken until it comes back empty.
+- Before you build each video, check with get_file_metadata that every file id it uses still exists. If one is gone, pick the closest photo from the same folder and tell me.
+- Download: download_file_content returns JSON {content: base64, mimeType, title}. Real images are too big to return, so the tool errors and saves the JSON to a .txt file whose path is in the error message. Decode it with:
+  python3 -c "import json,base64,sys; d=json.load(open(sys.argv[1])); open(sys.argv[2],'wb').write(base64.b64decode(d['content'])); print(d['mimeType'])" <saved.txt> <out>
+- Many of my files have the wrong extension: HEIC or PNG saved as .jpg, and one PNG saved as .pdf. Check every file with sips -g format -g pixelWidth -g pixelHeight <file>. Convert anything that isn't a JPEG with sips -s format jpeg <in> --out <x.jpg>, then to sRGB with sips -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" <x.jpg> --out <x.jpg>.
+- Make a viewing copy with sips -Z 640 <in> --out <small.jpg> and LOOK at it with the Read tool before you use any photo. For video: mdls -name kMDItemDurationSeconds -name kMDItemPixelWidth -name kMDItemPixelHeight <file> (mdls can return null in /private/tmp; a small Swift AVFoundation tool works everywhere), and qlmanage -t -s 800 -o <dir> <file> makes a thumbnail.
+- Never shrink a small photo. You may downscale a huge one (long side over 4000px) with sips to about 2x the largest size it's shown at, to keep Chrome fast. QA then measures against that smaller file, which is stricter.
+- Save raw files as photos/raw/<driveId>.<ext>, JPEGs as photos/jpg/<driveId>.jpg and viewing copies in photos/view/. Download each video's photos just before you build that video.
+
+Drive folders. The ids are what matter; the names may contain a dash or a trailing space.
+- Main folder Boundary Builders - Instagram: 1i9OmOEikZ4ZPLzAgXc6J3iI5iQbh7p9v
+- fence: 1LAInVzdRTb1k5tsmikMNPFIwUcN2BfoN. Subfolders: cedar fence 1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN, metal fence 1M0MFcU5-zTNn0J8S_Oj6IJ9mlfRB4oGW, aluminium gate 1mM5RUh6M_nlPzU3mp1X9ULEI8XDV1gAZ, gate 1vPGQxqSOQ3UU3RkXGB3j6vAWwp07aN8c, composite fence 1RdCtLkNrcahK2fH_a5ndMkz_OSAMzu0l
+- metal privacy fence (finished Sep 29): 14iVRt6nCPnXNDTSX87pu2e1YGJUbb6oR
+- overlapping cedar fence Langford: 1SbVe7jbKClMxsn3E4nOtSLO334zWtM0g. Langford is on Vancouver Island, so never call this job Metro Vancouver or name its location.
+- retaining wall: 1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN
+- paver vid: 14e1qnafH-8HsdO6Cqh408lhATHRVQZ5S
+- pool interlock: 1sJNQTbMwokf76do2N9n3vIMYoLZVoqtT
+- north van pool: 1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi
+- Langley fire pit: 1_nnJ13NFdeyQkLSULJDX3YvKCQ27nCRu
+- front entrance: 1Ek1je-ORIERrBq2f9sPDJmzyhnCuVSqG
+- burnaby entrance: 1iX7xOF44ClD9LfOMnpKCTbU-i8OFE1hU
+- Port Moody kitchen outdoor: 1j66aiXv_OosbU-dB30R7AJTANO9bzcI3
+- Willson res: 1iPtGiZWph9LachWNLI9C2zLemiJ_oI3m
+- maple ridge front yard: 1DNchULD0CaeZVE11VLzMRzgiK6jmKPTq
+- artificial turf backyard Langley: 18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0
+- Loose HEIC in the main folder: 1jT3vUE7s_rozzzDVOnKOibiAD4yMEPeF
+- Sheet Instagram Post Log: 1Clwn8sVDDTgGIXR_SmcoydZEp9rmdLmJFqqD3ghgY6E
+- Older folder boundary builders: 1d5Ug49KfAGKf6sBK87v3gX-B4Ol8jwoE, with subfolders fence 1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip and fence before and after 19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81. Despite its name, fence before and after holds paver and patio jobs.
+
+NEVER USE
+- The two 3D design renderings: 1sxZPPj-mqPVbAmcsdt7Cg4UqAS16TB9f and 1MY6Nyz9YGE2KeeDd-9E64crA_a06TfSi.
+- The old 940x788 ad PNGs with "fence installation 778-885-1042" burned in: 1 2, 2, 3, 4, 5 2, 6 2, 7, 8, 9 2 and 10 2 .PNG in the old fence folder. Also 24.jpg in the retaining wall folder (text burned in).
+- My finished promo reels in ~/Downloads as video (P1 Video 01, P1 Video 02, P4 Final Video, fence winter.mp4). They have prices burned in. The only exception is the single frame 0 still below.
+- The 464x832 gate clip ad571b74-...MP4. I'm not sure where it came from.
+- IMG_9630 (metal fence folder) in video 13: a tall fence along a sidewalk invites "your own fence breaks the rule" comments.
+
+PHOTOS YOU MUST CONFIRM WITH ME FIRST
+Some sets have file names that suggest they were saved from Instagram posts or screenshots. Ask me in your STEP 1 message whether these are my own crew's jobs, and don't build a video on a set until I've said yes. If I say no, swap in a confirmed photo from the same category and tell me what changed.
+- Frame 0 of my P1 Video 02 reel (below): video 01's opener.
+- maple ridge front yard (..._n.jpg files): video 12.
+- Willson res (..._n.jpg files): video 12 and the video 09 fallback.
+- burnaby entrance and Port Moody kitchen outdoor (caption-style names): video 12.
+- retaining wall screenshots IMG_3327, IMG_3328, IMG_3329, IMG_3330, IMG_3331: videos 02, 08, 14.
+- IMG_0958 and IMG_0962 in fence before and after: videos 09 and 08.
+
+THE ONE LOCAL STILL
+- File: ~/Downloads/P1%2520-%2520Video%252002.MP4 (the %25 characters really are in the file name; quote the path). Don't use P1%2520-%2520%2520Video%252001.MP4.
+- Frame 0 is a clean 1080x1920 shot of a tired old grey cedar fence with a lattice top. I think it's the before shot of one of my jobs, but that reel was cut by an editor and my turf reel opened on stock footage, so don't assume. Text appears from about 0.2s, so grab exactly t=0 with AVAssetImageGenerator (requestedTimeToleranceBefore/After = .zero), LOOK at it to confirm there's no text, save it as photos/jpg/P1V2_t0.jpg and show it to me in STEP 1. Use it only if I say it's my job. If I don't say yes, video 01 opens on its fallback with the BUILT RIGHT pill.
+
+HOW TO BUILD IT (this Mac has no ffmpeg, no Node and no Python PIL)
+1. Make ~/Downloads/BoundaryBuilders_EduReels/ with folders photos/raw, photos/jpg, photos/view, clips, scripts, audio/vo, audio/music, audio/sfx, frames, renders, qa, final, tools.
+2. Copy (don't move, don't edit the originals) from ~/Downloads/BoundaryBuilders_WinterReel_project: render.py, build.swift, audiofix.swift, Outfit-500.woff2 (variable font, weights 100-900), logo_gold.png (279x120, the only logo file: a gold slanted BOUNDARY BUILDERS wordmark), audio/whoosh.mp3 and audio/hit.mp3 (into audio/sfx), plus ad2.html, script2.json and plan2.json as reference. Read render.py, build.swift, audiofix.swift and ad2.html first so you know exactly how they work. The Winter folder has no compiled binaries, so compile once: swiftc -O build.swift -o tools/build and swiftc -O audiofix.swift -o tools/audiofix.
+3. The Winter pipeline you're reusing:
+   a. An HTML/CSS animation on a 1080x1920 #stage with a deterministic JS seek(t) that sets every element's transform and opacity from time t, using the tween registry reg()/tw() with easings EO (cubic-out), EI, EIO, EOB (back-out) and EOX (expo-out).
+   b. ElevenLabs voice-over, music and SFX (see AUDIO).
+   c. audiofix: pitch-preserving stretch (AVAudioUnitTimePitch) plus silence trim, output .caf. Usage: tools/audiofix <in.mp3> <out.caf> <rate> <maxGapSec> <threshDb>, for example 1.2 0.25 -42. All five arguments are required.
+   d. render.py drives headless Google Chrome over --remote-debugging-pipe (its CDP class). "plan" mode computes scene timings from the VO durations into a plan json and a clips json; "preview t1 t2" renders stills; "all" renders every frame at 30 fps; an env var selects the script.
+   e. tools/build encode <framesDir> 30 <out.mp4> makes the H.264 video, then tools/build mux <video> <out> <clips.json> adds VO, music and SFX (each with start, volume and fadeOut) via AVMutableComposition.
+   f. Verify by pulling frames out of the encoded MP4 with a small Swift AVAssetImageGenerator tool and looking at them. Write that tool.
+4. Build ONE reusable template, edu.html, with scene types driven by ONE JSON script per video (scripts/NN_slug.json). Same seek(t) + tween approach, 30 fps, 1080x1920. Change render.py so VID=NN picks scripts/NN_*.json, and add a "cover" mode (renders the cover PNG) and a "qa" mode (see QA). Every frame depends only on t.
+5. Scene types in edu.html:
+   - hook: my real photo (full-bleed or band) at frame 0 with the series pill and small logo already on screen; headline words pop in from t=0.05.
+   - photo: a real photo with a slow Ken Burns move, a headline or card, and optional callouts drawn on top (gold ring, arrow, dimension line with label, #267ECE wind or water arrows).
+   - diagram: an animated SVG cross-section (see DIAGRAM SCENES).
+   - card: the dark bottom card with ONE numbered gold badge row, gold tick row or grey-mark row.
+   - myth: a wrong belief with a drawn X, struck through, then the fact with a gold tick.
+   - clip: frames from the real paver video, with the band treatment.
+   - end: the fully populated end card.
+   - Transitions: the full-screen gold wipe with the near-black leading edge, at most 2-3 per video, each with a whoosh. A light hit sound on badges and numbers.
+6. Clips: pull only the seconds you need from the paver clip as JPEG frames at 30 fps with a Swift AVAssetImageGenerator tool (tolerance zero) into clips/<name>/f_0000.jpg and so on. Load every clip frame as its own <img> at startup (so render.py's ready check waits for them to decode) and show the right one by toggling opacity in seek(t). Never swap img.src per frame. The clip's blurred fill can use one still from the middle of the segment. If a beat runs longer than its segment, first extend into the allowed seconds listed in the video spec, then slow to no less than 0.8x by repeating frames, then hold the last frame. Never loop, never run into excluded seconds, never show an empty or black frame. Mute the clip's own audio.
+7. One command per video, except for new voice-over. The ElevenLabs tools only work inside this chat, so a shell script can't make VO. tools/make.sh NN runs, in order: (1) promo check on the script; (2) VO check: sha1 of each beat's spoken text (asterisks stripped) compared with audio/vo/NN_hashes.json; if any beat's file is missing or its text changed, make.sh stops and prints exactly which beats need new VO; (3) audiofix; (4) plan; (5) render all; (6) encode; (7) mux; (8) cover; (9) QA frame extraction; (10) promo check on the on-screen strings that qa mode dumped. When make.sh stops for VO, you generate only those beats, save them as audio/vo/NN_bK.mp3, update NN_hashes.json and rerun make.sh. If I only change on-screen text, make.sh NN re-renders with no new VO. README.txt must say plainly: on-screen text edit = one command; spoken line edit = ask Claude in a chat to regenerate that line, then run the command.
+8. Encode and mux: keep build.swift's encode and mux. The Winter reels already come out H.264 1080x1920 30 fps at about 11 Mbps with ONE mixed AAC track, moov before mdat (shouldOptimizeForNetworkUse is already true) and no empty edit lists. Only change: add an optional "offset" (seconds into the source file) to each clips.json entry and use it as the start of insertTimeRange in mux, so the shared music bed can start at a different point in each video. QA still checks the output (see QA).
+
+AUDIO
+- Voice: ElevenLabs voice Sia, voice_id qTRV75fy2dUja4REMifv, model eleven_multilingual_v2. Load the creative_* tools with ToolSearch. Use creative_generate_speech with generations_count 1 (it defaults to 4 and charges for all 4). Make one flow per video (creative_create_flow once, then pass that flow_id to every call for that video). Poll creative_get_flow_run_status until it's done, then get the audio file (from the run status or creative_get_flow_node) and download it. Never call a generation tool again to retry: check the status instead. In STEP 1, run one call with estimate_only true and tell me the credit cost per beat and per video. If the voice_id is rejected, check it with creative_list_voices and tell me.
+- One VO file per beat: audio/vo/NN_bK.mp3. Strip the *asterisks* before sending text to TTS. Write numbers and acronyms the way they should be said: "B.C. One Call", "G.F.C.I.", "three thousand kelvin", "do-it-yourselfer".
+- ElevenLabs reads 30-40% slower than you'd plan. Run every VO file through audiofix at about 1.2x (1.25x max). At that rate these scripts land around 25-30s. If a video comes out under 24s, lower its stretch toward 1.1x rather than adding words; if it runs over 34s, cut words rather than speeding up more.
+- Music: one instrumental bed, creative_generate_in_flow with node_type music, model_id eleven_music_v2_5, generations_count 1. Prompt: about 70 seconds long, calm and modern, light percussion, warm, no vocals. No copyrighted tracks and no "in the style of" any artist. Reuse it on all 15 with a different start offset per video. Volume about 0.2 under the VO (0.15 if the VO sounds muddy), fading out over the last 1.0s while the picture holds.
+- SFX: whoosh.mp3 for transitions (about 0.5 volume) and hit.mp3 for badges, numbers and the end card (about 0.4). Only if you need another sound: creative_generate_in_flow, node_type sfx, model_id eleven_text_to_sound_v2, generations_count 1.
+- Captions: 3-word chunks timed to each beat's VO, never ahead of the voice and never more than ~0.3s behind. For tighter sync you can run a beat's VO through creative_transcribe_audio for word timestamps (check the cost first). Words in *asterisks* show gold.
+- Repeat each video's key phrase (for example "leaning fence", "pavers sinking", "retaining wall") in the VO, the headline and the first line of the caption.
+- Paid ElevenLabs plans include a commercial licence for social media. If my plan isn't a paid one, tell me.
+
+STYLE: COPY THESE EXACT VALUES FROM ad2.html (open the file and copy the CSS; don't retype from memory)
+- Font: Outfit only (Outfit-500.woff2, @font-face font-weight 100 900, font-display block). No Syne.
+- Colours from my website: near-black #020101 and #110000, gold #FFC527 (highlights and keywords), dark greys #222222 and #434343, off-white #F9F9F9, secondary blue #267ECE (only for water and wind arrows in diagrams). Card colour #050507.
+- Headlines (.hl): weight 900, uppercase, letter-spacing -1px, line-height 1.02, text-shadow 0 6px 30px rgba(0,0,0,.6), each word an inline-block with margin 0 .11em. Gold #FFC527 for the highlighted line or keyword. Sizes in TEXT SIZES AND FIT.
+- Word pop-in: each word starts at opacity 0, y +70px, scale .6 and eases to rest with EOB over .5s, staggered .07s. Pop-out: up to y -80px at opacity 0 over .26s.
+- Gold pill (.pill): background #FFC527, text #111, weight 800, 36px, letter-spacing 2.5px, uppercase, padding 16px 32px 14px, line-height 1, radius 999px, box-shadow 0 10px 30px rgba(0,0,0,.45). Used for the series pill (FENCE TIP #1 and so on), the end-card prompt and the BUILT RIGHT pill.
+- Gold underline bar: 10px tall, radius 5px, scaleX in from the left.
+- Gold wipe: full-screen #FFC527 with a 140px #020101 leading edge (ad2 #wipe:after).
+- Small gold logo top-right: ad2 had left 768px, top 290px, width 264px. Move it to left 740px so it ends at x 1004. Same size.
+- Photo band (ad2 #woodBand): top 330px, about 780px tall, full width (narrower and centred for small photos), box-shadow 0 30px 80px rgba(0,0,0,.55), filter saturate(1.1) contrast(1.05). Over a blurred fill of the SAME photo (blur 22-26px, brightness .45-.5, saturate 1.1, scale 1.15-1.3), with top and bottom vignettes (linear-gradient rgba(0,0,0,.55) to 0 over 22% and 30%). The fill always covers the whole frame: no hard letterbox borders.
+- Full-bleed photos: filter contrast(1.1) saturate(1.12) brightness(.96), plus a bottom gradient rgba(2,1,1,.94) 0%, .84 at 36%, 0 at 60%.
+- Dark bottom card: #050507, radius 40px 40px 0 0, shadow 0 -20px 60px rgba(0,0,0,.5). Rows (.row): weight 800, 62px, letter-spacing .5px, uppercase, gap 22px. Gold tick: 74px circle #FFC527 with a #111 glyph, 44px weight 900. Numbered badge: 116px circle #FFC527, 66px weight 900 numerals, 6px #0b0b0d border, shadow 0 12px 30px rgba(0,0,0,.5). Grey mark (warning signs and myths): the same size circle in #434343 with a white X. Warning-sign rows always use the grey mark, never a gold tick.
+- Burned-in captions (#cap): weight 800, 52px, line-height 1.15, each chunk on a rgba(0,0,0,.66) pill with padding 14px 30px 12px and radius 18px, *gold* keywords. ad2 had top 1440; move it to top 1350 so the pill ends by about y 1436.
+- Use the same grade on every photo in the series so my grid looks like one brand.
+
+TEXT SIZES AND FIT (measured in headless Chrome with Outfit)
+- Headlines: max 2 lines, never 3. Each line must be 850px wide or less. Start at 104px, step down to 92px (ad2's range), and use 84px only if a line still doesn't fit. Rough guide: about 14 characters per line. Every headline line in the video specs has been measured and fits 850px at 84px or larger (most at 92px). If you write a new line that doesn't fit at 84px, shorten it and tell me.
+- Card rows: ONE line. 712px available next to a badge, 754px next to a tick or grey mark. Auto-fit 62px down to 54px. Every row in the specs fits at 62px.
+- Small lines, labels, footnotes and diagram labels: Outfit 800, 40px minimum, off-white with the headline text-shadow. Nothing on screen is smaller than 40px. Small lines under a card row: max 840px. In-band labels: max 760px including their plate. Diagram labels: max 600px, wrapping to 2 lines.
+- Myth wrong line: 48px, weight 800, #9a9a9a.
+- Pills: every prompt in the specs is under 800px wide.
+
+LAYOUT AND INSTAGRAM SAFE ZONES (1080x1920, all in px)
+- Top 0-250: no text and no logo (the Reels header sits there). Photo or blurred fill only.
+- Sides: all text and the logo inside x 65-1015.
+- Below y 1000: all text and icons left of x 920 (the like/comment/share column). So text below y 1000 is left-aligned at x 72 or centred on x 492, max 850 wide.
+- Bottom: no text below y 1470 (username, caption and audio strip). Card backgrounds can still run to the bottom edge.
+- My zones: photo band 330-1110; headline 1130-1330 (only in beats without a card); caption pill 1350-1436; card from y 1152 down.
+- Hook beats: series pill at x 65, y 300; small logo top-right; headline in 1130-1330; words start at t=0.05 and are all fully on by about 0.9s; VO starts at 0.3s; no burned-in caption.
+- Photo and diagram beats: headline in 1130-1330 plus the caption pill, unless the spec says CARD.
+- Card beats: the CARD text IS the on-screen text; there is no separate headline. Badge, tick or grey mark at x 72, row centred on y 1220, small line centred on y 1295. The caption pill sits on the card at 1350.
+- Myth beats: the same card. Wrong line centred on y 1200: grey mark (64px) and the wrong text, then a 6px gold strike line draws across the text (EO, .3s). Fact line centred on y 1290: gold tick + 62px row. Caption pill at 1350.
+- In-band labels (LABEL in the specs): Outfit 800 40px on a rgba(0,0,0,.66) radius-18 plate at x 72, y about 1030-1090. If the BUILT RIGHT pill is in that beat, the label goes top-left at x 72, y about 350 instead.
+- The small logo stays top-right throughout, except on the end card. The series pill shows on the hook and the end card.
+- FULL-BLEED only when the 9:16 crop needs 1.3x or less: the 4536x8064, 4032x3024, 4032x2268, 5712x3213 and 8064x4536 photos and the 1080x1920 P1 frame qualify. The 1104x1515, 1141x1545, 1206x1507, 1200x1600, 1206x1522 and 1340x1636 photos need 1.17-1.27x just to fill, so they go full-bleed with a pan and only as much zoom as the limit leaves. Everything else is BAND. 640x427 photos: band 800px wide (1.25x), push no more than 1.04. 640x640 photos: band no more than 780x780, push no more than 1.04.
+- The 1.3x check, built into the template: give every SHARP photo element (full-bleed photo, band photo, clip frame, diagram inset, end-card band, cover photo) the class sharp, and every blurred fill the class fill. At each sampled frame, qa mode computes for each visible .sharp image: effective scale = max(boxWidth / naturalWidth, boxHeight / naturalHeight) for object-fit: cover (min for contain), multiplied by the CSS transform scale of the image and all its parents (Ken Burns). naturalWidth/Height is the pixel size of the file you load. The build fails if any value is over 1.30. .fill layers are excluded because they're blurred on purpose.
+
+PROBLEM WORDS OVER MY OWN WORK
+None of my photos show a failure. A problem word (LEANING, SINKING, FAIL, SAG, SPREADING, GAPS, PUDDLING, WHITE HAZE, BLACK STREAKS, BULGING, BLINDING, DOWNSPOUT DUMPING, ROT, WEEDS) must never read as if it describes the job in the photo. Whenever a beat puts a problem headline, row or myth over one of my finished jobs, show a small BUILT RIGHT pill (gold pill style with the drawn gold tick before the words) at x 72, y about 1030, from the first frame of that beat. The specs mark these beats [BR]; add it anywhere else this rule applies. Covers stay on my grid forever, so cover titles name the fix, never the problem.
+
+DIAGRAM SCENES
+- Draw them in SVG inside the band area (y 330-1110) over the darkened blurred fill named in the spec. A sharp inset of a real photo (named in the spec; about 320px wide, radius 18px, 4px gold border, bottom-left at x 72 with its bottom edge at y 1090) stays on screen so my work never disappears. Each diagram scene is 6s or less and always sits next to real-photo beats. Diagram beats never get the BUILT RIGHT pill.
+- Style: flat layers in greys (#222222, #434343, #6b6b6b) with the soil darker, gravel as small off-white dots, labels in Outfit 800 off-white at 40-48px (never smaller). The layer being talked about lights up gold. Dimension arrows and numbers are gold. Water and wind arrows are #267ECE. Wrong-way marks are the grey mark; right-way marks are the gold tick. Layers build from the bottom up in time with the VO, arrows draw on (stroke-dashoffset), labels slide in 30px with EO.
+- Diagrams to build: post_rot, post_depth, wind arrows, wall_drainage, paver_layers, turf_layers, bedding, gate_brace, terrace_spacing, grading, edge_restraint, light_aim, fence_rules, wall_base. Build each the first time a video needs it and reuse it after that. Details are in each video.
+- Every number on a diagram comes from that video's spec. Label rules of thumb as RULE OF THUMB or TYPICAL, never as code.
+
+END CARD (the same layout on all 15; everything centred on x 492)
+- The video's end photo as a sharp band (330-1110) over its blurred fill.
+- Gold logo about 280x120 (ad2's #logoEnd width, about 1.0x the 279px file) at y 1140-1260.
+- BOUNDARYBUILDERS.CA in Outfit 800, 48px, off-white, at y 1275-1330.
+- The engagement prompt in a gold pill at y 1355-1431.
+- The series pill at x 65, y 300. The small top-right logo is hidden. No burned-in caption, so the end VO says the prompt words only (at most 3 extra words).
+- Everything is on screen by the time the end VO starts and holds still for at least 1.5s after it ends. No phone number and no offer.
+
+COVERS
+- One per video: 1080x1920, a real "right way" photo, the cover title, the small logo top-right and the series pill.
+- Title: Outfit 900, gold keyword and white for the rest, auto-fit from 150px down to 110px, max 2 lines, each line 950px wide or less, centred on x 540 (covers have no button column), inside y 700-1250. Every cover title in the specs fits at 110px or larger.
+- My profile grid shows a 3:4 centre crop (1080x1440, cutting 240px off the top and bottom). Keep the title and the photo's focal point inside y 260-1660. Don't cover most of the frame with text.
+- Export final/NN_slug_cover.png, an sRGB JPEG copy final/NN_slug_cover.jpg (under 8 MB, for Metricool) and qa/NN_grid_preview.png (the 1080x1440 centre crop).
+
+TECHNICAL ACCURACY
+- Every claim on screen and in the VO comes from the FACT LIST. Don't add facts. If a line needs something that isn't in the list, mark it [VERIFY] in the script and ask me.
+- Use the safe phrasing: "rule of thumb", "typically" and "check your city" wherever the list says so. My climate is the wet Lower Mainland (clay soils, wet winters, fall windstorms), so frame things that way.
+- Every caption's first sentence includes Lower Mainland or Metro Vancouver.
+- Lines marked [OWNER CONFIRM] describe how MY crew builds. Ask me all of them for videos 02-15 in one numbered list when you send video 1 (STEP 2), so later batches don't wait on me.
+
+FACT LIST
+Sources: USDA Forest Service, This Old House, ASCE 7 wind guidance, CMHA (Concrete Masonry & Hardscapes Association, formerly ICPI), Unilock, Mutual Materials, Allan Block, the Western Red Cedar Lumber Association, DarkSky International, Technical Safety BC, and the city guides for Burnaby, Coquitlam, Vancouver, Surrey and Maple Ridge.
+
+Fences
+- Wood posts rot first at ground level, where the soil supplies moisture and the air supplies oxygen. A leaning wood fence usually failed at grade, not at the bottom of the hole.
+- Usual causes of a leaning fence: rot at grade; posts too shallow; soft, saturated soil (clay holding winter rain); wind on solid panels; heavy gates levering the hinge post; concrete set below grade or cupped so water pools at the post. Frost heave matters much less here (Vancouver's design frost depth is about 450 mm, roughly 18 in). Don't blame frost.
+- Wind pressure goes with the square of wind speed, so twice the wind pushes about four times as hard. Solid fences (board-on-board, corrugated metal, solid composite) catch the full wind like a sail. A solid privacy fence needs strong posts and footings, not just nicer boards.
+- Post depth rule of thumb: about 1/3 of the post's height plus about 6 in of gravel. That's about 2 ft minimum; about 3 ft is common for 6 ft privacy fences, gate posts, soft soil and windy sites. A rule of thumb, not code. Steel and composite systems follow the maker's footing spec.
+- About 6 in of compacted 3/4 in crushed stone under the post lets water drain away.
+- Crown the concrete slightly above grade and slope it away from the post so rain runs off.
+- More concrete isn't automatically stronger. For wood posts, managing water at grade matters more.
+- Posts are typically 6-8 ft apart, closer at corners.
+- A kickboard or rot board (often a treated 2x6 or 2x8) keeps cedar boards off the soil and is the easy part to replace. Keep cedar out of dirt and mulch.
+- Cedar resists rot, but it isn't rot-proof. In-ground posts should be ground-contact rated (CSA O80 UC4.1 treated) or steel.
+- Cut ends absorb water about 11x faster than the sides, so post tops and board ends decay first. Post caps and sealed cuts help.
+- Dark streaks running from fasteners on cedar come from the wrong fasteners reacting with the wood. Use stainless (316 near salt water) or hot-dip galvanized.
+- Stain new cedar once it's surface-dry, within a couple of weeks, not 6-12 months later, on a dry day that meets the stain label's temperature and dry-time rules. Plan around dry days in Oct-Dec. Semi-transparent stain typically lasts 1-3 years on smooth cedar and 2-4 on rough-sawn.
+- Board-on-board overlaps the boards so shrinkage doesn't open see-through gaps. It uses more lumber and is still solid to the wind.
+- Aluminium can't rust because it contains no iron. Steel needs its galvanizing or powder coat intact; cut edges and scratches are where rust starts. Composite and vinyl need washing about twice a year; keep pressure washers under 1,500 psi or more than 12 in away.
+- Fence heights are typically about 4 ft in front yards and about 6 ft in side and back yards, but every city differs: Burnaby 1.07 m anywhere and 1.8 m behind the required front yard; Coquitlam 1.3 m in front of the house face and 1.8 m elsewhere; Vancouver 1.2 m in front yards and about 6 ft side/rear permit-free; Surrey 1.2 m along streets and in front yards. Always say "check your city".
+- Corner lots have a sightline triangle near the corner where fences, walls and hedges are limited to about 1 m (Burnaby: within 9 m of a street corner; Coquitlam: within 6 m).
+- A fence on a retaining wall: some cities combine the heights. Coquitlam caps wall plus fence at 3.0 m, and Burnaby counts the part of a wall above the retained soil as fence.
+- Only a BC Land Surveyor can confirm a property line.
+- BC 1 Call is free. Request a locate at least 3 full business days before digging, at bc1c.ca, 1-800-474-6886 or *6886 from a cell. Fence posts and landscaping are listed reasons to call. It doesn't locate private lines (your own lighting, irrigation, or gas to a garage). Don't call it "the law".
+- Pools need a non-climbable enclosure (Burnaby minimum 1.5 m). Check your city.
+
+Gates
+- Most sagging gates start at the hinge post, because a gate magnifies any post movement. The hinge post carries the gate like a lever, so it should be the strongest post on the run: bigger or steel, deeper, and set in concrete.
+- A wood gate brace runs from the BOTTOM HINGE corner UP to the TOP LATCH corner, so it works in compression. Run the other way, it relies on screws in tension and the gate sags.
+- An anti-sag cable runs the opposite way (top hinge corner to bottom latch corner, in tension), and tightening the turnbuckle lifts the latch side.
+- Welded metal frames stay square longer than screwed wood frames, but they still sag if the hinge post moves.
+
+Pavers
+- Sinking pavers are usually a base problem: poor soil or base compaction, water in the base, too-thick bedding, washout, missing or loose edge restraint, soft clay with no separation fabric, or downspouts dumping onto the patio.
+- CMHA minimum compacted base: 4 in for patios and walkways and 6 in for residential driveways, on IDEAL ground. CMHA's quick rule adds 50% of the minimum for each ideal condition a site lacks (strong subgrade, good drainage, no freezing). Wet clay isn't ideal, so plan at least 6 in for patios here, often more (about 8 in or more on soft, poorly drained clay). Driveways need more again: about 9-12 in or more on local clay (Unilock says 8-12 in for driveways). So "6 inches of base" is a sound patio spec on our clay, not a number for every job.
+- The base is dense-graded crushed gravel (3/4 in minus, road-base type), not stone dust or river rock, compacted in lifts of 3-6 in with a proper plate compactor.
+- Geotextile fabric over clay keeps the clay from pumping up into the base.
+- The bedding layer is about 1 in, screeded flat and not compacted before laying. Extra bedding can't fix an uneven base; the unevenness shows through over time. Too thick a bedding layer is a known cause of settling. CMHA calls for washed concrete sand and never stone dust, screenings or mason sand.
+- After laying, the pavers are plate-compacted (at least 2 passes; slab and textured products may need a protective pad or roller), then joint sand is swept in and compacted again until the joints are full.
+- Every paver edge that isn't held by a curb or wall needs an edge restraint with at least 1 in of vertical contact. The base extends past the restraint by at least the base thickness (a 6 in base runs 6 in past it). Loose or missing restraints let pavers creep apart.
+- Surfaces slope away from the house: CMHA's minimum is 1.5%, and about 2% (1/4 in per ft) is common.
+- Polymeric sand needs dry pavers and about 24 h without rain.
+- Joint weeds grow from windblown seeds lodged in the joints, not from below. Fabric under the base doesn't stop them; full joints and polymeric sand help.
+- White haze on new pavers is efflorescence. It's natural and cosmetic, not a defect, and it fades (it typically stops within about 18-24 months).
+- Aggressive pressure washing can blast the joint sand out, and the joints then need refilling.
+
+Retaining walls
+- Water is the most common cause of retaining wall failure. Water behind a wall adds hydrostatic pressure on top of the soil load, and saturated soil loses strength.
+- Other causes: no compacted levelling pad, a first course that isn't buried, poorly compacted backfill, missing or short geogrid on taller walls, and loads on top that the wall wasn't designed for.
+- Block wall section (Allan Block residential spec): a trench 18-24 in wide; at least 6 in of compacted wall rock as the levelling pad; clean crushed wall rock in the block cores and 12 in behind the wall; a perforated drain pipe at the back of the base, vented to daylight at least every 50 ft or tied into the drainage system (Allan Block calls for the pipe on reinforced walls, gravity walls over 4 ft and poorly drained sites; specs differ by block system); backfill compacted in lifts of 8 in or less.
+- Bury the first course: Allan Block buries at least 6 in of block, or about 1 in per foot of wall height if that is more. Block makers' specs differ, so say "at least 6 in, deeper on taller walls" and "follow the block maker's spec".
+- Each course of a block wall is set back into the hill (about 6-12 degrees). A wall leaning out toward the yard is a warning sign.
+- The drain pipe must outlet to an approved system (Burnaby: plumbing permit and a storm sewer connection; Maple Ridge: tie into the on-lot drainage). Never onto a neighbour's property.
+- Permits and engineers: the line is often around 4 ft (1.2 m), sometimes lower. Burnaby, Coquitlam and Surrey are around 1.2 m. Maple Ridge needs a permit over 0.6 m and sealed engineering over 1.0 m, with a 1.2 m max. Walls holding up driveways, slopes or foundations need an engineer.
+- Clay and loads shrink the safe height. Allan Block's chart for unreinforced walls gives about 3 ft 6 in in clay versus about 5 ft 4 in in silty sand, and a driveway-type load drops the clay figure to about 1 ft 8 in. The chart excludes earthquake loads, and Metro Vancouver is seismic, so taller walls get engineered here.
+- Two short walls stacked close together act like one tall wall, so terraces need real spacing. Burnaby wants the terrace at least as deep as the taller wall is high; Maple Ridge needs engineering for tiered walls less than 3.0 m apart.
+- Warning signs: bulging, leaning forward, widening cracks, gaps between blocks, water weeping through the face, soil washing out at the base, caps dropping. Have a professional engineer look at a leaning or bulging wall.
+- Wood walls are for short garden walls only (Maple Ridge allows them up to 0.6 m).
+
+Landscaping
+- BC Building Code 9.14.6.1 is performance-based: grade the site so water doesn't collect at or near the building and doesn't harm neighbours. The 2% figure is municipal guidance, not code.
+- Downspouts dumping onto a patio, behind a wall or along a fence line feed the water problems that sink pavers, push walls and rot posts. Route roof water into the approved drainage for your lot and city.
+- November is normally the wettest month in coastal BC (Vancouver gets about 180-200 mm).
+- Artificial turf (installer practice, not code): dig out about 4-6 in, remove organics, compact the subgrade, lay a weed barrier, then 3-4 in of crushed 3/4 in minus base compacted in lifts. On wet clay, a deeper base or a subdrain is a judgement call. Slope it away from the house, nail the edges about every 6 in, brush the infill in when dry. Never put plastic under turf: it traps water, and turf drains through its backing into the base. Its drainage depends on the base. Turf is low maintenance, not no maintenance: leaves, rinsing, brushing, infill top-ups. Wet leaves left on turf hold moisture and feed moss.
+- Landscape lighting (DarkSky International / IES): useful, targeted (shielded and aimed down), low-level, controlled (timers or sensors) and warm-coloured (commonly 3000K or lower). Light the path, not the neighbours.
+- Path lights are commonly about 6-8 ft apart and staggered side to side; a straight double row looks like a runway. Low confidence, so always call it a rule of thumb.
+- Plug-in low-voltage transformers go into a weather-protected GFCI outlet. Hard-wired outdoor circuits need an electrical permit. Burying cable is digging: BC 1 Call first.
+- Fire pits: rules are municipal (Surrey and the Township of Langley ban wood fire pits, so gas or propane is usually the way to go). Backup topic only.
+
+Never say any of these
+- 6 in of base is right for every job.
+- Thicker sand or bedding is better.
+- Fabric stops joint weeds.
+- Efflorescence means cheap pavers.
+- Cedar never rots.
+- Wait 6-12 months before staining, or stain damp wood.
+- The gate brace runs from the top hinge to the bottom latch.
+- Aluminium rusts, or powder-coated steel never rusts.
+- More concrete is always stronger.
+- Frost heave is the main cause of leaning fences here.
+- Solid panels resist wind better.
+- One fence height applies everywhere.
+- Walls under 4 ft never need a permit.
+- The Building Code requires 2%.
+- Turf is zero maintenance, or can go on soil or plastic.
+- Any lifespan in years as a guarantee.
+- Any invented statistic ("80% of fences...").
+
+CAUTIONS TO ADD WHERE THEY FIT
+- Any height, permit or bylaw line: check your city.
+- Taller walls, and walls holding up driveways, slopes or foundations: get an engineer.
+- Any digging (posts, walls, lighting cable): BC 1 Call, free, 3 full business days ahead.
+- Electrical: a covered GFCI outlet, and a permit for hard-wired circuits.
+
+THE 15 VIDEOS (numbered in posting order)
+How to read the specs:
+- HOOK, PHOTO, DIAGRAM, CLIP, MYTH, END = scene type. HEADLINE x / y = a two-line headline (/ is the line break). CARD badge N, CARD tick or CARD grey: ROW = the card row, SMALL = the small line under it. LABEL = an in-band label. [BR] = BUILT RIGHT pill. [X] = grey mark, [TICK] = gold tick. *word* = gold.
+- Length for every video: 24-34s, hard max 35s, including the 1.5s+ end hold. The VO lines are drafts: keep the meaning and trim if you have to.
+- Hashtags: 5 max per post (Instagram's current limit).
+
+VIDEO 01 | FENCE | Sat Oct 10 | 01_leaning_fence | 24-34s
+Title: Leaning fence? The 3 usual causes
+Series pill: FENCE TIP #1
+Angle: windstorm season is starting. Most leaning fences fail at ground level, and it's usually one of three things.
+Photos:
+- A (opener, and the blurred fill for the diagrams): photos/jpg/P1V2_t0.jpg (frame 0 of P1 Video 02), 1080x1920, FULL, slow push 1.00 to 1.05. Only if I confirm it's my job. Fallback: old fence folder (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip), IMG_2817.jpg, 1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5, 1206x743, BAND, with [BR] on the hook.
+- B: old fence folder, IMG_2820.jpg, 19tLyf1rTcy9CMNimCf23PB9aN1oU-Ind, 1206x634, BAND. Long run of stained solid cedar fence.
+- C (diagram inset, right way, end card): cedar fence folder (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN), f24dafda-6a96-4c78-9228-0792fcf82a75.JPG, 1lR5AfM5qLYKw5ZJsHaPZ46pqX_TuRQkq, 1600x1200, BAND. New board-on-board cedar fence with top cap and kickboard, following a slope.
+Beats:
+1. HOOK on A. HEADLINE: LEANING *FENCE?* / *3 USUAL CAUSES*. VO: Fence leaning after the wind? It's usually one of three things.
+2. DIAGRAM post_rot over A's fill, inset C. CARD badge 1: ROW POST *ROT*; SMALL RIGHT AT GROUND LEVEL. VO: One: rot. Wood posts rot first right at ground level, where wet soil meets air.
+3. DIAGRAM post_depth (depth part only), inset C. CARD badge 2: ROW POSTS *TOO SHALLOW*; SMALL RULE OF THUMB: 2-3 FT DEEP. VO: Two: shallow posts. A common rule of thumb is two to three feet deep for a six foot fence.
+4. PHOTO B [BR], #267ECE wind arrows drawing across the panels, LABEL 2X THE WIND = 4X THE PUSH (top-left). CARD badge 3: ROW *SOGGY SOIL* + WIND. VO: Three: soggy soil and wind. A solid fence catches wind like a sail, and twice the wind pushes four times as hard.
+5. PHOTO C. HEADLINE: PUSH ON / YOUR *POSTS*. VO: After the first big storm, push on your posts. Wobble at ground level? Get it looked at.
+6. END on C. Prompt: SEND THIS TO A FENCE OWNER. VO: Send this to a fence owner.
+Diagrams:
+- post_rot: a wood post in soil with a concrete footing. A gold band glows at the soil line labelled ROT ZONE, small labels AIR above and WET SOIL below, blue drip arrows at the line.
+- post_depth: post and footing with gold dimension arrows 6 FT above ground and 2-3 FT below, gravel at the bottom, tag RULE OF THUMB. Fully used in video 03.
+Cover: photo C, title KEEP FENCES / *STRAIGHT*.
+Caption: Leaning fence after a Lower Mainland windstorm? It's usually rot at ground level, posts set too shallow, or soggy soil plus wind on a solid fence. After the first big storm, push on your posts and check for wobble at the base.
+Hashtags: #boundarybuilders #fencerepair #cedarfence #metrovancouver #lowermainland
+Alt text: An old grey cedar fence, an animated diagram of a fence post rotting at ground level, and a new board-on-board cedar fence following a slope. (Adjust the first part if the fallback opener is used.)
+
+VIDEO 02 | RETAINING WALLS | Tue Oct 13 | 02_wall_drainage | 24-34s
+Title: Why retaining walls fail: water
+Series pill: WALL TIP #1
+Angle: rain season. The number one reason walls fail is water, and the fix is drainage you never see.
+Photos (retaining wall folder 1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN; confirm they're mine first):
+- A: IMG_3327.jpg, 1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2, 1104x1515, FULL with pan only (needs 1.27x to fill, so no extra zoom). Slab walkway between two capped block planter walls.
+- B: IMG_3329.jpg, 1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm, 1141x1545, FULL with pan only (1.24x, extra zoom max 1.04). Low angle on block courses and caps.
+Beats:
+1. HOOK on A [BR]. HEADLINE: *#1* REASON / WALLS *FAIL*. VO: Number one reason walls fail? Water. Here's how a good wall handles it.
+2. DIAGRAM wall_drainage part 1 over A's fill, inset A: the soil behind a block wall fills with blue water, blue pressure arrows push on the wall, the wall shakes 2px. HEADLINE: *WATER* PRESSURE / BREAKS WALLS. VO: Rain soaks the soil behind the wall, and that water pushes on top of the soil load.
+3. DIAGRAM part 2: a drain-rock zone labelled 12 IN fills in behind the wall, a perforated pipe appears at the base, and the water arrows turn down into it. HEADLINE: DRAIN ROCK / + *DRAIN PIPE*. VO: A well-built block wall typically has about twelve inches of drain rock behind it and a perforated pipe at the base.
+4. DIAGRAM part 3: an outlet arrow to a box labelled APPROVED OUTLET gets a [TICK]; an arrow toward a neighbour's yard gets an [X]. HEADLINE: THE PIPE NEEDS / AN *OUTLET*. VO: And that pipe has to drain somewhere approved, never onto your neighbour.
+5. PHOTO B [BR]. CARD grey: ROW BULGING? *LEANING?*; SMALL WEEPING WATER? GET AN ENGINEER. VO: Wall bulging, leaning or weeping water? Have an engineer take a look.
+6. END on B. Prompt: SAVE THIS FOR RAINY SEASON. VO: Save this for rainy season.
+Cover: photo A, title WALL / *DRAINAGE*.
+Caption: The number one reason retaining walls fail in the Lower Mainland is water. A well-built block wall typically has about 12 inches of drain rock behind it and a perforated pipe at the base that drains to an approved outlet. Bulging, leaning or weeping? Have an engineer take a look.
+Hashtags: #boundarybuilders #retainingwall #drainage #hardscaping #lowermainland
+Alt text: A slab walkway between two capped block retaining walls, then an animated cross-section showing water pressure behind a wall and the drain rock and perforated pipe that relieve it.
+[OWNER CONFIRM: our block walls get about 12 in of drain rock and a perforated pipe to an approved outlet]
+
+VIDEO 03 | FENCE | Thu Oct 15 | 03_fence_posts | 24-34s
+Title: This is how a fence should be installed: the posts
+Series pill: FENCE TIP #2
+Angle: my "this is how your fence should be installed" idea. The posts are the fence.
+Photos (old fence folder 1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip):
+- A: IMG_2411.jpg, 1GDgrc1E31OvIKypYSM2yNlopxI86NYRW, 8064x4536, FULL, cropped on the last bay where only the black steel posts stand. Crop out the crew member at the right edge (blur the face if any part of that person stays in frame).
+- B: IMG_2234.jpg, 15T6JB69-uMFC4X0OGmW5XNqrrlOnMS4x, 4032x2268, BAND. One framed cedar panel between two capped posts.
+- C (diagram inset and end card): IMG_2233 2.jpg, 1nTEOI2KhDUFDH2VlxWsWnysQTZpCIEcR, 4032x2268, FULL or BAND (your call). Finished framed cedar fence along a street.
+Beats:
+1. HOOK on A. HEADLINE: THIS IS HOW A / FENCE *GOES IN*. VO: This is how a fence goes in. It starts with the posts.
+2. PHOTO A. CARD tick: ROW *BC 1 CALL* FIRST; SMALL FREE. 3 BUSINESS DAYS AHEAD. VO: Before any post hole, request a free B.C. One Call locate, at least three business days ahead.
+3. DIAGRAM post_depth, full version, over A's fill, inset C: a post labelled WOOD POST, labels ABOUT 1/3 IN THE GROUND and 6 FT FENCE: 2-3 FT DEEP, tag RULE OF THUMB, plus a label STEEL POSTS: MAKER'S FOOTING SPEC. HEADLINE: ABOUT *1/3* IN / THE GROUND. VO: Rule of thumb: about a third of the post goes in the ground. For a six foot fence, two to three feet.
+4. DIAGRAM post_depth continued: 6 in of gravel at the bottom with blue water arrows draining down, and the concrete top crowned above grade with blue rain arrows running off. HEADLINE: GRAVEL UNDER. / *CROWN* THE TOP. VO: Gravel underneath lets water drain, and the concrete gets crowned so rain runs off.
+5. PHOTO B with a gold dimension line between the two posts labelled 6-8 FT. HEADLINE: POSTS EVERY / *6-8 FT*. VO: And posts usually go every six to eight feet.
+6. END on C. Prompt: SAVE THIS BEFORE YOU BUILD. VO: Save this before you build.
+Cover: photo C, title FENCE POSTS / *DONE RIGHT*.
+Caption: How a fence should be installed in Metro Vancouver, starting with the posts: request a free BC 1 Call locate before you dig, set about a third of the post in the ground (2-3 ft for a 6 ft fence), put gravel underneath, crown the concrete so rain runs off, and space posts 6-8 ft apart. Rules of thumb; every site is different.
+Hashtags: #boundarybuilders #fenceinstallation #fencebuilder #cedarfence #metrovancouver
+Alt text: Black steel fence posts standing before the panels go in, an animated diagram of a wood fence post footing with gravel and crowned concrete, and a finished cedar fence along a street.
+[OWNER CONFIRM: depth, gravel under posts, crowned concrete and 6-8 ft spacing match how my crew sets cedar posts]
+
+VIDEO 04 | PAVERS | Sat Oct 17 | 04_pavers_sinking | 24-34s
+Title: Pavers sinking? It's usually the base
+Series pill: PAVER TIP #1
+Angle: my "6 inches of base" point, said correctly. 6 in is a sound patio spec on our wet clay (often more); the industry minimum of 4 in assumes ideal ground; driveways need more.
+Photos (fence before and after folder 19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81; all 4536x8064 portrait, FULL):
+- A: IMG_2938.jpg, 16QeAOUTKgwIxMARSmkXM6u1vVgxkPqbk. Patio seen from the back, curved charcoal border, fire pit.
+- B: IMG_2934.jpg, 1BrUM8FEZwDUZwzC6X-r1eoiiHQG8IqtR. Close view of tight paver joints.
+- C (diagram fill and inset, end card): IMG_2933.jpg, 1JOV98_sUlFy9eIf1L_lghDvTog82qwCe. Patio overview with a flat, even paver field.
+Beats:
+1. HOOK on A [BR]. HEADLINE: PAVERS *SINKING?* / USUALLY THE *BASE*. VO: Are your pavers sinking? It's usually the base, not the pavers.
+2. PHOTO B [BR], slow push-in. HEADLINE: THIN, LOOSE / OR *WET* BASE. VO: Usually the base wasn't thick enough, wasn't compacted properly, or water got into it.
+3. DIAGRAM paver_layers part 1 over C's fill, inset C: clay subgrade, then fabric, then the gravel base building up. A label INDUSTRY MIN 4 IN (IDEAL GROUND) gives way to WET CLAY: 6 IN+. HEADLINE: *6 IN+* ON / OUR WET CLAY. VO: The industry minimum for a patio is four inches of base, on ideal ground. Our wet clay isn't ideal, so plan at least six, often more.
+4. DIAGRAM part 2: the base builds in 3 lifts and a compactor-plate icon thumps each one (hit SFX). The fabric is labelled FABRIC KEEPS CLAY OUT, plus a label DRIVEWAYS: MORE. HEADLINE: COMPACTED / *LAYER BY LAYER*. VO: Crushed gravel, compacted layer by layer, with fabric keeping the clay out. Driveways need even more.
+5. DIAGRAM part 3: about 1 in of bedding, the pavers drop in, and an edge restraint appears at the side. HEADLINE: ~1 IN BEDDING, / *THEN PAVERS*. VO: Then about an inch of bedding, the pavers, and an edge restraint to hold it all in.
+6. END on C. Prompt: SAVE THIS FOR YOUR NEXT PATIO. VO: Save this for your next patio.
+Diagram paver_layers: a side section, bottom to top: clay subgrade (dark grey, CLAY), fabric (thin off-white line), crushed gravel base in 3 lifts with the dimension 6 IN+ (PATIO, WET CLAY), bedding ~1 IN, pavers, and an edge restraint spike at the right edge with the base running past it. Reused in video 11.
+Cover: photo A, title PAVER BASE / *DONE RIGHT*.
+Caption: Why pavers sink in the Lower Mainland, and the base that stops it. The industry minimum for a patio is 4 inches of compacted base on ideal ground; on our wet clay plan at least 6, often more, compacted in layers over fabric, and more again for driveways.
+Hashtags: #boundarybuilders #paverpatio #interlock #hardscaping #metrovancouver
+Alt text: A large grey paver patio with a curved charcoal border and fire pit, then an animated cross-section showing clay, fabric, compacted gravel base, bedding and pavers.
+[OWNER CONFIRM: what compacted base depth we use on clay patios (6 in, 8 in, more?) and that we lay fabric over clay]
+
+VIDEO 05 | LANDSCAPING | Mon Oct 19 | 05_turf_base | 24-34s
+Title: Artificial turf puddling? Check the base
+Series pill: YARD TIP #1
+Angle: turf looks the same on day one, but the base decides how it handles a wet November. Plus a leaf-season tip.
+Photos:
+- A: turf Langley folder (18XtAu-qQ2SsDlzT2OXGx123WP1jVf2Y0), turf-1.jpg, 1AR06qZeX2C-2lOWuYVjv57FtHaLALrHV, 1206x1507, FULL with pan only (1.27x). Long turf backyard beside a concrete walk, dark cedar fence.
+- B: same folder, turf-2.jpg, 1oRGlQRmPXQN4teUMS37oWvGcPn8-OSvd, 1206x1507, FULL with pan only, or BAND. Crisp turf edge against a concrete pad.
+- C: cedar fence folder (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN), IMG_6074.jpg, 13nukFeGiqkrrRS1olcGNMZ_oN0tRlFvu, 1170x870, BAND. Turf in front of a framed cedar fence.
+Beats:
+1. HOOK on A [BR]. HEADLINE: TURF *PUDDLING?* / CHECK THE *BASE*. VO: Puddles on your artificial turf? Turf drains through its base, so that's where to look.
+2. DIAGRAM turf_layers over A's fill, inset A. HEADLINE: *COMPACTED* / GRAVEL BASE. VO: Dig out four to six inches, lay a weed barrier, then three to four inches of compacted crushed gravel.
+3. DIAGRAM: a plastic sheet slides under the turf and water pools on it [X]; the plastic is removed and water drains through to the gravel [TICK]. HEADLINE: NEVER *PLASTIC* / UNDER TURF. VO: Never plastic underneath. It traps the water.
+4. PHOTO B with a gold arrow along the edge and a small slope arrow. HEADLINE: SLOPED AWAY. / *EDGES NAILED*. VO: The base slopes away from the house, and the edges get nailed down tight.
+5. PHOTO C. HEADLINE: STILL NEEDS / *SOME CARE*. VO: It's low maintenance, not no maintenance. Blow the leaves off this fall. Wet leaves hold moisture and feed moss.
+6. END on A. Prompt: FOLLOW FOR MORE YARD TIPS. VO: Follow for more yard tips.
+Diagram turf_layers: dark soil, a dashed excavation line 4-6 IN, the weed barrier, the gravel base in lifts 3-4 IN, turf blades with infill dots, a slope arrow AWAY FROM HOUSE, and the footnote TYPICAL. WET CLAY: MAY NEED MORE BASE OR A DRAIN.
+Cover: photo A, title TURF? IT'S / ALL *BASE*.
+Caption: Puddles on artificial turf in the Lower Mainland usually point to the base. A typical install uses a weed barrier and 3-4 inches of compacted crushed gravel (wet clay may need more, or a drain), sloped away from the house, and never plastic underneath. In leaf season, blow the leaves off before they hold moisture and feed moss.
+Hashtags: #boundarybuilders #artificialturf #syntheticgrass #landscaping #fraservalley
+Alt text: A long artificial turf backyard beside a concrete walkway and cedar fence, with an animated diagram of the gravel base layers under the turf.
+[OWNER CONFIRM: our turf base depth on clay, any subdrain, and edge nailing]
+
+VIDEO 06 | PAVERS | Wed Oct 21 | 06_bedding_layer | 24-34s
+Title: More bedding isn't better
+Series pill: PAVER TIP #2
+Angle: the myth that a thicker bedding layer makes pavers stronger, shown with real footage of my crew's screeded bedding. My paver clip posts as its own Reel on Oct 12; this reuses it 9 days later as process footage. Say "bedding", not "sand", unless I confirm the material.
+Photos and clip:
+- A: paver vid folder (14e1qnafH-8HsdO6Cqh408lhATHRVQZ5S), the clip named 8, 1uRFYzeH1YRUhBgGPPpU3DnT9jL7dLFdx, MP4, 9.63s, 956x720, 29.9 fps. BAND only (1080 wide = 1.13x). Allowed seconds: 0.0-4.0 (finished field, charcoal soldier border, red string line; stop before the orange bucket) and 5.4-9.6 (screeded bedding with screed-rail grooves). Keep the bucket and the camera operator's shadow out of the band crop if you can.
+- B: north van pool folder (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi), file 7, 1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R, 1170x878, BAND with a push-in onto the joints (effective scale 1.28 max).
+- C (diagram fill and inset, end card): same folder, file 1, 1Jiedad1M4-t7CK-NBagWE1rbk9St-ceQ, 1170x878, BAND. Loungers on the large-format deck.
+Beats:
+1. HOOK on CLIP 0.0-4.0s [BR]. HEADLINE: MORE BEDDING / *ISN'T* BETTER. VO: More bedding under pavers isn't better. Too much can actually make them settle.
+2. CLIP 5.4-9.6s with a gold dimension tick ~1 IN. HEADLINE: ABOUT *1 INCH*, / SCREEDED FLAT. VO: The bedding layer is about one inch, screeded flat. That's it.
+   Optional extra line after this beat, only once I confirm the material: [OWNER CONFIRM: washed concrete sand or clear chip? CMHA says never stone dust, screenings or mason sand.]
+3. DIAGRAM bedding over C's fill, inset C: a lumpy base with thick bedding filling the dips [X], then a flat compacted base with an even 1 in layer [TICK]. HEADLINE: CAN'T FIX A / *LUMPY* BASE. VO: Extra bedding can't fix a lumpy base. The bumps show through over time.
+4. PHOTO B, push-in on the joints. HEADLINE: PAVERS GET / *COMPACTED* TOO. VO: After laying, the pavers get compacted in, with a protective pad on slabs, then joint sand is swept in and compacted again. [OWNER CONFIRM: how we compacted the north van pool slabs]
+5. PHOTO C. HEADLINE: *FULL JOINTS*, / EVEN SURFACE. VO: That's how you get full joints and a tight, even surface.
+6. END on C. Prompt: SEND THIS TO A DIY-ER. VO: Send this to a do-it-yourselfer.
+Cover: photo C, title MORE BEDDING / *ISN'T* BETTER.
+Caption: A thicker bedding layer doesn't make pavers stronger; too much can make them settle. On Metro Vancouver patios the bedding layer is about 1 inch, screeded flat, and it can't fix a lumpy base. Then the pavers are compacted in and the joints are filled and compacted again.
+Hashtags: #boundarybuilders #paverinstallation #interlock #hardscaping #vancouverlandscaping
+Alt text: Real footage of a paver patio being laid on a screeded bedding layer, then close-ups of tight, full paver joints on a pool deck.
+
+VIDEO 07 | FENCE (GATES) | Fri Oct 23 | 07_gate_sag | 24-34s
+Title: Why gates sag: post, brace, cable
+Series pill: FENCE TIP #3
+Angle: most sagging gates start at the post, and brace direction matters.
+Photos:
+- A (diagram fill and inset): old fence folder (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip), IMG_2819.jpg, 1K85WQqstmFnjIKqeWBkhmP5P3alzx3Dq, 1206x741, BAND. Stained cedar fence and a wide cedar gate on heavy capped posts. Crop with object-position at the right edge so the AC unit on the left is out of frame.
+- B: aluminium gate folder (1mM5RUh6M_nlPzU3mp1X9ULEI8XDV1gAZ), 6108866c-d250-4857-8907-ac2edb12aeb3.JPG, 1b-c8GaJzM9DS5QXoZ1oxeBMrKxHun_gu, 1200x1600, FULL with pan only (1.2x, extra zoom max 1.08). Pedestrian door open, showing the welded frame, mid-rail and hinges.
+- C (end card, cover): same folder, 252e255b-2b87-4c3b-a819-f60933b9eaf2.JPG, 1SFIuh1EadEE9cSGy-smG6LRMllltr0AL, 1600x1200, BAND. Black sliding gate with a built-in man door.
+Beats:
+1. HOOK on A [BR]. HEADLINE: GATE *SAGGING?* / CHECK THE *POST*. VO: Gate sagging? Most sagging gates start at the post.
+2. PHOTO A with a gold ring on the hinge post. Check at 100% which post carries the hinges. HEADLINE: HINGE POST = / *STRONGEST*. VO: The hinge post carries the gate like a lever. Make it the strongest post you have, set in concrete. If you can't see the hinges, ring both gate posts, use HEADLINE: GATE POSTS = / *STRONGEST* and VO: The hinge post carries the gate like a lever, so make your gate posts the strongest on the run, set in concrete.
+3. DIAGRAM gate_brace part 1 over A's fill, inset A: a wood gate frame. A brace from the top hinge corner to the bottom latch corner gets an [X] while the gate droops; then one from the bottom hinge corner to the top latch corner gets a [TICK] and the gate lifts square. HEADLINE: LOW HINGE TO / *HIGH LATCH*. VO: Wood gate brace? Bottom hinge corner up to top latch corner. Backwards, it sags.
+4. DIAGRAM part 2: a cable with a turnbuckle appears from the top hinge corner to the bottom latch corner, the turnbuckle spins, and the latch side lifts. HEADLINE: A CABLE GOES / THE *OTHER WAY*. VO: An anti-sag cable runs the opposite way, and the turnbuckle lifts the latch side.
+5. PHOTO B. HEADLINE: WELDED FRAMES / *STAY SQUARE*. VO: Welded metal frames stay square longer, but they still need a solid post.
+6. END on C. Prompt: COMMENT: DOES YOUR GATE SAG? VO: Does your gate sag? Comment below.
+Cover: photo C, title STOP GATE / *SAG*.
+Caption: Why gates sag around the Lower Mainland: it usually starts at the hinge post, so make that the strongest post on the run. On a wood gate the brace runs from the bottom hinge corner up to the top latch corner; an anti-sag cable runs the opposite way.
+Hashtags: #boundarybuilders #fencegate #gateinstallation #cedarfence #metrovancouver
+Alt text: A wide cedar gate on heavy posts, an animated diagram showing the correct diagonal brace and anti-sag cable directions, and a black metal gate with a welded frame.
+[OWNER CONFIRM: we set gate posts in concrete. Are the gates in B and C steel or aluminium? Say "metal" until I tell you.]
+
+VIDEO 08 | RETAINING WALLS | Sun Oct 25 | 08_wall_permits | 24-34s
+Title: Planning a taller wall? Permits, engineers, terracing
+Series pill: WALL TIP #2
+Angle: read this before planning a bigger wall: permits, engineers, terracing, clay and earthquakes.
+Photos (retaining wall folder 1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN; confirm they're mine first):
+- A: IMG_3328.jpg, 1fIh-ioDdU_cuKfezrbVRakbrQxwIqdpo, 1178x849, BAND. Two-tier terraced block walls along a sidewalk, planted terraces, a railing. Crop the sun flare at top right or let the vignette cover it.
+- B: IMG_3330.jpg, 1pSkg0mo29wYoQEouQwolHMA1KjVw9YWv, 1206x642. SHORT BAND: show native y about 0-400 (both wall tiers and the stairs, wet road cropped off) at 0.9-1.15x, for example about 1080x440 at 1.1x, centred in the band area over its blurred fill, pan sideways only. Keep the hose and cord out of the crop if you can.
+- C (end): fence before and after folder (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81), IMG_0962.jpg, 1lqX4-1smaT35NuDbKN229CB-qZw-Ym95, 1206x1522, FULL with pan only (1.26x), ONLY if I confirm it's my job. Otherwise end on A with a different crop.
+- Diagram inset: IMG_3327.jpg (1Tc-lIqj32jMvnYg_53tJBJ_JtPiEsZb2), cropped to one low wall.
+Beats:
+1. HOOK on A. HEADLINE: WALL OVER / *~4 FT* TALL? VO: Wall over about four feet? Check this first.
+2. PHOTO A. CARD badge 1: ROW *PERMIT + ENGINEER*; SMALL OVER ~4 FT. CHECK YOUR CITY. VO: In many Lower Mainland cities, walls over about four feet need a permit and an engineer.
+3. PHOTO A (continue the move). CARD badge 2: ROW SOME CITIES: *LOWER*; SMALL MAPLE RIDGE: PERMIT OVER 0.6 M. VO: Some set the line lower. Maple Ridge wants a permit over about two feet.
+4. DIAGRAM terrace_spacing on a plain #110000 background with the IMG_3327 inset (not over this video's two-tier photos): two walls close together merge into one tall-wall outline [X]; pulled apart with a terrace at least as deep as the taller wall is high [TICK], labelled H and AT LEAST H, with the note BURNABY RULE. HEADLINE: TOO CLOSE = / *ONE TALL WALL*. VO: Two short walls stacked close together act like one tall wall, so terraces need real spacing.
+   [OWNER CONFIRM: were the two-tier walls in IMG_3328/IMG_3329 and IMG_3330 engineered, or spaced at least as far apart as the taller wall is high? If you're not sure or the answer is no, cut this beat and the terrace sentence in the caption.]
+5. PHOTO B. CARD badge 3: ROW *GET AN ENGINEER*; SMALL CLAY, DRIVEWAY ABOVE, SEISMIC. VO: Clay soil, a driveway above, and earthquake country all mean taller walls get engineered here.
+6. END on C (or A). Prompt: SEND TO ANYONE PLANNING A WALL. VO: Send this to anyone planning a wall.
+Cover: photo A, title TALLER WALL? / *READ THIS*.
+Caption: Planning a retaining wall in the Lower Mainland? In many cities, walls over about 4 ft (1.2 m) need a permit and an engineer, and some set the line lower (Maple Ridge: a permit over 0.6 m). Terraced walls need real spacing, and walls holding up driveways or slopes get engineered. Check your city first.
+Hashtags: #boundarybuilders #retainingwall #landscapedesign #lowermainland #metrovancouver
+Alt text: Two-tier terraced block retaining walls along a sidewalk, an animated diagram showing why terraced walls need spacing, and a sloped front yard rebuilt with two tiers of block walls and steps.
+
+VIDEO 09 | LANDSCAPING | Tue Oct 27 | 09_downspout_drainage | 24-34s
+Title: Where does your downspout dump?
+Series pill: YARD TIP #2
+Angle: the wettest month is coming. Downspouts and grading feed every problem in this series: sinking pavers, pushed walls, rotten posts.
+Photos (fence before and after folder 19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81, unless noted):
+- A: IMG_2935.jpg, 1DSuLapdAv8X8-XqQowxfm6qeeQN5_Uxb, 4536x8064, FULL. River-rock bed, patio and the back of the house.
+- B: IMG_0958.jpg, 1RvVlNr0HpQPNdhibHCLvi09NUe62JEhL, 1206x853, BAND. Slab patio with a galvanized channel drain along its edge. ONLY if I confirm it's my job. Fallback 1: Willson res folder (1iPtGiZWph9LachWNLI9C2zLemiJ_oI3m), drone shot 508667577_17911923990149240_3419948649538439765_n.jpg, 1HpThg6-Az2GAHJrhWgvJ_Ily0XTU1GJs, 640x427, BAND 800 wide, push max 1.04 (driveway drain grate in the middle), if I confirm Willson res. Fallback 2: use C for beat 4 and IMG_2940.jpg (1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC, 4536x8064, FULL) for beat 5.
+- C: IMG_2937.jpg, 1PghOzk_aqFjGMME7iQOP29N6o4sdBMie, 4536x8064, FULL. River rock, stepping slabs and the side yard.
+- D (diagram inset, end): IMG_2936.jpg, 19IxY00Sj_N1vg_hPFdaDSAMhw6RVrUGb, 4536x8064, FULL. Curving stepping-slab path through river rock.
+Beats:
+1. HOOK on A [BR]. HEADLINE: DOWNSPOUT / ON YOUR *PATIO?* VO: Downspout dumping on your patio? That's a common reason pavers sink.
+2. DIAGRAM grading part 1 over A's fill, inset D: a house with a downspout pouring onto a patio, water seeping under the pavers and behind a small wall [X]. HEADLINE: KEEP IT *OFF* / YOUR PATIO. VO: That water feeds the problems that sink pavers, push walls and rot fence posts.
+3. DIAGRAM part 2: the ground reshapes to fall away from the house, blue arrows run away from it, label ~2% TYPICAL GUIDANCE, NOT CODE [TICK]. HEADLINE: SLOPE IT *AWAY* / FROM THE HOUSE. VO: The ground should fall away from your house. Patios and walks typically slope about two percent.
+4. PHOTO B (or fallback). HEADLINE: ROUTE IT TO AN / *APPROVED* DRAIN. VO: Route roof water into the approved drainage for your lot and your city.
+5. PHOTO C. HEADLINE: NOVEMBER: / USUALLY *WETTEST*. VO: November is usually our wettest month. Next big rain, go watch where the water goes.
+6. END on D. Prompt: SEND THIS TO A HOMEOWNER. VO: Send this to a homeowner.
+Cover: photo A, title WHERE DOES / THE *WATER* GO?
+Caption: Is your downspout dumping onto your patio this Metro Vancouver rainy season? Roof water aimed at a patio or behind a retaining wall is a common reason pavers sink and walls push out. Grade the ground away from the house and route downspouts into the approved drainage for your lot.
+Hashtags: #boundarybuilders #yarddrainage #landscaping #hardscaping #metrovancouver
+Alt text: A backyard with a river-rock bed and paver patio, an animated diagram of a downspout and ground sloping away from a house, and a stepping-slab path through river rock.
+
+VIDEO 10 | FENCE | Thu Oct 29 | 10_cedar_care | 24-34s
+Title: Cedar resists rot, but it's not rot-proof
+Series pill: FENCE TIP #4
+Angle: myth-buster "cedar doesn't rot", plus the 4 details that make cedar last. Seasonal: built a fence this fall? Don't leave it bare all winter.
+Photos:
+- A: cedar fence folder (1FSjrFb9iz-swFcyg8dN2GafFCskWDwcN), IMG_8778 2.jpg (HEIC saved as .jpg), 1RKKO9ZxZzcIpanR02noBVt6sl7VK4www, 4032x2268, FULL. New framed cedar fence stepping with the grade.
+- B: same folder, 1a178ecb-7bbc-4b88-aaf9-eb487c19720f.JPG, 1VLBo-vVEj2-tuGvQ6ingF3zPgWCYBLd7, 1600x1200, BAND. Lattice-top cedar fence with a kickboard over a gravel strip. Crop out the hose and pots at the left edge.
+- C: old fence folder (1JZoUf6mtE_cfZ1lONF0NI802FHH3rqip), IMG_2822.jpg, 1GUGHS9RH1vGSkGXw3IQSWIPG1aR_J-Js, 1206x1477, BAND (full-bleed would need 1.30x). Posts with black caps.
+- D: Langford folder (1SbVe7jbKClMxsn3E4nOtSLO334zWtM0g), langford-07.jpg, 1rkPG4anKkrutIeLtbrIPgutafGKPynh4, 1440x1080, BAND. Overlapping cedar boards and a post cap. Vancouver Island job: no location named. Check at 100% for any dark streaks at the nails; if there are any, use langford-06.jpg, 1REGhvEGAeZZRhwzPZcfBC4_o40a4EHC6, 1440x1080, instead.
+- E: old fence folder, IMG_2821.jpg, 1B9P2lNHZGPxQ-uRaLZ6emltm5rEE-R4F, 1206x637, BAND. Orange-stained cedar fence with rhododendrons.
+- F (end): old fence folder, IMG_2817.jpg, 1MvV8efHUBhcyu1SwJFkr0hq2SpXHhwU5, 1206x743, BAND. Stained cedar fence down a side yard.
+Beats:
+1. HOOK on A [BR]. HEADLINE: CEDAR IS / *ROT-PROOF?* VO: Is cedar rot-proof? Not quite. It resists rot, and here's how to make it last.
+2. PHOTO B with a gold ring on the kickboard. HEADLINE: KEEP CEDAR / *OFF THE DIRT*. VO: Keep the boards off the dirt. A treated kickboard takes the ground moisture and is easy to replace.
+3. PHOTO C with gold rings on the post caps. HEADLINE: CUT ENDS DRINK / *11X FASTER*. VO: Cut ends soak up water about eleven times faster, so post tops get caps.
+4. PHOTO D [BR]. HEADLINE: BLACK STREAKS? / CHECK THE *NAILS*. VO: Black streaks running from the nails? That's the wrong fasteners reacting with the cedar. Use stainless or hot-dip galvanized.
+5. PHOTO E, LABEL DRY WOOD. DRY DAY. HEADLINE: DON'T WAIT / TO *STAIN*. VO: Built a fence this fall? Don't leave it bare all winter. Once the wood is dry, stain it within a couple of weeks, on a dry day the label allows.
+6. END on F. Prompt: SAVE THIS FOR YOUR FENCE. VO: Save this for your fence.
+No diagram (callouts only).
+Cover: photo A, title MAKE CEDAR / *LAST*.
+Caption: Cedar fences in the Lower Mainland resist rot, but cedar isn't rot-proof. Keep the boards off the soil with a kickboard, cap the posts (cut ends soak up water about 11x faster), use stainless or hot-dip galvanized fasteners, and stain new cedar within a couple of weeks once it's dry, on a dry day that meets the stain label's temperature.
+Hashtags: #boundarybuilders #cedarfence #woodfence #fencestaining #metrovancouver
+Alt text: A new framed cedar fence, close-ups of a kickboard, post caps and overlapping boards, and an orange-stained cedar fence.
+[OWNER CONFIRM: treated kickboards, post caps, and stainless or hot-dip galvanized fasteners on our cedar fences]
+
+VIDEO 11 | PAVERS | Sat Oct 31 | 11_edge_restraint | 24-34s
+Title: Pavers spreading at the edges? Edge restraint
+Series pill: PAVER TIP #3
+Angle: the hidden part at every paver edge.
+Photos:
+- A: north van pool folder (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi), file 2, 1j-RkfF8zLTrxG2TEeDyAbH6vCj71Sphb, 1170x878, BAND. A paver path meets the lawn in a clean curve, with deck steps. Crop the tiny hi-vis worker at the back if it's easy; the blue marker flag in the lawn too.
+- B: pool interlock folder (1sJNQTbMwokf76do2N9n3vIMYoLZVoqtT), file 13, 1CCN_tl9-5rXae0bizfQDCYKbnIxnUhH-, 1170x878, BAND. The paver deck meets fresh topsoil. Two small workers in hi-vis (not identifiable). Crop out the bins on the right.
+- C (diagram fill and inset, end card): north van pool folder, file 5, 1AIy3pEanqCTlOTCebs1Ob3VaaiNLCPPq, 1170x878, BAND. Wide view of the deck between curved mulch beds.
+Beats:
+1. HOOK on A [BR]. HEADLINE: GAPS OPENING / AT THE *EDGES?* VO: Pavers spreading at the edges? Check what's holding the edge.
+2. DIAGRAM edge_restraint part 1 (built on paver_layers) over C's fill, inset C: no restraint, the outer pavers slowly slide out and the joints open [X]. HEADLINE: NO RESTRAINT? / THEY *CREEP*. VO: Every paver edge that isn't against a curb or wall needs an edge restraint, or the pavers slowly creep apart.
+3. DIAGRAM part 2: the restraint drops in with its spikes, a gold label 1 IN+ CONTACT marks the paver face, and the base extends past it with the dimension SAME AS BASE DEPTH [TICK]. HEADLINE: BASE RUNS / *PAST* THE EDGE. VO: The base runs past the restraint, as far as the base is thick. Six inch base, six inches past.
+4. PHOTO B with a gold dashed line along the soil edge. HEADLINE: HIDDEN UNDER / THE *LAWN EDGE*. VO: Once the lawn or mulch goes in, you never see it. That's the point. [OWNER CONFIRM: we install edge restraint on our paver jobs]
+5. END on C. Prompt: SEND THIS TO A PATIO OWNER. VO: Send this to a patio owner.
+Cover: photo C, title PAVER EDGES / *DONE RIGHT*.
+Caption: Paver edges spreading on your Lower Mainland patio? Every paver edge that isn't against a curb or wall needs an edge restraint, with the compacted base running past it by at least the base thickness. On a finished job it's hidden under the lawn or mulch.
+Hashtags: #boundarybuilders #paverpatio #interlock #hardscaping #lowermainland
+Alt text: A paver pool deck meeting a lawn in a clean curve, and an animated cross-section of an edge restraint holding the outer pavers in place.
+
+VIDEO 12 | LANDSCAPING | Mon Nov 2 | 12_landscape_lighting | 24-34s
+Title: Landscape lighting: light the path, not the neighbours
+Series pill: YARD TIP #3
+Angle: dark evenings are here. Lighting that looks good, doesn't bother the neighbours, and is installed safely. (All five photos are in sets I must confirm first. If I don't confirm them, tell me and we'll pick a replacement topic.)
+Photos:
+- A: Port Moody kitchen outdoor folder (1j66aiXv_OosbU-dB30R7AJTANO9bzcI3), Looks like a cozy Friday night.jpg, 1AbkyRm856kbTbRDbF2_b8J2aV2ES8ryo, 1170x878, BAND at 1.0x or less with a very gentle Ken Burns (heavy JPEG compression). Dusk patio with a fire table and path lights in white rock.
+- B: maple ridge front yard folder (1DNchULD0CaeZVE11VLzMRzgiK6jmKPTq), 707378295_18394604746082647_4562082735756689699_n.jpg, 1Kd7OuT3tJN_DrFqLVfG0oUBI-HD0QgoN, 640x640, BAND no bigger than 780x780, push max 1.04. Night walkway with path lights and under-cap wall lights.
+- C: Willson res folder (1iPtGiZWph9LachWNLI9C2zLemiJ_oI3m), 508631634_17911923963149240_3825814473361652313_n.jpg, 1TdtF4Jlsp-SdBY6o4E0bekhrvLPtAaMh, 640x427, BAND 800 wide, push max 1.04. Lit steps and a capped seat wall at dusk.
+- D (diagram fill and inset): burnaby entrance folder (1iX7xOF44ClD9LfOMnpKCTbU-i8OFE1hU), the file whose name ends ...Techo Bloc Vene-3.jpg, 1mqJvmzLKA7strN4qXS6SXSx2WG06-wo-, 1170x878, BAND. A low-voltage path light in a mulch bed by the steps. Never show a product brand on screen.
+- E (end): maple ridge folder, 707898968_18394604776082647_6059246699742964234_n.jpg, 1k5RLq4pYoNn-IdoXy4BJdjhZ3FrCBgGN, 640x640, BAND no bigger than 780x780. Dusk porch with all the lighting on. Crop tight past the porch decor.
+Beats:
+1. HOOK on A [BR]. HEADLINE: BLINDING YOUR / *NEIGHBOURS?* VO: Yard lights blinding the neighbours? Here's how to light it right.
+2. PHOTO B with a small light_aim inset in the band corner: a fixture's light cone aimed down [TICK] versus glare going up and sideways [X]. HEADLINE: LIGHT THE PATH / NOT *NEIGHBOURS*. VO: Aim light down at paths, steps and features, with shielded fixtures. No glare into windows or the sky.
+3. PHOTO C, LABEL 3000K OR LOWER. HEADLINE: *WARM* LIGHT, / ON A TIMER. VO: Keep it warm, three thousand kelvin or lower, and put it on a timer or sensor.
+4. DIAGRAM light_aim part 2, a plan view over D's fill, inset D: a straight double row labelled RUNWAY [X], then lights staggered side to side [TICK], tag RULE OF THUMB: ~6-8 FT APART. HEADLINE: STAGGER THEM. / *SKIP THE RUNWAY*. VO: Rule of thumb: stagger path lights side to side. A straight double row looks like a runway.
+5. PHOTO D, LABEL BURYING CABLE? BC 1 CALL FIRST. CARD tick: ROW COVERED *GFCI* OUTLET; SMALL HARD-WIRED? ELECTRICAL PERMIT. VO: Plug-in transformers go into a covered G.F.C.I. outlet. Hard-wired circuits need an electrical permit.
+6. END on E. Prompt: SAVE THIS FOR DARK NIGHTS. VO: Save this for dark nights.
+Cover: photo A, title LIGHT IT / *RIGHT*.
+Caption: Landscape lighting for dark Lower Mainland evenings: aim light down at paths and steps, keep it warm (3000K or lower) and on a timer, and stagger path lights instead of lining up a runway. Plug transformers into a covered GFCI outlet; hard-wired circuits need an electrical permit, and burying cable means a free BC 1 Call locate first.
+Hashtags: #boundarybuilders #landscapelighting #outdoorlighting #landscaping #metrovancouver
+Alt text: A dusk patio with a fire table and path lights, a night walkway lined with path lights, and lit stone steps.
+
+VIDEO 13 | FENCE | Wed Nov 4 | 13_fence_rules | 24-34s
+Title: How tall can your fence be? Check these first
+Series pill: FENCE TIP #5
+Angle: check these before you build, and before you argue with a neighbour.
+Photos:
+- A (diagram fill and inset): metal privacy fence Sep 29 folder (14iVRt6nCPnXNDTSX87pu2e1YGJUbb6oR), metal-fence-1.jpg, 1udEzw1JbSzdwrCK4TWC7Vm4x7_BUGw-e, 1206x863, BAND. Backyard run, no street.
+- B: metal fence folder (1M0MFcU5-zTNn0J8S_Oj6IJ9mlfRB4oGW), IMG_3142 2.jpg, 1SAa4fsA2uPXUVgcTlfZW8dfmB3m9BIAK, 1206x801, BAND. Black steel fence ending at a matching steel gate by a brick house.
+- C (end, cover): same folder, IMG_3139 3.jpg, 1xnUdG0iAsItJxYCl9zOw2FauMz2g5OYw, 1206x873, BAND. Wood-grain metal fence with a black slat topper.
+Beats:
+1. HOOK on A. HEADLINE: HOW TALL CAN / YOUR *FENCE* BE? VO: How tall can your fence be? It depends where it goes, and on your city.
+2. DIAGRAM fence_rules part 1, a top-down lot plan over A's fill, inset A: the front yard zone labelled ~4 FT, side and back zones ~6 FT, and a label TYPICAL. CHECK YOUR CITY. HEADLINE: *~4 FT* FRONT, / *~6 FT* BACK. VO: In most Lower Mainland cities it's about four feet in the front yard and about six in the back. Every city is different.
+3. DIAGRAM part 2: a corner lot, the sightline triangle at the street corner glows gold, label ~1 M. HEADLINE: CORNER LOT? / *LOWER* LIMITS. VO: Corner lots have a sightline zone near the corner where fences and hedges stay around one metre.
+4. DIAGRAM part 3, a side section: a fence on top of a retaining wall, the two heights joined in one bracket, label SOME CITIES. HEADLINE: FENCE ON A WALL? / IT CAN *ADD UP*. VO: Putting a fence on a retaining wall? Some cities count them together.
+5. PHOTO B. HEADLINE: PROPERTY LINE? / *GET A SURVEY*. VO: And only a B.C. Land Surveyor can confirm your property line.
+6. END on C. Prompt: SEND THIS TO A NEIGHBOUR. VO: Send this to your neighbour.
+Cover: photo C, title FENCE RULES: / *CHECK FIRST*.
+Caption: How tall can your fence be in the Lower Mainland? Height limits are typically about 4 ft in front yards and 6 ft in back, corner lots are lower near the corner, and in some cities a fence on a retaining wall counts as one combined height. Check your city's bylaw before you build; only a BC Land Surveyor can confirm your property line.
+Hashtags: #boundarybuilders #fenceinstallation #newfence #metrovancouver #lowermainland
+Alt text: A black steel privacy fence along a lawn, animated diagrams of typical front and back yard fence heights, a corner-lot sightline and a fence on a retaining wall, and a wood-grain metal fence with a slat topper.
+
+VIDEO 14 | RETAINING WALLS | Fri Nov 6 | 14_wall_base | 24-34s
+Title: What's under a wall that lasts
+Series pill: WALL TIP #3
+Angle: every wall that lasts starts below ground. Open on my one real below-grade photo (a poured wall's footing), then explain a block wall's base with a diagram clearly labelled BLOCK WALL.
+Photos:
+- A: retaining wall folder (1NJUAipbTqwLfr_Tboju_y5Ak0lJAa8CN), concrete.jpg (PNG saved as .jpg), 11mQUsnIHILoaJjkOtlf_XSRhcqZ6YE0M, 1340x1636, FULL (1.17x, extra zoom max 1.1). Freshly stripped poured concrete wall at a new townhouse, the wider footing ledge visible along its base.
+- B (diagram inset, warning beat): same folder, IMG_3329.jpg, 1DemDm-iRgB4q_B2cB3wT00MSmVbEQEsm, 1141x1545, FULL with pan only. Block courses and caps (also in video 02, three weeks earlier).
+- C (end, cover): the loose file in the main folder, 80496659897__70498F71-A1F3-4301-9AFD-460705C96415 2.jpg (HEIC saved as .jpg), 1jT3vUE7s_rozzzDVOnKOibiAD4yMEPeF, 4032x3024, FULL. Finished backyard: concrete planter wall, planted bed, composite fence on top, deck.
+Beats:
+1. HOOK on A, with a gold ring drawing around the wide footing ledge at the base of the wall. HEADLINE: WHAT'S UNDER / A GOOD *WALL?* VO: What's under a wall that lasts? On this poured wall, it's the footing.
+2. DIAGRAM wall_base part 1 over A's fill, inset B, with a label BLOCK WALL top-left of the diagram: a trench, then a compacted crushed-rock pad labelled 6 IN MIN (each lift thumps with the hit SFX). HEADLINE: *6 IN* OF / COMPACTED ROCK. VO: A block wall starts in a trench, on at least six inches of compacted crushed rock.
+3. DIAGRAM part 2: the first course sinks below grade, with the bracket BURIED: 6 IN MIN, MORE ON TALL WALLS. HEADLINE: BURY THE / *FIRST ROW*. VO: The first row of block is buried, at least six inches, and deeper on taller walls.
+4. DIAGRAM part 3: the courses stack with a gold angle arc showing the setback into the hill, the backfill fills in thin layers labelled MAX 8 IN LIFTS, and the drain rock and pipe flash once (a callback to video 02). Footnote: BLOCK SPECS VARY. TALL WALLS: GEOGRID + ENGINEER. HEADLINE: GOOD WALLS / *LEAN BACK*. VO: Each course steps back into the hill, and the backfill is compacted in thin layers.
+5. PHOTO B [BR]. CARD grey: ROW LEANING *OUT?*; SMALL TOWARD THE YARD? GET IT CHECKED. VO: If a wall leans out toward the yard, that's a warning sign. Get it checked.
+6. END on C. Prompt: SAVE THIS BEFORE YOUR WALL. VO: Save this before your wall.
+Cover: photo C, title WHAT'S UNDER / A *WALL*.
+Caption: What's under a retaining wall that lasts in the Lower Mainland: a block wall starts in a trench on at least 6 inches of compacted crushed rock, with a buried first course (at least 6 inches, more on taller walls), courses set back into the hill, and backfill compacted in thin layers. Taller walls need an engineer, so check your city.
+Hashtags: #boundarybuilders #retainingwall #blockwall #hardscaping #fraservalley
+Alt text: A freshly poured concrete retaining wall on its footing, an animated cross-section of a block wall's buried base and setback, and a finished backyard with a concrete planter wall.
+[OWNER CONFIRM: our block walls get a 6 in compacted pad, a buried first course and a setback per the block maker's spec]
+
+VIDEO 15 | PAVERS | Sun Nov 8 | 15_paver_myths | 24-34s
+Title: 3 paver myths
+Series pill: PAVER TIP #4
+Angle: a very saveable myth-buster with fall maintenance tips.
+Photos:
+- A: north van pool folder (1E13BwDdMnqT2G2EcbDjf8xWzeNdFAqNi), file 7, 1K8-kee6gHzDNvPw2Ng5zx9Y8XSmVVZ6R, 1170x878, BAND with a push-in onto the joints (effective scale 1.28 max).
+- B (cover): fence before and after folder (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81), IMG_2934.jpg, 1BrUM8FEZwDUZwzC6X-r1eoiiHQG8IqtR, 4536x8064, FULL (also in video 04, three weeks earlier).
+- C: same folder, IMG_2940.jpg, 1jpUomTbzhgwHWaaPxPfyiaNeRntTtjNC, 4536x8064, FULL. Patio with a curved border and fire pit. Check at 100% that no white residue or haze shows on the pavers. Fallback: Langley fire pit folder (1_nnJ13NFdeyQkLSULJDX3YvKCQ27nCRu), the first file (name starts "Huge interlock patio and fireplace feature from a few years back!", not the -2 one), 1QRdMKw2LG2QupfRg-fYCWpc2z5LDtK_Y, 1170x878, BAND. Never put the white-haze myth over north van pool photos: that blend has natural white streaks.
+- D: same folder as B, IMG_2932.jpg, 1eXs7bNZf5Ne-QnNq1onFMyWHz4suAeCQ, 4536x8064, FULL. Soldier course beside river rock.
+- E (beat 5 and end): same folder, IMG_2939.jpg, 12xF1rcGvg1hCaOmEWj9ZqynmS_wG-wvj, 4536x8064, FULL. Patio with a curved border and planters.
+Beats:
+1. HOOK on A. HEADLINE: 3 PAVER / *MYTHS*. VO: Three paver myths we hear all the time.
+2. MYTH on B [BR]. WRONG: FABRIC STOPS JOINT WEEDS. FACT: SEEDS *BLOW IN* ON TOP. VO: One: fabric stops joint weeds. Nope. Fabric keeps clay out of the base, but joint weeds grow from seeds that blow in on top.
+3. MYTH on C [BR]. WRONG: WHITE HAZE = BAD PAVERS. FACT: NORMAL. IT *FADES*. VO: Two: white haze means bad pavers. No. It's efflorescence. It's cosmetic and it fades.
+4. MYTH on D. WRONG: BLAST IT CLEAN. FACT: IT CAN *EMPTY* JOINTS. VO: Three: blast it with the pressure washer. Careful, that can empty your joints.
+5. PHOTO E. CARD tick: ROW *DRY PAVERS, DRY DAY*; SMALL TOPPING UP POLYMERIC SAND. VO: Topping up polymeric sand? It needs dry pavers and a dry day.
+6. END on E. Prompt: WHICH ONE DID YOU BELIEVE? VO: Which one did you believe? Comment below.
+Cover: photo B, title 3 PAVER / *MYTHS*.
+Caption: 3 paver myths we hear around Metro Vancouver: fabric under the base doesn't stop joint weeds (the seeds blow in from above), white haze on new pavers is efflorescence and fades, and pressure washing can empty your joints. Topping up polymeric sand? Dry pavers and a dry day.
+Hashtags: #boundarybuilders #pavers #interlock #patiomaintenance #metrovancouver
+Alt text: Close-ups of tight paver joints on a pool deck and a backyard patio, with on-screen myth and fact text about joint weeds, white haze and pressure washing.
+
+BACKUP TOPICS (only if a photo above fails a check, I don't confirm a set, or I veto a topic; all the same rules apply, and keep the category order so no two posts in a row share a category)
+- B1 FENCE: Which fence handles our rain? Aluminium can't rust; steel needs its coating intact, so touch up cut edges; cedar needs re-staining every few years; composite and vinyl need washing twice a year, under 1,500 psi or more than 12 in away. Photos: metal privacy Sep 29 folder metal-fence-2.jpg 1WSwNNqxmqiPvU0C1cEKRYo7GeJg9C19n; composite folder screenshot 1KTOFVxAbeLeVrkJPRXaMMYnOG3ofY2UV (PNG saved as .pdf; crop out the garbage cart); IMG_2233 2 1nTEOI2KhDUFDH2VlxWsWnysQTZpCIEcR.
+- B2 PAVERS: Pool deck pavers done right. The deck slopes away from the pool toward drains (about 1-2%, a guide figure), uses a textured surface, has a joint between the coping and the deck, and has edge restraint where it meets the lawn; pool enclosure rules apply (Burnaby 1.5 m, check your city). Photos: north van pool files 1 (1Jiedad1M4-t7CK-NBagWE1rbk9St-ceQ), 4 (1w_W6m-OrN_V7MF_mmiWptvay5A6KSq8e) and 6 (1sUvBKtixm-Do5K6Y0Go9N0h2ENS-LS9_); pool interlock file 11 (1tjhsap8vQU3-ZDAGwwbVTb5A3qrLm3Zu; crop out the orange safety fence).
+- B3 LANDSCAPING: Wood or gas fire pit? Check your city. Surrey and the Township of Langley ban wood fire pits; gas features need a gas permit, typically pulled by a licensed gas contractor. Photo: Port Moody cozy-1 (the gas fire table), only if I confirm that set. Do NOT use the Langley fire pit photos; I don't want a client's fire pit shown next to a ban.
+
+POSTING PLAN
+Already on Instagram through Metricool at 10:00 AM PT (from my Instagram Post Log): the metal privacy fence and artificial turf Langley carousels published Sep 30. Scheduled: Thu Oct 1 north van pool, Fri Oct 2 overlapping cedar fence Langford, Sun Oct 4 Willson res, Mon Oct 5 pool interlock, Wed Oct 7 maple ridge front yard, Fri Oct 9 Langley fire pit, Sun Oct 11 burnaby entrance, Mon Oct 12 paver vid (a Reel of the 9.6s clip), Wed Oct 14 front entrance, Fri Oct 16 Port Moody kitchen outdoor.
+Proposed schedule (10:00 AM PT unless Metricool's best time says otherwise; category in brackets):
+- Fri Oct 9: carousel Langley fire pit (scheduled) [PAVERS]
+- Sat Oct 10: REEL 01 Leaning fence [FENCE]
+- Sun Oct 11: carousel burnaby entrance (scheduled) [PAVERS]
+- Mon Oct 12: Reel paver vid clip (scheduled) [PAVERS]
+- Tue Oct 13: REEL 02 Why walls fail [WALLS]
+- Wed Oct 14: carousel front entrance (scheduled) [PAVERS]
+- Thu Oct 15: REEL 03 Fence posts [FENCE]
+- Fri Oct 16: carousel Port Moody kitchen (scheduled) [LANDSCAPING]
+- Sat Oct 17: REEL 04 Pavers sinking [PAVERS]
+- Mon Oct 19: REEL 05 Turf base [LANDSCAPING]
+- Wed Oct 21: REEL 06 More bedding [PAVERS]
+- Fri Oct 23: REEL 07 Gate sag [FENCE]
+- Sun Oct 25: REEL 08 Taller walls [WALLS]
+- Tue Oct 27: REEL 09 Downspouts [LANDSCAPING]
+- Thu Oct 29: REEL 10 Cedar care [FENCE]
+- Sat Oct 31: REEL 11 Edge restraint [PAVERS]
+- Mon Nov 2: REEL 12 Landscape lighting [LANDSCAPING]
+- Wed Nov 4: REEL 13 Fence rules [FENCE]
+- Fri Nov 6: REEL 14 What's under a wall [WALLS]
+- Sun Nov 8: REEL 15 Paver myths [PAVERS]
+- That's a post every day from Oct 9 to Oct 17, then every 2 days. The open days after Oct 17 could take more photo carousels if I want to post daily. That's a separate job; just remind me at the end.
+- Rules: never two posts in a row (Reel or carousel) in the same category. Oct 11 and Oct 12 are already back to back as pavers; leave my existing posts alone. Don't post a Reel whose hero photos come from a project that has a carousel the same week. The plan above is already checked; recheck it if I add carousels.
+- If a review runs late, slide every later Reel by the same amount: keep about every 2 days, never on a day that already has a post, and keep the category rule.
+- Seasonal fit: windstorms (01, 03, 07), rain season (02, 04, 06, 09, 11, 14, 15), leaf season (05), stain before winter (10), dark evenings (12), bylaws any time (08, 13).
+
+BEFORE SCHEDULING (read-only, do these in STEP 1)
+- Load the Metricool tools with ToolSearch (getBrandSettings, getScheduledPosts, getBestTimeToPostByNetwork, createScheduledPost).
+- getBrandSettings: confirm the Instagram account, handle, timezone and blogId, and whether it's a Business or Creator account. Never invent the handle.
+- getScheduledPosts for Oct 7 to Nov 15: list everything already scheduled and flag any clash with my plan.
+- Read the Instagram Post Log sheet (1Clwn8sVDDTgGIXR_SmcoydZEp9rmdLmJFqqD3ghgY6E) to confirm the existing rows and the exact columns: Project folder | Source (Past/New) | Post (1 of 1...) | Format (Carousel/Single/Reel) | Files used | Files skipped + why | Scheduled for | Caption | Status | Date logged.
+- getBestTimeToPostByNetwork for Instagram. If there's a clearly better time, suggest it; otherwise keep 10:00 AM PT like the rest of my log.
+- While you're there, tell me (don't change anything) that the Oct 14 front entrance carousel's file names say Waterdown, which is in Ontario, and that photo 1XutnGVQQyKI_eGoRw5PbFkXtICKdIXtC shows house number 9 above the WELCOME sign, so I can check it's my job and fix it before it posts.
+
+SCHEDULING (as you go, only after I type OK for those specific videos)
+- Each time I approve a video or a batch, show me the schedule rows for just those Reels (date, time, file, caption, hashtags, cover) and wait for my OK. Reel 01 must be scheduled by the end of Fri Oct 9 to post Sat Oct 10.
+- Then schedule each approved Reel with createScheduledPost (read its schema first): blogId from getBrandSettings; date in ISO 8601 with the brand timezone's offset for that day (let the timezone decide the offset; don't hardcode one across the fall clock change); info: providers [{"network":"instagram"}], instagramData {"type":"REEL","showReelOnFeed":true,"isAiGenerated": my answer}, text = caption + a blank line + the 5 hashtags, publicationDate {"dateTime":"YYYY-MM-DDT10:00:00","timezone": the brand timezone}, autoPublish true, media [the MP4 URL], videoThumbnailUrl = the cover JPG URL.
+- media and videoThumbnailUrl must be public URLs; Google Drive links work only if my Google Drive is linked in Metricool. Before uploading anything, ask me to choose: (a) you upload final/NN_slug.mp4 and NN_slug_cover.jpg into a new Drive folder "Edu Reels final" inside Boundary Builders - Instagram and I confirm Drive is linked in Metricool, or (b) I upload them in the Metricool app myself. Never change a Drive sharing setting without my OK.
+- Ask me once whether to set isAiGenerated true (the voice is AI; the photos are real).
+- After each Reel is scheduled, append one row to the Post Log using the exact columns: Project folder: Edu Reel NN: <title>, plus the source folder names | Source: Past | Post: 1 of 1 | Format: Reel | Files used: file names + ids | Files skipped + why: as needed | Scheduled for: date and time | Caption: caption + hashtags | Status: Scheduled | Date logged: today's date. Read the sheet first and never overwrite or reorder existing rows. If the Drive tools can't append safely, give me the rows as tab-separated text to paste.
+- After the Reels go live, remind me to use Instagram's Link a Reel to chain each one to the previous Reel in the same series.
+
+WORKFLOW AND REVIEW STOPS
+STEP 1: Set up the folder, copy and compile the tools, read the Winter project files, extract and look at the P1 frame 0, do the read-only Metricool and Post Log checks, and run one estimate_only speech call. Then send me ONE short message: (1) the P1 frame-0 image: is it from one of my own jobs and not stock footage? (2) the PHOTOS YOU MUST CONFIRM list: which sets are my own crew's jobs? (3) my handle, account type, timezone, any schedule clashes and the best posting time; (4) the Oct 14 carousel flag; (5) the credit cost per video; (6) whether to set isAiGenerated. Then STOP until I answer.
+STEP 2: Build edu.html, the scene types, the diagrams video 01 needs (post_rot, post_depth, wind arrows) and video 01 itself. Run QA. Then send me final/01_leaning_fence.mp4, the cover PNG and grid preview, 5-6 stills pulled from the ENCODED MP4 (t=0, ~1.0s, one per beat and the last frame) and the script JSON. Use a file-sending tool if you have one; otherwise give me the paths. Tell me the final length and anything you changed from the spec. In the same message, ask me ALL the [OWNER CONFIRM] questions for videos 02-15 in one short numbered list. Then STOP.
+STEP 3: After I approve video 01 and you've applied my changes to the template, show me its schedule row, and after my OK schedule and log it. Then produce videos 02-05 in order, run QA, send them and STOP. Batch 02-05 should reach me by Sun Oct 11 so 02 can post Oct 13; if it can't, tell me and slide the dates. After I approve, show the schedule rows, wait for my OK, schedule and log. Then 06-10 the same way, then 11-15. For each batch send the MP4s, the covers, 2-3 stills per video from the encoded files, and a list of changes from the spec.
+STEP 4: Finish captions.md and schedule.md, run the final checks on everything, confirm every approved Reel is scheduled and logged, and give me the Link a Reel and extra-carousel reminders.
+Keep ~/Downloads/BoundaryBuilders_EduReels/STATUS.txt updated after every step: what's built, approved, scheduled and logged, my answers to every question and [OWNER CONFIRM], and the next step. If I open a new chat, it reads STATUS.txt first and carries on from there.
+
+QA (before you show me anything)
+- Extract frames from the ENCODED final MP4 (not the PNG frames) at t=0, 0.5, 1.5, the middle of every beat, the start of the end card and the duration minus 0.1s. LOOK at them.
+- Frame 0 shows the real photo (no black, no fade), the hook headline is fully on screen by about 0.9s, and the spoken hook question ends by about 2s.
+- The last 1.5s is the fully populated end card, not fading.
+- Readability: shrink the stills to 375px wide (sips --resampleWidth 375) and look at them. Every word must be readable.
+- render.py qa mode: sample every 0.25s and get the bounding box of every visible text element, pill and the logo. Fail if any text is above y 250, below y 1470, outside x 65-1015, or right of x 920 below y 1000; if any card top is above y 1152; or if any two visible text boxes overlap. Dump all visible strings for check_promo.sh.
+- Upscale: fail if any .sharp photo's effective scale goes over 1.30 at any sampled frame.
+- check_promo.sh passes.
+- Durations: the MP4 duration matches the plan within 0.1s, the length is 24-34s (hard max 35s), and each beat's caption chunks fall inside that beat's VO.
+- MP4 check (small Swift tool): 1080x1920, 30 fps, H.264, exactly one AAC audio track starting at 0, moov before mdat, under 100 MB.
+- Every photo id used still exists (get_file_metadata) and is listed in the script JSON with its id.
+- Privacy: no readable faces, plates, house numbers, signs, brands or truck lettering.
+- No claim on screen or in the VO that isn't in the FACT LIST, and every [BR] beat shows the BUILT RIGHT pill.
+
+DELIVERABLES (all in ~/Downloads/BoundaryBuilders_EduReels/)
+- final/NN_slug.mp4, final/NN_slug_cover.png and final/NN_slug_cover.jpg for all 15.
+- captions.md: for each video, the title, date, caption, 5 hashtags, alt text, cover title, and the photos used (names + ids).
+- schedule.md: the posting table with both the carousels and the Reels.
+- edu.html, render.py, build.swift, audiofix.swift, tools/build, tools/audiofix, tools/make.sh, tools/check_promo.sh and scripts/NN_slug.json. Editing a script's on-screen text and running tools/make.sh NN re-renders that video with one command.
+- README.txt telling me how to change a line of on-screen text and re-render, and that a spoken-line change needs a Claude chat.
+- STATUS.txt.
+
+SCRIPT FILE FORMAT (a suggestion; improve it if you need to)
+{
+  "id": "01_leaning_fence",
+  "title": "Leaning fence? The 3 usual causes",
+  "category": "FENCE",
+  "series": "FENCE TIP #1",
+  "target": [24, 34],
+  "stretch": 1.2,
+  "music": {"file": "audio/music/edu_bed.caf", "volume": 0.2, "offset": 0},
+  "photos": {
+    "A": {"file": "photos/jpg/P1V2_t0.jpg", "source": "~/Downloads P1 Video 02, frame 0", "w": 1080, "h": 1920},
+    "B": {"file": "photos/jpg/19tLyf1rTcy9CMNimCf23PB9aN1oU-Ind.jpg", "driveId": "19tLyf1rTcy9CMNimCf23PB9aN1oU-Ind", "name": "IMG_2820.jpg", "w": 1206, "h": 634},
+    "C": {"file": "photos/jpg/1lR5AfM5qLYKw5ZJsHaPZ46pqX_TuRQkq.jpg", "driveId": "1lR5AfM5qLYKw5ZJsHaPZ46pqX_TuRQkq", "name": "f24dafda-6a96-4c78-9228-0792fcf82a75.JPG", "w": 1600, "h": 1200}
+  },
+  "beats": [
+    {"type": "hook", "photo": "A", "layout": "full", "kb": {"from": [1.0, 0.5, 0.45], "to": [1.05, 0.5, 0.4]},
+     "headline": ["LEANING *FENCE?*", "*3 USUAL CAUSES*"], "vo": "Fence leaning after the wind? It's usually one of three things.", "sfx": "hit"},
+    {"type": "diagram", "diagram": "post_rot", "fill": "A", "inset": "C", "wipe": true,
+     "card": {"mark": "badge", "n": 1, "row": "POST *ROT*", "small": "RIGHT AT GROUND LEVEL"},
+     "vo": "One: rot. Wood posts rot first right at ground level, where wet soil meets air."},
+    {"type": "photo", "photo": "B", "layout": "band", "builtRight": true, "label": "2X THE WIND = 4X THE PUSH", "callouts": [{"type": "wind"}],
+     "card": {"mark": "badge", "n": 3, "row": "*SOGGY SOIL* + WIND"},
+     "vo": "Three: soggy soil and wind. A solid fence catches wind like a sail, and twice the wind pushes four times as hard."},
+    {"type": "end", "photo": "C", "layout": "band", "prompt": "SEND THIS TO A FENCE OWNER", "vo": "Send this to a fence owner."}
+  ],
+  "cover": {"photo": "C", "title": ["KEEP FENCES", "*STRAIGHT*"]},
+  "post": {"date": "2026-10-10", "time": "10:00", "caption": "...", "hashtags": ["#boundarybuilders", "#fencerepair", "#cedarfence", "#metrovancouver", "#lowermainland"], "alt": "..."}
+}
+
+Start with STEP 1 now.

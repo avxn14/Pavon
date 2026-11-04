@@ -1,0 +1,78 @@
+[
+ {
+  "scene": 1,
+  "time": "0-3 s",
+  "photo": "6.jpg",
+  "crop": [
+   40,
+   200,
+   1440,
+   987
+  ],
+  "move": "slow push-in 1.00 to 1.08, anchored on the sunlit panels right of centre, drifting away from the far-right end",
+  "text": [
+   "WINTER SALE",
+   "Metal Fence – $220/panel"
+  ],
+  "note": "Your new photo (sent Oct 16). Crop ends before the dusty last post, so the lighter silver-capped section and the white object at the far right never appear."
+ },
+ {
+  "scene": 2,
+  "time": "3-7 s",
+  "photo": "3.jpg",
+  "crop": [
+   0,
+   280,
+   1140,
+   921
+  ],
+  "move": "medium close-up of the finish: whole front panel and both posts, slow push-in 1.00 to 1.06",
+  "text": [
+   "Tired of fixing your wood fence every year?"
+  ],
+  "note": "Owner asked for a less tight crop; option B chosen (A tighter / C wider also offered)."
+ },
+ {
+  "scene": 3,
+  "time": "7-11 s",
+  "photo": "4.jpg",
+  "crop": [
+   60,
+   10,
+   1150,
+   623
+  ],
+  "move": "slow pan left to right along the black run toward the house, zoom 1.04",
+  "text": [
+   "No rot. No painting. Built for BC rain."
+  ],
+  "note": "Crop keeps the two tiny pedestrians at the far end of the walkway out of frame."
+ },
+ {
+  "scene": 4,
+  "time": "11-14 s",
+  "photo": "2.jpg",
+  "crop": [
+   460,
+   170,
+   1500,
+   755
+  ],
+  "move": "slow pull-out 1.05 to 1.00 from the fence corner to show the whole fenced yard",
+  "text": [
+   "8 years building fences across Metro Vancouver"
+  ],
+  "note": "No drone shot was attached. This wide yard shot stands in unless you send one. Pool cover, hose and the shadow on the lawn are cropped out."
+ },
+ {
+  "scene": 5,
+  "time": "14-18 s",
+  "photo": null,
+  "crop": null,
+  "move": "gold logo pops in, the two lines slide up one at a time, everything holds until the end",
+  "text": [
+   "Get your price in 2 minutes",
+   "Tap GET QUOTE ↓"
+  ]
+ }
+]

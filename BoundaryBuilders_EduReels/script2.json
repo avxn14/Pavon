@@ -1,0 +1,27 @@
+{
+ "html": "ad2.html",
+ "prefix": "v2vo",
+ "music": "music2",
+ "hold": 1.4,
+ "lead": 0.1,
+ "tail": 0.15,
+ "base": [3.0, 2.5, 1.9, 3.8, 1.5, 1.5, 1.6, 3.0],
+ "skipcap": [0],
+ "vo": [
+  "Winters are the best time to get *competitive pricing.*",
+  "Boundary Builders metal fencing — just *$220* a panel.",
+  "*Materials and installation* included.",
+  "And the best part? *No phone call* needed — just three quick steps on our website.",
+  "One: *pick your fence style.*",
+  "Two: *enter your measurements.*",
+  "Three: *see your instant price.*",
+  "Just *tap the link below* and get your *free quote* in minutes."
+ ],
+ "sfx": [
+  {"file": "whoosh", "scene": 3, "offset": -0.26, "vol": 0.55},
+  {"file": "whoosh", "scene": 3, "frac": 0.66, "vol": 0.4},
+  {"file": "whoosh", "scene": 7, "offset": -0.05, "vol": 0.4},
+  {"file": "hit", "scene": 1, "offset": 0.5, "vol": 0.7},
+  {"file": "hit", "scene": 7, "offset": 0.45, "vol": 0.6}
+ ]
+}

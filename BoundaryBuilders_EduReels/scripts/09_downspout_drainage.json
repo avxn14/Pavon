@@ -1,0 +1,226 @@
+{
+ "id": "09_downspout_drainage",
+ "title": "Where does your downspout dump?",
+ "category": "LANDSCAPING",
+ "series": "YARD TIP #2",
+ "target": [
+  24,
+  34
+ ],
+ "stretch": 1.2,
+ "music": {
+  "file": "audio/music/edu_bed.caf",
+  "volume": 0.2,
+  "offset": 3
+ },
+ "photos": {
+  "A": {
+   "file": "photos/jpg/1UgOmUKs3No4gtQ_6AY39VJ_OWOHOG0rQ.jpg",
+   "driveId": "1UgOmUKs3No4gtQ_6AY39VJ_OWOHOG0rQ",
+   "name": "IMG_0954.jpg",
+   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
+   "w": 1206,
+   "h": 1603,
+   "note": "stands in for the spec's IMG_2935 (over the Drive connector's 6 MB limit): paver patio, river-rock bed, turf and the back of the house with its downspout; same IMG_09xx series as IMG_0958, which the owner confirmed as their job. OWNER: say if this one is not yours."
+  },
+  "B": {
+   "file": "photos/jpg/1RvVlNr0HpQPNdhibHCLvi09NUe62JEhL.jpg",
+   "driveId": "1RvVlNr0HpQPNdhibHCLvi09NUe62JEhL",
+   "name": "IMG_0958.jpg",
+   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
+   "w": 1206,
+   "h": 853,
+   "note": "owner confirmed as their job (2026-10-08): slab patio with a galvanized channel drain along its edge"
+  },
+  "C": {
+   "file": "photos/jpg/1p1WOaUcOr0Noyl_PtvUXKedF-q1hl1w1.jpg",
+   "driveId": "1p1WOaUcOr0Noyl_PtvUXKedF-q1hl1w1",
+   "name": "IMG_0955.jpg",
+   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
+   "w": 870,
+   "h": 866,
+   "note": "stands in for the spec's IMG_2937 (over 6 MB): wet paver walkway after rain, 1000 px band (1.15x, push to 1.24x); same IMG_09xx series as the confirmed IMG_0958. OWNER: say if this one is not yours."
+  },
+  "D": {
+   "file": "photos/jpg/1GEbEQo7q1LqY3D35CWVxASulvVNX1gb-.jpg",
+   "driveId": "1GEbEQo7q1LqY3D35CWVxASulvVNX1gb-",
+   "name": "IMG_0961.jpg",
+   "folder": "fence before and after (19MDMsI2XgfeVti3lhCzbVOIZUGBy3z81)",
+   "w": 1206,
+   "h": 1544,
+   "note": "stands in for the spec's IMG_2936 (over 6 MB) as the diagram inset and end card: paver patio against a block wall; same IMG_09xx series as the confirmed IMG_0958. OWNER: say if this one is not yours.; band and inset aligned low so the pickup truck above the wall is out of frame"
+  }
+ },
+ "beats": [
+  {
+   "type": "hook",
+   "photo": "A",
+   "layout": "full",
+   "pos": "50% 50%",
+   "kb": {
+    "from": [
+     1.0,
+     30,
+     0
+    ],
+    "to": [
+     1.03,
+     -20,
+     0
+    ]
+   },
+   "builtRight": true,
+   "headline": [
+    "DOWNSPOUT",
+    "ON YOUR *PATIO?*"
+   ],
+   "vo": "Downspout dumping on your patio? That's a common reason pavers sink."
+  },
+  {
+   "type": "diagram",
+   "diagram": "grading",
+   "opts": {
+    "part": 1
+   },
+   "fill": "A",
+   "inset": "D",
+   "wipe": true,
+   "headline": [
+    "KEEP IT *OFF*",
+    "YOUR PATIO"
+   ],
+   "vo": "That water feeds the problems that *sink pavers*, *push walls* and *rot fence posts*.",
+   "insetBox": {
+    "h": 240,
+    "pos": "50% 100%"
+   }
+  },
+  {
+   "type": "diagram",
+   "diagram": "grading",
+   "opts": {
+    "part": 2
+   },
+   "cont": true,
+   "fill": "A",
+   "inset": "D",
+   "headline": [
+    "SLOPE IT *AWAY*",
+    "FROM THE HOUSE"
+   ],
+   "vo": "The ground should fall *away* from your house. Patios and walks typically slope about *two percent*.",
+   "insetBox": {
+    "h": 240,
+    "pos": "50% 100%"
+   }
+  },
+  {
+   "type": "photo",
+   "photo": "B",
+   "layout": "band",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.06,
+     0,
+     0
+    ]
+   },
+   "wipe": true,
+   "headline": [
+    "ROUTE IT TO AN",
+    "*APPROVED* DRAIN"
+   ],
+   "callouts": [
+    {
+     "type": "ring",
+     "x": 105,
+     "y": 660,
+     "r": 88,
+     "t": 0.6
+    }
+   ],
+   "vo": "Route roof water into the *approved drainage* for your lot and your city."
+  },
+  {
+   "type": "photo",
+   "photo": "C",
+   "layout": "band",
+   "band": {
+    "w": 1000
+   },
+   "pos": "50% 80%",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.08,
+     0,
+     0
+    ]
+   },
+   "headline": [
+    "NOVEMBER:",
+    "USUALLY *WETTEST*"
+   ],
+   "vo": "*November* is usually our wettest month. Next big rain, go watch where the water goes."
+  },
+  {
+   "type": "end",
+   "photo": "D",
+   "layout": "band",
+   "pos": "50% 100%",
+   "kb": {
+    "from": [
+     1.0,
+     0,
+     0
+    ],
+    "to": [
+     1.04,
+     0,
+     0
+    ]
+   },
+   "prompt": "SEND THIS TO A HOMEOWNER",
+   "vo": "Send this to a homeowner.",
+   "note": "aligned low in the photo so the pickup truck parked above the wall stays out of the band"
+  }
+ ],
+ "cover": {
+  "photo": "A",
+  "layout": "full",
+  "pos": "50% 50%",
+  "kb": {
+   "from": [
+    1.0,
+    0,
+    0
+   ]
+  },
+  "title": [
+   "WHERE DOES",
+   "THE *WATER* GO?"
+  ]
+ },
+ "post": {
+  "date": "2026-10-29",
+  "time": "10:00",
+  "caption": "Is your downspout dumping onto your patio this Metro Vancouver rainy season? Roof water aimed at a patio or behind a retaining wall is a common reason pavers sink and walls push out. Grade the ground away from the house and route downspouts into the approved drainage for your lot.",
+  "hashtags": [
+   "#boundarybuilders",
+   "#yarddrainage",
+   "#landscaping",
+   "#hardscaping",
+   "#metrovancouver"
+  ],
+  "alt": "A backyard paver patio beside a river-rock bed and the back of a house, an animated diagram of a downspout and ground sloping away from a house, a slab patio with a channel drain, and a wet paver walkway."
+ }
+}

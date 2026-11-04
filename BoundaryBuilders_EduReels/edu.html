@@ -1,0 +1,493 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Boundary Builders Edu Reel template</title>
+<style>
+@font-face{font-family:'Outfit';src:url('Outfit-500.woff2') format('woff2');font-weight:100 900;font-display:block;}
+html,body{margin:0;padding:0;background:#000;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#020101;font-family:'Outfit',sans-serif;color:#F9F9F9;-webkit-font-smoothing:antialiased;}
+#stage *{box-sizing:border-box;}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px;}
+.beat{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;}
+.gold{color:#FFC527;}
+img.fill{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;filter:blur(24px) brightness(.48) saturate(1.1);transform:scale(1.2);transform-origin:50% 50%;}
+.diag img.fill{filter:blur(24px) brightness(.30) saturate(1.05);}
+.band{position:absolute;left:0;top:330px;width:1080px;height:782px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);}
+.band img.sharp{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;filter:saturate(1.1) contrast(1.05);}
+img.full{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;transform-origin:50% 50%;filter:contrast(1.1) saturate(1.12) brightness(.96);}
+.fullGrad{background:linear-gradient(to top, rgba(2,1,1,.94) 0%, rgba(2,1,1,.84) 36%, rgba(2,1,1,0) 60%);}
+.topVig{background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 22%);}
+.botVig{background:linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);}
+.hl{position:absolute;left:67px;top:1135px;width:850px;text-align:center;font-weight:900;font-size:92px;line-height:1.02;letter-spacing:-1px;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.6);}
+.hl .line{white-space:nowrap;}
+.hl .w{display:inline-block;margin:0 .11em;}
+.pill{position:absolute;display:inline-block;background:#FFC527;color:#111;font-weight:800;font-size:36px;letter-spacing:2.5px;text-transform:uppercase;padding:16px 32px 14px;border-radius:999px;white-space:nowrap;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+.pill svg{width:34px;height:34px;vertical-align:-7px;margin-right:12px;}
+#wipe{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#FFC527;}
+#wipe:after{content:"";position:absolute;left:0;top:-140px;width:1080px;height:140px;background:#020101;}
+#logoSmall{position:absolute;left:740px;top:290px;width:264px;}
+#logoSmall img{width:264px;display:block;}
+.seriesPill{left:65px;top:300px;transform-origin:left center;}
+.br{transform-origin:left center;}
+.card{position:absolute;left:0;top:1152px;width:1080px;height:768px;background:#050507;border-radius:40px 40px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.5);}
+.row{position:absolute;left:72px;top:1162px;height:116px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:62px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;}
+.badge{width:116px;height:116px;border-radius:50%;background:#FFC527;color:#111;font-weight:900;font-size:66px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.5);border:6px solid #0b0b0d;flex:0 0 116px;}
+.tick{width:74px;height:74px;border-radius:50%;background:#FFC527;color:#111;display:inline-flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;flex:0 0 74px;}
+.xmark{width:74px;height:74px;border-radius:50%;background:#434343;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;flex:0 0 74px;}
+.row .rt{display:inline-block;}
+.small{position:absolute;left:72px;top:1284px;height:50px;line-height:50px;font-weight:800;font-size:40px;text-transform:uppercase;letter-spacing:.5px;color:#F9F9F9;text-shadow:0 6px 30px rgba(0,0,0,.6);white-space:nowrap;}
+.label{position:absolute;left:72px;top:1030px;font-weight:800;font-size:40px;line-height:1;text-transform:uppercase;letter-spacing:.5px;color:#F9F9F9;background:rgba(0,0,0,.66);padding:14px 22px 12px;border-radius:18px;white-space:nowrap;}
+.br{left:72px;top:1030px;}
+.inset{position:absolute;left:72px;width:320px;border:4px solid #FFC527;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.5);}
+.inset img{display:block;width:100%;height:100%;object-fit:cover;}
+.blurbox{position:absolute;backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);background:rgba(8,8,8,.28);border-radius:14px;}
+.clipwrap{position:absolute;left:0;top:0;}
+.clipwrap img.clipf{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:fill;display:none;filter:saturate(1.1) contrast(1.05);}
+.mrow{position:absolute;left:72px;top:1168px;height:64px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:48px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;color:#9a9a9a;}
+.mrow .xmark{width:64px;height:64px;font-size:38px;flex:0 0 64px;}
+.strike{position:absolute;height:6px;border-radius:3px;background:#FFC527;}
+.diagram,.callout{position:absolute;left:0;top:330px;width:1080px;height:782px;}
+.diagram svg,.callout svg{position:absolute;left:0;top:0;width:1080px;height:782px;overflow:visible;}
+.diagram text,.callout text{font-family:'Outfit',sans-serif;font-weight:800;fill:#F9F9F9;text-transform:uppercase;}
+#cap{position:absolute;left:67px;top:1350px;width:850px;text-align:center;font-weight:800;font-size:52px;line-height:1.15;transform-origin:50% 50%;}
+#cap span.c{display:inline-block;background:rgba(0,0,0,.66);padding:14px 30px 12px;border-radius:18px;}
+#cap .g{color:#FFC527;}
+.logoEnd{position:absolute;left:352px;top:1140px;width:280px;}
+.logoEnd img{width:280px;display:block;}
+.site{position:absolute;left:67px;top:1275px;width:850px;text-align:center;font-weight:800;font-size:48px;line-height:56px;letter-spacing:1px;color:#F9F9F9;text-shadow:0 6px 30px rgba(0,0,0,.6);}
+.ctitle{position:absolute;left:65px;width:950px;text-align:center;font-weight:900;font-size:150px;line-height:1.02;letter-spacing:-2px;text-transform:uppercase;text-shadow:0 8px 36px rgba(0,0,0,.65);}
+.ctitle .line{white-space:nowrap;}
+.cgrad{position:absolute;left:0;top:330px;width:1080px;height:782px;background:linear-gradient(to top, rgba(2,1,1,.92) 0%, rgba(2,1,1,.6) 30%, rgba(2,1,1,0) 60%);}
+#measure{position:absolute;left:-6000px;top:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="beats"></div>
+  <div id="wipe"></div>
+  <div id="logoSmall" class="q qlogo" data-g="logoSmall"><img src="logo_gold.png"></div>
+  <div id="cap"></div>
+  <div id="measure"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const EO  = t => 1 - Math.pow(1 - t, 3);
+const EI  = t => t * t * t;
+const EIO = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const EOB = t => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const EOX = t => t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const LIN = t => t;
+const GOLD = '#FFC527', BLUE = '#267ECE', OFF = '#F9F9F9';
+window.FIT_WARNINGS = [];
+
+/* ---------- tween registry (same approach as the Winter reel) ---------- */
+const items = []; const byEl = new Map(); const CLIPL = [];   // CLIPL: clip frame layers (see addClipBand)
+function reg(el, base) {
+  const it = { el, base: Object.assign({ o: 1, x: 0, y: 0, s: 1, sx: 1, sy: 1, r: 0, b: 0 }, base || {}), tws: [] };
+  items.push(it); byEl.set(el, it); return it;
+}
+function tw(el, t0, t1, to, ease, from) { (byEl.get(el) || reg(el)).tws.push({ t0, t1, to, ease: ease || EO, from }); }
+function seek(t) {
+  for (const it of items) {
+    const p = Object.assign({}, it.base);
+    for (const w of it.tws) {
+      if (t < w.t0) continue;
+      const from = Object.assign({}, p, w.from || {});
+      let k = w.t1 > w.t0 ? Math.min(1, (t - w.t0) / (w.t1 - w.t0)) : 1; k = w.ease(k);
+      for (const key in w.to) p[key] = from[key] + (w.to[key] - from[key]) * k;
+    }
+    const s = it.el.style;
+    s.opacity = Math.max(0, Math.min(1, p.o)); s.visibility = p.o <= 0.001 ? 'hidden' : 'visible';
+    if (it.kb) {   // photo Ken Burns: scale about the box centre and pan, applied as layout so the image is resampled at its exact size every frame
+      const w = it.kb.w * p.s, h = it.kb.h * p.s;
+      s.width = w.toFixed(3) + 'px'; s.height = h.toFixed(3) + 'px'; s.left = (it.kb.cx - w / 2 + p.x).toFixed(3) + 'px'; s.top = (it.kb.cy - h / 2 + p.y).toFixed(3) + 'px'; s.transform = 'none';
+    } else s.transform = 'translate(' + p.x.toFixed(2) + 'px,' + p.y.toFixed(2) + 'px) rotate(' + p.r.toFixed(2) + 'deg) scale(' + (p.s * p.sx).toFixed(4) + ',' + (p.s * p.sy).toFixed(4) + ')';
+    if (p.b > 0.01) s.filter = 'blur(' + p.b.toFixed(2) + 'px)'; else if (it.base.b !== undefined && it.base.b > 0) s.filter = '';
+    if ('dash' in p) s.strokeDashoffset = p.dash.toFixed(2) + 'px';
+  }
+  for (const L of CLIPL) clipTick(L, t);
+  capTick(t); window.CUR_T = t;
+}
+
+/* ---------- helpers ---------- */
+function el(tag, cls, parent, svg) {
+  const e = svg ? document.createElementNS('http://www.w3.org/2000/svg', tag) : document.createElement(tag);
+  if (cls) e.setAttribute('class', cls); if (parent) parent.appendChild(e); return e;
+}
+function parseGold(line) {   // "*WORD* rest" -> [{t,gold}]
+  const out = []; let gold = false;
+  for (const tok of line.trim().split(/\s+/)) {
+    let w = tok, g = gold;
+    if (w.startsWith('*')) { gold = true; g = true; w = w.slice(1); }
+    if (w.endsWith('*')) { gold = false; w = w.slice(0, -1); g = true; }
+    if (w.includes('*')) { w = w.replace(/\*/g, ''); g = true; gold = false; }
+    out.push({ t: w, gold: g });
+  }
+  return out;
+}
+function goldHtml(s) { return s.replace(/\*([^*]+)\*/g, '<span class="gold">$1</span>'); }
+function fitSize(lines, sizes, maxW, mkLine) {
+  const m = $('measure');
+  for (const sz of sizes) {
+    let ok = true;
+    for (const line of lines) {
+      m.innerHTML = ''; const e = mkLine(line, sz); m.appendChild(e);
+      if (e.getBoundingClientRect().width > maxW) { ok = false; break; }
+    }
+    m.innerHTML = '';
+    if (ok) return sz;
+  }
+  window.FIT_WARNINGS.push('does not fit ' + maxW + 'px at ' + sizes[sizes.length - 1] + 'px: ' + JSON.stringify(lines));
+  return sizes[sizes.length - 1];
+}
+function mkHlLine(line, sz) {
+  const d = document.createElement('div'); d.className = 'hl line'; d.style.position = 'static'; d.style.width = 'auto'; d.style.display = 'inline-block'; d.style.fontSize = sz + 'px';
+  for (const w of parseGold(line)) { const sp = document.createElement('span'); sp.className = 'w' + (w.gold ? ' gold' : ''); sp.textContent = w.t; d.appendChild(sp); }
+  return d;
+}
+function headline(parent, lines, top, group) {
+  const sz = fitSize(lines, lines.length > 1 ? [92, 84] : [104, 92, 84], 850, mkHlLine);   // 2 lines must stay inside y 1130-1330
+  const h = el('div', 'hl', parent); h.style.fontSize = sz + 'px'; if (top !== undefined) h.style.top = top + 'px';
+  const spans = [];
+  lines.forEach(line => {
+    const d = el('div', 'line q', h); d.dataset.g = group;
+    for (const w of parseGold(line)) { const sp = el('span', 'w' + (w.gold ? ' gold' : ''), d); sp.textContent = w.t; spans.push(sp); }
+  });
+  return { el: h, spans };
+}
+function popIn(spans, t0, stag = .07, dur = .5) { spans.forEach((sp, i) => { reg(sp, { o: 0, y: 70, s: .6 }); tw(sp, t0 + i * stag, t0 + i * stag + dur, { o: 1, y: 0, s: 1 }, EOB); }); }
+function popOut(spans, t0, dur = .26) { spans.forEach((sp, i) => tw(sp, t0 + i * .02, t0 + i * .02 + dur, { o: 0, y: -80, s: .9 }, EI)); }
+function pill(parent, text, cls, group, withTick) {
+  const p = el('div', 'pill q ' + (cls || ''), parent); p.dataset.g = group || 'pill';
+  if (withTick) p.innerHTML = '<svg viewBox="0 0 34 34"><path class="tk" d="M6 18 L14 26 L29 9" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg>';
+  const s = document.createElement('span'); s.textContent = text; p.appendChild(s); return p;
+}
+function centerX(e, cx) { const w = e.getBoundingClientRect().width; e.style.left = Math.round(cx - w / 2) + 'px'; }
+
+/* ---------- captions (3-word chunks timed inside each beat's VO) ---------- */
+let CAPS = [], goldOpen = false;
+function goldify(s) {
+  let out = goldOpen ? '<span class="g">' : '';
+  for (const ch of s) { if (ch === '*') { goldOpen = !goldOpen; out += goldOpen ? '<span class="g">' : '</span>'; } else out += ch; }
+  if (goldOpen) out += '</span>'; return out;
+}
+function buildCaps(vo, skip) {
+  CAPS = [];
+  vo.forEach((line, li) => {
+    if ((skip || []).includes(li)) return;
+    goldOpen = false;
+    const raw = line.text.replace(/\u2014/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+    const n = raw.length, per = Math.ceil(n / Math.ceil(n / 3));
+    // gold flags per word, so a *gold phrase* is never split across two pills
+    const g = [], closes = []; let open = false;
+    raw.forEach(w => { const starts = w.startsWith('*'), cl = /\*[^\w*]*$/.test(w) && !(starts && w.length === 1); g.push(open || starts); closes.push(cl); if (starts && !cl) open = true; if (cl) open = false; });
+    const chunks = []; let i = 0;
+    while (i < n) {
+      let j = Math.min(n, i + per);
+      if (j < n && g[j - 1] && !closes[j - 1]) {   // the cut would split a gold phrase: take the whole phrase, or start it in the next pill
+        let e = j - 1; while (e < n - 1 && !closes[e]) e++;
+        let r = j - 1; while (r > i && g[r - 1] && !closes[r - 1]) r--;
+        if (e + 1 - i <= 5) j = e + 1; else if (r > i) j = r; else j = Math.min(n, i + 5);
+      }
+      if (n - j === 1 && j - i < 5) j = n;         // no one-word orphan at the end
+      chunks.push(raw.slice(i, j)); i = j;
+    }
+    // timing: spread the chunks over the VOICED part of the line only (plan.vo[].speech from render.py), never starting inside a pause
+    const segs = (line.speech && line.speech.length) ? line.speech : [[0, line.dur]];
+    const voiced = segs.reduce((a, sg) => a + (sg[1] - sg[0]), 0);
+    const mapT = v => {   // voiced-time offset -> time in the file; a chunk that would start just before a pause waits for the voice to resume
+      let r = v;
+      for (let k = 0; k < segs.length; k++) { const [a, b] = segs[k]; if (r < b - a - 1e-6) { const t = a + r; return (b - t < .30 && k + 1 < segs.length) ? segs[k + 1][0] : t; } r -= b - a; }
+      return segs[segs.length - 1][1];
+    };
+    let cum = 0; const starts = [];
+    chunks.forEach((ch, k) => { starts.push(line.start + mapT(cum) + (k ? .06 : 0)); cum += voiced * ch.length / n; });
+    chunks.forEach((ch, k) => { const t0 = starts[k], t1 = k + 1 < chunks.length ? starts[k + 1] : line.start + line.dur + .04; if (t1 > t0) CAPS.push({ t0, t1, html: goldify(ch.join(' ')) }); else goldify(ch.join(' ')); });
+  });
+}
+function capTick(t) {
+  const e = $('cap'); const c = CAPS.find(c => t >= c.t0 && t < c.t1);
+  if (!c) { e.style.opacity = 0; e.style.visibility = 'hidden'; return; }
+  if (e.dataset.k !== c.html) { e.innerHTML = '<span class="c q" data-g="cap">' + c.html + '</span>'; e.dataset.k = c.html; }
+  const k = Math.min(1, (t - c.t0) / 0.16); const s = .84 + .16 * EOB(k);
+  e.style.opacity = 1; e.style.visibility = 'visible'; e.style.transform = 'scale(' + s.toFixed(3) + ')';
+}
+
+/* ---------- photo layers ---------- */
+function photoInfo(S, key) { const p = S.photos[key]; if (!p) throw new Error('unknown photo ' + key); return p; }
+function addFill(g, S, key, diag) {
+  const im = el('img', 'fill', g); im.src = photoInfo(S, key).file; return im;
+}
+function parsePos(pos) {   // "50% 50%" | "right center" | "100% 0%" -> [px, py] in 0..1
+  const m = { left: 0, center: .5, right: 1, top: 0, bottom: 1 }; const f = v => v in m ? m[v] : parseFloat(v) / 100;
+  const parts = String(pos || '50% 50%').trim().split(/\s+/); return [f(parts[0]), parts.length > 1 ? f(parts[1]) : .5];
+}
+function placeImg(im, p, fw, fh, b) {   // size the img box to exactly cover fw x fh (object-fit fill), aligned by b.pos; kb x/y then pans it
+  const s = Math.max(fw / p.w, fh / p.h); const bw = p.w * s, bh = p.h * s; const [px, py] = parsePos(b.pos);
+  im.style.width = bw.toFixed(2) + 'px'; im.style.height = bh.toFixed(2) + 'px'; im.style.objectFit = 'fill';
+  im.style.left = ((fw - bw) * px).toFixed(2) + 'px'; im.style.top = ((fh - bh) * py).toFixed(2) + 'px'; im.dataset.cover = s.toFixed(4);
+  im._kb = { w: bw, h: bh, cx: (fw - bw) * px + bw / 2, cy: (fh - bh) * py + bh / 2 };
+}
+function addBand(g, S, key, b, t0, t1) {
+  const p = photoInfo(S, key); const band = el('div', 'band', g);
+  let w = 1080, h = 782, left = 0, top = 330;
+  if (b.band) { w = b.band.w || w; h = b.band.h || Math.min(782, Math.round(w * p.h / p.w)); left = Math.round((1080 - w) / 2); top = 330 + Math.round((782 - h) / 2); }
+  band.style.left = left + 'px'; band.style.top = top + 'px'; band.style.width = w + 'px'; band.style.height = h + 'px';
+  const im = el('img', 'sharp', band); im.src = p.file; placeImg(im, p, w, h, b);
+  kenBurns(im, b.kb, t0, t1); return band;
+}
+function addFull(g, S, key, b, t0, t1) {
+  const p = photoInfo(S, key); const im = el('img', 'full sharp', g); im.src = p.file; placeImg(im, p, 1080, 1920, b);
+  kenBurns(im, b.kb, t0, t1); el('div', 'layer fullGrad', g); return im;
+}
+function kenBurns(im, kb, t0, t1) {
+  const f = (kb && kb.from) || [1, 0, 0], to = (kb && kb.to) || f;
+  const it = reg(im, { s: f[0], x: f[1], y: f[2] }); if (im._kb) it.kb = im._kb; tw(im, t0, t1, { s: to[0], x: to[1], y: to[2] }, LIN);
+}
+function addInset(g, S, key, box) {   // box {h, pos}: a CSS crop of the inset (object-fit cover inside 320 x h, aligned by pos)
+  const p = photoInfo(S, key); const h = box && box.h ? box.h : Math.round(320 * p.h / p.w); const d = el('div', 'inset', g); d.style.height = h + 'px'; d.style.top = (1090 - h) + 'px';
+  const im = el('img', 'sharp', d); im.src = p.file; if (box && box.pos) im.style.objectPosition = box.pos; return d;
+}
+/* ---------- clip band: real video frames (one <img> per frame, toggled in seek; never swaps src) ----------
+   S.clips[key] = {dir, pattern "f_%04d.jpg", first 1, fps, n, w, h}; beat: {clip: key, range: [a, b] seconds, pos, kb, band, speed?}
+   The segment plays across the whole beat: speed = segment / beat length, clamped to 0.8-1.0 (slower than 0.8x holds the last frame; faster stops early). */
+function addClipBand(g, S, key, b, t0, t1) {
+  const c = (S.clips || {})[key]; if (!c) throw new Error('unknown clip ' + key);
+  const band = el('div', 'band', g); let w = 1080, h = 782, left = 0, top = 330;
+  if (b.band) { w = b.band.w || w; h = b.band.h || Math.min(782, Math.round(w * c.h / c.w)); left = Math.round((1080 - w) / 2); top = 330 + Math.round((782 - h) / 2); }
+  band.style.left = left + 'px'; band.style.top = top + 'px'; band.style.width = w + 'px'; band.style.height = h + 'px';
+  const wrap = el('div', 'clipwrap', band); placeImg(wrap, { w: c.w, h: c.h }, w, h, b); kenBurns(wrap, b.kb, t0, t1);
+  const fps = c.fps, n = c.n, first = c.first === undefined ? 1 : c.first, pat = c.pattern || 'f_%04d.jpg';
+  const ra = b.range ? b.range[0] : 0, rb = b.range ? b.range[1] : n / fps;
+  const k0 = Math.max(0, Math.ceil(ra * fps - 1e-6)), k1 = Math.min(n - 1, Math.ceil(rb * fps) - 1);
+  const seg = (k1 - k0 + 1) / fps, D = t1 - t0; let speed = b.speed || seg / D; const nat = speed;
+  speed = Math.max(0.8, Math.min(1.0, speed));
+  const note = `clip ${key} ${ra}-${rb}s (${(k1 - k0 + 1)} frames, ${seg.toFixed(2)}s) over a ${D.toFixed(2)}s beat: speed ${speed.toFixed(3)}x` + (nat < 0.8 ? ` (natural ${nat.toFixed(3)}; holds the last frame for ${(D - seg / 0.8).toFixed(2)}s)` : nat > 1 ? ` (stops at clip ${(ra + D).toFixed(2)}s)` : '');
+  (window.CLIP_NOTES = window.CLIP_NOTES || []).push(note);
+  const imgs = [];
+  for (let k = k0; k <= k1; k++) { const im = el('img', 'sharp clipf', wrap); im.decoding = 'sync'; im.src = c.dir + '/' + pat.replace(/%0(\d)d/, (m, d) => String(k + first).padStart(+d, '0')); imgs.push(im); }
+  CLIPL.push({ imgs, k0, k1, t0, speed, fps, cur: undefined });
+  return band;
+}
+function clipTick(L, t) {
+  let ct = (t - L.t0) * L.speed; if (ct < 0) ct = 0;
+  let k = L.k0 + Math.floor(ct * L.fps + 1e-6); if (k > L.k1) k = L.k1;
+  if (k === L.cur) return;
+  if (L.cur !== undefined) L.imgs[L.cur - L.k0].style.display = 'none';
+  L.imgs[k - L.k0].style.display = 'block'; L.cur = k;
+}
+/* ---------- myth card: grey-mark wrong line (struck through in gold) + gold-tick fact row ---------- */
+function mkMythLine(text, sz) { const d = document.createElement('div'); d.className = 'mrow'; d.style.position = 'static'; d.style.fontSize = sz + 'px'; const s = document.createElement('span'); s.textContent = text; d.appendChild(s); return d; }
+function addMyth(g, m, t0, grp, cont) {   // cont: the previous beat already showed the card (card or myth, no wipe), so only the rows change
+  const card = el('div', 'card', g); if (cont) reg(card, { y: 0 }); else { reg(card, { y: 900 }); tw(card, t0 + .02, t0 + .52, { y: 0 }, EOX); }
+  const wr = el('div', 'mrow', g); const xm = el('div', 'xmark', wr); xm.innerHTML = '&#x2715;';
+  const sz = fitSize([m.wrong], [48, 44, 40], 754, mkMythLine); wr.style.fontSize = sz + 'px';
+  const wt = el('span', 'mt q', wr); wt.textContent = m.wrong; wt.dataset.g = grp + 'wrong';
+  reg(wr, { o: 0, x: -50 }); tw(wr, t0 + .30, t0 + .66, { o: 1, x: 0 }, EOX); reg(xm, { s: .4 }); tw(xm, t0 + .32, t0 + .72, { s: 1 }, EOB);
+  const r = wt.getBoundingClientRect(); const st = el('div', 'strike', g); st.style.left = r.left + 'px'; st.style.width = r.width + 'px'; st.style.top = '1197px';
+  st.style.transformOrigin = 'left center'; reg(st, { o: 0, sx: 0 }); const ts = t0 + (m.strikeAt === undefined ? 1.0 : m.strikeAt); tw(st, ts, ts + .3, { o: 1, sx: 1 }, EO);
+  const row = el('div', 'row', g); row.style.top = '1253px'; row.style.height = '74px'; const tk = el('div', 'tick', row); tk.innerHTML = '&#x2713;';
+  const fs = fitSize([m.fact], [62, 60, 58, 56, 54], 754, mkRowLine); row.style.fontSize = fs + 'px';
+  const rt = el('span', 'rt q', row); rt.innerHTML = goldHtml(m.fact); rt.dataset.g = grp + 'fact';
+  const tf = t0 + (m.factAt === undefined ? 1.5 : m.factAt); reg(row, { o: 0, x: -50 }); tw(row, tf, tf + .36, { o: 1, x: 0 }, EOX); reg(tk, { s: .4 }); tw(tk, tf + .02, tf + .42, { s: 1 }, EOB);
+  card._parts = [wr, st, row]; return card;
+}
+
+/* ---------- card / rows ---------- */
+function mkRowLine(text, sz) { const d = document.createElement('div'); d.className = 'row'; d.style.position = 'static'; d.style.fontSize = sz + 'px'; const s = document.createElement('span'); s.innerHTML = goldHtml(text); d.appendChild(s); return d; }
+function addCard(g, c, t0, cont, group) {
+  const card = el('div', 'card', g);
+  if (cont) reg(card, { y: 0 }); else { reg(card, { y: 900 }); tw(card, t0 + .02, t0 + .52, { y: 0 }, EOX); }
+  const row = el('div', 'row', g);
+  let mark;
+  if (c.mark === 'badge') { mark = el('div', 'badge q', row); mark.textContent = c.n; mark.dataset.g = group + 'badge'; }
+  else if (c.mark === 'grey') { mark = el('div', 'xmark', row); mark.innerHTML = '&#x2715;'; row.style.top = '1183px'; row.style.height = '74px'; }
+  else { mark = el('div', 'tick', row); mark.innerHTML = '&#x2713;'; row.style.top = '1183px'; row.style.height = '74px'; }
+  const maxW = c.mark === 'badge' ? 712 : 754;
+  const sz = fitSize([c.row], [62, 60, 58, 56, 54], maxW, mkRowLine);
+  row.style.fontSize = sz + 'px';
+  const rt = el('span', 'rt q', row); rt.innerHTML = goldHtml(c.row); rt.dataset.g = group + 'row';
+  reg(row, { o: 0, x: -50 }); tw(row, t0 + .30, t0 + .66, { o: 1, x: 0 }, EOX);
+  reg(mark, { s: .4 }); tw(mark, t0 + .32, t0 + .72, { s: 1 }, EOB);
+  let sm = null;
+  if (c.small) {
+    sm = el('div', 'small q', g); sm.innerHTML = goldHtml(c.small); sm.dataset.g = group + 'small';
+    const sw = sm.getBoundingClientRect().width; if (sw > 840) window.FIT_WARNINGS.push('small line over 840px: ' + c.small);
+    reg(sm, { o: 0, y: 16 }); tw(sm, t0 + .55, t0 + .85, { o: 1, y: 0 }, EO);
+  }
+  card._parts = [row, sm].filter(Boolean); return card;
+}
+function fadeParts(parts, t) { parts.forEach(e => tw(e, t, t + .25, { o: 0 }, EI)); }   // text rows leave before the next scene's elements arrive
+
+/* ---------- SVG diagram toolkit ---------- */
+const NS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function svText(parent, x, y, txt, size, fill, anchor, group) {
+  const t = sv('text', { x, y, 'font-size': size || 40, fill: fill || OFF, 'text-anchor': anchor || 'start', class: 'q' }, parent); t.style.fill = fill || OFF;   // inline style, because the .diagram text CSS rule would override the fill attribute
+  t.textContent = txt; t.dataset.g = group || ('d' + Math.random()); return t;
+}
+function slideIn(e, t0, dx) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0, x: dx === undefined ? -30 : dx }); tw(e, t0, t0 + .4, { o: 1, x: 0 }, EO); }
+function fadeIn(e, t0, d) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = 'center'; reg(e, { o: 0 }); tw(e, t0, t0 + (d || .35), { o: 1 }, EO); }
+function growUp(e, t0, d) { e.style.transformBox = 'fill-box'; e.style.transformOrigin = '50% 100%'; reg(e, { o: 0, sy: .2 }); tw(e, t0, t0 + (d || .5), { o: 1, sy: 1 }, EOX); }
+function drawPath(e, t0, d) { const L = (e.getTotalLength ? e.getTotalLength() : 1000) + 2; e.setAttribute('stroke-dasharray', L); const it = byEl.get(e) || reg(e, {}); it.base.dash = L; it.base.o = 0; tw(e, t0, t0 + .03, { o: 1 }, LIN); tw(e, t0, t0 + (d || .6), { dash: 0 }, EO); return L; }
+function dimArrow(parent, x, y0, y1, label, t0, group) {   // vertical gold dimension line with end ticks and a label to the right
+  const gr = sv('g', {}, parent);
+  sv('line', { x1: x, y1: y0, x2: x, y2: y1, stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }, gr);
+  sv('line', { x1: x - 22, y1: y0, x2: x + 22, y2: y0, stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }, gr);
+  sv('line', { x1: x - 22, y1: y1, x2: x + 22, y2: y1, stroke: GOLD, 'stroke-width': 6, 'stroke-linecap': 'round' }, gr);
+  const t = svText(gr, x + 36, (y0 + y1) / 2 + 17, label, 48, GOLD, 'start', group);
+  growUp(gr, t0, .5); return gr;
+}
+function gravel(parent, x0, x1, y0, y1, seed) {
+  let s = seed || 3; const r = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+  const gr = sv('g', {}, parent);
+  for (let i = 0; i < 70; i++) sv('circle', { cx: x0 + r() * (x1 - x0), cy: y0 + r() * (y1 - y0), r: 3 + r() * 3, fill: OFF, opacity: .8 }, gr);
+  return gr;
+}
+const DIAGRAMS = {};   // filled by diagrams/*.js modules (loaded after this script)
+const CALLOUTS = {};   // generic callouts: diagrams/callouts.js; video-specific ones live in their diagram module
+
+/* ---------- beat builder ---------- */
+let PLAN = null, SCRIPT = null, BEATS = [];
+function buildBeat(i, b, S, P) {
+  const t0 = P.scenes[i], t1 = P.scenes[i + 1], n = S.beats.length, isLast = i === n - 1;
+  const next = S.beats[i + 1]; const g = el('div', 'beat' + (b.type === 'diagram' ? ' diag' : ''), $('beats')); g.dataset.i = i;
+  // group visibility
+  if (i === 0) reg(g, { o: 1 }); else { reg(g, { o: 0 }); if (b.wipe) tw(g, t0 - .01, t0 + .01, { o: 1 }, LIN); else tw(g, t0 - .15, t0 + .15, { o: 1 }, EO); }
+  if (!isLast) { if (next.wipe) tw(g, t1 - .01, t1 + .01, { o: 0 }, LIN); else tw(g, t1 + .15, t1 + .16, { o: 0 }, LIN); }
+  const grp = 'b' + i;
+  const photoKey = b.photo || b.fill, fillKey = b.fill || b.photo;
+  if (b.plain) g.style.background = b.plain; else addFill(g, S, fillKey, b.type === 'diagram');   // plain: a flat colour instead of a blurred photo (e.g. "#110000")
+  if (b.type === 'diagram') {
+    el('div', 'layer topVig', g); el('div', 'layer botVig', g);
+    const d = el('div', 'diagram', g); const svg = sv('svg', { viewBox: '0 0 1080 782' }, d);
+    const fn = DIAGRAMS[b.diagram]; if (!fn) throw new Error('unknown diagram ' + b.diagram); fn(svg, t0 + .2, Object.assign({}, b.opts || {}, { cont: !!b.cont, beatLen: t1 - t0 }));
+    if (b.inset) addInset(g, S, b.inset, b.insetBox);
+  } else {   // hook / photo / clip / myth / end
+    if (b.clip) { addClipBand(g, S, b.clip, b, t0, t1); el('div', 'layer topVig', g); el('div', 'layer botVig', g); }
+    else if (b.layout === 'full') addFull(g, S, photoKey, b, t0, t1);
+    else { addBand(g, S, photoKey, b, t0, t1); el('div', 'layer topVig', g); el('div', 'layer botVig', g); }
+  }
+  for (const bl of (b.blurs || [])) { const d = el('div', 'blurbox', g); d.style.left = bl.x + 'px'; d.style.top = bl.y + 'px'; d.style.width = bl.w + 'px'; d.style.height = bl.h + 'px'; if (bl.r !== undefined) d.style.borderRadius = bl.r + 'px'; }
+  if (b.callouts) { const c = el('div', 'callout', g); const svg = sv('svg', { viewBox: '0 0 1080 782' }, c); for (const co of b.callouts) { const fn = CALLOUTS[co.type]; if (!fn) throw new Error('unknown callout ' + co.type); fn(svg, t0, co); } }
+  if (b.builtRight) {
+    const p = pill(g, 'BUILT RIGHT', 'br', 'br', true); reg(p, { o: 1 });   // one QA group for every BUILT RIGHT pill: two consecutive [BR] beats crossfade the same pill in the same place
+    const tk = p.querySelector('.tk'); reg(tk, { dash: 40 }); tw(tk, t0 + .1, t0 + .5, { dash: 0 }, EO);
+  }
+  if (b.label) { const L = el('div', 'label q', g); L.textContent = b.label; L.dataset.g = grp + 'label'; if (b.builtRight) L.style.top = '350px'; reg(L, { o: 0, y: 18 }); tw(L, t0 + .25, t0 + .6, { o: 1, y: 0 }, EO);   // rises in: a sideways slide pushed the plate past x 65 mid-animation (QA)
+    if (L.getBoundingClientRect().width > 760) window.FIT_WARNINGS.push('label over 760px: ' + b.label); }
+  if (b.type === 'hook') { const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 1 }); }
+  if (b.headline) {
+    const h = headline(g, b.headline, b.type === 'hook' ? 1135 : 1135, grp + 'hl');
+    popIn(h.spans, t0 + (b.type === 'hook' ? .05 : .15));
+    if (!isLast && !next.wipe && !b.card && !b.myth) popOut(h.spans, t1 - (next.type === 'end' ? .55 : .3));
+  }
+  if (b.card) { const prev = S.beats[i - 1]; const cd = addCard(g, b.card, t0, !!(prev && (prev.card || prev.myth) && !b.wipe), grp); if (!isLast && !next.wipe && next.type === 'end') fadeParts(cd._parts, t1 - .55); }
+  if (b.myth) { const prev = S.beats[i - 1]; const md = addMyth(g, b.myth, t0, grp, !!(prev && (prev.card || prev.myth) && !b.wipe)); if (!isLast && !next.wipe && next.type === 'end') fadeParts(md._parts, t1 - .55); }
+  if (b.type === 'end') {
+    const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 0, s: .6 }); tw(sp, t0 + .05, t0 + .4, { o: 1, s: 1 }, EOB);
+    const lg = el('div', 'logoEnd q qlogo', g); lg.dataset.g = 'logoEnd'; lg.innerHTML = '<img src="logo_gold.png">'; reg(lg, { o: 0, s: .6 }); tw(lg, t0 + .02, t0 + .42, { o: 1, s: 1 }, EOB);
+    const site = el('div', 'site q', g); site.textContent = 'BOUNDARYBUILDERS.CA'; site.dataset.g = 'site'; reg(site, { o: 0, y: 20 }); tw(site, t0 + .12, t0 + .45, { o: 1, y: 0 }, EO);
+    const pr = pill(g, b.prompt, '', 'prompt'); pr.style.top = '1355px'; centerX(pr, 492); reg(pr, { o: 0, s: .7, y: 30 }); tw(pr, t0 + .18, t0 + .58, { o: 1, s: 1, y: 0 }, EOB);
+    if (pr.getBoundingClientRect().width > 800) window.FIT_WARNINGS.push('prompt pill over 800px: ' + b.prompt);
+    tw($('logoSmall'), t0 - .12, t0 + .12, { o: 0 }, EI);
+  }
+  BEATS.push(g);
+}
+async function init(plan, script) {
+  PLAN = plan; SCRIPT = script; $('beats').innerHTML = ''; items.length = 0; byEl.clear(); CLIPL.length = 0; BEATS = []; window.FIT_WARNINGS = []; window.CLIP_NOTES = [];
+  reg($('logoSmall'), { o: .92 });
+  script.beats.forEach((b, i) => buildBeat(i, b, script, plan));
+  reg($('wipe'), { o: 1, y: 1920 });
+  script.beats.forEach((b, i) => { if (i > 0 && b.wipe) { const c = plan.scenes[i]; tw($('wipe'), c - .30, c + .22, { y: -2100 }, EIO, { y: 1920 }); } });
+  buildCaps(plan.vo, plan.skipcap);
+  await waitImages(); seek(0); return true;
+}
+async function waitImages() {
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(im => im.complete ? im.decode().catch(() => {}) : new Promise(r => { im.onload = () => im.decode().then(r, r); im.onerror = r; })));
+}
+
+/* ---------- cover ---------- */
+function coverMode() {
+  const S = SCRIPT, c = S.cover; $('beats').innerHTML = ''; items.length = 0; byEl.clear(); window.FIT_WARNINGS = [];
+  $('cap').style.visibility = 'hidden'; $('wipe').style.visibility = 'hidden'; reg($('logoSmall'), { o: .92 });
+  const g = el('div', 'beat cover', $('beats')); reg(g, { o: 1 });
+  addFill(g, S, c.photo, false);
+  const b = { kb: c.kb || { from: [1, 0, 0] }, pos: c.pos, band: c.band };
+  if (c.layout === 'full') addFull(g, S, c.photo, b, 0, 1); else { addBand(g, S, c.photo, b, 0, 1); el('div', 'layer topVig', g); }
+  for (const bl of (c.blurs || [])) { const d = el('div', 'blurbox', g); d.style.left = bl.x + 'px'; d.style.top = bl.y + 'px'; d.style.width = bl.w + 'px'; d.style.height = bl.h + 'px'; if (bl.r !== undefined) d.style.borderRadius = bl.r + 'px'; }   // cover privacy boxes, same format as a beat's blurs
+  el('div', 'cgrad', g);
+  const sp = pill(g, S.series, 'seriesPill', 'series'); reg(sp, { o: 1 });
+  const mk = (line, sz) => { const d = document.createElement('div'); d.className = 'ctitle line'; d.style.position = 'static'; d.style.width = 'auto'; d.style.display = 'inline-block'; d.style.fontSize = sz + 'px'; d.innerHTML = goldHtml(line); return d; };
+  const sz = fitSize(c.title, [150, 140, 130, 120, 110], 950, mk);
+  const t = el('div', 'ctitle', g); t.style.fontSize = sz + 'px';
+  c.title.forEach(line => { const d = el('div', 'line q', t); d.dataset.g = 'ctitle'; d.innerHTML = goldHtml(line); });
+  const h = t.getBoundingClientRect().height; t.style.top = Math.round(1250 - h) + 'px';
+  window.COVER_TITLE = t; return true;
+}
+function coverBox() { const r = window.COVER_TITLE.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; }
+
+/* ---------- QA sampling ---------- */
+function effOpacity(e) { let o = 1; while (e && e !== document.body) { const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') return 0; o *= parseFloat(cs.opacity); e = e.parentElement; } return o; }
+function qaSample() {
+  const fails = [], strings = [], boxes = []; let maxScale = 0;
+  document.querySelectorAll('.q').forEach(e => {
+    if (effOpacity(e) < 0.05) return;
+    let r = e.getBoundingClientRect();
+    const ws = [...e.querySelectorAll('.w')];
+    if (ws.length) {   // word-by-word headlines: only the words that are actually on screen count
+      const vis = ws.filter(w => effOpacity(w) >= 0.6).map(w => w.getBoundingClientRect()); if (!vis.length) return;
+      r = { left: Math.min(...vis.map(b => b.left)), right: Math.max(...vis.map(b => b.right)), top: Math.min(...vis.map(b => b.top)), bottom: Math.max(...vis.map(b => b.bottom)) }; r.width = r.right - r.left; r.height = r.bottom - r.top;
+    }
+    if (r.width < 1 || r.height < 1) return;
+    const txt = (e.textContent || '').trim(); const isLogo = e.classList.contains('qlogo');
+    if (!isLogo && !txt) return;
+    if (txt) strings.push(txt);
+    const name = (isLogo ? 'logo' : JSON.stringify(txt.slice(0, 30)));
+    if (r.top < 250) fails.push(`${name} above y250 (top ${r.top.toFixed(0)})`);
+    if (r.bottom > 1470) fails.push(`${name} below y1470 (bottom ${r.bottom.toFixed(0)})`);
+    if (r.left < 65 || r.right > 1015) fails.push(`${name} outside x65-1015 (${r.left.toFixed(0)}-${r.right.toFixed(0)})`);
+    if (r.bottom > 1000 && r.right > 920) fails.push(`${name} right of x920 below y1000 (right ${r.right.toFixed(0)})`);
+    boxes.push({ name, g: e.dataset.g || '', r });
+  });
+  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+    const a = boxes[i], b = boxes[j]; if (a.g && a.g === b.g) continue;
+    const ox = Math.min(a.r.right, b.r.right) - Math.max(a.r.left, b.r.left), oy = Math.min(a.r.bottom, b.r.bottom) - Math.max(a.r.top, b.r.top);
+    if (ox > 4 && oy > 4) fails.push(`overlap ${a.name} x ${b.name}`);
+  }
+  document.querySelectorAll('.card').forEach(c => { if (effOpacity(c) < 0.05) return; const r = c.getBoundingClientRect(); if (r.top < 1151) fails.push(`card top above 1152 (${r.top.toFixed(0)})`); });
+  document.querySelectorAll('img.sharp').forEach(im => {
+    if (effOpacity(im) < 0.05) return; const r = im.getBoundingClientRect(); if (r.width < 1) return;
+    const fit = getComputedStyle(im).objectFit; const sx = r.width / im.naturalWidth, sy = r.height / im.naturalHeight;
+    const eff = fit === 'contain' ? Math.min(sx, sy) : Math.max(sx, sy); maxScale = Math.max(maxScale, eff);
+    if (eff > 1.30) fails.push(`sharp photo ${im.src.split('/').pop()} at ${eff.toFixed(3)}x`);
+  });
+  document.querySelectorAll('.band img.sharp, img.full.sharp, .band .clipwrap').forEach(im => {   // a panned or zoomed photo (or clip wrapper) must still cover its band / the frame
+    if (effOpacity(im) < 0.05) return; const r = im.getBoundingClientRect(); if (r.width < 1) return;
+    const c = im.classList.contains('full') ? { left: 0, top: 0, right: 1080, bottom: 1920 } : im.parentElement.getBoundingClientRect();
+    if (r.left > c.left + 1 || r.top > c.top + 1 || r.right < c.right - 1 || r.bottom < c.bottom - 1) fails.push(`photo edge exposed ${im.src.split('/').pop()} img(${r.left.toFixed(0)},${r.top.toFixed(0)},${r.right.toFixed(0)},${r.bottom.toFixed(0)}) box(${c.left.toFixed(0)},${c.top.toFixed(0)},${c.right.toFixed(0)},${c.bottom.toFixed(0)})`);
+  });
+  return { fails, strings, maxScale };
+}
+window.ready = (async () => { await document.fonts.load('900 100px Outfit'); await document.fonts.load('800 40px Outfit'); await document.fonts.ready; return true; })();
+</script>
+<!-- diagram / callout modules: each registers into DIAGRAMS or CALLOUTS; built the first time a video needs it -->
+<script src="diagrams/fence_posts.js"></script>
+<script src="diagrams/wind.js"></script>
+<script src="diagrams/callouts.js"></script>
+<script src="diagrams/wall_drainage.js"></script>
+<script src="diagrams/paver_layers.js"></script>
+<script src="diagrams/turf_layers.js"></script>
+<script src="diagrams/bedding.js"></script>
+<script src="diagrams/gate_brace.js"></script>
+<script src="diagrams/terrace_spacing.js"></script>
+<script src="diagrams/grading.js"></script>
+<script src="diagrams/edge_restraint.js"></script>
+<script src="diagrams/light_aim.js"></script>
+<script src="diagrams/fence_rules.js"></script>
+<script src="diagrams/wall_base.js"></script>
+<script src="diagrams/clip_myth.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Boundary Builders Winter ad: the owner's photos, renders and finished videos stay out of git.
+photos/
+renders/
+final/
+qa/
+*.mp4
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.caf
+*.mp3
+__pycache__/
+*.pyc
+!logo_gold.png

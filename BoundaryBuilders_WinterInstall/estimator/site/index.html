@@ -1,0 +1,2453 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Boundary Builders Instant Quote</title>
+<link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Boundary Builders instant quote.
+   Brand: the website's charcoal header, golden yellow (#FFC527) actions and Outfit type, on a clean white page.
+   On desktop a sticky photo stage follows what the client picks; on phones it is one column with a sticky action bar.
+   Light theme only, to match boundarybuilders.ca. */
+
+@font-face { font-family: "Outfit BB"; font-style: normal; font-display: swap; font-weight: 100 900;
+  src: url(assets/fonts/outfit-latin-wght-normal.woff2) format("woff2-variations"), url(assets/fonts/outfit-latin-wght-normal.woff2) format("woff2"); }
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-2: #f6f5f0;
+  --bg-3: #efeee8;
+  --card: #ffffff;
+  --ink: #1f1f1f;
+  --ink-2: #4a4a47;
+  --ink-3: #6b6b66;
+  --line: #e7e6e0;
+  --line-2: #d3d2cb;
+  --brand: #ffc527;
+  --brand-hi: #ffd04f;
+  --brand-press: #f2b400;
+  --brand-soft: #fff6d5;
+  --brand-line: #f1d276;
+  --brand-ink: #8a6400;
+  --brand-deep: #5a4300;
+  --char: #1f1f1f;
+  --char-2: #2b2b2a;
+  --on-char: #ffffff;
+  --on-char-2: #b9b9b2;
+  --good: #1e7a46;
+  --good-soft: #e4f3ea;
+  --danger: #b42318;
+  --m-post: #2b3238;
+  --m-wood: #c98d57;
+  --m-wood-2: #a96f3d;
+  --m-steel: #2f373e;
+  --m-steel-2: #485159;
+  --m-comp: #8b7766;
+  --m-comp-2: #76624f;
+  --m-paver: #a9aca6;
+  --m-paver-2: #8f938d;
+  --m-turf: #6d9a4f;
+  --m-turf-2: #5a8640;
+  --m-soil: #9a7b5a;
+  --m-block: #a19f96;
+  --m-block-2: #898780;
+  --m-conc: #bfc3be;
+  --shadow-1: 0 1px 2px rgba(31, 31, 31, .05), 0 10px 24px -16px rgba(31, 31, 31, .30);
+  --shadow-2: 0 2px 6px rgba(31, 31, 31, .06), 0 28px 56px -28px rgba(31, 31, 31, .40);
+  --f-sans: "Outfit BB", "Outfit", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --r-lg: 20px;
+  --r-md: 16px;
+  --r-sm: 12px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --gut: clamp(16px, 4vw, 40px);
+  --top-h: 66px;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; }
+img { display: block; }
+button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--char); outline-offset: 2px; }
+.sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.num { font-variant-numeric: tabular-nums; }
+.cap { font-weight: 600; font-size: 12px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; }
+
+/* page backdrop: a warm glow behind the top of the page and a row of fence boards along the bottom, both very soft */
+.app { position: relative; isolation: isolate; min-height: 100vh; min-height: 100dvh; }
+.app::before {
+  content: ""; position: fixed; z-index: -1; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 92% 0%, rgba(255, 197, 39, .16), rgba(255, 197, 39, 0) 70%),
+    radial-gradient(700px 360px at 0% 100%, rgba(255, 197, 39, .08), rgba(255, 197, 39, 0) 70%);
+  animation: glow 14s var(--ease) infinite alternate;
+}
+@keyframes glow { from { opacity: .75; transform: translateY(0); } to { opacity: 1; transform: translateY(-14px); } }
+
+/* ---------- top bar: the website's charcoal header with the real logo ---------- */
+.top { position: sticky; top: 0; z-index: 30; background: var(--char); color: var(--on-char); padding-top: env(safe-area-inset-top, 0px); }
+.top::after {
+  /* speed lines from the logo, drifting slowly */
+  content: ""; position: absolute; inset: 0 0 4px; pointer-events: none; opacity: .5;
+  background: repeating-linear-gradient(115deg, rgba(255, 197, 39, 0) 0 22px, rgba(255, 197, 39, .07) 22px 24px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 100%); mask-image: linear-gradient(90deg, transparent 30%, #000 100%);
+  background-size: 200% 100%; animation: drift 38s linear infinite;
+}
+@keyframes drift { from { background-position: 0 0; } to { background-position: -400px 0; } }
+.top-in {
+  position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding-inline: var(--gut);
+  height: var(--top-h); display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.brand { display: flex; align-items: center; min-width: 0; text-decoration: none; }
+.brand img { height: 44px; width: auto; }
+.meter { margin: 0; font-weight: 600; font-size: 12px; letter-spacing: .14em; color: var(--on-char-2); text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+.meter b { color: var(--brand); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.meter-bar { width: 1px; height: 14px; background: rgba(255, 255, 255, .25); }
+.meter .num:last-child { color: var(--on-char); }
+
+/* the tape: a tape-measure progress line under the header */
+.tape { position: relative; z-index: 1; height: 8px; background: var(--char-2); }
+.tape::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .28) 0 1px, transparent 1px 60px) bottom left / 100% 7px no-repeat,
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .14) 0 1px, transparent 1px 12px) bottom left / 100% 4px no-repeat;
+}
+.tape-fill {
+  position: absolute; left: 0; bottom: 0; height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--brand-press), var(--brand));
+  transform-origin: left center; transform: scaleX(var(--p, .08));
+  transition: transform .7s var(--ease-out);
+}
+.tape-hook {
+  position: absolute; bottom: -3px; left: 0; width: 10px; height: 10px; border-radius: 2px;
+  background: var(--brand); box-shadow: 0 0 0 3px var(--char-2);
+  transform: translateX(calc(var(--p, .08) * (100vw - 10px)));
+  transition: transform .7s var(--ease-out);
+}
+
+/* ---------- layout ---------- */
+.layout {
+  width: 100%; max-width: 1320px; margin: 0 auto; padding-inline: var(--gut);
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 3.4vw, 56px);
+}
+.stage { display: none; }
+@media (min-width: 1024px) {
+  .layout { grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); align-items: start; }
+  .stage { display: block; }
+}
+
+/* ---------- stage (desktop) ---------- */
+.stage {
+  position: sticky; top: calc(var(--top-h) + 8px + 22px);
+  margin-top: 22px;
+  height: calc(100vh - var(--top-h) - 64px);
+  height: calc(100dvh - var(--top-h) - 64px);
+  min-height: 520px; max-height: 900px;
+  border-radius: 24px; overflow: hidden; isolation: isolate;
+  background: var(--char-2); box-shadow: var(--shadow-2);
+}
+.stage-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06); transition: opacity .7s var(--ease), transform 1.6s var(--ease-out);
+}
+.stage-img.is-on { opacity: 1; transform: scale(1); }
+.stage-img.is-drawing { object-fit: contain; background: var(--bg-2); }
+.stage::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(180deg, rgba(20, 20, 20, .40) 0%, rgba(20, 20, 20, 0) 22%, rgba(20, 20, 20, 0) 46%, rgba(20, 20, 20, .84) 100%);
+}
+.stage-chip {
+  position: absolute; z-index: 2; top: 18px; left: 18px;
+  font-weight: 700; font-size: 11px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; color: var(--char);
+  padding: 8px 12px; border-radius: 999px; background: var(--brand);
+}
+.stage-cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 28px 30px 30px; color: #fff; display: grid; gap: 8px; }
+.stage-kicker { font-weight: 600; font-size: 12px; line-height: 1.2; letter-spacing: .16em; text-transform: uppercase; color: var(--brand); margin: 0; }
+.stage-title { font-weight: 800; font-size: clamp(1.6rem, 1rem + 1.3vw, 2.3rem); line-height: 1.06; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+.stage-sub { margin: 0; color: rgba(255, 255, 255, .86); font-size: 1rem; max-width: 46ch; }
+.stage-cap.swap > * { animation: capIn .6s var(--ease-out) both; }
+.stage-cap.swap > :nth-child(2) { animation-delay: .05s; }
+.stage-cap.swap > :nth-child(3) { animation-delay: .1s; }
+@keyframes capIn { from { transform: translateX(-14px); opacity: 0; } to { transform: none; opacity: 1; } }
+.stage-trust { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.stage-trust li {
+  font-weight: 600; font-size: 12px; line-height: 1; letter-spacing: .04em; color: #fff;
+  padding: 9px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .26); background: rgba(255, 255, 255, .08);
+}
+
+/* ---------- flow column ---------- */
+.flow { min-width: 0; padding-top: clamp(22px, 3.2vw, 44px); display: flex; flex-direction: column; min-height: calc(100vh - var(--top-h) - 8px); min-height: calc(100dvh - var(--top-h) - 8px); }
+.qform { flex: 1; display: flex; flex-direction: column; }
+.steps { flex: 1; }
+.step { outline: none; }
+.step-head { display: grid; gap: 12px; margin-bottom: 24px; }
+.eyebrow {
+  display: flex; align-items: center; gap: 10px; margin: 0;
+  font-weight: 600; font-size: 12px; line-height: 1.3; letter-spacing: .16em; text-transform: uppercase; color: var(--brand-ink);
+}
+.eyebrow::before { content: ""; width: 16px; height: 4px; border-radius: 2px; background: var(--brand); flex: none; }
+.q {
+  margin: 0; font-weight: 800; letter-spacing: -.025em; line-height: 1.04;
+  font-size: clamp(2rem, 1.35rem + 2.3vw, 3rem); text-wrap: balance; outline: none; color: var(--ink);
+}
+.sub { margin: 0; color: var(--ink-2); font-size: 1.0625rem; line-height: 1.55; max-width: 54ch; text-wrap: pretty; }
+.sub b { color: var(--ink); font-weight: 600; }
+
+/* ---------- row choices ---------- */
+.choices { display: grid; gap: 12px; }
+.choice {
+  position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px;
+  padding: 10px 18px 10px 10px; border-radius: var(--r-md);
+  background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-1);
+  cursor: pointer; user-select: none; -webkit-user-select: none;
+  transition: border-color .2s var(--ease), box-shadow .3s var(--ease), transform .35s var(--ease-out), background-color .25s var(--ease);
+}
+.choice:hover { border-color: var(--line-2); transform: translateY(-3px); box-shadow: var(--shadow-2); }
+.choice:active { transform: translateY(0) scale(.992); }
+.choice.is-on { border-color: var(--brand-press); background: var(--brand-soft); box-shadow: 0 0 0 1.5px var(--brand-press), var(--shadow-1); }
+.choice.is-focus { outline: 3px solid var(--char); outline-offset: 3px; }
+.choice > input, .option > input, .chip > input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.thumb { position: relative; width: 96px; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--bg-3); flex: none; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out); }
+.choice:hover .thumb img, .choice.is-on .thumb img { transform: scale(1.07); }
+.c-body { min-width: 0; display: grid; gap: 3px; }
+.c-title { font-weight: 700; font-size: 1.14rem; line-height: 1.2; letter-spacing: -.01em; }
+.c-sub { color: var(--ink-2); font-size: .96rem; line-height: 1.4; }
+.c-meta { margin-top: 4px; font-weight: 600; font-size: 11.5px; line-height: 1.35; letter-spacing: .08em; color: var(--ink-3); text-transform: uppercase; }
+.c-price { margin-top: 4px; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.c-price small { font-weight: 600; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; margin-right: 5px; color: var(--ink-3); }
+.c-price.tbd { font-weight: 600; font-size: 11.5px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.big .thumb { width: 112px; }
+@media (max-width: 380px) { .thumb { width: 82px; } .big .thumb { width: 92px; } .choice { gap: 12px; padding-right: 14px; } }
+
+/* selection mark */
+.tick {
+  width: 28px; height: 28px; flex: none; display: grid; place-items: center;
+  border-radius: 50%; border: 1.5px solid var(--line-2); background: var(--card);
+  transition: background-color .25s var(--ease), border-color .25s var(--ease), transform .35s var(--ease-out);
+}
+.tick.sq { border-radius: 8px; }
+.tick svg { width: 16px; height: 16px; fill: none; stroke: var(--char); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset .38s var(--ease-out) .06s; }
+.is-on > .tick, .is-on .tick { background: var(--brand); border-color: var(--char); animation: pop .42s var(--ease-out); }
+.is-on > .tick svg, .is-on .tick svg { stroke-dashoffset: 0; }
+@keyframes pop { 0% { transform: scale(.7); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* ---------- rich option cards (cedar quality, metal colour) ---------- */
+.options { display: grid; gap: 16px; }
+.option {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr);
+  background: var(--card); border: 1.5px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--shadow-1); cursor: pointer; user-select: none; -webkit-user-select: none;
+  transition: border-color .2s var(--ease), box-shadow .3s var(--ease), transform .35s var(--ease-out);
+}
+.option:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: var(--line-2); }
+.option:active { transform: scale(.995); }
+.option.is-on { border-color: var(--brand-press); box-shadow: 0 0 0 1.5px var(--brand-press), var(--shadow-2); background: var(--brand-soft); }
+.option.is-focus { outline: 3px solid var(--char); outline-offset: 3px; }
+.o-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-3); }
+.o-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
+.option:hover .o-media img, .option.is-on .o-media img { transform: scale(1.05); }
+.o-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 20, 20, .32), rgba(20, 20, 20, 0) 42%); pointer-events: none; }
+.o-tier {
+  position: absolute; z-index: 1; top: 12px; left: 12px;
+  font-weight: 700; font-size: 11px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; color: var(--char);
+  padding: 8px 11px; border-radius: 999px; background: var(--brand);
+}
+.option .tick { position: absolute; z-index: 1; top: 12px; right: 12px; width: 32px; height: 32px; border-color: rgba(255, 255, 255, .9); background: rgba(20, 20, 20, .35); }
+.option.is-on .tick { border-color: var(--char); background: var(--brand); }
+.o-body { display: grid; gap: 10px; padding: 16px 18px 18px; }
+.o-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.o-name { margin: 0; font-weight: 800; font-size: 1.3rem; line-height: 1.15; letter-spacing: -.015em; display: flex; align-items: center; gap: 10px; }
+.o-price { text-align: right; white-space: nowrap; display: grid; justify-items: end; gap: 3px; }
+.o-price small { font-weight: 600; font-size: 10.5px; line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.o-price b { font-weight: 800; font-size: 1.5rem; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.o-price b span { font-weight: 600; font-size: 12px; color: var(--ink-3); margin-left: 2px; letter-spacing: 0; }
+.o-price.tbd b { font-weight: 600; font-size: 11.5px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); white-space: normal; text-align: right; max-width: 11ch; }
+.o-who { display: block; margin: 0; color: var(--ink-2); font-size: 1rem; line-height: 1.45; }
+.o-specs { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.o-specs > span { font-weight: 500; font-size: 12.5px; line-height: 1; color: var(--ink-2); padding: 8px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-2); }
+.option.is-on .o-specs > span { background: rgba(255, 255, 255, .7); border-color: var(--brand-line); }
+.swatch { width: 18px; height: 18px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25), 0 0 0 1px var(--line-2); }
+.sw-black { background: #1d2125; }
+.sw-grey { background: linear-gradient(135deg, #6f777d, #555d63); }
+.sw-brown { background: repeating-linear-gradient(100deg, #8a5a32 0 3px, #a8733f 3px 6px, #94643a 6px 9px); }
+@media (min-width: 1180px) {
+  .options.h .option { grid-template-columns: 42% minmax(0, 1fr); }
+  .options.h .o-media { aspect-ratio: auto; min-height: 100%; }
+  .options.h .option .tick { right: auto; left: calc(42% - 46px); }
+}
+.note-line { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 0; padding: 14px 16px; border-radius: var(--r-md); background: var(--bg-2); border: 1px dashed var(--line-2); color: var(--ink-2); font-size: .95rem; }
+.note-line svg { flex: none; width: 20px; height: 20px; margin-top: 1px; stroke: var(--brand-ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- gates ---------- */
+.gate { grid-template-columns: minmax(0, 1fr); padding: 0; }
+.gate-hit { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 10px 18px 10px 10px; min-width: 0; }
+.gate-ctl { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.btn.add { min-height: 40px; padding: 0 16px 0 12px; gap: 6px; border-radius: 999px; font-size: .95rem; }
+.btn.add svg { width: 16px; height: 16px; }
+.qty-l { font-weight: 600; font-size: 11.5px; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 0 8px 0 2px; }
+.qty { display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--brand-line); border-radius: 999px; padding: 3px; background: var(--card); }
+.qty button { width: 34px; height: 34px; border-radius: 50%; border: 0; background: transparent; font-size: 1.25rem; line-height: 1; cursor: pointer; display: grid; place-items: center; color: var(--ink); }
+.qty button:hover { background: var(--bg-2); }
+.qty output { min-width: 22px; text-align: center; font-weight: 800; font-variant-numeric: tabular-nums; }
+.choice.slim { grid-template-columns: auto minmax(0, 1fr) auto; padding: 16px 18px; }
+.slim-ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--bg-2); }
+.slim-ic svg { width: 22px; height: 22px; fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.choice.is-on .slim-ic { background: #fff; }
+
+/* ---------- measurements ---------- */
+.mlist { display: grid; gap: 16px; }
+.mblock { display: grid; gap: 14px; padding: 18px; border-radius: var(--r-lg); background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-1); }
+.mblock.is-bad { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger), var(--shadow-1); }
+.mhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.mhead h2 { margin: 0; font-size: 1.18rem; font-weight: 800; letter-spacing: -.01em; }
+.mhead .cap { color: var(--brand-ink); font-size: 11px; }
+.mdraw { border-radius: 14px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line); }
+.mdraw svg { display: block; width: 100%; height: auto; }
+.mfield { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 8px; }
+.mbtn {
+  height: 58px; border-radius: 16px; border: 1.5px solid var(--line-2); background: var(--card); cursor: pointer;
+  font-size: 1.5rem; line-height: 1; display: grid; place-items: center; transition: background-color .2s, transform .2s var(--ease-out), border-color .2s;
+}
+.mbtn:hover { background: var(--brand-soft); border-color: var(--brand-line); }
+.mbtn:active { transform: scale(.94); }
+.minput { position: relative; min-width: 0; }
+.minput input {
+  width: 100%; height: 58px; border-radius: 16px; border: 1.5px solid var(--line-2); background: var(--card);
+  text-align: center; padding: 0 74px 0 18px; font-weight: 800; font-size: 1.65rem;
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em; transition: border-color .2s, box-shadow .2s;
+}
+.minput input::placeholder { color: var(--line-2); }
+.minput input:focus { outline: none; border-color: var(--char); box-shadow: 0 0 0 4px rgba(255, 197, 39, .55); }
+.minput input:disabled { opacity: .45; }
+.minput .unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 11.5px; line-height: 1.15; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); text-align: right; pointer-events: none; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.preset, .chip {
+  position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 999px;
+  border: 1.5px solid var(--line-2); background: var(--card); font-weight: 600; font-size: 13.5px; line-height: 1;
+  cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease-out);
+}
+.preset:hover, .chip:hover { border-color: var(--ink-3); }
+.preset:active, .chip:active { transform: scale(.96); }
+.preset.is-on, .chip.is-on { background: var(--brand); color: var(--char); border-color: var(--char); }
+.chip.is-focus { outline: 3px solid var(--char); outline-offset: 2px; }
+.tip { margin: 0; display: flex; gap: 9px; color: var(--ink-2); font-size: .95rem; line-height: 1.45; }
+.tip svg { flex: none; width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: var(--brand-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.linkbtn { border: 0; background: none; padding: 4px 0; cursor: pointer; color: var(--ink); font-weight: 600; font-size: .96rem; text-decoration: underline; text-decoration-color: var(--brand-press); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.linkbtn:hover { text-decoration-color: var(--char); }
+.unsure { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: var(--ink-2); font-size: .96rem; }
+.unsure input { width: 20px; height: 20px; accent-color: var(--char); margin: 0; }
+.lw { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px; align-items: center; padding: 12px; border-radius: 14px; background: var(--bg-2); border: 1px dashed var(--line-2); }
+.lw label { display: grid; gap: 5px; font-weight: 600; font-size: 11px; line-height: 1; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.lw input { height: 46px; border-radius: 12px; border: 1.5px solid var(--line-2); background: var(--card); padding: 0 12px; font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; width: 100%; }
+.lw input:focus { outline: none; border-color: var(--char); box-shadow: 0 0 0 3px rgba(255, 197, 39, .55); }
+.lw-x { font-weight: 700; color: var(--ink-3); padding-top: 16px; }
+.hgt { display: grid; gap: 8px; }
+.hgt-l { font-weight: 600; font-size: 11.5px; line-height: 1; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.err { margin: 0; color: var(--danger); font-size: .93rem; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.err::before { content: "!"; width: 18px; height: 18px; border-radius: 50%; background: var(--danger); color: #fff; font-size: 12px; font-weight: 800; display: grid; place-items: center; flex: none; }
+
+/* measurement drawings */
+.d-ground { stroke: var(--ink-3); stroke-width: 1.5; }
+.d-dim { stroke: var(--char); stroke-width: 1.5; fill: none; }
+.d-dimt { fill: var(--char); font: 700 19px var(--f-sans); letter-spacing: .01em; }
+.d-tag { fill: var(--brand); }
+.d-post { fill: var(--m-post); }
+.d-wood { fill: var(--m-wood); }
+.d-wood2 { stroke: var(--m-wood-2); stroke-width: 1; }
+.d-steel { fill: var(--m-steel); }
+.d-steel2 { stroke: var(--m-steel-2); stroke-width: 1.2; }
+.d-comp { fill: var(--m-comp); }
+.d-comp2 { stroke: var(--m-comp-2); stroke-width: 1; }
+.d-soil { fill: var(--m-soil); }
+.d-turf { fill: var(--m-turf); }
+.d-turf2 { stroke: var(--m-turf-2); stroke-width: 1; }
+.d-paver { fill: var(--m-paver); }
+.d-paver2 { stroke: var(--m-paver-2); stroke-width: 1; }
+.d-block { fill: var(--m-block); }
+.d-block2 { stroke: var(--m-block-2); stroke-width: 1; }
+.d-conc { fill: var(--m-conc); }
+.d-ghost { opacity: .32; }
+.d-panel { transform-box: fill-box; transform-origin: 50% 100%; animation: grow .45s var(--ease-out) both; }
+@keyframes grow { from { transform: scaleY(.2); } to { transform: none; } }
+.d-pop { transform-box: fill-box; transform-origin: center; animation: pop .45s var(--ease-out); }
+
+/* ---------- removal + photos ---------- */
+.yn { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .yn { grid-template-columns: 1fr 1fr; } }
+.yn .choice { grid-template-columns: auto minmax(0, 1fr) auto; padding: 16px; }
+.sect { margin-top: 30px; display: grid; gap: 12px; }
+.sect-h { margin: 0; font-size: 1.28rem; font-weight: 800; letter-spacing: -.015em; }
+.sect-h span { font-weight: 500; color: var(--ink-3); font-size: 1rem; letter-spacing: 0; }
+.drop {
+  display: grid; justify-items: center; gap: 6px; padding: 26px 18px; text-align: center; cursor: pointer;
+  border: 2px dashed var(--line-2); border-radius: var(--r-lg); background: var(--card);
+  transition: border-color .2s, background-color .2s, transform .3s var(--ease-out);
+}
+.drop:hover { border-color: var(--brand-press); background: var(--brand-soft); }
+.drop.is-over { border-color: var(--brand-press); background: var(--brand-soft); transform: scale(1.01); }
+.drop.is-focus { outline: 3px solid var(--char); outline-offset: 3px; }
+.drop-ic { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); margin-bottom: 4px; }
+.drop-ic svg { width: 24px; height: 24px; fill: none; stroke: var(--char); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.drop b { font-weight: 700; font-size: 1.06rem; }
+.drop span { color: var(--ink-3); font-size: .92rem; }
+.thumbs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 8px; }
+.thumbs li { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--bg-3); animation: pop .4s var(--ease-out); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.thumbs button { position: absolute; top: 5px; right: 5px; width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer; background: rgba(20, 20, 20, .75); color: #fff; display: grid; place-items: center; }
+.thumbs button svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.thumbs .up { position: absolute; left: 6px; bottom: 6px; width: 20px; height: 20px; border-radius: 50%; background: var(--good); display: grid; place-items: center; }
+.thumbs .up svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; }
+
+/* ---------- contact ---------- */
+.locked {
+  position: relative; overflow: hidden; border-radius: var(--r-lg); padding: 20px 22px 22px; margin-bottom: 22px;
+  background: linear-gradient(135deg, var(--brand-soft) 0%, #fffdf5 62%); border: 1.5px solid var(--brand-line);
+  color: var(--ink); display: grid; gap: 10px; box-shadow: var(--shadow-1);
+}
+.locked::after {
+  content: ""; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(255, 197, 39, 0) 0 12px, rgba(255, 197, 39, .35) 12px 15px);
+  -webkit-mask-image: radial-gradient(circle at 70% 30%, #000 0 40%, transparent 70%); mask-image: radial-gradient(circle at 70% 30%, #000 0 40%, transparent 70%);
+}
+.locked > * { position: relative; }
+.l-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ready { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 11.5px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; color: var(--good); }
+.ready i { width: 8px; height: 8px; border-radius: 50%; background: #22a35a; box-shadow: 0 0 0 0 rgba(34, 163, 90, .5); animation: ping 1.8s infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34, 163, 90, .5); } 80%, 100% { box-shadow: 0 0 0 10px rgba(34, 163, 90, 0); } }
+.l-lock { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); }
+.l-lock svg { width: 18px; height: 18px; stroke: var(--char); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.l-label { font-weight: 600; font-size: 11.5px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-ink); margin: 0; }
+.l-amt { margin: 0; display: flex; align-items: baseline; gap: 10px; }
+.l-amt small { font-weight: 600; font-size: 12px; color: var(--ink-3); letter-spacing: .06em; }
+.l-amt b { font-weight: 800; font-size: clamp(2.3rem, 1.6rem + 2.2vw, 3.1rem); line-height: 1; filter: blur(10px); opacity: .85; user-select: none; -webkit-user-select: none; animation: shimmer 2.6s var(--ease) infinite; }
+@keyframes shimmer { 0%, 100% { filter: blur(10px); } 50% { filter: blur(13px); } }
+.l-note { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.fields { display: grid; gap: 14px; }
+.field { display: grid; gap: 7px; }
+.field label { font-weight: 600; font-size: .98rem; }
+.field label span { font-weight: 400; color: var(--ink-3); }
+.field input, .field textarea {
+  width: 100%; min-height: 56px; border-radius: 16px; border: 1.5px solid var(--line-2); background: var(--card);
+  padding: 0 16px; font-size: 1.08rem; transition: border-color .2s, box-shadow .2s;
+}
+.field textarea { padding: 14px 16px; min-height: 96px; resize: vertical; line-height: 1.45; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--char); box-shadow: 0 0 0 4px rgba(255, 197, 39, .55); }
+.field.is-bad input { border-color: var(--danger); }
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.fine { margin: 4px 0 0; display: flex; gap: 9px; color: var(--ink-3); font-size: .9rem; line-height: 1.45; }
+.fine svg { flex: none; width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fine a, .fine .linkbtn, .fine-print a, .fine-print .linkbtn { color: inherit; font-size: inherit; font-weight: 600; padding: 0; }
+
+/* ---------- calculating ---------- */
+.calc { display: grid; justify-items: center; gap: 24px; padding: clamp(24px, 6vh, 64px) 0; text-align: center; }
+.calc-draw { width: min(420px, 100%); }
+.calc-draw path, .calc-draw line, .calc-draw rect { fill: none; stroke: var(--char); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.calc-draw .dr.y { stroke: var(--brand-press); stroke-width: 3; }
+.calc.run .calc-draw .dr { animation: draw .9s var(--ease-out) forwards; }
+.calc-draw .g { stroke: var(--line-2); stroke-width: 1.5; stroke-dasharray: none; stroke-dashoffset: 0; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.calc-h { margin: 0; font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); letter-spacing: -.02em; }
+.calc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; text-align: left; font-weight: 500; font-size: 15px; line-height: 1.3; color: var(--ink-2); }
+.calc-list li { display: flex; align-items: center; gap: 12px; opacity: .35; transition: opacity .3s var(--ease); }
+.calc-list li.is-done { opacity: 1; }
+.calc-list .ck { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line-2); display: grid; place-items: center; flex: none; transition: background-color .25s, border-color .25s; }
+.calc-list .ck svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset .35s var(--ease-out); }
+.calc-list .is-done .ck { background: var(--good); border-color: var(--good); }
+.calc-list .is-done .ck svg { stroke-dashoffset: 0; }
+
+/* ---------- result ---------- */
+.result { display: grid; gap: 22px; }
+.result > * { animation: rise .7s var(--ease-out) both; }
+.result > :nth-child(2) { animation-delay: .06s; } .result > :nth-child(3) { animation-delay: .12s; }
+.result > :nth-child(4) { animation-delay: .18s; } .result > :nth-child(5) { animation-delay: .24s; }
+.result > :nth-child(6) { animation-delay: .3s; } .result > :nth-child(7) { animation-delay: .36s; }
+.r-head { display: grid; gap: 12px; }
+.r-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; font-weight: 600; font-size: 11.5px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.r-meta b { color: var(--ink); font-weight: 700; }
+.grp { display: grid; gap: 10px; }
+.grp-h { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 600; font-size: 12px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.grp-h span { color: var(--ink); }
+.opr {
+  position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center;
+  padding: 12px 18px 12px 12px; border-radius: var(--r-lg); background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-1);
+}
+.opr .thumb { width: 92px; }
+.opr-body { min-width: 0; display: grid; gap: 4px; }
+.opr-n { font-weight: 700; font-size: 11.5px; line-height: 1; letter-spacing: .16em; text-transform: uppercase; color: var(--brand-ink); }
+.opr-name { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+.opr-calc { font-weight: 500; font-size: 13px; line-height: 1.35; color: var(--ink-3); }
+.amt { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+.amt small { font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--ink-3); text-transform: lowercase; }
+.amt b { font-weight: 800; font-size: 1.95rem; line-height: 1.05; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.amt.tbd b { font-weight: 700; font-size: 12.5px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+.sheet { border-radius: var(--r-lg); background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-1); padding: 4px 18px; }
+.ln { display: flex; align-items: baseline; gap: 12px; padding: 13px 0; border-top: 1px dashed var(--line-2); }
+.ln:first-child { border-top: 0; }
+.ln-l { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.ln-l b { font-weight: 700; }
+.ln-l span { color: var(--ink-3); font-size: .92rem; }
+.ln-v { white-space: nowrap; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.ln-v small { font-weight: 600; font-size: 11px; letter-spacing: .06em; color: var(--ink-3); margin-right: 5px; }
+.ln-v.tbd { font-weight: 700; font-size: 11.5px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); white-space: normal; max-width: 12ch; }
+
+/* the total: the website's yellow band */
+.total {
+  position: relative; overflow: hidden; border-radius: 24px; padding: 24px 22px 22px; display: grid; gap: 14px;
+  background: var(--brand); color: var(--char); box-shadow: 0 24px 50px -26px rgba(160, 110, 0, .65);
+}
+.total::after {
+  content: ""; position: absolute; right: -30px; bottom: -50px; width: 260px; height: 200px; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(31, 31, 31, 0) 0 14px, rgba(31, 31, 31, .07) 14px 18px);
+  -webkit-mask-image: radial-gradient(circle at 70% 70%, #000 0 35%, transparent 72%); mask-image: radial-gradient(circle at 70% 70%, #000 0 35%, transparent 72%);
+}
+.total > * { position: relative; z-index: 1; }
+.t-h { margin: 0; font-weight: 700; font-size: 12px; line-height: 1.3; letter-spacing: .18em; text-transform: uppercase; color: var(--brand-deep); }
+.t-rows { display: grid; gap: 12px; }
+.t-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 12px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid rgba(31, 31, 31, .14); }
+.t-row:first-child { padding-top: 0; border-top: 0; }
+.t-row > span { color: #3d3d3a; font-size: 1rem; font-weight: 500; }
+.t-note { display: block; font-style: normal; font-size: .86rem; color: var(--brand-deep); margin-top: 2px; }
+.t-row .amt small { color: var(--brand-deep); }
+.t-row .amt b { font-size: clamp(2.1rem, 1.4rem + 2.2vw, 2.9rem); color: var(--char); }
+.t-row .amt.tbd b { color: var(--char); font-weight: 700; font-size: 12.5px; letter-spacing: .1em; }
+.t-plus { margin: 0; padding-top: 12px; border-top: 1px solid rgba(31, 31, 31, .14); color: #3d3d3a; font-size: .97rem; }
+.t-plus b { color: var(--char); font-weight: 700; }
+.t-terms { margin: 0; font-size: .86rem; color: var(--brand-deep); }
+
+/* ---------- our work (marquee + viewer) ---------- */
+.work { display: grid; gap: 14px; margin-inline: calc(-1 * var(--gut)); padding: 26px 0 22px; background: var(--bg-2); border-block: 1px solid var(--line); }
+@media (min-width: 1024px) { .work { margin-inline: 0; border-radius: 24px; border: 1px solid var(--line); } }
+.work-head { padding-inline: var(--gut); display: grid; gap: 6px; }
+@media (min-width: 1024px) { .work-head { padding-inline: 24px; } }
+.work-h { margin: 0; font-weight: 800; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.8rem); letter-spacing: -.02em; line-height: 1.1; }
+.work-sub { margin: 0; color: var(--ink-2); font-size: .98rem; }
+.work-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.work-stats li { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; padding: 7px 11px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+.work-stats svg { width: 14px; height: 14px; fill: none; stroke: var(--good); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.mq { display: grid; gap: 10px; }
+.mq-row {
+  display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none;
+  padding-inline: var(--gut); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  touch-action: pan-x pan-y;
+}
+.mq-row::-webkit-scrollbar { display: none; }
+.mq-item {
+  position: relative; flex: none; height: 168px; border-radius: 14px; overflow: hidden; background: var(--bg-3);
+  border: 0; padding: 0; cursor: zoom-in; box-shadow: var(--shadow-1); transition: transform .4s var(--ease-out);
+}
+@media (min-width: 700px) { .mq-item { height: 196px; } }
+.mq-item:hover { transform: translateY(-4px); }
+.mq-item img { height: 100%; width: auto; max-width: none; object-fit: cover; }
+.mq-item span {
+  position: absolute; left: 8px; bottom: 8px; right: 8px; text-align: left; padding: 6px 9px; border-radius: 9px;
+  background: rgba(20, 20, 20, .74); color: #fff; font-weight: 600; font-size: 12px; line-height: 1.25;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mq-item span em { font-style: normal; color: var(--brand); }
+.work-note { margin: 0; padding-inline: var(--gut); color: var(--ink-3); font-size: .86rem; }
+@media (min-width: 1024px) { .work-note { padding-inline: 24px; } }
+
+.viewer { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(15, 15, 15, .92); }
+.viewer[hidden] { display: none; }
+.viewer figure { margin: 0; display: grid; gap: 12px; max-width: min(1100px, 100%); max-height: 100%; animation: rise .4s var(--ease-out) both; }
+.viewer img { max-height: calc(100vh - 140px); max-height: calc(100dvh - 140px); width: auto; max-width: 100%; margin: 0 auto; border-radius: 14px; object-fit: contain; }
+.viewer figcaption { color: #fff; text-align: center; font-weight: 600; }
+.viewer figcaption span { display: block; color: var(--on-char-2); font-weight: 500; font-size: .9rem; margin-top: 2px; }
+.v-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .12); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.v-btn:hover { background: var(--brand); color: var(--char); }
+.v-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.v-close { top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px; }
+.v-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+.v-next { right: 10px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) { .v-prev, .v-next { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: none; } }
+
+/* ---------- next step: site visit ---------- */
+.next {
+  display: grid; gap: 14px; padding: 22px; border-radius: var(--r-lg);
+  background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-2);
+}
+.next h2 { margin: 0; font-weight: 800; font-size: 1.5rem; letter-spacing: -.02em; line-height: 1.12; }
+.next p { margin: 0; color: var(--ink-2); }
+.visit { display: grid; gap: 14px; }
+.when { display: grid; gap: 8px; }
+.when-l { font-weight: 600; font-size: .98rem; }
+.next-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.next-actions > * { min-width: 0; white-space: normal; text-align: center; }
+@media (min-width: 520px) { .next-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.next-actions .btn-xl { grid-column: 1 / -1; }
+.sent { display: grid; gap: 10px; padding: 18px; border-radius: var(--r-md); background: var(--good-soft); border: 1px solid #bfe3cd; }
+.sent b { display: flex; align-items: center; gap: 10px; font-size: 1.12rem; }
+.sent b i { width: 28px; height: 28px; border-radius: 50%; background: var(--good); display: grid; place-items: center; flex: none; }
+.sent b i svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.sent p { margin: 0; color: #24452f; }
+.contact-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; color: var(--ink-3); font-size: .95rem; }
+.contact-line a { color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--brand); }
+.fine-print { margin: 0; color: var(--ink-3); font-size: .87rem; line-height: 1.55; }
+.r-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px;
+  border-radius: 999px; border: 1.5px solid var(--line-2); background: var(--card); color: var(--ink);
+  font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .2s, border-color .2s, transform .25s var(--ease-out), box-shadow .25s, color .2s;
+}
+.btn:hover { border-color: var(--char); transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+.btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.btn-primary { background: var(--brand); border-color: var(--brand); color: var(--char); font-weight: 700; box-shadow: 0 12px 26px -14px rgba(190, 135, 0, .9); }
+.btn-primary:hover { background: var(--brand-hi); border-color: var(--brand-hi); }
+.btn-primary[disabled] { opacity: .7; cursor: progress; }
+.btn-dark { background: var(--char); border-color: var(--char); color: #fff; }
+.btn-dark:hover { background: #000; border-color: #000; }
+.btn-xl { min-height: 60px; font-size: 1.1rem; font-weight: 700; }
+.btn-xl .arr { transition: transform .3s var(--ease-out); }
+.btn-xl:hover .arr { transform: translateX(4px); }
+.btn-wa svg { stroke: none; fill: #1f9e55; }
+.spin { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid rgba(31, 31, 31, .25); border-top-color: var(--char); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- action bar ---------- */
+.bar {
+  position: sticky; bottom: 0; z-index: 20; margin: 28px calc(-1 * var(--gut)) 0; padding: 10px var(--gut) calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, .9); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px);
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "hint hint" "back next"; gap: 8px 10px; align-items: center;
+}
+@media (min-width: 1024px) { .bar { margin-inline: 0; padding-inline: 0; border-top: 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff 30%); -webkit-backdrop-filter: none; backdrop-filter: none; padding-top: 22px; } }
+.bar { transition: transform .35s var(--ease-out), opacity .25s var(--ease); }
+.bar.is-tucked { transform: translateY(110%); opacity: 0; pointer-events: none; }
+.bar-hint { grid-area: hint; margin: 0; min-height: 1.3em; font-weight: 600; font-size: 12.5px; line-height: 1.3; letter-spacing: .02em; color: var(--ink-3); display: flex; align-items: center; gap: 8px; }
+.bar-hint.good { color: var(--good); }
+.bar-hint.good::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.bar-hint.bad { color: var(--danger); }
+.bar-hint.swap { animation: hintIn .4s var(--ease-out); }
+@keyframes hintIn { from { transform: translateY(4px); opacity: 0; } to { transform: none; opacity: 1; } }
+.back { grid-area: back; width: 60px; min-height: 60px; padding: 0; }
+.back[hidden] ~ .next-btn { grid-column: 1 / -1; }
+.next-btn { grid-area: next; width: 100%; }
+.next-btn.soft { background: var(--bg-3); border-color: var(--bg-3); color: #555552; box-shadow: none; }
+.next-btn.soft:hover { background: #e6e5de; border-color: #e6e5de; }
+.next-btn:not(.soft) { animation: ready .5s var(--ease-out); }
+@keyframes ready { 0% { transform: scale(.98); } 60% { transform: scale(1.015); } 100% { transform: none; } }
+.next-btn .count { font-weight: 700; font-size: 12px; padding: 4px 9px; border-radius: 999px; background: rgba(31, 31, 31, .12); letter-spacing: .02em; }
+.next-btn.soft .count { background: rgba(31, 31, 31, .08); }
+.shake { animation: shake .42s var(--ease) !important; }
+@keyframes shake { 0%, 100% { transform: none; } 20% { transform: translateX(-7px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(2px); } }
+
+/* ---------- trust + footer ---------- */
+@media (min-width: 1024px) { .trust { display: none !important; } }
+.trust { margin: 22px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.trust li { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; padding: 8px 12px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); color: var(--ink-2); }
+.trust svg { width: 14px; height: 14px; fill: none; stroke: var(--good); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.foot { padding: 22px 0 calc(26px + env(safe-area-inset-bottom, 0px)); color: var(--ink-3); font-size: .85rem; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; border-top: 1px solid var(--line); margin-top: 18px; }
+.foot a { color: var(--ink-2); }
+.foot .linkbtn { font-size: .85rem; font-weight: 500; color: var(--ink-2); }
+
+/* ---------- privacy dialog ---------- */
+.modal { position: fixed; inset: 0; z-index: 70; display: grid; place-items: end center; padding: 0; background: rgba(15, 15, 15, .55); }
+@media (min-width: 640px) { .modal { place-items: center; padding: 24px; } }
+.modal[hidden] { display: none; }
+.modal-in {
+  position: relative; width: min(640px, 100%); max-height: min(86vh, 760px); overflow: auto; background: #fff; color: var(--ink);
+  border-radius: 22px 22px 0 0; padding: 26px 22px calc(22px + env(safe-area-inset-bottom, 0px)); box-shadow: var(--shadow-2); animation: rise .4s var(--ease-out) both;
+}
+@media (min-width: 640px) { .modal-in { border-radius: 22px; padding: 30px 30px 26px; } }
+.modal-in h2 { margin: 0 44px 10px 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
+.modal-in h3 { margin: 18px 0 4px; font-size: 1.02rem; font-weight: 700; }
+.modal-in p, .modal-in li { color: var(--ink-2); font-size: .97rem; line-height: 1.55; }
+.modal-in p { margin: 0 0 8px; }
+.modal-in ul { margin: 0 0 8px; padding-left: 20px; }
+.modal-x { position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; display: grid; place-items: center; cursor: pointer; }
+.modal-x svg { width: 18px; height: 18px; fill: none; stroke: var(--char); stroke-width: 2.4; stroke-linecap: round; }
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed; z-index: 80; left: 50%; bottom: calc(108px + env(safe-area-inset-bottom, 0px)); max-width: calc(100% - 32px);
+  transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+  padding: 12px 16px; border-radius: 14px; background: var(--char); color: #fff; font-weight: 600; font-size: .95rem;
+  box-shadow: var(--shadow-2); transition: opacity .3s var(--ease), transform .4s var(--ease-out);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- step motion (the website's fade-in-up) ---------- */
+.step.in-f { animation: inF .5s var(--ease-out) both; }
+.step.in-b { animation: inB .5s var(--ease-out) both; }
+.step.out-f { animation: outF .2s var(--ease) both; }
+.step.out-b { animation: outB .2s var(--ease) both; }
+@keyframes inF { from { transform: translateX(34px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes inB { from { transform: translateX(-34px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes outF { to { transform: translateX(-26px); opacity: 0; } }
+@keyframes outB { to { transform: translateX(26px); opacity: 0; } }
+.step.in-f .st, .step.in-b .st { animation: rise .6s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 55ms + 80ms); }
+@keyframes rise { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+/* first paint: movement only, never hidden */
+.boot .step.is-active .st { animation: lift .9s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 70ms); }
+@keyframes lift { from { transform: translateY(18px); } to { transform: none; } }
+.boot .choices.st > * { animation: lift .9s var(--ease-out) both; }
+.boot .choices.st > :nth-child(2) { animation-delay: .08s; }
+.boot .choices.st > :nth-child(3) { animation-delay: .16s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .stage-img { transform: none !important; }
+}
+
+</style>
+<svg class="sr" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="pat-paver" width="28" height="14" patternUnits="userSpaceOnUse">
+      <rect width="28" height="14" class="d-paver"/>
+      <path class="d-paver2" fill="none" d="M0 .5H28M0 7.5H28M14 0V7M0 7V14M28 7V14"/>
+    </pattern>
+    <pattern id="pat-turf" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" class="d-turf"/>
+      <path class="d-turf2" fill="none" d="M2 10l1-5M6 11l.8-6M9 6l1-4M4 3l.6-2"/>
+    </pattern>
+    <pattern id="pat-block" width="40" height="18" patternUnits="userSpaceOnUse">
+      <rect width="40" height="18" class="d-block"/>
+      <path class="d-block2" fill="none" d="M0 .5H40M0 9.5H40M20 0V9M0 9V18M40 9V18"/>
+    </pattern>
+    <pattern id="pat-timber" width="160" height="16" patternUnits="userSpaceOnUse">
+      <rect width="160" height="16" class="d-wood"/>
+      <path class="d-wood2" fill="none" d="M0 .5H160M0 15.5H160M110 0V16M30 6H90M120 10H150"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="app boot" id="app">
+  <header class="top">
+    <div class="top-in">
+      <span class="brand"><img src="assets/img/logo.png" width="279" height="120" alt="Boundary Builders"></span>
+      <p class="meter" id="meter"><span id="mLabel">Step</span> <b class="num" id="mNow">01</b><span class="meter-bar" aria-hidden="true"></span><span class="num" id="mTot">06</span></p>
+    </div>
+    <div class="tape" id="tape" role="progressbar" aria-label="Quote progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12">
+      <div class="tape-fill"></div><div class="tape-hook"></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="stage" id="stage" aria-hidden="true">
+      <img class="stage-img is-on" id="stA" src="assets/img/scope-fence-2@2x.webp" alt="" decoding="async" loading="lazy">
+      <img class="stage-img" id="stB" alt="" decoding="async">
+      <span class="stage-chip" id="stChip">Our work</span>
+      <div class="stage-cap" id="stCap">
+        <p class="stage-kicker">Boundary Builders</p>
+        <p class="stage-title">Your fence or yard, priced in about 2 minutes</p>
+        <p class="stage-sub">Pick what you need. Your approx price shows at the end, with no phone call needed.</p>
+        <ul class="stage-trust"><li>8+ years in business</li><li>22+ years crew experience</li><li>6-month installation warranty</li></ul>
+      </div>
+    </aside>
+
+    <main class="flow">
+      <form class="qform" id="qform" novalidate>
+        <div class="steps" id="steps">
+
+          <section class="step is-active" data-step="scope" aria-labelledby="h-scope">
+            <div class="step-head">
+              <p class="eyebrow st" style="--i:0">Free instant estimate · about 2 minutes</p>
+              <h1 class="q st" id="h-scope" tabindex="-1" style="--i:1">What are we building?</h1>
+              <p class="sub st" style="--i:2">Pick one to start. Your approx price shows at the end, with no phone call needed.</p>
+            </div>
+            <div class="choices st" role="radiogroup" aria-labelledby="h-scope" style="--i:3">
+              <label class="choice big" data-group="scope" data-val="fence">
+                <input type="radio" name="scope" value="fence">
+                <span class="thumb"><img src="assets/img/scope-fence-2.webp" alt="" width="640" height="463" decoding="async"></span>
+                <span class="c-body"><span class="c-title">Fence</span><span class="c-sub">Cedar, metal or composite, plus gates.</span></span>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>
+              </label>
+              <label class="choice big" data-group="scope" data-val="land">
+                <input type="radio" name="scope" value="land">
+                <span class="thumb"><img src="assets/img/scope-land-2.webp" alt="" width="640" height="480" decoding="async"></span>
+                <span class="c-body"><span class="c-title">Landscaping</span><span class="c-sub">Pavers, retaining walls and artificial turf.</span></span>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>
+              </label>
+              <label class="choice big" data-group="scope" data-val="both">
+                <input type="radio" name="scope" value="both">
+                <span class="thumb"><img src="assets/img/scope-both-2.webp" alt="" width="640" height="480" decoding="async"></span>
+                <span class="c-body"><span class="c-title">Fence + landscaping</span><span class="c-sub">The whole yard, priced together.</span></span>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>
+              </label>
+            </div>
+            <ul class="trust st" style="--i:4">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>8+ years in business</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>22+ years crew experience</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>6-month installation warranty</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <div class="bar" id="bar">
+          <p class="bar-hint" id="hint" aria-live="polite"></p>
+          <button type="button" class="btn back" id="back" aria-label="Back to the previous question" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="submit" class="btn btn-primary btn-xl next-btn" id="next"><span id="nextLabel">Continue</span><span class="count" id="nextCount" hidden></span><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="btn btn-primary btn-xl next-btn" id="bookBar" href="#visit" hidden>Book my free site visit<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </form>
+      <footer class="foot" id="foot">
+        <span>© <span id="year">2026</span> Boundary Builders · Surrey, BC</span>
+        <a href="tel:+17788851042" id="footPhone">(778) 885-1042</a>
+        <a href="mailto:info@boundarybuilders.ca" id="footMail">info@boundarybuilders.ca</a>
+        <button type="button" class="linkbtn" data-privacy>Privacy</button>
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal" id="privacy" role="dialog" aria-modal="true" aria-labelledby="privacy-h" hidden>
+    <div class="modal-in">
+      <button type="button" class="modal-x" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h2 id="privacy-h">Your privacy</h2>
+      <p>Boundary Builders (Surrey, BC) uses this page to give you an approx price and to follow up with you about your project.</p>
+      <h3>What we collect</h3>
+      <ul>
+        <li>Your name, phone number and email.</li>
+        <li>Your answers: what you want built, the materials you picked, your measurements and the prices shown to you.</li>
+        <li>Photos you choose to add. If you ask for a site visit, your address and the times that suit you.</li>
+        <li>Basic technical details we need to run this page and block spam, like the time you sent your request.</li>
+      </ul>
+      <h3>Why we collect it</h3>
+      <p>To prepare your estimate, contact you about it, book your site visit and send you a written quote. We don’t sell your information, and we don’t add you to marketing lists.</p>
+      <h3>Where it’s kept and for how long</h3>
+      <p>Your request is stored on our website’s server and sent to our business email<span id="pvSheet"></span>. Some of the services we use may store data outside Canada. We keep quote requests for up to <span id="pvKeep">2 years</span> and then delete them, unless you hire us, in which case we keep the job records we need for warranty and tax purposes.</p>
+      <p id="pvPixel" hidden>This page also uses Meta (Facebook) and/or Google measurement tools so we can see which of our ads lead to quote requests. They don’t receive your name, phone, email or answers from this page.</p>
+      <h3>On this device</h3>
+      <p>Your answers are saved in this browser so you can pick up where you left off. “Start a new quote” clears them.</p>
+      <h3>Your choices</h3>
+      <p>You can ask to see, correct or delete your information at any time. Email <a href="mailto:info@boundarybuilders.ca" id="pvMail">info@boundarybuilders.ca</a> or call <a href="tel:+17788851042" id="pvPhone">(778) 885-1042</a>.</p>
+    </div>
+  </div>
+
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Project photo" hidden>
+    <button type="button" class="v-btn v-close" data-vclose aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button type="button" class="v-btn v-prev" data-vstep="-1" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure><img id="vImg" alt=""><figcaption id="vCap"></figcaption></figure>
+    <button type="button" class="v-btn v-next" data-vstep="1" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   Settings
+   On boundarybuilders.ca the WordPress plugin sets window.BBQ (where to send leads, prices, contact details).
+   Without it (the claude.ai preview) the page runs in preview mode: nothing is sent anywhere and the
+   last step falls back to WhatsApp, call/text and the booking page.
+   ===================================================================== */
+const BBQ = window.BBQ || {};
+const CONFIG = {
+  api: BBQ.ajax || '',
+  assets: BBQ.assets || 'assets/',
+  phone: BBQ.phone || '(778) 885-1042',
+  email: BBQ.email || 'info@boundarybuilders.ca',
+  whatsapp: BBQ.whatsapp || '17788851042',
+  bookingUrl: BBQ.ajax ? (BBQ.booking || '') : (BBQ.booking || 'https://clienthub.getjobber.com/hubs/1cc9f99a-45b7-46d5-8b96-89a2fdab348c/public/requests/4601125/new'),
+  keepMonths: BBQ.keep == null ? 24 : +BBQ.keep,
+  sheet: !!BBQ.sheet,
+  pixel: BBQ.pixel || '',
+  ga: BBQ.ga || '',
+  storeKey: 'bb-quote-v1'
+};
+const telHref = (p) => 'tel:+1' + String(p).replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
+
+/* =====================================================================
+   Catalogue. Prices are per linear foot (fences) or per sq ft (pavers, turf).
+   rate: null means "yet to be discussed". The plugin's Prices screen can override them (BBQ.prices).
+   ===================================================================== */
+const P = CONFIG.assets + 'img/';
+const photo = (n) => ({ sm: P + n + '.webp', lg: P + n + '@2x.webp' });
+const drawing = (n) => ({ sm: P + n + '.svg', lg: P + n + '.svg', drawing: true });
+
+const SCOPE = {
+  fence: { title: 'Fence', sub: 'Cedar, metal or composite, plus gates.', img: photo('scope-fence-2') },
+  land: { title: 'Landscaping', sub: 'Pavers, retaining walls and artificial turf.', img: photo('scope-land-2') },
+  both: { title: 'Fence + landscaping', sub: 'The whole yard, priced together.', img: photo('scope-both-2') }
+};
+
+const MATERIALS = {
+  cedar: { title: 'Cedar', who: 'For homeowners who love the warmth of real wood.', meta: '3 quality levels · 4x4 treated posts', img: photo('mat-cedar-2') },
+  metal: { title: 'Metal', who: 'For homeowners who want something stylish and cost-effective.', meta: '3 colours · black posts', img: photo('mat-metal-2') },
+  composite: { title: 'Composite', who: 'For homeowners who want a wood look with less upkeep.', meta: 'One premium quality · 220° rated', img: photo('composite') }
+};
+
+const METAL_SPECS = ['Black posts', '16-gauge panel posts', '22-gauge powder-coated sheets'];
+const FENCES = [
+  { id: 'cedar-premium', mat: 'cedar', tier: 'Highest quality', name: 'Board-on-board', full: 'Cedar board-on-board, 2x4 frame', rate: 38, from: true,
+    who: 'For someone looking for the highest quality prebuilt fence panels.',
+    specs: ['Overlapping board-on-board', '2x4 frame', 'Treated 2x6 at the bottom', '4x4 treated posts'], img: photo('cedar-premium-2') },
+  { id: 'cedar-standard', mat: 'cedar', tier: 'Medium quality', name: 'Tongue & groove', full: 'Cedar tongue & groove, 2x4 frame', rate: 32, from: true,
+    who: 'For a solid, good-looking cedar fence at a mid-range price.',
+    specs: ['Tongue & groove boards', '2x4 frame', '4x4 treated posts'], img: photo('cedar-standard-2') },
+  { id: 'cedar-value', mat: 'cedar', tier: 'Grade B lumber', name: 'Tongue & groove, grade B', full: 'Cedar tongue & groove, 2x3 frame, grade B', rate: 30,
+    who: 'For someone who wants a cedar fence on a tighter budget.',
+    specs: ['Tongue & groove boards', '2x3 frame', 'Grade B lumber', '4x4 treated posts'], img: photo('cedar-value-2') },
+  { id: 'metal-black', mat: 'metal', tier: 'Black', name: 'Black', full: 'Metal fence, black', rate: 29, swatch: 'black',
+    who: 'Sharp and modern, and it goes with everything.', specs: METAL_SPECS, img: photo('metal-black') },
+  { id: 'metal-grey', mat: 'metal', tier: 'Grey', name: 'Grey', full: 'Metal fence, grey', rate: 30, swatch: 'grey',
+    who: 'A softer modern look that goes with most homes.', specs: METAL_SPECS, img: photo('metal-grey-2') },
+  { id: 'metal-brown', mat: 'metal', tier: 'Cedar look', name: 'Brown', full: 'Metal fence, brown (cedar look)', rate: 32, swatch: 'brown',
+    who: 'The look of cedar without the staining or sealing.', specs: METAL_SPECS, img: photo('metal-brown-2') },
+  { id: 'composite', mat: 'composite', tier: 'Composite', name: 'Composite', full: 'Composite fence', rate: null,
+    who: 'For homeowners who want a wood look with less upkeep.', specs: ['One premium quality', '220° rated', 'Colours subject to availability'], img: photo('composite') }
+];
+const FENCE = Object.fromEntries(FENCES.map((f) => [f.id, f]));
+
+const GATES = {
+  metal: { title: 'Metal gate', img: photo('gate-metal') },
+  aluminum: { title: 'Aluminum gate', img: photo('gate-aluminum') },
+  wood: { title: 'Wood gate', img: photo('gate-wood') }
+};
+
+const LAND = {
+  pavers: { title: 'Pavers', who: 'Patios, walkways and driveways.', rate: 12, from: true, img: photo('land-pavers-2') },
+  wall: { title: 'Retaining wall', who: 'Allan Block, concrete or 4x6 wood.', rate: null, img: photo('land-wall-2') },
+  turf: { title: 'Artificial turf', who: 'Green all year, with no mowing.', rate: 8, img: photo('land-turf') }
+};
+
+const WALLS = {
+  allan: { title: 'Allan Block', who: 'Interlocking blocks with a natural stone look.', img: photo('wall-allan') },
+  concrete: { title: 'Concrete', who: 'Poured concrete with a clean, modern face.', img: photo('wall-concrete') },
+  wood: { title: '4x6 wood', who: 'Stacked 4x6 timbers with a natural wood look.', img: photo('wall-wood') }
+};
+const HEIGHTS = ['Under 2 ft', '2 to 3 ft', '3 to 4 ft', 'Over 4 ft'];
+
+// price overrides from the plugin: { 'cedar-premium': { rate: 38, from: true }, pavers: { rate: 12, from: true }, ... }
+(function applyPrices(pr) {
+  if (!pr || typeof pr !== 'object') return;
+  const clean = (v) => { const n = parseFloat(v); return isFinite(n) && n > 0 ? n : null; };
+  FENCES.forEach((f) => { const o = pr[f.id]; if (o) { f.rate = clean(o.rate); f.from = !!o.from && f.rate != null; } });
+  ['pavers', 'turf'].forEach((k) => { const o = pr[k]; if (o) { LAND[k].rate = clean(o.rate); LAND[k].from = !!o.from && LAND[k].rate != null; } });
+})(BBQ.prices);
+
+// "Our recent work": photos from the Boundary Builders – Instagram folder (or the plugin's own gallery)
+const WORK = (Array.isArray(BBQ.gallery) && BBQ.gallery.length ? BBQ.gallery : [{"t":"work/g001.webp","l":"work/g001-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g002.webp","l":"work/g002-l.webp","w":640,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g003.webp","l":"work/g003-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g004.webp","l":"work/g004-l.webp","w":533,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g005.webp","l":"work/g005-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g006.webp","l":"work/g006-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g007.webp","l":"work/g007-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g008.webp","l":"work/g008-l.webp","w":570,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g009.webp","l":"work/g009-l.webp","w":533,"h":400,"c":"Modern entrance & wide steps","loc":"Burnaby"},{"t":"work/g010.webp","l":"work/g010-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g011.webp","l":"work/g011-l.webp","w":400,"h":400,"c":"Front yard walls, slab steps & lighting","loc":"Maple Ridge"},{"t":"work/g012.webp","l":"work/g012-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g013.webp","l":"work/g013-l.webp","w":533,"h":400,"c":"Outdoor kitchen & fire table","loc":"Port Moody"},{"t":"work/g014.webp","l":"work/g014-l.webp","w":553,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g015.webp","l":"work/g015-l.webp","w":533,"h":400,"c":"Freeform pool deck","loc":""},{"t":"work/g016.webp","l":"work/g016-l.webp","w":555,"h":400,"c":"Block retaining walls & planters","loc":""},{"t":"work/g017.webp","l":"work/g017-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g018.webp","l":"work/g018-l.webp","w":533,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g019.webp","l":"work/g019-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g020.webp","l":"work/g020-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g021.webp","l":"work/g021-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g022.webp","l":"work/g022-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g023.webp","l":"work/g023-l.webp","w":572,"h":400,"c":"Black steel fence with a cedar frame","loc":""},{"t":"work/g024.webp","l":"work/g024-l.webp","w":533,"h":400,"c":"Circular patio & fire pit","loc":"Langley"},{"t":"work/g025.webp","l":"work/g025-l.webp","w":320,"h":400,"c":"Artificial turf backyard","loc":"Langley"},{"t":"work/g026.webp","l":"work/g026-l.webp","w":533,"h":400,"c":"Steel walk & drive gates","loc":""},{"t":"work/g027.webp","l":"work/g027-l.webp","w":320,"h":400,"c":"Large-format front walkway","loc":""},{"t":"work/g028.webp","l":"work/g028-l.webp","w":533,"h":400,"c":"Horizontal slat fence on a new wall","loc":""},{"t":"work/g029.webp","l":"work/g029-l.webp","w":640,"h":400,"c":"Tiered Allan Block walls & steps","loc":""},{"t":"work/g030.webp","l":"work/g030-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g031.webp","l":"work/g031-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g032.webp","l":"work/g032-l.webp","w":300,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g033.webp","l":"work/g033-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g034.webp","l":"work/g034-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g035.webp","l":"work/g035-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g036.webp","l":"work/g036-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g037.webp","l":"work/g037-l.webp","w":640,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g038.webp","l":"work/g038-l.webp","w":531,"h":400,"c":"Modern entrance & wide steps","loc":"Burnaby"},{"t":"work/g039.webp","l":"work/g039-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g040.webp","l":"work/g040-l.webp","w":400,"h":400,"c":"Front yard walls, slab steps & lighting","loc":"Maple Ridge"},{"t":"work/g041.webp","l":"work/g041-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g042.webp","l":"work/g042-l.webp","w":300,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g043.webp","l":"work/g043-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g044.webp","l":"work/g044-l.webp","w":602,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g045.webp","l":"work/g045-l.webp","w":533,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g046.webp","l":"work/g046-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g047.webp","l":"work/g047-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g048.webp","l":"work/g048-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g049.webp","l":"work/g049-l.webp","w":533,"h":400,"c":"Outdoor kitchen & fire table","loc":"Port Moody"},{"t":"work/g050.webp","l":"work/g050-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g051.webp","l":"work/g051-l.webp","w":533,"h":400,"c":"Freeform pool deck","loc":""},{"t":"work/g052.webp","l":"work/g052-l.webp","w":328,"h":400,"c":"Poured concrete retaining wall","loc":""},{"t":"work/g053.webp","l":"work/g053-l.webp","w":477,"h":400,"c":"Stepped timber retaining wall","loc":""},{"t":"work/g054.webp","l":"work/g054-l.webp","w":291,"h":400,"c":"Block retaining walls & planters","loc":""},{"t":"work/g055.webp","l":"work/g055-l.webp","w":300,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g056.webp","l":"work/g056-l.webp","w":288,"h":400,"c":"Aluminum walk gate","loc":""},{"t":"work/g057.webp","l":"work/g057-l.webp","w":507,"h":400,"c":"Composite privacy fence","loc":""},{"t":"work/g058.webp","l":"work/g058-l.webp","w":640,"h":400,"c":"Grey metal privacy fence","loc":""},{"t":"work/g059.webp","l":"work/g059-l.webp","w":533,"h":400,"c":"Backyard fence, deck & planters","loc":""},{"t":"work/g060.webp","l":"work/g060-l.webp","w":538,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g061.webp","l":"work/g061-l.webp","w":599,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g062.webp","l":"work/g062-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g063.webp","l":"work/g063-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g064.webp","l":"work/g064-l.webp","w":300,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g065.webp","l":"work/g065-l.webp","w":533,"h":400,"c":"Modern entrance & wide steps","loc":"Burnaby"},{"t":"work/g066.webp","l":"work/g066-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g067.webp","l":"work/g067-l.webp","w":400,"h":400,"c":"Front yard walls, slab steps & lighting","loc":"Maple Ridge"},{"t":"work/g068.webp","l":"work/g068-l.webp","w":640,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g069.webp","l":"work/g069-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g070.webp","l":"work/g070-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g071.webp","l":"work/g071-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g072.webp","l":"work/g072-l.webp","w":640,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g073.webp","l":"work/g073-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g074.webp","l":"work/g074-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g075.webp","l":"work/g075-l.webp","w":288,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g076.webp","l":"work/g076-l.webp","w":559,"h":400,"c":"Black steel fence with a cedar frame","loc":""},{"t":"work/g077.webp","l":"work/g077-l.webp","w":533,"h":400,"c":"Circular patio & fire pit","loc":"Langley"},{"t":"work/g078.webp","l":"work/g078-l.webp","w":320,"h":400,"c":"Artificial turf backyard","loc":"Langley"},{"t":"work/g079.webp","l":"work/g079-l.webp","w":336,"h":400,"c":"Steel walk & drive gates","loc":""},{"t":"work/g080.webp","l":"work/g080-l.webp","w":320,"h":400,"c":"Large-format front walkway","loc":""},{"t":"work/g081.webp","l":"work/g081-l.webp","w":533,"h":400,"c":"Horizontal slat fence on a new wall","loc":""},{"t":"work/g082.webp","l":"work/g082-l.webp","w":640,"h":400,"c":"Tiered Allan Block walls & steps","loc":""},{"t":"work/g083.webp","l":"work/g083-l.webp","w":640,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g084.webp","l":"work/g084-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g085.webp","l":"work/g085-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g086.webp","l":"work/g086-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g087.webp","l":"work/g087-l.webp","w":386,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g088.webp","l":"work/g088-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g089.webp","l":"work/g089-l.webp","w":533,"h":400,"c":"Outdoor kitchen & fire table","loc":"Port Moody"},{"t":"work/g090.webp","l":"work/g090-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g091.webp","l":"work/g091-l.webp","w":533,"h":400,"c":"Freeform pool deck","loc":""},{"t":"work/g092.webp","l":"work/g092-l.webp","w":295,"h":400,"c":"Block retaining walls & planters","loc":""},{"t":"work/g093.webp","l":"work/g093-l.webp","w":288,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g094.webp","l":"work/g094-l.webp","w":320,"h":400,"c":"Modern entrance & wide steps","loc":"Burnaby"},{"t":"work/g095.webp","l":"work/g095-l.webp","w":327,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g096.webp","l":"work/g096-l.webp","w":400,"h":400,"c":"Front yard walls, slab steps & lighting","loc":"Maple Ridge"},{"t":"work/g097.webp","l":"work/g097-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g098.webp","l":"work/g098-l.webp","w":533,"h":400,"c":"Paver pool deck & garden beds","loc":"North Vancouver"},{"t":"work/g099.webp","l":"work/g099-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g100.webp","l":"work/g100-l.webp","w":533,"h":400,"c":"Commercial cedar privacy fence","loc":"Langford"},{"t":"work/g101.webp","l":"work/g101-l.webp","w":600,"h":400,"c":"Front entrance with lit steps & block walls","loc":""},{"t":"work/g102.webp","l":"work/g102-l.webp","w":288,"h":400,"c":"Black aluminum drive & walk gates","loc":""},{"t":"work/g103.webp","l":"work/g103-l.webp","w":533,"h":400,"c":"Steel privacy fence","loc":""},{"t":"work/g104.webp","l":"work/g104-l.webp","w":640,"h":400,"c":"Cedar privacy fence","loc":""},{"t":"work/g105.webp","l":"work/g105-l.webp","w":640,"h":400,"c":"Brown metal privacy fence","loc":""}]).filter((it) => it && it.t);
+const wsrc = (s) => /^(https?:)?\/\//.test(s) || s.charAt(0) === '/' ? s : P + s;
+
+/* =====================================================================
+   State
+   ===================================================================== */
+const fresh = () => ({
+  v: 1, scope: null, mats: [], fences: [], gates: { metal: 0, aluminum: 0, wood: 0 }, noGate: false,
+  land: [], walls: [],
+  m: { fence: '', pavers: '', turf: '', wallLen: '', wallH: '' },
+  unsure: { fence: false, pavers: false, turf: false, wall: false },
+  lw: { pavers: { l: '', w: '' }, turf: { l: '', w: '' } },
+  disposal: null, contact: { name: '', phone: '', email: '' },
+  ref: '', done: false, step: 'scope', last: {},
+  lid: '',            // this quote's id (made on this device)
+  server: null,       // { id, token } once the lead is saved on boundarybuilders.ca
+  pending: null,      // a lead still waiting to be sent (retried until it gets through)
+  visit: { addr: '', times: [], notes: '', sent: false, pending: false }
+});
+let S = fresh();
+let photos = []; // { file, url, up, tries }
+let cur = 'scope';
+let hover = null;
+let lastPointer = -1e9;
+const t0 = Date.now();
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const num = (v) => { const n = parseFloat(String(v).replace(/[^\d.]/g, '')); return isFinite(n) ? n : 0; };
+const int = (n) => Math.round(n).toLocaleString('en-CA');
+const money = (n) => '$' + int(n);
+const toggle = (arr, v, on) => { const i = arr.indexOf(v); if (on && i < 0) arr.push(v); if (!on && i >= 0) arr.splice(i, 1); };
+
+function save() {
+  try { localStorage.setItem(CONFIG.storeKey, JSON.stringify(S)); } catch (e) { /* storage unavailable */ }
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(CONFIG.storeKey);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    return d && d.v === 1 ? d : null;
+  } catch (e) { return null; }
+}
+function merge(d) {
+  const base = fresh();
+  S = Object.assign(base, d, {
+    gates: Object.assign(base.gates, d.gates || {}),
+    m: Object.assign(base.m, d.m || {}),
+    unsure: Object.assign(base.unsure, d.unsure || {}),
+    lw: { pavers: Object.assign(base.lw.pavers, (d.lw || {}).pavers || {}), turf: Object.assign(base.lw.turf, (d.lw || {}).turf || {}) },
+    contact: Object.assign(base.contact, d.contact || {}),
+    visit: Object.assign(base.visit, d.visit || {}),
+    last: d.last || {}
+  });
+  if (!Array.isArray(S.visit.times)) S.visit.times = [];
+}
+
+/* =====================================================================
+   Flow
+   ===================================================================== */
+const hasFence = () => S.scope === 'fence' || S.scope === 'both';
+const hasLand = () => S.scope === 'land' || S.scope === 'both';
+const FLOW = [
+  ['scope', () => true],
+  ['material', hasFence],
+  ['cedar', () => hasFence() && S.mats.includes('cedar')],
+  ['metal', () => hasFence() && S.mats.includes('metal')],
+  ['gates', hasFence],
+  ['land', hasLand],
+  ['wall', () => hasLand() && S.land.includes('wall')],
+  ['measure', () => true],
+  ['extras', () => true],
+  ['contact', () => true],
+  ['result', () => true]
+];
+const route = () => FLOW.filter(([, f]) => f()).map(([id]) => id);
+
+function fenceOptions() {
+  if (!hasFence()) return [];
+  return FENCES.filter((f) => S.mats.includes(f.mat) && (f.mat === 'composite' || S.fences.includes(f.id)));
+}
+const matCount = (mat) => FENCES.filter((f) => f.mat === mat && S.fences.includes(f.id)).length;
+const gateTotal = () => Object.values(S.gates).reduce((a, b) => a + b, 0);
+const landOn = (k) => hasLand() && S.land.includes(k);
+
+/* =====================================================================
+   Pricing
+   ===================================================================== */
+function model() {
+  const lf = num(S.m.fence);
+  const lfKnown = !S.unsure.fence && lf > 0;
+  const opts = fenceOptions().map((f, i) => ({ n: i + 1, f, amount: f.rate && lfKnown ? f.rate * lf : null }));
+
+  const land = [];
+  // priced per square foot: area × rate, or the rate alone when the area is still unknown
+  const areaItem = (key, label, tbdName) => {
+    const r = LAND[key].rate, a = num(S.m[key]), known = !S.unsure[key] && a > 0;
+    return { key, label, rate: r, tbdName, rateOnly: !known, amount: known ? a * r : null,
+      detail: known ? int(a) + ' sq ft × approx ' + money(r) + '/sq ft' : 'Area to be measured on site' };
+  };
+  if (landOn('pavers')) land.push(areaItem('pavers', 'Pavers', 'pavers'));
+  if (landOn('wall')) {
+    const types = S.walls.map((w) => WALLS[w].title);
+    const len = num(S.m.wallLen), h = S.m.wallH;
+    const known = !S.unsure.wall && len > 0 && h !== '';
+    land.push({ key: 'wall', label: 'Retaining wall' + (types.length ? ' · ' + types.join(' or ') : ''),
+      detail: known ? int(len) + ' ft long · ' + HEIGHTS[h].toLowerCase() + ' high' : 'Size to be measured on site', amount: null, tbdName: 'retaining wall' });
+  }
+  if (landOn('turf')) land.push(areaItem('turf', 'Artificial turf', 'turf'));
+
+  const extras = [];
+  if (hasFence() && gateTotal() > 0) {
+    const parts = Object.entries(S.gates).filter(([, q]) => q > 0).map(([k, q]) => q + ' ' + GATES[k].title.toLowerCase() + (q > 1 ? 's' : ''));
+    extras.push({ key: 'gates', label: gateTotal() > 1 ? 'Gates' : 'Gate', detail: parts.join(', '), amount: null, tbdName: gateTotal() > 1 ? 'gates' : 'gate' });
+  }
+  if (S.disposal === true) {
+    extras.push({ key: 'disposal', label: 'Removal & disposal', detail: disposalText(), amount: null, tbdName: 'disposal' });
+  }
+
+  const landSum = land.reduce((a, it) => a + (it.amount || 0), 0);
+  let totals = opts.length
+    ? opts.map((o) => ({ label: opts.length > 1 ? 'With option ' + o.n : 'Option 1', sub: o.f.full, amount: o.amount != null ? o.amount + landSum : null }))
+    : (landSum > 0 ? [{ label: 'Landscaping', sub: '', amount: landSum }] : []);
+  if (totals.length && totals.every((t) => t.amount == null)) totals = [];
+  const tbd = [];
+  const tbdOpts = opts.filter((o) => o.amount == null).length;
+  if (tbdOpts) tbd.push(tbdOpts === opts.length ? 'fence price' : tbdOpts === 1 ? 'option ' + opts.find((o) => o.amount == null).n : 'options ' + listJoin(opts.filter((o) => o.amount == null).map((o) => String(o.n))));
+  land.forEach((it) => { if (it.amount == null) tbd.push(it.tbdName); });
+  extras.forEach((it) => tbd.push(it.tbdName));
+  return { lf, lfKnown, opts, land, extras, landSum, totals, tbd, anyPrice: opts.some((o) => o.amount != null) || landSum > 0 };
+}
+
+function disposalText() {
+  if (hasFence() && hasLand()) return 'Old fence, grass, soil or concrete';
+  if (hasFence()) return 'Old fence';
+  return 'Old grass, soil or concrete';
+}
+
+/* =====================================================================
+   Templates
+   ===================================================================== */
+const IC = {
+  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+  info: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>',
+  ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15l12-12 6 6-12 12z"/><path d="M7 11l2 2M10 8l2 2M13 5l2 2"/></svg>',
+  x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  truck: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
+  clear: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16l3-9 4 3 3-6"/></svg>',
+  camera: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2.5l1.5-2h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  shield: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></svg>',
+  arrow: '<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  copy: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>',
+  cal: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  ext: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  wa: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>'
+};
+const tick = (sq) => `<span class="tick${sq ? ' sq' : ''}" aria-hidden="true">${IC.check}</span>`;
+const pic = (im) => `<img src="${im.sm}" alt="" loading="lazy" decoding="async">`;
+const head = (id, eyebrow, q, sub) => `<div class="step-head">
+  <p class="eyebrow st" style="--i:0">${eyebrow}</p>
+  <h1 class="q st" id="h-${id}" tabindex="-1" style="--i:1">${q}</h1>
+  <p class="sub st" id="s-${id}" style="--i:2">${sub}</p></div>`;
+const err = (id) => `<p class="err" id="e-${id}" role="alert" hidden></p>`;
+
+function priceTag(f) {
+  if (!f.rate) return '<span class="o-price tbd"><small>Price</small><b>Yet to be discussed</b></span>';
+  return `<span class="o-price"><small>${f.from ? 'Starting at approx' : 'approx'}</small><b>${money(f.rate)}<span>/lf</span></b></span>`;
+}
+function optionCard(f) {
+  return `<label class="option" data-group="fences" data-val="${f.id}">
+    <input type="checkbox" name="fences" value="${f.id}">
+    <span class="o-media">${pic(f.img)}<span class="o-tier">${f.tier}</span></span>
+    ${tick(true)}
+    <span class="o-body">
+      <span class="o-row"><span class="o-name">${f.swatch ? `<i class="swatch sw-${f.swatch}" aria-hidden="true"></i>` : ''}${f.name}</span>${priceTag(f)}</span>
+      <span class="o-who">${f.who}</span>
+      <span class="o-specs">${f.specs.map((s) => `<span>${s}</span>`).join('')}</span>
+    </span>
+  </label>`;
+}
+function rowCard(group, key, it, extra = '', type = 'checkbox') {
+  return `<label class="choice big" data-group="${group}" data-val="${key}">
+    <input type="${type}" name="${group}" value="${key}">
+    <span class="thumb">${pic(it.img)}</span>
+    <span class="c-body"><span class="c-title">${it.title}</span><span class="c-sub">${it.who || it.sub || ''}</span>${extra}</span>
+    ${tick(type === 'checkbox')}
+  </label>`;
+}
+
+function buildSteps() {
+  const html = [];
+  html.push(`<section class="step" data-step="material" aria-labelledby="h-material" hidden>
+    ${head('material', 'Fence', 'Which fence material?', 'Pick one, or a few to compare. Each one gets its own price.')}
+    <div class="choices st" style="--i:3" role="group" aria-labelledby="h-material">
+      ${Object.entries(MATERIALS).map(([k, m]) => rowCard('mats', k, m, `<span class="c-meta">${m.meta}</span>`)).join('')}
+    </div>${err('material')}
+  </section>`);
+
+  html.push(`<section class="step" data-step="cedar" aria-labelledby="h-cedar" hidden>
+    ${head('cedar', 'Cedar · all come with 4x4 treated posts', 'Pick your cedar quality', 'Choose 1, 2 or all 3. We’ll price each one as its own option.')}
+    <div class="options h st" style="--i:3" role="group" aria-labelledby="h-cedar">${FENCES.filter((f) => f.mat === 'cedar').map(optionCard).join('')}</div>${err('cedar')}
+  </section>`);
+
+  html.push(`<section class="step" data-step="metal" aria-labelledby="h-metal" hidden>
+    ${head('metal', 'Metal · all come with black posts', 'Pick your metal colour', 'Choose one, or compare a few. Every colour has 16-gauge panel posts and 22-gauge powder-coated sheets.')}
+    <div class="options h st" style="--i:3" role="group" aria-labelledby="h-metal">${FENCES.filter((f) => f.mat === 'metal').map(optionCard).join('')}</div>${err('metal')}
+  </section>`);
+
+  html.push(`<section class="step" data-step="gates" aria-labelledby="h-gates" hidden>
+    ${head('gates', 'Gates', 'Need a gate?', 'Add the type and how many. No gate? Just continue.')}
+    <div class="choices st" style="--i:3">
+      ${Object.entries(GATES).map(([k, g]) => `<div class="choice gate" data-gate="${k}">
+        <div class="gate-hit" data-gate-hit="${k}"><span class="thumb">${pic(g.img)}</span><span class="c-body"><span class="c-title">${g.title}</span><span class="c-price tbd">Price yet to be discussed</span>
+          <span class="gate-ctl">
+            <button type="button" class="btn add" data-add="${k}" aria-label="Add a ${g.title.toLowerCase()}">${IC.plus}Add</button>
+            <span class="qty" hidden><button type="button" data-q="-1" data-k="${k}" aria-label="One less ${g.title.toLowerCase()}">−</button><output class="num" id="q-${k}" aria-label="${g.title}s">0</output><button type="button" data-q="1" data-k="${k}" aria-label="One more ${g.title.toLowerCase()}">+</button><span class="qty-l">in total</span></span>
+          </span></span>
+          ${tick(true)}</div>
+      </div>`).join('')}
+      <label class="choice slim" data-nogate>
+        <input type="checkbox" id="noGate">
+        <span class="slim-ic">${IC.x}</span>
+        <span class="c-body"><span class="c-title">No gate needed</span></span>
+        ${tick(true)}
+      </label>
+    </div>
+  </section>`);
+
+  html.push(`<section class="step" data-step="land" aria-labelledby="h-land" hidden>
+    ${head('land', 'Landscaping', 'What’s on your list?', 'Pick everything you’re thinking about. We’ll price it all together.')}
+    <div class="choices st" style="--i:3" role="group" aria-labelledby="h-land">
+      ${Object.entries(LAND).map(([k, it]) => rowCard('land', k, it, it.rate
+        ? `<span class="c-price"><small>${it.from ? 'Starting at approx' : 'approx'}</small>${money(it.rate)} / sq ft</span>`
+        : '<span class="c-price tbd">Price yet to be discussed</span>')).join('')}
+    </div>${err('land')}
+  </section>`);
+
+  html.push(`<section class="step" data-step="wall" aria-labelledby="h-wall" hidden>
+    ${head('wall', 'Retaining wall', 'Which kind of wall?', 'Not sure? Pick more than one and we’ll talk you through them.')}
+    <div class="choices st" style="--i:3" role="group" aria-labelledby="h-wall">
+      ${Object.entries(WALLS).map(([k, it]) => rowCard('walls', k, it, '<span class="c-price tbd">Price yet to be discussed</span>')).join('')}
+    </div>${err('wall')}
+  </section>`);
+
+  html.push(`<section class="step" data-step="measure" aria-labelledby="h-measure" hidden>
+    ${head('measure', 'Measurements', 'Let’s measure up', 'Rough numbers are fine. We confirm everything on site.')}
+    <div class="mlist st" style="--i:3" id="mlist"></div>
+  </section>`);
+
+  html.push(`<section class="step" data-step="extras" aria-labelledby="h-extras" hidden>
+    ${head('extras', 'Almost done', 'Anything to haul away?', 'Like an old fence that needs to come down.')}
+    <div class="yn st" style="--i:3" role="radiogroup" aria-labelledby="h-extras">
+      <label class="choice" data-group="disposal" data-val="yes">
+        <input type="radio" name="disposal" value="yes">
+        <span class="slim-ic">${IC.truck}</span>
+        <span class="c-body"><span class="c-title">Yes, remove it</span><span class="c-sub">We clear it out and haul it away.</span></span>
+        ${tick(false)}
+      </label>
+      <label class="choice" data-group="disposal" data-val="no">
+        <input type="radio" name="disposal" value="no">
+        <span class="slim-ic">${IC.clear}</span>
+        <span class="c-body"><span class="c-title">No, it’s clear</span><span class="c-sub">Nothing to remove first.</span></span>
+        ${tick(false)}
+      </label>
+    </div>${err('extras')}
+    <div class="sect st" style="--i:4">
+      <h2 class="sect-h">Add photos <span>(optional)</span></h2>
+      <p class="sub">A few photos of the area help us confirm your price faster.</p>
+      <label class="drop" id="drop" for="photoInput">
+        <span class="drop-ic">${IC.camera}</span>
+        <b>Add photos</b>
+        <span>Take new ones or choose from your phone</span>
+      </label>
+      <input class="sr" type="file" id="photoInput" accept="image/*" multiple>
+      <ul class="thumbs" id="thumbs" aria-label="Your photos"></ul>
+      <p class="fine">${IC.info}<span>${CONFIG.api ? 'Your photos come to us with your quote, and we only use them to price your project.' : 'You can send them to us at the end.'}</span></p>
+    </div>
+  </section>`);
+
+  html.push(`<section class="step" data-step="contact" aria-labelledby="h-contact" hidden>
+    ${head('contact', 'Your price is ready', 'Who’s this price for?', 'Add your details to see your approx price right away.')}
+    <div class="locked st" style="--i:3" aria-hidden="true">
+      <div class="l-top"><span class="ready"><i></i>Price ready</span><span class="l-lock">${IC.lock}</span></div>
+      <p class="l-label">Your approx price</p>
+      <p class="l-amt"><small>approx</small><b id="lockAmt">$8,888</b></p>
+      <p class="l-note" id="lockNote">Unlocks as soon as you add your details.</p>
+    </div>
+    <div class="fields st" style="--i:4">
+      <div class="field" data-f="name"><label for="c-name">Full name</label><input id="c-name" name="name" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>${err('name')}</div>
+      <div class="field" data-f="phone"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required>${err('phone')}</div>
+      <div class="field" data-f="email"><label for="c-email">Email</label><input id="c-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="go" required>${err('email')}</div>
+      <div class="hp" aria-hidden="true"><label for="c-web">Leave this empty</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <p class="fine">${IC.shield}<span>By tapping “Show my price” you agree Boundary Builders may contact you about this estimate by phone, text or email. We never sell your details. <button type="button" class="linkbtn" data-privacy>Privacy</button></span></p>
+    </div>
+  </section>`);
+
+  html.push(`<section class="step" data-step="result" aria-labelledby="h-result" hidden>
+    <div class="calc" id="calc" hidden>
+      <svg class="calc-draw" viewBox="0 0 420 160" aria-hidden="true">
+        <line class="g" x1="8" y1="122" x2="412" y2="122"/>
+        <path class="dr" pathLength="1" d="M40 122V34M146 122V34M252 122V34M358 122V34"/>
+        <path class="dr" pathLength="1" style="animation-delay:.22s" d="M32 48H366M32 108H366"/>
+        <path class="dr" pathLength="1" style="animation-delay:.42s" d="M58 112V44M74 112V44M90 112V44M106 112V44M122 112V44M164 112V44M180 112V44M196 112V44M212 112V44M228 112V44M270 112V44M286 112V44M302 112V44M318 112V44M334 112V44"/>
+        <path class="dr y" pathLength="1" style="animation-delay:.7s" d="M40 142H358M40 136V148M358 136V148"/>
+      </svg>
+      <p class="calc-h" id="calcH">Working out your price</p>
+      <ol class="calc-list" id="calcList"></ol>
+    </div>
+    <div class="result" id="result" hidden></div>
+  </section>`);
+
+  $('#steps').insertAdjacentHTML('beforeend', html.join(''));
+}
+
+/* =====================================================================
+   Measurements
+   ===================================================================== */
+function mInput(key, label, unit, step) {
+  return `<div class="mfield">
+    <button type="button" class="mbtn" data-nudge="${key}" data-d="-${step}" aria-label="${step} less">−</button>
+    <div class="minput"><input id="m-${key}" data-m="${key}" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="0" aria-label="${label}"><span class="unit">${unit}</span></div>
+    <button type="button" class="mbtn" data-nudge="${key}" data-d="${step}" aria-label="${step} more">+</button>
+  </div>`;
+}
+const presets = (key, vals, unit) => `<div class="presets" role="group" aria-label="Quick picks">${vals.map((v) => `<button type="button" class="preset" data-preset="${key}" data-v="${v}">${int(v)} ${unit}</button>`).join('')}</div>`;
+const unsure = (key) => `<label class="unsure"><input type="checkbox" data-unsure="${key}"> I’m not sure, measure it on site</label>`;
+
+function renderMeasure() {
+  const out = [];
+  if (hasFence()) {
+    out.push(`<div class="mblock" data-mb="fence">
+      <div class="mhead"><h2>Fence length</h2><span class="cap">Linear feet</span></div>
+      <div class="mdraw" aria-hidden="true"><svg viewBox="0 0 600 156" id="draw-fence"></svg></div>
+      ${mInput('fence', 'Fence length in linear feet', 'linear ft', 10)}
+      ${presets('fence', [50, 100, 150, 200], 'ft')}
+      <p class="tip">${IC.ruler}<span>Add up every side you want fenced. Pacing it out works: one long step is about 3 ft.</span></p>
+      ${unsure('fence')}${err('m-fence')}
+    </div>`);
+  }
+  const area = (key, title) => `<div class="mblock" data-mb="${key}">
+      <div class="mhead"><h2>${title}</h2><span class="cap">Square feet</span></div>
+      <div class="mdraw" aria-hidden="true"><svg viewBox="0 0 600 196" id="draw-${key}"></svg></div>
+      ${mInput(key, title + ' in square feet', 'sq ft', 25)}
+      ${presets(key, [100, 250, 500], 'sq ft')}
+      <div class="mrow"><button type="button" class="linkbtn" data-lwt="${key}" aria-expanded="false">Work it out from length × width</button></div>
+      <div class="lw" data-lw="${key}" hidden>
+        <label>Length (ft)<input inputmode="decimal" data-lwl="${key}" autocomplete="off" maxlength="5"></label><span class="lw-x" aria-hidden="true">×</span>
+        <label>Width (ft)<input inputmode="decimal" data-lww="${key}" autocomplete="off" maxlength="5"></label>
+      </div>
+      ${unsure(key)}${err('m-' + key)}
+    </div>`;
+  if (landOn('pavers')) out.push(area('pavers', 'Paver area'));
+  if (landOn('wall')) {
+    out.push(`<div class="mblock" data-mb="wall">
+      <div class="mhead"><h2>Retaining wall</h2><span class="cap">Length + height</span></div>
+      <div class="mdraw" aria-hidden="true"><svg viewBox="0 0 600 196" id="draw-wall"></svg></div>
+      ${mInput('wallLen', 'Wall length in feet', 'ft long', 5)}
+      <div class="hgt"><span class="hgt-l" id="hl-wall">About how tall?</span>
+        <div class="presets" role="radiogroup" aria-labelledby="hl-wall">${HEIGHTS.map((h, i) => `<label class="chip" data-h="${i}"><input type="radio" name="wallH" value="${i}">${h}</label>`).join('')}</div></div>
+      ${unsure('wall')}${err('m-wall')}
+    </div>`);
+  }
+  if (landOn('turf')) out.push(area('turf', 'Turf area'));
+  $('#mlist').innerHTML = out.join('');
+  syncMeasure();
+  drawAll(true);
+}
+
+function syncMeasure() {
+  $$('[data-m]').forEach((inp) => { const k = inp.dataset.m; inp.value = S.m[k] || ''; inp.disabled = !!S.unsure[k === 'wallLen' ? 'wall' : k]; });
+  $$('[data-unsure]').forEach((cb) => { cb.checked = !!S.unsure[cb.dataset.unsure]; });
+  $$('[data-preset]').forEach((b) => b.classList.toggle('is-on', num(S.m[b.dataset.preset]) === num(b.dataset.v) && !S.unsure[b.dataset.preset]));
+  $$('.chip[data-h]').forEach((c) => { const on = String(S.m.wallH) === c.dataset.h && !S.unsure.wall; c.classList.toggle('is-on', on); c.querySelector('input').checked = on; c.querySelector('input').disabled = !!S.unsure.wall; });
+  ['pavers', 'turf'].forEach((k) => {
+    const l = $(`[data-lwl="${k}"]`), w = $(`[data-lww="${k}"]`);
+    if (l) { l.value = S.lw[k].l; w.value = S.lw[k].w; }
+  });
+}
+
+/* ---- live drawings ---- */
+let lastPanels = 0;
+function fenceStyle() {
+  const o = fenceOptions();
+  const pick = o.length ? o[0].mat : (S.mats[0] || 'cedar');
+  return pick;
+}
+function panelSvg(style, x, y, w, h) {
+  let s = '';
+  if (style === 'metal') {
+    s += `<rect class="d-steel" x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+    for (let i = x + 5; i < x + w - 2; i += 7) s += `<line class="d-steel2" x1="${i}" y1="${y + 1}" x2="${i}" y2="${y + h - 1}"/>`;
+  } else if (style === 'composite') {
+    s += `<rect class="d-comp" x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+    for (let j = y + 7; j < y + h - 2; j += 7) s += `<line class="d-comp2" x1="${x}" y1="${j}" x2="${x + w}" y2="${j}"/>`;
+  } else {
+    s += `<rect class="d-wood" x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+    for (let i = x + 6; i < x + w - 2; i += 6) s += `<line class="d-wood2" x1="${i}" y1="${y + 1}" x2="${i}" y2="${y + h - 1}"/>`;
+  }
+  return s;
+}
+function dim(x1, x2, y, text) {
+  const cx = (x1 + x2) / 2, tw = Math.max(64, text.length * 12.6 + 24);
+  return `<g><line class="d-dim" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"/>
+    <line class="d-dim" x1="${x1}" y1="${y - 6}" x2="${x1}" y2="${y + 6}"/><line class="d-dim" x1="${x2}" y1="${y - 6}" x2="${x2}" y2="${y + 6}"/>
+    <rect class="d-tag" x="${cx - tw / 2}" y="${y - 14}" width="${tw}" height="28" rx="6"/>
+    <text class="d-dimt" x="${cx}" y="${y + 7}" text-anchor="middle">${text}</text></g>`;
+}
+function vdim(x, y1, y2, text) {
+  return `<g><line class="d-dim" x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"/>
+    <line class="d-dim" x1="${x - 6}" y1="${y1}" x2="${x + 6}" y2="${y1}"/><line class="d-dim" x1="${x - 6}" y1="${y2}" x2="${x + 6}" y2="${y2}"/>
+    <text class="d-dimt" x="${x - 12}" y="${(y1 + y2) / 2 + 4}" text-anchor="end">${text}</text></g>`;
+}
+function drawFence(force) {
+  const svg = $('#draw-fence'); if (!svg) return;
+  const lf = num(S.m.fence), known = lf > 0 && !S.unsure.fence;
+  const n = known ? Math.max(1, Math.min(16, Math.round(lf / 8))) : 6;
+  const animate = force || n !== lastPanels; lastPanels = n;
+  const x0 = 40, x1 = 560, gy = 112, top = 40, pw = (x1 - x0) / n, st = fenceStyle();
+  let panels = '', posts = '';
+  for (let i = 0; i < n; i++) {
+    const px = x0 + i * pw;
+    panels += `<g class="${animate ? 'd-panel' : ''}" style="animation-delay:${i * 24}ms">${panelSvg(st, px + 3.5, top + 6, pw - 7, gy - top - 8)}</g>`;
+  }
+  for (let i = 0; i <= n; i++) posts += `<rect class="d-post" x="${x0 + i * pw - 3}" y="${top}" width="6" height="${gy - top}" rx="1"/>`;
+  svg.innerHTML = `<line class="d-ground" x1="0" y1="${gy}" x2="600" y2="${gy}"/>
+    <g class="${known ? '' : 'd-ghost'}">${panels}${posts}</g>
+    ${dim(x0, x1, 136, known ? int(lf) + ' ft' : 'length?')}`;
+}
+function drawArea(key, force) {
+  const svg = $('#draw-' + key); if (!svg) return;
+  const a = num(S.m[key]), known = a > 0 && !S.unsure[key];
+  const l = num(S.lw[key].l), w = num(S.lw[key].w);
+  let ratio = l > 0 && w > 0 ? l / w : 1.9; ratio = Math.min(3.4, Math.max(.6, ratio));
+  const maxW = 460, maxH = 134;
+  let rw = maxW, rh = rw / ratio; if (rh > maxH) { rh = maxH; rw = rh * ratio; }
+  const x = 300 - rw / 2 + 18, y = 98 - rh / 2 + 6;
+  const fill = key === 'turf' ? 'url(#pat-turf)' : 'url(#pat-paver)';
+  const label = known ? int(a) + ' sq ft' : 'area?';
+  svg.innerHTML = `<g class="${known ? '' : 'd-ghost'}"><rect x="${x}" y="${y}" width="${rw}" height="${rh}" rx="3" fill="${fill}" class="${force ? 'd-pop' : ''}"/>
+      <rect x="${x}" y="${y}" width="${rw}" height="${rh}" rx="3" fill="none" class="d-dim" style="stroke-dasharray:4 4"/></g>
+    <rect class="d-tag" x="${x + rw / 2 - (label.length * 5.4 + 16)}" y="${y + rh / 2 - 16}" width="${label.length * 10.8 + 32}" height="32" rx="7"/>
+    <text class="d-dimt" x="${x + rw / 2}" y="${y + rh / 2 + 6}" text-anchor="middle" style="font-size:17px">${label}</text>
+    ${l > 0 && w > 0 ? dim(x, x + rw, y - 18, int(l) + ' ft') + vdim(x - 16, y, y + rh, int(w) + ' ft') : ''}`;
+}
+function drawWall(force) {
+  const svg = $('#draw-wall'); if (!svg) return;
+  const len = num(S.m.wallLen), h = S.m.wallH;
+  const known = !S.unsure.wall && len > 0;
+  const hpx = [30, 50, 70, 92][h === '' ? 1 : +h];
+  const gy = 160, x0 = 150, x1 = 566, top = gy - hpx;
+  const t = S.walls[0] || 'allan';
+  const face = t === 'concrete' ? 'class="d-conc"' : `fill="${t === 'wood' ? 'url(#pat-timber)' : 'url(#pat-block)'}"`;
+  svg.innerHTML = `<line class="d-ground" x1="0" y1="${gy}" x2="600" y2="${gy}"/>
+    <rect class="d-soil" x="${x0}" y="${top - 10}" width="${x1 - x0}" height="10" opacity=".85"/>
+    <rect class="d-turf" x="${x0}" y="${top - 14}" width="${x1 - x0}" height="5"/>
+    <g class="${known || h !== '' ? '' : 'd-ghost'}"><rect x="${x0}" y="${top}" width="${x1 - x0}" height="${hpx}" ${face} class="${force ? 'd-pop' : ''}"/></g>
+    ${vdim(x0 - 18, top, gy, h === '' || S.unsure.wall ? 'height?' : HEIGHTS[h].replace(' to ', '–'))}
+    ${dim(x0, x1, 180, known ? int(len) + ' ft' : 'length?')}`;
+}
+function drawAll(force) { drawFence(force); drawArea('pavers', force); drawArea('turf', force); drawWall(force); }
+
+/* =====================================================================
+   Validation
+   ===================================================================== */
+function showErr(id, msg) {
+  const e = $('#e-' + id); if (!e) return;
+  e.textContent = msg || ''; e.hidden = !msg;
+}
+function validate(id) {
+  switch (id) {
+    case 'scope': return S.scope ? true : 'Pick one to get started.';
+    case 'material': return S.mats.length ? true : (showErr('material', 'Pick at least one material.'), 'Pick at least one material.');
+    case 'cedar': return matCount('cedar') ? true : (showErr('cedar', 'Pick at least one cedar option.'), 'Pick at least one cedar option.');
+    case 'metal': return matCount('metal') ? true : (showErr('metal', 'Pick at least one colour.'), 'Pick at least one colour.');
+    case 'land': return S.land.length ? true : (showErr('land', 'Pick at least one.'), 'Pick at least one.');
+    case 'wall': return S.walls.length ? true : (showErr('wall', 'Pick at least one wall type.'), 'Pick at least one wall type.');
+    case 'measure': return validateMeasure();
+    case 'extras': return S.disposal !== null ? true : (showErr('extras', 'Choose yes or no to continue.'), 'Choose yes or no to continue.');
+    case 'contact': return validateContact();
+    default: return true;
+  }
+}
+function validateMeasure(quiet) {
+  let first = null;
+  const check = (key, ok, msg) => {
+    const block = $(`[data-mb="${key}"]`); if (!block) return;
+    if (!quiet) { block.classList.toggle('is-bad', !ok); showErr('m-' + key, ok ? '' : msg); }
+    if (!ok && !first) first = block;
+  };
+  if (hasFence()) check('fence', S.unsure.fence || (num(S.m.fence) > 0 && num(S.m.fence) <= 20000), 'Add your fence length, or tick “not sure”.');
+  if (landOn('pavers')) check('pavers', S.unsure.pavers || num(S.m.pavers) > 0, 'Add the paver area, or tick “not sure”.');
+  if (landOn('wall')) check('wall', S.unsure.wall || (num(S.m.wallLen) > 0 && S.m.wallH !== ''), 'Add the wall length and height, or tick “not sure”.');
+  if (landOn('turf')) check('turf', S.unsure.turf || num(S.m.turf) > 0, 'Add the turf area, or tick “not sure”.');
+  if (first) {
+    if (!quiet) { first.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'center' }); }
+    return 'A measurement is missing.';
+  }
+  return true;
+}
+const digits = (s) => String(s).replace(/\D/g, '');
+const phoneOk = (s) => { const d = digits(s); return d.length === 10 || (d.length === 11 && d[0] === '1'); };
+const emailOk = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(s).trim());
+function validateContact(quiet) {
+  const c = S.contact, bad = [];
+  const set = (f, ok, msg) => {
+    if (!quiet) { $(`.field[data-f="${f}"]`).classList.toggle('is-bad', !ok); showErr(f, ok ? '' : msg); }
+    if (!ok) bad.push(f);
+  };
+  set('name', c.name.trim().length >= 2, 'Add your name.');
+  set('phone', phoneOk(c.phone), 'Add a 10-digit phone number.');
+  set('email', emailOk(c.email), 'Add an email like name@example.com.');
+  if (bad.length && !quiet) $('#c-' + bad[0]).focus();
+  return bad.length ? 'Check your details.' : true;
+}
+function fmtPhone(s) {
+  let d = digits(s); if (d.length === 11 && d[0] === '1') d = d.slice(1);
+  return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : s;
+}
+
+/* =====================================================================
+   Sync UI with state
+   ===================================================================== */
+function isOn(group, val) {
+  if (group === 'scope') return S.scope === val;
+  if (group === 'disposal') return S.disposal === (val === 'yes');
+  return (S[group] || []).includes(val);
+}
+function syncCards() {
+  $$('[data-group]').forEach((card) => {
+    const on = isOn(card.dataset.group, card.dataset.val);
+    card.classList.toggle('is-on', on);
+    const inp = card.querySelector('input'); if (inp) inp.checked = on;
+  });
+  Object.keys(GATES).forEach((k) => {
+    const q = S.gates[k], card = $(`[data-gate="${k}"]`); if (!card) return;
+    card.classList.toggle('is-on', q > 0);
+    card.querySelector('.add').hidden = q > 0;
+    card.querySelector('.qty').hidden = q === 0;
+    card.querySelector('.qty-l').textContent = q > 1 ? 'gates' : 'gate';
+    $('#q-' + k).textContent = q;
+  });
+  const ng = $('[data-nogate]');
+  if (ng) { ng.classList.toggle('is-on', S.noGate); $('#noGate').checked = S.noGate; }
+  // disposal copy follows what they picked
+  const sub = $('#s-extras');
+  if (sub) sub.textContent = hasFence() && hasLand() ? 'Like an old fence, grass, soil or concrete.' : hasFence() ? 'Like an old fence that needs to come down.' : 'Like old grass, soil or concrete.';
+}
+
+function hint() {
+  const n = (k) => k === 'cedar' || k === 'metal' ? matCount(k) : 0;
+  switch (cur) {
+    case 'scope': return S.scope ? ['good', SCOPE[S.scope].title + ' it is.'] : ['', 'Tap one to start.'];
+    case 'material': return S.mats.length === 0 ? ['', 'Pick one or more.'] : S.mats.length === 1 ? ['good', MATERIALS[S.mats[0]].title + ' selected.'] : ['good', S.mats.length + ' materials. We’ll price them side by side.'];
+    case 'cedar': case 'metal': {
+      const c = n(cur), w = cur === 'cedar' ? 'cedar option' : 'colour';
+      return c === 0 ? ['', 'Pick at least one.'] : c === 1 ? ['good', '1 ' + w + ' selected.'] : ['good', c + ' ' + w + 's. Each gets its own price.'];
+    }
+    case 'gates': { const g = gateTotal(); return S.noGate ? ['good', 'No gate. Got it.'] : g ? ['good', g + (g > 1 ? ' gates' : ' gate') + ' added.'] : ['', 'No gate? Just continue.']; }
+    case 'land': return S.land.length ? ['good', S.land.length + ' selected.'] : ['', 'Pick one or more.'];
+    case 'wall': return S.walls.length ? ['good', S.walls.length > 1 ? 'We’ll go over both.'.replace('both', S.walls.length === 2 ? 'both' : 'all three') : WALLS[S.walls[0]].title + ' selected.'] : ['', 'Pick one or more.'];
+    case 'measure': return validateMeasure(true) === true ? ['good', 'Looks good.'] : ['', 'Rough numbers are fine.'];
+    case 'extras': return S.disposal === null ? ['', 'One quick question, then your price.'] : ['good', 'Next: your price.'];
+    case 'contact': return ['good', 'Your price is ready.'];
+    case 'result': return ['', 'Approx prices · confirmed on a free site visit'];
+    default: return ['', ''];
+  }
+}
+let lastHint = '';
+function updateBar() {
+  const [cls, text] = hint();
+  const h = $('#hint');
+  if (text !== lastHint) { h.className = 'bar-hint ' + cls; void h.offsetWidth; h.classList.add('swap'); h.textContent = text; lastHint = text; }
+  else h.className = 'bar-hint ' + cls;
+  const list = route(), i = list.indexOf(cur);
+  const isResult = cur === 'result';
+  $('#back').hidden = i <= 0 || isResult;
+  $('#next').hidden = isResult;
+  $('#bookBar').hidden = !isResult || !$('#result') || $('#result').hidden || !!S.visit.sent;
+  $('#bar').hidden = (cur === 'scope' && !S.scope) || (isResult && $('#bookBar').hidden);
+  const label = cur === 'extras' ? 'See my price' : cur === 'contact' ? 'Show my price' : 'Continue';
+  $('#nextLabel').textContent = label;
+  const count = cur === 'material' ? S.mats.length : (cur === 'cedar' || cur === 'metal') ? matCount(cur) : cur === 'land' ? S.land.length : cur === 'wall' ? S.walls.length : 0;
+  const c = $('#nextCount'); c.hidden = count < 1; c.textContent = count + ' selected';
+  const ready = validateQuiet(cur);
+  $('#next').classList.toggle('soft', !ready);
+}
+function validateQuiet(id) {
+  switch (id) {
+    case 'scope': return !!S.scope;
+    case 'material': return S.mats.length > 0;
+    case 'cedar': case 'metal': return matCount(id) > 0;
+    case 'land': return S.land.length > 0;
+    case 'wall': return S.walls.length > 0;
+    case 'measure': return validateMeasure(true) === true;
+    case 'extras': return S.disposal !== null;
+    case 'contact': return validateContact(true) === true;
+    default: return true;
+  }
+}
+function progressRoute() {
+  const saved = S.scope;
+  if (!S.scope) S.scope = 'fence';
+  const list = route().filter((s) => s !== 'result');
+  if (hasFence() && !S.mats.length) list.splice(list.indexOf('material') + 1, 0, 'pick');
+  S.scope = saved;
+  return list;
+}
+function updateMeter() {
+  const list = progressRoute();
+  const i = list.indexOf(cur);
+  const isResult = cur === 'result';
+  $('#mLabel').textContent = isResult ? 'Your price' : 'Step';
+  $('#mNow').hidden = isResult; $('#mTot').hidden = isResult; $('.meter-bar').hidden = isResult;
+  $('#mNow').textContent = String(i + 1).padStart(2, '0');
+  $('#mTot').textContent = String(list.length).padStart(2, '0');
+  const p = isResult ? 1 : Math.max(.06, (i + 1) / (list.length + 1));
+  $('#tape').style.setProperty('--p', p.toFixed(3));
+  $('#tape').setAttribute('aria-valuenow', Math.round(p * 100));
+}
+
+/* =====================================================================
+   Desktop stage
+   ===================================================================== */
+const stageMQ = window.matchMedia('(min-width: 1024px)');
+function stageData() {
+  const L = S.last || {};
+  const fenceIn = (mat) => {
+    const id = (hover && FENCE[hover] && FENCE[hover].mat === mat) ? hover : (L[mat] && S.fences.includes(L[mat]) ? L[mat] : (FENCES.find((f) => f.mat === mat && S.fences.includes(f.id)) || FENCES.find((f) => f.mat === mat)).id);
+    const f = FENCE[id];
+    return { img: f.img, kicker: f.tier, title: f.full, sub: f.rate ? (f.from ? 'Starting at approx ' : 'approx ') + money(f.rate) + ' per linear ft' : 'Price yet to be discussed' };
+  };
+  switch (cur) {
+    case 'scope': {
+      const k = (hover && SCOPE[hover]) ? hover : S.scope;
+      if (!k) return { img: SCOPE.fence.img, kicker: 'Boundary Builders', title: 'Your fence or yard, priced in about 2 minutes', sub: 'Pick what you need. Your approx price shows at the end, no phone call needed.', trust: true };
+      return { img: SCOPE[k].img, kicker: S.scope === k ? 'You picked' : 'Boundary Builders', title: SCOPE[k].title, sub: SCOPE[k].sub };
+    }
+    case 'material': {
+      const k = (hover && MATERIALS[hover]) ? hover : (L.mats && S.mats.includes(L.mats) ? L.mats : S.mats[0] || 'cedar');
+      return { img: MATERIALS[k].img, kicker: 'Fence material', title: MATERIALS[k].title, sub: MATERIALS[k].who };
+    }
+    case 'cedar': return fenceIn('cedar');
+    case 'metal': return fenceIn('metal');
+    case 'gates': {
+      const k = (hover && GATES[hover]) ? hover : (L.gates && S.gates[L.gates] ? L.gates : Object.keys(GATES).find((g) => S.gates[g] > 0) || 'metal');
+      return { img: GATES[k].img, kicker: 'Gates', title: GATES[k].title, sub: 'Price yet to be discussed' };
+    }
+    case 'land': {
+      const k = (hover && LAND[hover]) ? hover : (L.land && S.land.includes(L.land) ? L.land : S.land[0] || 'pavers');
+      return { img: LAND[k].img, kicker: 'Landscaping', title: LAND[k].title, sub: LAND[k].rate ? (LAND[k].from ? 'Starting at approx ' : 'approx ') + money(LAND[k].rate) + ' per sq ft' : LAND[k].who };
+    }
+    case 'wall': {
+      const k = (hover && WALLS[hover]) ? hover : (L.walls && S.walls.includes(L.walls) ? L.walls : S.walls[0] || 'allan');
+      return { img: WALLS[k].img, kicker: 'Retaining wall', title: WALLS[k].title, sub: WALLS[k].who };
+    }
+    default: {
+      const o = fenceOptions();
+      if (o.length) return { img: o[0].img, kicker: o.length > 1 ? 'Option 1 of ' + o.length : 'Your fence', title: o[0].full, sub: cur === 'result' ? 'Your approx price is ready.' : 'Your project, so far.' };
+      const k = ['pavers', 'turf', 'wall'].find((x) => S.land.includes(x)) || 'pavers';
+      return { img: LAND[k].img, kicker: 'Your project', title: LAND[k].title, sub: cur === 'result' ? 'Your approx price is ready.' : 'Your project, so far.' };
+    }
+  }
+}
+let stageKey = '';
+function updateStage(animate = true) {
+  if (!stageMQ.matches) return;
+  const d = stageData();
+  const key = d.img.lg + '|' + d.title + '|' + d.sub + '|' + d.kicker;
+  if (key === stageKey) return; stageKey = key;
+  const a = $('#stA'), b = $('#stB');
+  const on = a.classList.contains('is-on') ? a : b, off = on === a ? b : a;
+  if (on.getAttribute('src') !== d.img.lg) {
+    off.onload = () => { off.classList.toggle('is-drawing', !!d.img.drawing); off.classList.add('is-on'); on.classList.remove('is-on'); };
+    off.src = d.img.lg;
+  }
+  $('#stChip').textContent = d.img.drawing ? 'Drawing' : 'Our work';
+  const cap = $('#stCap');
+  cap.innerHTML = `<p class="stage-kicker">${esc(d.kicker)}</p><p class="stage-title">${esc(d.title)}</p><p class="stage-sub">${esc(d.sub)}</p>${d.trust ? '<ul class="stage-trust"><li>8+ years in business</li><li>22+ years crew experience</li><li>6-month installation warranty</li></ul>' : ''}`;
+  cap.classList.remove('swap');
+  if (animate) { void cap.offsetWidth; cap.classList.add('swap'); }
+}
+
+/* =====================================================================
+   Navigation
+   ===================================================================== */
+let busy = false, cleanT = 0;
+function beforeEnter(id) {
+  if (id === 'measure') renderMeasure();
+  if (id === 'contact') fillContact();
+  if (id === 'extras' || id === 'gates') syncCards();
+}
+function go(id, dir) {
+  if (busy || id === cur) return;
+  busy = true;
+  $('#app').classList.remove('boot');
+  const from = $(`.step[data-step="${cur}"]`), to = $(`.step[data-step="${id}"]`);
+  beforeEnter(id);
+  const swap = () => {
+    from.hidden = true; from.classList.remove('is-active', 'out-f', 'out-b', 'in-f', 'in-b');
+    to.hidden = false; to.classList.remove('in-f', 'in-b'); void to.offsetWidth;
+    if (id !== 'result') { $('#bar').classList.remove('is-tucked'); if (nextObs) { nextObs.disconnect(); nextObs = null; } }
+    to.classList.add('is-active', dir > 0 ? 'in-f' : 'in-b');
+    cur = id; S.step = id; save();
+    updateMeter(); updateBar(); updateStage();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const h = to.querySelector('.q'); if (h) h.focus({ preventScroll: true });
+    clearTimeout(cleanT); cleanT = setTimeout(() => to.classList.remove('in-f', 'in-b'), 1200);
+    setTimeout(() => { busy = false; }, 120);
+  };
+  if (reduced()) { swap(); return; }
+  from.classList.add(dir > 0 ? 'out-f' : 'out-b');
+  setTimeout(swap, 190);
+}
+function nextStep() {
+  if (busy) return;
+  const v = validate(cur);
+  if (v !== true) {
+    const b = $('#next'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+    const h = $('#hint'); h.className = 'bar-hint bad swap'; h.textContent = v; lastHint = v;
+    return;
+  }
+  if (cur === 'contact') { reveal(); return; }
+  const list = route(), i = list.indexOf(cur);
+  if (i >= 0 && i < list.length - 1) go(list[i + 1], 1);
+}
+function prevStep() {
+  const list = route(), i = list.indexOf(cur);
+  if (i > 0) go(list[i - 1], -1);
+}
+
+/* =====================================================================
+   Contact + reveal
+   ===================================================================== */
+function fillContact() {
+  $('#c-name').value = S.contact.name; $('#c-phone').value = S.contact.phone; $('#c-email').value = S.contact.email;
+  const M = model();
+  const best = M.totals.filter((t) => t.amount != null).map((t) => t.amount);
+  const sample = best.length ? Math.min(...best) : 8888;
+  $('#lockAmt').textContent = money(sample).replace(/\d/g, () => '8');
+  $('#lockNote').textContent = M.opts.length > 1 ? M.opts.length + ' fence options priced. They unlock as soon as you add your details.' : 'Unlocks as soon as you add your details.';
+}
+function rand(n) {
+  try { const a = new Uint32Array(n); crypto.getRandomValues(a); return Array.from(a); } catch (e) { return Array.from({ length: n }, () => Math.floor(Math.random() * 4294967296)); }
+}
+function makeRef() {
+  const d = new Date();
+  return 'BB-' + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0') + '-' + String(rand(1)[0] % 9000 + 1000);
+}
+const makeId = () => rand(4).map((x) => x.toString(36).padStart(7, '0')).join('').slice(0, 24);
+
+function reveal() {
+  S.contact.phone = fmtPhone(S.contact.phone);
+  if (!S.ref) S.ref = makeRef();
+  if (!S.lid) S.lid = makeId();
+  S.done = true;
+  const M = model();
+  if (CONFIG.api) { S.pending = leadPayload(M); save(); sendLead(); } else save();
+  track('Lead');
+  go('result', 1);
+  const calc = $('#calc'), res = $('#result');
+  res.hidden = true; calc.hidden = false;
+  const what = M.opts.length ? (M.lfKnown ? int(M.lf) + ' ft of fence' : 'your fence') : M.land.length ? 'your yard' : 'your project';
+  const steps = ['Measuring ' + what, M.opts.length > 1 ? 'Pricing ' + M.opts.length + ' fence options' : 'Pricing your selections', 'Adding it all up'];
+  $('#calcList').innerHTML = steps.map((s) => `<li><span class="ck">${IC.check}</span>${esc(s)}</li>`).join('');
+  $('#bar').hidden = true;
+  if (reduced()) { showResult(false); return; }
+  setTimeout(() => calc.classList.add('run'), 260);
+  const items = $$('#calcList li');
+  items.forEach((li, i) => setTimeout(() => li.classList.add('is-done'), 700 + i * 480));
+  setTimeout(() => showResult(true), 700 + items.length * 480 + 260);
+}
+function showResult(animate) {
+  const calc = $('#calc'); calc.hidden = true; calc.classList.remove('run');
+  renderResult();
+  const res = $('#result'); res.hidden = false;
+  if (animate) countUp(); else $$('[data-count]', res).forEach((el) => { el.textContent = money(+el.dataset.count); });
+  startWork();
+  updateBar(); updateStage(); updateMeter();
+  const h = $('#h-result'); if (h) h.focus({ preventScroll: true });
+}
+function countUp() {
+  const els = $$('#result [data-count]');
+  const start = performance.now(), dur = 1100;
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const tickF = (t) => {
+    const p = Math.min(1, (t - start) / dur);
+    els.forEach((el) => { el.textContent = money(Math.round(+el.dataset.count * ease(p))); });
+    if (p < 1) requestAnimationFrame(tickF);
+  };
+  requestAnimationFrame(tickF);
+}
+
+function amountHtml(amount, rateOnly) {
+  if (amount == null) return `<span class="amt tbd"><b>${rateOnly || 'Yet to be discussed'}</b></span>`;
+  return `<span class="amt"><small>approx</small><b data-count="${amount}">${money(amount)}</b></span>`;
+}
+const waLink = (M) => 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('Hi Boundary Builders, here is my quote.\n\n' + summary(M));
+const TIMES = ['Weekday morning', 'Weekday afternoon', 'Weekday evening', 'Saturday'];
+
+function renderResult() {
+  const M = model();
+  const first = (S.contact.name || '').trim().split(/\s+/)[0];
+  const date = new Date().toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+  const h = [];
+  h.push(`<div class="r-head">
+    <div class="r-meta"><span>Ref <b>${esc(S.ref)}</b></span><span>${esc(date)}</span><span>For <b>${esc(S.contact.name)}</b></span></div>
+    <h1 class="q" id="h-result" tabindex="-1">Here’s your price${first ? ', ' + esc(first) : ''}.</h1>
+    <p class="sub">${M.anyPrice ? 'Approx prices based on what you picked. We confirm every number on a free site visit.' : 'A few of your picks need a quick look before we can put a number on them. Book a free site visit and we’ll price everything.'}</p>
+  </div>`);
+  if (M.opts.length) {
+    h.push(`<div class="grp"><p class="grp-h">${M.opts.length > 1 ? 'Your fence options' : 'Your fence'}<span>${M.lfKnown ? int(M.lf) + ' linear ft' : 'Length to be measured'}</span></p>
+      ${M.opts.map((o) => `<div class="opr">
+        <span class="thumb">${pic(o.f.img)}</span>
+        <div class="opr-body">
+          <span class="opr-n">Option ${o.n}</span>
+          <span class="opr-name">${o.f.full}</span>
+          ${o.amount != null ? `<span class="opr-calc">${int(M.lf)} lf × approx ${money(o.f.rate)}/lf</span>` : o.f.rate ? '<span class="opr-calc">Length to be measured on site</span>' : ''}
+          ${amountHtml(o.amount, o.f.rate ? 'approx ' + money(o.f.rate) + '/lf' : '')}
+        </div></div>`).join('')}
+    </div>`);
+  }
+  const lines = (arr) => arr.map((it) => `<div class="ln"><span class="ln-l"><b>${esc(it.label)}</b><span>${esc(it.detail)}</span></span>${it.amount != null
+    ? `<span class="ln-v"><small>approx</small><span data-count="${it.amount}">${money(it.amount)}</span></span>`
+    : `<span class="ln-v tbd">${it.rateOnly && it.rate ? 'approx ' + money(it.rate) + '/sq ft' : 'Yet to be discussed'}</span>`}</div>`).join('');
+  if (M.land.length) h.push(`<div class="grp"><p class="grp-h">Landscaping</p><div class="sheet">${lines(M.land)}</div></div>`);
+  if (M.extras.length) h.push(`<div class="grp"><p class="grp-h">${M.opts.length ? 'Add-ons' : 'Extras'}</p><div class="sheet">${lines(M.extras)}</div></div>`);
+
+  const rows = M.totals.map((t) => {
+    const label = esc(t.label) + (M.totals.length > 1 || M.opts.length ? ' · ' + esc(t.sub) : '');
+    return `<div class="t-row"><span>${label}</span>${amountHtml(t.amount)}</div>`;
+  }).join('');
+  const tbdNames = M.tbd.filter((x, i, a) => a.indexOf(x) === i);
+  const plus = tbdNames.length ? `<p class="t-plus">+ <b>${esc(cap(listJoin(tbdNames)))}</b>: yet to be discussed</p>` : '';
+  h.push(`<div class="total"><p class="t-h">${M.totals.length ? 'Your approx total' : 'Your price'}</p>${rows ? `<div class="t-rows">${rows}</div>` : '<div class="t-rows"><div class="t-row"><span>Everything you picked</span><span class="amt tbd"><b>Yet to be discussed</b></span></div></div>'}${plus}<p class="t-terms">Approx price, not a final quote. Confirmed in writing after your site visit.</p></div>`);
+
+  if (WORK.length) h.push(workHtml());
+  h.push(nextHtml(M));
+  h.push(`<p class="fine-print">These are approximate prices for planning only, based on the details you entered. They are not a final quote or a contract. We confirm measurements, site conditions and your choices on a free site visit, then send you a written quote. Items marked “yet to be discussed” aren’t included. Any taxes are shown on your written quote.</p>
+    <div class="r-links"><button type="button" class="linkbtn" data-edit>Change my answers</button><button type="button" class="linkbtn" data-new>Start a new quote</button><button type="button" class="linkbtn" data-privacy>Privacy</button></div>`);
+  const res = $('#result');
+  res.innerHTML = h.join('');
+  $('#bookBar').href = CONFIG.api ? '#visit' : (CONFIG.bookingUrl || waLink(M));
+  if (CONFIG.api) { $('#bookBar').removeAttribute('target'); $('#bookBar').removeAttribute('rel'); }
+  else { $('#bookBar').target = '_blank'; $('#bookBar').rel = 'noopener'; }
+  syncVisit();
+  watchNext();
+}
+
+/* ---- the next step: ask for a site visit (or, in preview, WhatsApp / call / booking page) ---- */
+function nextHtml(M) {
+  const call = `<a class="btn" href="${telHref(CONFIG.phone)}">${IC.phone}Call or text ${esc(CONFIG.phone)}</a>`;
+  if (!CONFIG.api) {
+    return `<div class="next" id="visit">
+      <p class="eyebrow">Next step</p>
+      <h2>Book your free site visit</h2>
+      <p>We’ll check your measurements, go over your options and confirm your price in writing.</p>
+      <div class="next-actions">
+        <a class="btn btn-primary btn-xl" href="${esc(waLink(M))}" target="_blank" rel="noopener" data-wa>${IC.wa}Send my quote on WhatsApp</a>
+        ${call}
+        <button type="button" class="btn" data-copy>${IC.copy}Copy my quote</button>
+        ${CONFIG.bookingUrl ? `<a class="btn" href="${esc(CONFIG.bookingUrl)}" target="_blank" rel="noopener" data-book>${IC.cal}Pick a time online</a>` : ''}
+      </div>
+    </div>`;
+  }
+  return `<div class="next" id="visit">
+    <p class="eyebrow">Next step</p>
+    <h2>Book your free site visit</h2>
+    <p>We’ll check your measurements, go over your options and confirm your price in writing.</p>
+    <div class="visit" id="visitForm">
+      <div class="field" data-f="addr"><label for="v-addr">Site address</label><input id="v-addr" autocomplete="street-address" placeholder="Street, city" enterkeyhint="next">${err('addr')}</div>
+      <div class="when"><span class="when-l" id="when-l">Best times for you <span class="sr">(pick any)</span></span>
+        <div class="presets" role="group" aria-labelledby="when-l">${TIMES.map((t) => `<button type="button" class="chip" data-time="${t}" aria-pressed="false">${t}</button>`).join('')}</div></div>
+      <div class="field" data-f="notes"><label for="v-notes">Anything we should know? <span>(optional)</span></label><textarea id="v-notes" rows="3" placeholder="Gate code, dogs in the yard, best time to call…"></textarea></div>
+      <button type="button" class="btn btn-primary btn-xl" data-visit>Request my site visit${IC.arrow}</button>
+    </div>
+    <div class="sent" id="visitSent" hidden role="status"></div>
+    <div class="next-actions">
+      <a class="btn btn-wa" href="${esc(waLink(M))}" target="_blank" rel="noopener" data-wa>${IC.wa}WhatsApp us</a>
+      ${call}
+    </div>
+    <p class="fine-print" id="leadNote">${S.server ? 'We’ve got your quote' + (firstName() ? ', ' + esc(firstName()) : '') + '. We’ll be in touch.' : ''}</p>
+  </div>`;
+}
+const firstName = () => (S.contact.name || '').trim().split(/\s+/)[0] || '';
+function syncVisit() {
+  const f = $('#visitForm'); if (!f) return;
+  const v = S.visit;
+  const a = $('#v-addr'); if (a && document.activeElement !== a) a.value = v.addr || '';
+  const n = $('#v-notes'); if (n && document.activeElement !== n) n.value = v.notes || '';
+  $$('[data-time]').forEach((b) => { const on = v.times.includes(b.dataset.time); b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', String(on)); });
+  const sent = $('#visitSent');
+  if (v.sent || v.pending) {
+    f.hidden = true; sent.hidden = false;
+    sent.innerHTML = v.sent
+      ? `<b><i>${IC.check}</i>Site visit requested</b><p>Thanks${firstName() ? ', ' + esc(firstName()) : ''}. We’ll call or text you at ${esc(S.contact.phone)} to confirm a time${v.times.length ? ' (' + esc(listJoin(TIMES.filter((x) => v.times.includes(x)).map((x) => x.replace(/^Weekday/, 'weekday')))) + ')' : ''}.</p>`
+      : `<b><span class="spin" aria-hidden="true"></span>Sending your request…</b><p>If this takes a while, check your connection. We’ll keep trying while this page is open.</p>`;
+  } else { f.hidden = false; sent.hidden = true; }
+  const note = $('#leadNote');
+  if (note) note.textContent = S.server ? 'We’ve got your quote' + (firstName() ? ', ' + firstName() : '') + '. We’ll be in touch.' : (S.pending ? 'Saving your quote…' : '');
+  updateBar();
+}
+function requestVisit() {
+  const a = $('#v-addr'), v = S.visit;
+  v.addr = a.value.trim(); v.notes = $('#v-notes').value.trim();
+  const ok = v.addr.length >= 6;
+  a.closest('.field').classList.toggle('is-bad', !ok);
+  showErr('addr', ok ? '' : 'Add the address where the work is, like “123 Main St, Surrey”.');
+  if (!ok) { a.focus(); return; }
+  v.pending = true; v.sent = false; save(); syncVisit();
+  sendVisit();
+}
+
+/* ---- "Our recent work": two rows of photos that drift along on their own; swipe or tap to look closer ---- */
+function workHtml() {
+  const half = (r) => WORK.map((it, i) => [it, i]).filter(([, i]) => i % 2 === r);
+  const item = ([it, i]) => `<button type="button" class="mq-item" data-wi="${i}" style="aspect-ratio:${it.w}/${it.h}" aria-label="Open photo: ${esc(it.c)}${it.loc ? ', ' + esc(it.loc) : ''}"><img src="${esc(wsrc(it.t))}" alt="" width="${it.w}" height="${it.h}" loading="lazy" decoding="async"><span>${esc(it.c)}${it.loc ? ' <em>· ' + esc(it.loc) + '</em>' : ''}</span></button>`;
+  const row = (list, dir) => `<div class="mq-row" data-dir="${dir}">${list.map(item).join('')}${list.map(item).join('').replace(/<button /g, '<button tabindex="-1" aria-hidden="true" ')}</div>`;
+  return `<section class="work" aria-labelledby="work-h">
+    <div class="work-head">
+      <p class="eyebrow">Built by our crew</p>
+      <h2 class="work-h" id="work-h">Our recent work</h2>
+      <p class="work-sub">Real projects built by our crew. Tap any photo to see it bigger.</p>
+      <ul class="work-stats"><li>${IC.check}${WORK.length} project photos</li><li>${IC.check}6-month installation warranty</li><li>${IC.check}8+ years in business</li></ul>
+    </div>
+    <div class="mq">${row(half(0), 1)}${row(half(1), -1)}</div>
+  </section>`;
+}
+let workRaf = 0, workOn = false, workObs = null;
+function startWork() {
+  cancelAnimationFrame(workRaf); if (workObs) workObs.disconnect();
+  const rows = $$('.mq-row'); if (!rows.length) return;
+  const st = rows.map((r) => ({ r, dir: +r.dataset.dir, pause: 0, x: 0, init: false }));
+  const touch = (s) => { s.pause = performance.now() + 3500; };
+  st.forEach((s) => {
+    ['pointerdown', 'wheel', 'touchstart', 'focusin'].forEach((ev) => s.r.addEventListener(ev, () => touch(s), { passive: true }));
+    s.r.addEventListener('scroll', () => { if (Math.abs(s.r.scrollLeft - s.x) > 2) { touch(s); s.x = s.r.scrollLeft; } }, { passive: true });
+  });
+  if (reduced()) return;
+  let last = performance.now();
+  const step = (t) => {
+    const dt = Math.min(64, t - last); last = t;
+    if (workOn && !document.hidden) {
+      st.forEach((s) => {
+        const half = s.r.scrollWidth / 2;
+        if (half <= s.r.clientWidth) return;
+        if (!s.init) { s.x = s.dir < 0 ? half : 0; s.r.scrollLeft = s.x; s.init = true; }
+        if (t < s.pause) { s.x = s.r.scrollLeft; return; }
+        s.x += s.dir * dt * 0.028;
+        if (s.x >= half) s.x -= half;
+        if (s.x <= 0) s.x += half;
+        s.r.scrollLeft = s.x;
+      });
+    }
+    workRaf = requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window) {
+    workObs = new IntersectionObserver((en) => { workOn = en.some((e) => e.isIntersecting); }, { rootMargin: '120px 0px' });
+    workObs.observe($('.mq'));
+  } else workOn = true;
+  workRaf = requestAnimationFrame(step);
+}
+
+/* ---- photo viewer ---- */
+let vIdx = 0, vBack = null;
+function openViewer(i) {
+  vIdx = (i + WORK.length) % WORK.length;
+  const it = WORK[vIdx], v = $('#viewer'), img = $('#vImg');
+  img.src = wsrc(it.l || it.t); img.alt = it.c + (it.loc ? ', ' + it.loc : '');
+  $('#vCap').innerHTML = esc(it.c) + `<span>${it.loc ? esc(it.loc) + ' · ' : ''}${vIdx + 1} of ${WORK.length}</span>`;
+  if (v.hidden) { vBack = document.activeElement; v.hidden = false; document.body.style.overflow = 'hidden'; $('#viewer .v-close').focus(); }
+}
+function closeViewer() {
+  const v = $('#viewer'); if (v.hidden) return;
+  v.hidden = true; document.body.style.overflow = ''; $('#vImg').removeAttribute('src');
+  if (vBack && vBack.focus) vBack.focus({ preventScroll: true });
+}
+
+/* ---- privacy notice ---- */
+let pBack = null;
+function openPrivacy() {
+  const m = $('#privacy');
+  $('#pvSheet').textContent = CONFIG.sheet ? ', and a copy is kept in a private Google Sheet that only our team can open' : '';
+  const k = CONFIG.keepMonths;
+  $('#pvKeep').textContent = !k ? 'as long as we need it for your project' : k % 12 === 0 ? (k / 12 === 1 ? '1 year' : k / 12 + ' years') : k + ' months';
+  $('#pvPixel').hidden = !(CONFIG.pixel || CONFIG.ga);
+  pBack = document.activeElement; m.hidden = false; document.body.style.overflow = 'hidden';
+  $('#privacy .modal-x').focus();
+}
+function closePrivacy() {
+  const m = $('#privacy'); if (m.hidden) return;
+  m.hidden = true; document.body.style.overflow = '';
+  if (pBack && pBack.focus) pBack.focus({ preventScroll: true });
+}
+
+let nextObs = null;
+function watchNext() {
+  if (nextObs) nextObs.disconnect();
+  const target = $('#visit');
+  if (!target || !('IntersectionObserver' in window)) return;
+  nextObs = new IntersectionObserver((entries) => {
+    entries.forEach((en) => $('#bar').classList.toggle('is-tucked', en.isIntersecting && cur === 'result'));
+  }, { threshold: 0.15 });
+  nextObs.observe(target);
+}
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+function listJoin(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+
+function summary(M) {
+  M = M || model();
+  const L = [];
+  L.push('Boundary Builders quote (approx) · Ref ' + S.ref);
+  L.push('Name: ' + S.contact.name);
+  L.push('Phone: ' + S.contact.phone);
+  L.push('Email: ' + S.contact.email);
+  if (M.opts.length) {
+    L.push('');
+    L.push('Fence: ' + (M.lfKnown ? int(M.lf) + ' linear ft' : 'length to be measured on site'));
+    M.opts.forEach((o) => L.push('Option ' + o.n + ': ' + o.f.full + ' · ' + (o.amount != null ? 'approx ' + money(o.amount) : o.f.rate ? 'approx ' + money(o.f.rate) + '/lf' : 'yet to be discussed')));
+  }
+  if (M.land.length) {
+    L.push('');
+    M.land.forEach((it) => L.push(it.label + ': ' + it.detail + ' · ' + (it.amount != null ? 'approx ' + money(it.amount) : it.rateOnly && it.rate ? 'approx ' + money(it.rate) + '/sq ft' : 'yet to be discussed')));
+  }
+  if (M.extras.length || S.disposal === false) {
+    L.push('');
+    M.extras.forEach((it) => L.push(it.label + ': ' + it.detail + ' · yet to be discussed'));
+    if (S.disposal === false) L.push('Removal & disposal: not needed');
+  }
+  if (M.totals.length) {
+    L.push('');
+    M.totals.forEach((t) => L.push((M.totals.length > 1 ? t.label + ' (' + t.sub + ')' : 'Approx total') + ': ' + (t.amount != null ? 'approx ' + money(t.amount) : 'yet to be discussed')));
+  }
+  const tbd = M.tbd.filter((x, i, a) => a.indexOf(x) === i);
+  if (tbd.length) L.push('Yet to be discussed: ' + listJoin(tbd));
+  if (photos.length) L.push('Photos: ' + photos.length + (CONFIG.api ? ' (sent with this quote)' : ' (sending separately)'));
+  return L.join('\n');
+}
+
+/* =====================================================================
+   Sending (only when the page runs on boundarybuilders.ca with the plugin)
+   Every lead is kept on this device until the website confirms it, and retried until it gets through.
+   ===================================================================== */
+function source() {
+  let q = {};
+  try { const u = new URL(location.href); ['src', 'utm_source', 'utm_medium', 'utm_campaign', 'fbclid', 'gclid'].forEach((k) => { const v = u.searchParams.get(k); if (v) q[k] = v.slice(0, 120); }); } catch (e) { /* old browser */ }
+  let ref = '';
+  try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) { ref = ''; }
+  return { q, ref };
+}
+function leadPayload(M) {
+  const u = (a) => a.filter((x, i) => a.indexOf(x) === i);
+  return {
+    v: 2, cid: S.lid, ref: S.ref,
+    name: S.contact.name.trim(), phone: S.contact.phone, email: S.contact.email.trim(),
+    scope: S.scope, mats: S.mats.slice(), fences: S.fences.slice(), gates: Object.assign({}, S.gates), noGate: S.noGate,
+    land: S.land.slice(), walls: S.walls.slice(), m: Object.assign({}, S.m), unsure: Object.assign({}, S.unsure), disposal: S.disposal,
+    options: M.opts.map((o) => ({ n: o.n, id: o.f.id, name: o.f.full, rate: o.f.rate, from: !!o.f.from, amount: o.amount })),
+    items: M.land.map((it) => ({ key: it.key, label: it.label, detail: it.detail, rate: it.rate || null, amount: it.amount })),
+    extras: M.extras.map((it) => ({ key: it.key, label: it.label, detail: it.detail })),
+    totals: M.totals.map((t) => ({ label: t.label, sub: t.sub, amount: t.amount })),
+    tbd: u(M.tbd), lf: M.lfKnown ? M.lf : null,
+    summary: summary(M), photos: photos.length,
+    source: source(), page: location.origin + location.pathname,
+    hp: ($('#c-web') || {}).value || '', t: Date.now() - t0
+  };
+}
+async function post(action, data, file) {
+  const fd = new FormData();
+  fd.append('action', action);
+  fd.append('payload', JSON.stringify(data));
+  if (file) fd.append('photo', file, file.name || 'photo.jpg');
+  const ctl = 'AbortController' in window ? new AbortController() : null;
+  const timer = setTimeout(() => ctl && ctl.abort(), file ? 60000 : 20000);
+  try {
+    const r = await fetch(CONFIG.api, { method: 'POST', body: fd, credentials: 'same-origin', signal: ctl ? ctl.signal : undefined });
+    let j = null; try { j = await r.json(); } catch (e) { j = null; }
+    if (r.ok && j && j.success) return j.data || {};
+    const e = new Error((j && j.data && j.data.message) || ('HTTP ' + r.status)); e.fatal = r.status === 400 || r.status === 403; throw e;
+  } finally { clearTimeout(timer); }
+}
+let leadBusy = false, retryT = 0, retryN = 0;
+function retryLater() {
+  clearTimeout(retryT);
+  const wait = [4000, 12000, 30000, 60000, 120000][Math.min(retryN++, 4)];
+  retryT = setTimeout(sendLead, wait);
+}
+async function sendLead() {
+  if (!CONFIG.api || leadBusy || !S.pending) { if (S.server) afterLead(); return; }
+  leadBusy = true;
+  try {
+    const data = Object.assign({}, S.pending, S.server ? { token: S.server.token } : {});
+    const res = await post('bbq_lead', data);
+    S.server = { id: res.id, token: res.token || (S.server && S.server.token) };
+    S.pending = null; retryN = 0; save();
+    afterLead();
+  } catch (e) {
+    if (e && e.fatal) { S.pending = null; save(); toast('We couldn’t save your quote. Please call or text us at ' + CONFIG.phone + '.'); }
+    else retryLater();
+  } finally { leadBusy = false; syncVisit(); }
+}
+function afterLead() {
+  uploadPhotos();
+  if (S.visit.pending && !S.visit.sent) sendVisit();
+}
+let photoBusy = false;
+async function uploadPhotos() {
+  if (!CONFIG.api || !S.server || photoBusy) return;
+  photoBusy = true;
+  try {
+    for (let i = 0; i < photos.length; i++) {
+      const p = photos[i];
+      if (p.up || p.tries >= 3) continue;
+      try {
+        const blob = await shrink(p.file);
+        await post('bbq_photo', { id: S.server.id, token: S.server.token, n: i + 1 }, blob);
+        p.up = true; renderThumbs();
+      } catch (e) { p.tries = (p.tries || 0) + 1; if (p.tries < 3) i--; }
+    }
+  } finally { photoBusy = false; }
+}
+function shrink(file, max = 1800) {
+  return new Promise((resolve) => {
+    const done = (b) => resolve(b && b.size ? new File([b], 'photo.jpg', { type: 'image/jpeg' }) : file);
+    try {
+      const url = URL.createObjectURL(file), img = new Image();
+      img.onload = () => {
+        const s = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+        const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        if (c.toBlob) c.toBlob(done, 'image/jpeg', 0.84); else resolve(file);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+      img.src = url;
+    } catch (e) { resolve(file); }
+  });
+}
+let visitBusy = false;
+async function sendVisit() {
+  if (!CONFIG.api || visitBusy) return;
+  if (!S.server) { sendLead(); return; }
+  visitBusy = true;
+  try {
+    const v = S.visit;
+    await post('bbq_visit', { id: S.server.id, token: S.server.token, addr: v.addr, times: v.times, notes: v.notes });
+    v.sent = true; v.pending = false; save();
+    track('Schedule');
+  } catch (e) {
+    if (e && e.fatal) { S.visit.pending = false; save(); toast('We couldn’t send that. Please call or text us at ' + CONFIG.phone + '.'); }
+    else setTimeout(sendVisit, 8000);
+  } finally { visitBusy = false; syncVisit(); }
+}
+
+/* ---- ad measurement (only when the plugin has a Meta Pixel or Google tag ID; no personal details are sent) ---- */
+function track(ev) {
+  try {
+    if (CONFIG.pixel && window.fbq) window.fbq('track', ev);
+    if (CONFIG.ga && window.gtag) window.gtag('event', ev === 'Lead' ? 'generate_lead' : 'schedule_site_visit');
+  } catch (e) { /* ignore */ }
+}
+function loadTags() {
+  if (CONFIG.pixel && /^\d{6,20}$/.test(CONFIG.pixel)) {
+    /* Meta Pixel base code */
+    (function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    // autoConfig off: the pixel must not read the form (no automatic advanced matching, no button or page scraping)
+    window.fbq('set', 'autoConfig', false, CONFIG.pixel);
+    window.fbq('init', CONFIG.pixel); window.fbq('track', 'PageView');
+  }
+  if (CONFIG.ga && /^G-[A-Z0-9]{4,16}$/.test(CONFIG.ga)) {
+    const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CONFIG.ga; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', CONFIG.ga, { allow_google_signals: false, allow_ad_personalization_signals: false });
+  }
+}
+
+/* =====================================================================
+   Clipboard + toast
+   ===================================================================== */
+function copyText(t) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t).then(() => true, () => legacyCopy(t));
+  } catch (e) { /* fall through */ }
+  return Promise.resolve(legacyCopy(t));
+}
+function legacyCopy(t) {
+  const ta = document.createElement('textarea');
+  ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  ta.remove(); return ok;
+}
+let toastT = 0;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* =====================================================================
+   Photos
+   ===================================================================== */
+const MAX_PHOTOS = 10;
+function addFiles(list) {
+  let skipped = 0;
+  Array.from(list || []).forEach((f) => {
+    const isImg = (f.type && f.type.indexOf('image/') === 0) || /\.(heic|heif|jpe?g|png|webp)$/i.test(f.name);
+    if (!isImg) { skipped++; return; }
+    if (photos.length >= MAX_PHOTOS) { skipped++; return; }
+    if (f.size > 40 * 1024 * 1024) { skipped++; return; }
+    photos.push({ file: f, url: URL.createObjectURL(f), up: false, tries: 0 });
+  });
+  renderThumbs();
+  if (skipped) toast(photos.length >= MAX_PHOTOS ? 'You can add up to ' + MAX_PHOTOS + ' photos.' : 'Only photos can be added here.');
+}
+function renderThumbs() {
+  const ul = $('#thumbs'); if (!ul) return;
+  ul.innerHTML = photos.map((p, i) => `<li><img src="${p.url}" alt="Your photo ${i + 1}">${p.up
+    ? `<span class="up" title="Sent">${IC.check}</span>`
+    : `<button type="button" data-rm="${i}" aria-label="Remove photo ${i + 1}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`}</li>`).join('');
+  $$('img', ul).forEach((im) => { im.onerror = () => { im.replaceWith(Object.assign(document.createElement('span'), { textContent: 'Photo', style: 'display:grid;place-items:center;height:100%;font-size:12px;font-weight:600;color:var(--ink-3)' })); }; });
+  const d = $('#drop');
+  d.querySelector('b').textContent = photos.length ? 'Add more photos' : 'Add photos';
+  d.querySelector('span:last-child').textContent = photos.length ? photos.length + ' added · up to ' + MAX_PHOTOS : 'Take new ones or choose from your phone';
+}
+
+/* =====================================================================
+   Events
+   ===================================================================== */
+function bind() {
+  const form = $('#qform');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (cur === 'result') { if (document.activeElement && document.activeElement.closest('#visitForm')) requestVisit(); return; }
+    nextStep();
+  });
+
+  // dialogs and the work gallery live partly outside the form
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-privacy], [data-close], [data-vclose], [data-vstep], [data-wi]');
+    if (!t) {
+      if (e.target === $('#privacy')) closePrivacy();
+      if (e.target === $('#viewer')) closeViewer();
+      return;
+    }
+    if (t.hasAttribute('data-privacy')) { e.preventDefault(); openPrivacy(); }
+    else if (t.hasAttribute('data-close')) closePrivacy();
+    else if (t.hasAttribute('data-vclose')) closeViewer();
+    else if (t.dataset.vstep) openViewer(vIdx + (+t.dataset.vstep));
+    else if (t.dataset.wi) { e.preventDefault(); openViewer(+t.dataset.wi); }
+  });
+  document.addEventListener('keydown', (e) => {
+    const pv = !$('#privacy').hidden, vw = !$('#viewer').hidden;
+    if (e.key === 'Escape') { if (vw) closeViewer(); else if (pv) closePrivacy(); return; }
+    if (vw && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { openViewer(vIdx + (e.key === 'ArrowRight' ? 1 : -1)); return; }
+    if (e.key === 'Tab' && (pv || vw)) {
+      // keep keyboard focus inside the open dialog
+      const box = pv ? $('#privacy .modal-in') : $('#viewer');
+      const f = $$('button, a[href], input, textarea', box).filter((x) => !x.hidden && x.offsetParent !== null);
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  let sx = 0;
+  $('#viewer').addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  $('#viewer').addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) openViewer(vIdx + (dx < 0 ? 1 : -1)); }, { passive: true });
+  window.addEventListener('online', () => { if (S.pending) sendLead(); else if (S.server) afterLead(); });
+  form.addEventListener('pointerdown', () => { lastPointer = performance.now(); }, true);
+  $('#back').addEventListener('click', prevStep);
+
+  form.addEventListener('change', (e) => {
+    const t = e.target;
+    const card = t.closest('[data-group]');
+    if (card && t === card.querySelector('input')) {
+      const g = card.dataset.group, v = card.dataset.val;
+      if (g === 'scope') {
+        S.scope = v;
+        if (performance.now() - lastPointer < 900) setTimeout(() => { if (cur === 'scope' && S.scope === v) nextStep(); }, 420);
+      } else if (g === 'disposal') {
+        S.disposal = v === 'yes'; showErr('extras', '');
+      } else {
+        toggle(S[g], v, t.checked);
+        if (t.checked) S.last[g === 'fences' ? FENCE[v].mat : g] = v;
+        showErr({ mats: 'material', land: 'land', walls: 'wall' }[g] || (g === 'fences' ? FENCE[v].mat : ''), '');
+      }
+      syncCards(); save(); updateBar(); updateMeter(); updateStage();
+      return;
+    }
+    if (t.id === 'noGate') {
+      S.noGate = t.checked;
+      if (t.checked) Object.keys(S.gates).forEach((k) => { S.gates[k] = 0; });
+      syncCards(); save(); updateBar(); updateStage();
+      return;
+    }
+    if (t.dataset.unsure) {
+      const k = t.dataset.unsure; S.unsure[k] = t.checked;
+      const b = $(`[data-mb="${k}"]`); if (b) { b.classList.remove('is-bad'); showErr('m-' + k, ''); }
+      syncMeasure(); drawAll(); save(); updateBar();
+      return;
+    }
+    if (t.name === 'wallH') {
+      S.m.wallH = t.value; syncMeasure(); drawWall(); save(); updateBar();
+      return;
+    }
+    if (t.id === 'photoInput') { addFiles(t.files); t.value = ''; }
+  });
+
+  form.addEventListener('input', (e) => {
+    const t = e.target;
+    if (t.dataset.m) {
+      const clean = t.value.replace(/[^\d]/g, '').slice(0, 6);
+      if (clean !== t.value) t.value = clean;
+      S.m[t.dataset.m] = clean;
+      $$(`[data-preset="${t.dataset.m}"]`).forEach((b) => b.classList.toggle('is-on', num(clean) === num(b.dataset.v)));
+      const k = t.dataset.m === 'wallLen' ? 'wall' : t.dataset.m;
+      const b = $(`[data-mb="${k}"]`); if (b && b.classList.contains('is-bad')) { b.classList.remove('is-bad'); showErr('m-' + k, ''); }
+      drawAll(); save(); updateBar();
+      return;
+    }
+    if (t.dataset.lwl || t.dataset.lww) {
+      const k = t.dataset.lwl || t.dataset.lww;
+      const clean = t.value.replace(/[^\d.]/g, '').slice(0, 5);
+      if (clean !== t.value) t.value = clean;
+      S.lw[k][t.dataset.lwl ? 'l' : 'w'] = clean;
+      const l = num(S.lw[k].l), w = num(S.lw[k].w);
+      if (l > 0 && w > 0) { S.m[k] = String(Math.round(l * w)); $('#m-' + k).value = S.m[k]; }
+      drawAll(); save(); updateBar();
+      return;
+    }
+    if (t.id === 'v-addr' || t.id === 'v-notes') {
+      S.visit[t.id === 'v-addr' ? 'addr' : 'notes'] = t.value; save();
+      if (t.id === 'v-addr' && t.value.trim().length >= 6) { t.closest('.field').classList.remove('is-bad'); showErr('addr', ''); }
+      return;
+    }
+    if (t.closest('.field') && ['name', 'phone', 'email'].includes(t.closest('.field').dataset.f)) {
+      const f = t.closest('.field').dataset.f;
+      S.contact[f] = t.value; save(); updateBar();
+      if (t.closest('.field').classList.contains('is-bad')) {
+        const ok = f === 'name' ? t.value.trim().length >= 2 : f === 'phone' ? phoneOk(t.value) : emailOk(t.value);
+        if (ok) { t.closest('.field').classList.remove('is-bad'); showErr(f, ''); }
+      }
+    }
+  });
+  form.addEventListener('focusout', (e) => {
+    if (e.target.id === 'c-phone' && phoneOk(e.target.value)) { e.target.value = fmtPhone(e.target.value); S.contact.phone = e.target.value; save(); }
+  });
+
+  form.addEventListener('click', (e) => {
+    const t = e.target.closest('button, a, [data-gate-hit]');
+    if (!t) return;
+    if (t.dataset.nudge) {
+      const k = t.dataset.nudge, ukey = k === 'wallLen' ? 'wall' : k;
+      if (S.unsure[ukey]) return;
+      const v = Math.max(0, num(S.m[k]) + num(t.dataset.d) * (t.dataset.d.indexOf('-') === 0 ? -1 : 1));
+      S.m[k] = v ? String(Math.round(v)) : '';
+      $('#m-' + k).value = S.m[k];
+      syncMeasure(); drawAll(); save(); updateBar();
+      const b = $(`[data-mb="${ukey}"]`); if (b) { b.classList.remove('is-bad'); showErr('m-' + ukey, ''); }
+      return;
+    }
+    if (t.dataset.preset) {
+      const k = t.dataset.preset; if (S.unsure[k]) return;
+      S.m[k] = t.dataset.v; $('#m-' + k).value = t.dataset.v;
+      syncMeasure(); drawAll(); save(); updateBar();
+      const b = $(`[data-mb="${k}"]`); if (b) { b.classList.remove('is-bad'); showErr('m-' + k, ''); }
+      return;
+    }
+    if (t.dataset.lwt) {
+      const box = $(`[data-lw="${t.dataset.lwt}"]`); box.hidden = !box.hidden;
+      t.setAttribute('aria-expanded', String(!box.hidden));
+      if (!box.hidden) box.querySelector('input').focus();
+      return;
+    }
+    if (t.dataset.add || t.dataset.gateHit) {
+      const k = t.dataset.add || t.dataset.gateHit;
+      S.gates[k] = t.dataset.gateHit && S.gates[k] > 0 ? 0 : Math.max(1, S.gates[k]);
+      if (S.gates[k] > 0) { S.noGate = false; S.last.gates = k; }
+      syncCards(); save(); updateBar(); updateStage();
+      if (t.dataset.add) { const plus = $(`[data-gate="${k}"] [data-q="1"]`); if (plus) plus.focus(); }
+      return;
+    }
+    if (t.dataset.q) {
+      const k = t.dataset.k;
+      S.gates[k] = Math.max(0, Math.min(9, S.gates[k] + (+t.dataset.q)));
+      if (S.gates[k] > 0) { S.noGate = false; S.last.gates = k; }
+      syncCards(); save(); updateBar(); updateStage();
+      if (S.gates[k] === 0) { const add = $(`[data-gate="${k}"] .add`); if (add) add.focus(); }
+      return;
+    }
+    if (t.dataset.rm) {
+      const i = +t.dataset.rm; URL.revokeObjectURL(photos[i].url); photos.splice(i, 1); renderThumbs();
+      return;
+    }
+    if (t.hasAttribute('data-copy')) {
+      copyText(summary()).then((ok) => toast(ok ? 'Quote copied.' : 'Couldn’t copy. Press and hold to select the text instead.'));
+      return;
+    }
+    if (t.hasAttribute('data-book')) {
+      copyText(summary()).then((ok) => { if (ok) toast('Quote copied. Paste it into your request.'); });
+      return; // the link itself opens the booking page
+    }
+    if (t.id === 'bookBar' && t.getAttribute('href') === '#visit') {
+      e.preventDefault();
+      const box = $('#visit'); if (!box) return;
+      box.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+      const a = $('#v-addr'); if (a && !$('#visitForm').hidden) setTimeout(() => a.focus({ preventScroll: true }), reduced() ? 0 : 450);
+      return;
+    }
+    if (t.dataset.time) {
+      toggle(S.visit.times, t.dataset.time, !S.visit.times.includes(t.dataset.time));
+      save(); syncVisit();
+      return;
+    }
+    if (t.hasAttribute('data-visit')) { requestVisit(); return; }
+    if (t.hasAttribute('data-edit')) {
+      S.done = false; save();
+      go(route()[0], -1);
+      return;
+    }
+    if (t.hasAttribute('data-new')) {
+      photos.forEach((p) => URL.revokeObjectURL(p.url)); photos = []; renderThumbs();
+      clearTimeout(retryT); retryN = 0;
+      S = fresh(); save();
+      ['#c-name', '#c-phone', '#c-email'].forEach((id) => { const el = $(id); if (el) el.value = ''; });
+      $$('.lw').forEach((b) => { b.hidden = true; });
+      syncCards();
+      go('scope', -1);
+      return;
+    }
+  });
+
+  // keyboard focus ring on visually hidden inputs
+  form.addEventListener('focusin', (e) => {
+    const c = e.target.closest('.choice, .option, .chip'); if (c && e.target.tagName === 'INPUT') c.classList.add('is-focus');
+    if (e.target.id === 'photoInput') $('#drop').classList.add('is-focus');
+  });
+  form.addEventListener('focusout', (e) => {
+    const c = e.target.closest('.choice, .option, .chip'); if (c) c.classList.remove('is-focus');
+    if (e.target.id === 'photoInput') $('#drop').classList.remove('is-focus');
+  });
+  // only show the ring for keyboard focus
+  form.addEventListener('pointerdown', () => { requestAnimationFrame(() => $$('.is-focus').forEach((el) => el.classList.remove('is-focus'))); });
+
+  // photo drop zone
+  const drop = $('#drop');
+  ['dragenter', 'dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('is-over'); }));
+  ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('is-over'); }));
+  drop.addEventListener('drop', (e) => { if (e.dataTransfer) addFiles(e.dataTransfer.files); });
+
+  // desktop: preview hovered option on the stage
+  if (window.matchMedia('(hover: hover)').matches) {
+    let ht = 0;
+    form.addEventListener('pointerover', (e) => {
+      const c = e.target.closest('[data-group], [data-gate]'); if (!c) return;
+      const v = c.dataset.val || c.dataset.gate;
+      if (hover === v) return;
+      clearTimeout(ht); ht = setTimeout(() => { hover = v; updateStage(); }, 60);
+    });
+    form.addEventListener('pointerout', (e) => {
+      const c = e.target.closest('[data-group], [data-gate]'); if (!c || c.contains(e.relatedTarget)) return;
+      clearTimeout(ht); ht = setTimeout(() => { hover = null; updateStage(); }, 120);
+    });
+  }
+  stageMQ.addEventListener ? stageMQ.addEventListener('change', () => { stageKey = ''; updateStage(); }) : stageMQ.addListener(() => { stageKey = ''; updateStage(); });
+}
+
+/* =====================================================================
+   Boot
+   ===================================================================== */
+function start(hot) {
+  if (!document.documentElement.lang) document.documentElement.lang = 'en-CA';
+  const saved = (hot && hot.S) || load();
+  if (saved) merge(saved);
+  buildSteps();
+  bind();
+  syncCards();
+  // contact details shown in the footer and privacy notice
+  const tel = telHref(CONFIG.phone), mail = 'mailto:' + CONFIG.email;
+  [['#footPhone', tel, CONFIG.phone], ['#pvPhone', tel, CONFIG.phone], ['#footMail', mail, CONFIG.email], ['#pvMail', mail, CONFIG.email]].forEach(([s, h, txt]) => { const a = $(s); if (a) { a.href = h; a.textContent = txt; } });
+  $('#year').textContent = new Date().getFullYear();
+  loadTags();
+  if (CONFIG.api && S.pending) sendLead(); else if (CONFIG.api && S.server && S.visit.pending && !S.visit.sent) sendVisit();
+  if (S.done && validateContact(true) === true && S.ref) {
+    // returning visitor who already has a price: show it again
+    $(`.step[data-step="scope"]`).hidden = true; $(`.step[data-step="scope"]`).classList.remove('is-active');
+    const r = $(`.step[data-step="result"]`); r.hidden = false; r.classList.add('is-active');
+    cur = 'result';
+    showResult(false);
+    $('#app').classList.remove('boot');
+  } else {
+    S.done = false;
+    cur = 'scope';
+  }
+  updateMeter(); updateBar(); updateStage(false);
+  try { if (window.claude && window.claude.hot && window.claude.hot.snapshot) window.claude.hot.snapshot(() => ({ S: JSON.parse(JSON.stringify(S)) })); } catch (e) { /* not in a viewer */ }
+  setTimeout(() => $('#app').classList.remove('boot'), 1400);
+  window.BBQuote = { model: () => model(), summary: () => summary(), state: () => JSON.parse(JSON.stringify(S)) };
+}
+
+const hotApi = window.claude && window.claude.hot;
+if (hotApi && hotApi.ready) hotApi.ready(start); else start((hotApi && hotApi.data) || {});
+})();
+
+</script>
+
+</body></html>

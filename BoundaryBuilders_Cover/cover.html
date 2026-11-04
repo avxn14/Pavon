@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Boundary Builders Facebook cover</title>
+<style>
+@font-face{font-family:'Outfit';src:url('Outfit-500.woff2') format('woff2');font-weight:100 900;font-display:block;}
+html,body{margin:0;padding:0;background:#000;}
+#c{position:relative;width:1640px;height:924px;overflow:hidden;background:#0b0b0d;font-family:'Outfit',sans-serif;color:#F9F9F9;-webkit-font-smoothing:antialiased;}
+#c *{box-sizing:border-box;}
+.panel{position:absolute;left:0;top:0;width:560px;height:924px;background:#0b0b0d;}
+.panel:after{content:"";position:absolute;right:0;top:0;width:8px;height:924px;background:#FFC527;}
+.block{position:absolute;left:56px;width:456px;}
+.logo{display:block;width:196px;height:auto;}
+.hl{margin-top:20px;font-weight:900;font-size:80px;line-height:.94;letter-spacing:-2px;text-transform:uppercase;}
+.hl .g{color:#FFC527;}
+.sub{margin-top:14px;font-weight:500;font-size:22.5px;line-height:1.36;color:#D9D9D9;max-width:420px;}
+.rule{margin-top:16px;width:44px;height:4px;background:#FFC527;border-radius:2px;}
+.phone{margin-top:14px;font-weight:800;font-size:29px;line-height:1.1;color:#F9F9F9;letter-spacing:.2px;}
+.site{margin-top:4px;font-weight:800;font-size:29px;line-height:1.1;color:#FFC527;letter-spacing:.2px;}
+.small{margin-top:8px;font-weight:700;font-size:15px;letter-spacing:3.2px;text-transform:uppercase;color:#9a9a9a;}
+.ph{position:absolute;overflow:hidden;background:#111;}
+.ph img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03);}
+.hero{left:568px;top:0;width:600px;height:924px;}
+.top{left:1176px;top:0;width:464px;height:458px;}
+.bot{left:1176px;top:466px;width:464px;height:458px;}
+.guide{position:absolute;left:0;width:1640px;height:1px;background:rgba(255,0,0,.8);}
+#measure{position:absolute;left:-5000px;top:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div id="c">
+  <div class="panel">
+    <div class="block" id="block">
+      <img class="logo" src="logo_gold.png" alt="">
+      <div class="hl">Built<br><span class="g">right.</span></div>
+      <div class="sub" id="sub">Fences, paver patios, retaining walls and landscaping across Metro Vancouver and the Fraser Valley.</div>
+      <div class="rule"></div>
+      <div class="phone">(778) 885-1042</div>
+      <div class="site">boundarybuilders.ca</div>
+      <div class="small">Licensed &amp; insured</div>
+    </div>
+  </div>
+  <div class="ph hero"><img id="heroImg" src=""></div>
+  <div class="ph top"><img id="topImg" src=""></div>
+  <div class="ph bot"><img id="botImg" src=""></div>
+  <div id="guides"></div>
+</div>
+<script>
+const q = new URLSearchParams(location.search); const v = q.get('v') || 'a';
+const VARIANTS = {
+  a: { hero: ['photos/fence_metal_cedar.jpg', '58% 50%'], top: ['photos/pool_black_house.jpg', '62% 45%'], bot: ['photos/deck_planters_wall.jpg', '72% 50%'] },
+  b: { hero: ['photos/fence_charcoal_house.jpg', '54% 50%'], top: ['photos/pool_loungers.jpg', '58% 50%'], bot: ['photos/deck_planters_wall.jpg', '72% 50%'] },
+  c: { hero: ['photos/fence_metal_cedar.jpg', '58% 50%'], top: ['photos/pool_loungers.jpg', '58% 50%'], bot: ['photos/fence_charcoal_house.jpg', '55% 50%'] },
+  d: { hero: ['photos/fence_metal_cedar.jpg', '58% 50%'], top: ['photos/pool_loungers.jpg', '56% 50%', 1.18], bot: ['photos/deck_planters_wall.jpg', '72% 50%', 1.10] },
+};
+const V = VARIANTS[v] || VARIANTS.a;
+for (const [k, id] of [['hero', 'heroImg'], ['top', 'topImg'], ['bot', 'botImg']]) { const im = document.getElementById(id); im.src = V[k][0]; im.style.objectPosition = V[k][1]; if (V[k][2]) { im.style.transformOrigin = '50% 0%'; im.style.transform = 'scale(' + V[k][2] + ')'; } }   // zoom about the top edge keeps furniture clear of the desktop crop line
+if (q.get('guides')) { for (const y of [150, 774]) { const g = document.createElement('div'); g.className = 'guide'; g.style.top = y + 'px'; document.getElementById('guides').appendChild(g); } }
+window.ready = (async () => {
+  await document.fonts.load('900 94px Outfit'); await document.fonts.load('500 25px Outfit'); await document.fonts.load('800 30px Outfit'); await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.complete ? Promise.resolve() : i.decode().catch(() => {})));
+  // centre the text block inside the desktop band (y 150-774)
+  const b = document.getElementById('block'); const h = b.getBoundingClientRect().height; b.style.top = '158px';
+  return true;
+})();
+window.layoutInfo = () => { const b = document.getElementById('block').getBoundingClientRect(); const s = document.getElementById('sub').getBoundingClientRect();
+  return JSON.stringify({ blockTop: Math.round(b.top), blockBottom: Math.round(b.bottom), blockH: Math.round(b.height), subLines: Math.round(s.height / 35) }); };
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+BOUNDARY BUILDERS INSTANT-PRICE META IMAGE SET (owner's request, received 2026-11-01, verbatim)
+
+Build a Meta ad image set for Boundary Builders (fencing, Metro Vancouver, BC) focused on our instant online price estimator.
+INPUT: attached are (a) 2-3 real photos of recent metal-fence installs and (b) a screenshot of our website estimator at boundarybuilders.ca/quote on a phone. Use only these. No stock, no AI-generated content.
+OUTPUT (PNG, under 1 MB each): instant_price_1x1.png 1080x1080, instant_price_4x5.png 1080x1350, instant_price_9x16.png 1080x1920 (text out of top 14% / bottom 20%). Plus preview.png with all three side by side.
+BRAND: solid yellow #F5C400 background (this ad should look different from our dark ads), charcoal #1A1A1A text, white phone frame. Bold sans-serif.
+LAYOUT: left/top two-thirds = a clean phone mockup (simple rounded-rectangle frame, no brand logos on the phone) showing the estimator screenshot. Right/bottom third = one fence photo in a rounded card. Text block above or beside the phone.
+TEXT ON IMAGE (exactly):
+Line 1 (biggest, charcoal): See your fence price in 2 minutes.
+Line 2 (medium): No phone call. No waiting a week.
+Line 3 (small pill, charcoal background, yellow text): Metal $220/panel · Cedar $210/panel · installed
+Line 4 (small): Winter Sale pricing until [SALE END DATE]
+RULES: no invented UI elements with fake prices; if the screenshot shows a price, keep it as-is. Text under 25% of the image. Show preview.png and wait for my OK before finals. use any image you like of metal fence even in google drive
+
+NOTE: no files arrived with this message. Assets used: assets/fence_black_house.jpg (= 15.jpg from the Winter install ad, the owner's photo), alternatives
+fence_black_corner.jpg (13.jpg) and fence_black_cedar.jpg (metal-fence-1.jpg from the Edu Reels Drive set); estimator screens = the owner's Instant Quote artifact
+rendered locally at phone size on 2026-11-01 (estimator_step1.png, estimator_colour.png with the real $29/lf, estimator_price_ready.png).
+
+ADDENDUM 2026-11-01 (owner, after seeing preview.png): "the sale end december 31" -> Line 4 = "Winter Sale pricing until December 31"; taken as the OK for the finals.

@@ -1,0 +1,25 @@
+BOUNDARY BUILDERS "WINTER INSTALL" META VIDEO AD (owner's request, received 2026-11-01, verbatim)
+
+Edit a 15-20 second Meta video ad for Boundary Builders (fencing, Metro Vancouver, BC) using ffmpeg or a Python video pipeline. Use ONLY the attached clips and photos: they are real recent installs by my crew. No stock footage, no AI-generated video or people, no cheesy transitions.
+
+OUTPUT: winter_install_4x5.mp4 (1080x1350) and winter_install_9x16.mp4 (1080x1920), H.264, AAC, 30 fps, under 30 MB each. Keep all text out of the top 14% and bottom 20% of the 9:16 version. Also export a 3x6 contact sheet (frames at 1-second intervals) as preview.png so I can approve before finals.
+
+STYLE: clean and premium. Charcoal #1A1A1A, white, yellow #F5C400. Bold sans-serif captions with a dark backing bar. Video must work fully on mute. Optional: light instrumental music track if one is available locally; otherwise no audio is fine. Real clips play at normal speed; photos get a slow push-in (Ken Burns), 2-3 seconds each, simple cuts.
+
+SCENES AND CAPTIONS (exact text):
+0-3 s  best clip/photo of a finished black metal fence  ->  "WINTER SALE" (yellow tag) + "Metal fence – $220/panel, installed"
+3-7 s  crew installing (posts going in, panel going on)  ->  "Installed by our own crew"
+7-11 s close-up of the finish, then a wide of the yard  ->  "No rot. No painting. Built for BC rain."
+11-15 s screenshot/screen-recording of the estimator at boundarybuilders.ca/quote on a phone  ->  "See your price in 2 minutes – no call"
+15-18 s finished fence wide shot  ->  "Best price of the year. Ends [SALE END DATE]."
+18-20 s logo on charcoal  ->  "Tap GET QUOTE"
+
+RULES: spelling exactly as written; no extra claims. If a clip is shaky or too dark, skip it and tell me which one. Show preview.png and wait for my OK before rendering the finals. use the image
+
+ATTACHED (photos only, no clips arrived): photos/src/13.jpg 1206x801 (black metal fence, L-corner with a gate at the right, gravel strip, lawn, cedar trees, brick house corner);
+14.jpg 1206x873 (wood-tone metal panels with black frames and slat top rails along a grey-roof house, bare soil at the base, photographer's shadow on the left panels);
+15.jpg 1206x846 (black metal fence along an exposed-aggregate walkway with a large grey house; two tiny pedestrians at the far end);
+16.jpg 1500x1125 (wood-grain metal panels with black posts along a walkway and turf with fallen leaves);
+17.jpg 1500x1125 (charcoal metal fence in a backyard, cedar trees, kids' toys, a plastic bag and small items on the lawn).
+Not attached: any crew-installing clip, any estimator screenshot/screen recording, the sale end date. boundarybuilders.ca is not reachable from the build container (proxy 403).
+Brand assets on hand: logo_gold.png (gold slanted BOUNDARY BUILDERS wordmark), Outfit font, audio/bed.mp3 (20 s instrumental generated on the owner's ElevenLabs plan on 2026-10-16, no vocals).
