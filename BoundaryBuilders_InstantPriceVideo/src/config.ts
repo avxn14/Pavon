@@ -46,8 +46,9 @@ export const config = {
     firstFrame: 'demo/first.png',
     lastFrame: 'demo/last.png',
     landing: 12.6,                 // seconds INTO THE FILE where the price screen is on; it is placed at beats.priceScreen in the video
-    priceFocus: [0.5521, 0.3863],  // where the price sits in the recording (fraction of width/height); the slow zoom centres here
-    zoomTo: 1.22,
+    priceFocus: [0.5533, 0.3868],  // where the price sits in the recording (fraction of width/height), from capture/demo_meta.json
+    zoomOrigin: [0.15, 0.42],      // the slow zoom scales about this point: keeps the page's left edge on screen while the price drifts to centre
+    zoomTo: 1.18,
     zoomSeconds: 13,
   },
 
