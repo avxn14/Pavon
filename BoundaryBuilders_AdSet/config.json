@@ -1,0 +1,41 @@
+{
+  "sale_end_date": "December 31",
+  "colors": {"charcoal": "#1A1A1A", "white": "#FFFFFF", "yellow": "#F5C400"},
+  "fonts": {"heavy": "fonts/Montserrat-ExtraBold.ttf", "bold": "fonts/Montserrat-Bold.ttf"},
+  "logo": "inputs/logo.png",
+  "sizes": {"1x1": [1080, 1080], "4x5": [1080, 1350], "9x16": [1080, 1920]},
+  "f06": {
+    "source": "inputs/f06_wide_metal_cedarframe.jpg",
+    "focal": {"1x1": [0.50, 0.58], "4x5": [0.50, 0.58], "9x16": [0.56, 0.60]},
+    "text": {
+      "tag": "WINTER SALE",
+      "headline": "Best fence price of the year.",
+      "price": "$220 / panel – installed",
+      "small": "Ends [SALE END DATE]. Spots are limited.",
+      "pill": "Get your price in 2 minutes"
+    }
+  },
+  "f07": {
+    "screenshot": "inputs/f07_screenshot.png",
+    "photo": "inputs/f07_fence_black.jpg",
+    "photo_focal": [0.45, 0.55],
+    "text": {
+      "headline": "See your fence price in 2 minutes.",
+      "medium": "No phone call. No waiting a week.",
+      "pill": "Metal $220/panel · Cedar $210/panel · installed",
+      "small": "Winter Sale pricing until [SALE END DATE]"
+    }
+  },
+  "f08": {
+    "before": "inputs/f08_before", "after": "inputs/f08_after",
+    "grid": ["inputs/f08_city_CITY1.jpg", "inputs/f08_city_CITY2.jpg", "inputs/f08_city_CITY3.jpg"],
+    "grid_focal": [[0.55, 0.55], [0.45, 0.55], [0.55, 0.5]],
+    "text": {
+      "headline_split": "Don’t go through another winter with this fence.",
+      "headline_grid": "Built this winter across Metro Vancouver.",
+      "price": "Metal fence – $220 / panel, installed",
+      "small": "No rot. No painting. Built for BC rain.",
+      "pill": "Winter Sale ends [SALE END DATE]"
+    }
+  }
+}
