@@ -9,18 +9,19 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); CAP = os.pat
 landing = float(sys.argv[1]) if len(sys.argv) > 1 else 12.6; lead = 1.0; hold_to = 31.0; keep_tap = 0.45; keep_next = 0.62; contact_hold = 0.55
 fr = json.load(open(os.path.join(CAP, "frames.json"))); ev = json.load(open(os.path.join(CAP, "events.json"))); PJ = json.load(open(os.path.join(CAP, "price.json"))); T0 = PJ["T0"]
 ts = [t - T0 for t, _ in fr]; names = [f for _, f in fr]
-# the result pane fades in after the DOM says it is visible: the landing is the first captured frame after result:clean whose
-# price box holds dark ink (the "working out your price" screen is blank there)
+def frame_at(t):
+    i = bisect.bisect_right(ts, t) - 1; return names[max(0, i)]
+# the result pane fades in after the DOM says it is visible: the landing is the first captured frame after result:clean that
+# looks like the final price screen in its upper half (reference line, heading, option card), ignoring the counting number
 from PIL import Image
-pr = PJ["price"]; box = (int(pr["x"]), int(pr["y"]), int(pr["x"] + pr["w"]), int(pr["y"] + pr["h"]))
+import numpy as np
+def upper(f): return np.asarray(Image.open(os.path.join(CAP, "raw", f)).convert("L").crop((0, 180, 860, 620)).resize((215, 110)), dtype=float)
+final = upper(names[-1]); calc = upper(frame_at(ev["result:visible"] - 0.15)); d_calc = np.abs(calc - final).mean()
 ev["landing"] = ev["result:clean"]
 for t, f in zip(ts, names):
     if t < ev["result:clean"]: continue
-    g = Image.open(os.path.join(CAP, "raw", f)).convert("L").crop(box)
-    if sum(1 for v in g.getdata() if v < 110) > 40: ev["landing"] = t; break
+    if np.abs(upper(f) - final).mean() < 0.12 * d_calc: ev["landing"] = t; break
 print(f"result pane visible at {ev['landing']:.3f}s (DOM said {ev['result:clean']:.3f}s)")
-def frame_at(t):
-    i = bisect.bisect_right(ts, t) - 1; return names[max(0, i)]
 order = ["pick:Fence", "next:Fence", "pick:Metal", "next:Metal", "pick:Black", "next:Black", "pick:No gate", "next:No gate", "type:start", "type:end", "next:measure", "pick:clear", "next:extras", "contact:shown"]
 def segments(trim):
     """[(src_start, src_end, speed)] in source time; speed>1 = faster."""
