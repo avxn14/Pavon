@@ -65,21 +65,26 @@ def src_time_at(t_out):
         t -= d
     return last_src
 cut_lo = ev["contact:shown"] + contact_hold
-# the page's step swap leaves ~0.4 s of near-white screen (old pane out, new pane not yet in): hold the previous screen instead
-swap_windows = [(ev[k], ev[k] + 0.8) for k in ev if k.startswith("next:")]
-_blank_cache = {}
-def is_blank(f):
-    if f not in _blank_cache:
-        g = Image.open(os.path.join(CAP, "raw", f)).convert("L").resize((86, 186)); a = np.asarray(g)[20:170, :]
-        _blank_cache[f] = (a > 235).mean() > 0.9
-    return _blank_cache[f]
-last_good = None; held = 0
+# the page's step swap fades the old pane out, shows ~0.2 s of white, then fades the new pane in: hold the last fully
+# opaque frame of the old pane until the new pane is mostly in (ink = how much non-white there is in the screen body)
+swap_windows = sorted((ev[k], ev[k] + 0.8) for k in ev if k.startswith("next:"))
+_ink = {}
+def ink(f):
+    if f not in _ink:
+        g = Image.open(os.path.join(CAP, "raw", f)).convert("L").resize((86, 186)); _ink[f] = float(255 - np.asarray(g)[20:170, :].mean())
+    return _ink[f]
+held = 0; hold_frame = None; hold_win = None; engaged = False; done = False
 for i in range(n_total):
     st = src_time_at(i / FPS)
     if cut_lo <= st < ev["calc:visible"] + 0.05: st = cut_lo - 0.001          # never show the filled form
     f = frame_at(st)
-    if any(a <= st <= b for a, b in swap_windows) and is_blank(f) and last_good: f = last_good; held += 1
-    else: last_good = f
+    win = next((w for w in swap_windows if w[0] <= st <= w[1]), None)
+    if win is not None:
+        if win != hold_win: hold_win = win; hold_frame = frame_at(win[0]); ref = ink(hold_frame); engaged = False; done = False
+        if not done:
+            if ink(f) < 0.8 * ref: f = hold_frame; held += 1; engaged = True   # old pane fading / white gap / new pane barely in
+            elif engaged: done = True                                          # new pane is in: play on
+            else: hold_frame = f                                               # still the old pane, fully opaque: hold the latest one
     os.symlink(os.path.join(CAP, "raw", f), os.path.join(OUT, f"{i:05d}.png")); written += 1
 print(f"held the previous screen on {held} blank swap frames")
 mp4 = os.path.join(HERE, "public", "demo", "demo.mp4")
