@@ -204,7 +204,7 @@ def f08(size):
             cv.im.paste(cover(im, w, h, foc), (x, y))
             ly = y + h - 24 - (44 + 24)
             if is916: ly = max(ly, int(H * 0.14) + 12)
-            cv.pill((x + 24, ly), [lab], fl, CH, YE, padx=22, pady=12, radius=12)
+            cv.pill((x + 24, ly), [lab], fl, CH, YE, padx=(14 if size == "1x1" else 22), pady=(8 if size == "1x1" else 12), radius=12)
         if is916: [d.rectangle((0, r[1] + r[3], W, r[1] + r[3] + DIV), fill=WH) for r in rects[:2]]
         else: d.rectangle((648, 0, 648 + DIV, band_top), fill=WH); d.rectangle((648, (band_top - DIV) // 2, W, (band_top - DIV) // 2 + DIV), fill=WH)
         headline = T["headline_grid"]
@@ -213,7 +213,7 @@ def f08(size):
     for i, l in enumerate(lines): cv.text((P, y + i * lh), l, fh, WH, anchor="la")
     y += len(lines) * lh + 16; pz = 48 if size == "1x1" else 52; cv.text((P, y), T["price"], font("bold", pz), YE, anchor="la"); y += pz + 14
     cv.text((P, y), T["small"], font("bold", 46), WH, anchor="la"); y += 46 + 24
-    cv.pill((P, y), [sub(T["pill"])], font("bold", 46), YE, CH, padx=32, pady=20)
+    cv.pill((P, y), [sub(T["pill"])], font("bold", 46), YE, CH, padx=(24 if size == "1x1" else 32), pady=(14 if size == "1x1" else 20))
     cv.logo((W - P - 160, band_top + 40), 160)
     return cv
 
