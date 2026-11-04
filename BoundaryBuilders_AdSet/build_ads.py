@@ -193,7 +193,8 @@ def f08(size):
         headline = T["headline_split"]
     else:
         tiles = [load(p) for p in cfg["grid"]]; labels = [os.path.basename(p).split("f08_city_")[-1].rsplit(".", 1)[0].replace("_", " ").title() for p in cfg["grid"]]
-        labels = [("[" + l.upper() + "]") if l.upper().startswith("CITY") else l for l in labels]   # placeholder until real city names are in the file names
+        labels = [("[" + l.upper() + "]") if l.upper().startswith("CITY") else l for l in labels]   # placeholder until real names are in the file names
+        if cfg.get("grid_labels"): labels = cfg["grid_labels"]                                      # explicit labels from config.json win
         if is916:
             th = (band_top - 2 * DIV) // 3; rects = [(0, i * (th + DIV), W, th) for i in range(3)]
         else:
@@ -208,9 +209,9 @@ def f08(size):
         else: d.rectangle((648, 0, 648 + DIV, band_top), fill=WH); d.rectangle((648, (band_top - DIV) // 2, W, (band_top - DIV) // 2 + DIV), fill=WH)
         headline = T["headline_grid"]
     d = cv.d; d.rectangle((0, band_top, W, H), fill=CH)
-    y = band_top + 44; hl = {"1x1": 58, "4x5": 64, "9x16": 62}[size]; fh = font("heavy", hl); lines = wrap(d, headline, fh, W - 2 * P - 160); lh = int(hl * 1.06)
+    y = band_top + 44; hl = {"1x1": 50, "4x5": 64, "9x16": 62}[size]; fh = font("heavy", hl); lines = wrap(d, headline, fh, W - 2 * P - 160); lh = int(hl * 1.06)
     for i, l in enumerate(lines): cv.text((P, y + i * lh), l, fh, WH, anchor="la")
-    y += len(lines) * lh + 16; cv.text((P, y), T["price"], font("bold", 52), YE, anchor="la"); y += 52 + 14
+    y += len(lines) * lh + 16; pz = 48 if size == "1x1" else 52; cv.text((P, y), T["price"], font("bold", pz), YE, anchor="la"); y += pz + 14
     cv.text((P, y), T["small"], font("bold", 46), WH, anchor="la"); y += 46 + 24
     cv.pill((P, y), [sub(T["pill"])], font("bold", 46), YE, CH, padx=32, pady=20)
     cv.logo((W - P - 160, band_top + 40), 160)
