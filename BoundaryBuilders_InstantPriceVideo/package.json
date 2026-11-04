@@ -1,0 +1,30 @@
+{
+  "name": "boundary-builders-instant-price-video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avxn14/Pavon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avxn14/Pavon/issues"
+  },
+  "homepage": "https://github.com/avxn14/Pavon#readme",
+  "dependencies": {
+    "@remotion/cli": "^4.0.540",
+    "@remotion/fonts": "^4.0.540",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.540",
+    "typescript": "^7.0.2"
+  }
+}
