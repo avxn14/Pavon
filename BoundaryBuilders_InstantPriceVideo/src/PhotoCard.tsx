@@ -23,7 +23,7 @@ export const PhotoCard: React.FC<{t: number; L: Layout}> = ({t, L}) => {
             <div key={i} style={{position: 'absolute', inset: 0, opacity: fadeIn}}>
               <Img src={staticFile(p.file)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${s})`, transformOrigin: '50% 50%'}} />
               <div style={{position: 'absolute', left: 16, bottom: 16, background: colors.charcoal, color: colors.yellow, fontWeight: 700, fontSize: L.sizes.photoPill, lineHeight: 1,
-                padding: '10px 16px 9px', borderRadius: 999, whiteSpace: 'nowrap', letterSpacing: 0.3}}>{p.label}</div>
+                padding: '12px 18px 11px', borderRadius: 999, whiteSpace: 'nowrap', letterSpacing: 0.3}}>{p.label}</div>
             </div>
           );
         })}

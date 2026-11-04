@@ -18,7 +18,7 @@ export const config = {
     line4: 'Winter Sale pricing until December 31',
     site: 'boundarybuilders.ca',
     urgency: ['Don’t wait for spring', 'We install all winter', 'Last chance to lock in this price'],
-    sticker: 'WINTER SALE · ENDS DEC 31 · ',
+    sticker: 'WINTER SALE\u00a0·\u00a0ENDS DEC 31\u00a0·\u00a0',   // non-breaking spaces keep the gaps even around the ring
     endCard: {
       title: 'Last chance.',
       sub: 'Winter Sale pricing ends December 31',
@@ -75,14 +75,14 @@ export const config = {
   },
 
   // Entrance timing of the opening (headline is on from frame 1)
-  intro: { subhead: 0.15, pill: 0.3, line4: 0.45, phone: 0.35, card: 0.55, sticker: 0.95, site: 0.6 },
-  sticker: { diameter: 176, rotateSeconds: 24 },
+  intro: { subhead: 0.15, pill: 0.3, line4: 0.45, phone: 0.35, card: 0.55, sticker: 0.95 },   // the site line enters with the first urgency line
+  sticker: { diameter: 164, rotateSeconds: 24, inset: 40 },   // inset: how far the sticker's centre sits in from the card's right edge
 
   // Geometry per format (pixels). 4x5 = the approved image, 1:1 with cards.html. 9x16 keeps text out of the top 250 / bottom 650 px.
   layout: {
-    '4x5':  { width: 1080, height: 1350, block: { x: 80, y: 104, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 38, site: 26, photoPill: 22 },
+    '4x5':  { width: 1080, height: 1350, block: { x: 80, y: 104, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 38, site: 26, photoPill: 26 },
               phone: { x: 80, y: 462, w: 389, h: 808 }, card: { x: 509, y: 691, w: 491, h: 350 }, urgencyY: 1075, siteY: 1185, endCenterY: 690 },
-    '9x16': { width: 1080, height: 1920, block: { x: 80, y: 250, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 36, site: 26, photoPill: 22 },
+    '9x16': { width: 1080, height: 1920, block: { x: 80, y: 250, w: 920 }, sizes: { h1: 68, h2: 36, pill: 26, l4: 26, urgency: 36, site: 26, photoPill: 26 },
               phone: { x: 80, y: 614, w: 319, h: 656 }, card: { x: 439, y: 614, w: 561, h: 400 }, urgencyY: 1048, siteY: 1162, endCenterY: 760 },
   } as Record<Format, Layout>,
 };
