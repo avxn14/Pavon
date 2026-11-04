@@ -5,7 +5,7 @@ export type Format = '4x5' | '9x16';
 
 export const config = {
   fps: 30,
-  durationSeconds: 30,
+  durationSeconds: 28,   // voice-over is 24.6 s; end card holds ~5 s
 
   colors: { yellow: '#F5C400', charcoal: '#1A1A1A', white: '#FFFFFF' },
   font: { family: 'Outfit', file: 'fonts/Outfit-Variable.woff2' },
@@ -45,7 +45,7 @@ export const config = {
     file: 'demo/demo.mp4',
     firstFrame: 'demo/first.png',
     lastFrame: 'demo/last.png',
-    landing: 12.6,                 // seconds INTO THE FILE where the price screen is on; it is placed at beats.priceScreen in the video
+    landing: 10.92,                 // seconds INTO THE FILE where the price screen is on; it is placed at beats.priceScreen in the video
     priceFocus: [0.5533, 0.3868],  // where the price sits in the recording (fraction of width/height), from capture/demo_meta.json
     zoomOrigin: [0.15, 0.42],      // the slow zoom scales about this point: keeps the page's left edge on screen while the price drifts to centre
     zoomTo: 1.18,
@@ -57,21 +57,21 @@ export const config = {
   audio: {
     voiceover: 'audio/voiceover.mp3',   // slot: drop the ElevenLabs file here
     music: 'audio/music.mp3',           // slot: light upbeat instrumental
-    voStart: 0.5,                       // video time at which the voice-over file begins
+    voStart: 1.0,                       // video time at which the voice-over file begins (headline alone for the first second)
     musicVolume: 0.16,
     musicFadeOut: 1.5,
   },
 
-  // When things happen (video seconds). ESTIMATED from the script until the real voice-over is in (see tools/retime.py).
+  // When things happen (video seconds). from the voice-over's word timestamps (see tools/retime.py).
   beats: {
-    urgency1: 2.6,      // "Don't put it off till spring"  -> "Don't wait for spring"
-    priceScreen: 12.6,  // "...and there's your price"      -> recording lands on the price screen
-    metal: 14.2,        // "Metal, two-twenty a panel"      -> price pill pops, Metal highlighted
-    cedar: 16.3,        // "Cedar, two-ten"                 -> Cedar highlighted
-    urgency2: 18.7,     // "And yes, we're installing all winter" -> "We install all winter"
-    urgency3: 24.4,     // "This is your last chance"       -> "Last chance to lock in this price"
-    lastChance: 25.0,   // "last chance"                    -> sticker pulses
-    endCard: 26.0,      // "Lock it in at boundary builders dot C-A" -> end card
+    urgency1: 2.68,      // "Don't put it off till spring"  -> "Don't wait for spring"
+    priceScreen: 10.92,  // "...and there's your price"      -> recording lands on the price screen
+    metal: 12.08,        // "Metal, two-twenty a panel"      -> price pill pops, Metal highlighted
+    cedar: 13.68,        // "Cedar, two-ten"                 -> Cedar highlighted
+    urgency2: 16.04,     // "And yes, we're installing all winter" -> "We install all winter"
+    urgency3: 21.38,     // "This is your last chance"       -> "Last chance to lock in this price"
+    lastChance: 21.96,   // "last chance"                    -> sticker pulses
+    endCard: 23.04,      // "Lock it in at boundary builders dot C-A" -> end card
   },
 
   // Entrance timing of the opening (headline is on from frame 1)
