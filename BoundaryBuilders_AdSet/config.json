@@ -168,5 +168,82 @@
         "cta": "Get your exact price in 2 minutes"
       }
     }
+  },
+  "v3": {
+    "f06": {
+      "hero": "inputs/hero_black_cedar.jpg",
+      "focal": {
+        "1x1": [
+          0.5,
+          0.5
+        ],
+        "4x5": [
+          0.5,
+          0.5
+        ],
+        "9x16": [
+          0.52,
+          0.5
+        ]
+      },
+      "text": {
+        "tag": "WINTER SALE",
+        "headline": "Best fence price of the year.",
+        "price_big": "$220",
+        "price_rest": "/ panel · installed",
+        "small": "Ends [SALE END DATE]. Spots are limited.",
+        "cta": "Get your price in 2 minutes"
+      }
+    },
+    "f07": {
+      "screenshot": "inputs/f07_screenshot.png",
+      "photo": "inputs/hero_black_cedar.jpg",
+      "photo_focal": [
+        0.62,
+        0.5
+      ],
+      "text": {
+        "headline": "See your fence price in 2 minutes.",
+        "medium": "No phone call. No waiting a week.",
+        "pill": "Metal $220/panel · Cedar $210/panel · installed",
+        "small": "Winter Sale pricing until [SALE END DATE]"
+      }
+    },
+    "f08": {
+      "photos": [
+        "inputs/hero_black_cedar.jpg",
+        "inputs/brown_woodgrain.jpg",
+        "inputs/black_corner_lawn.jpg",
+        "inputs/f07_fence_black.jpg"
+      ],
+      "focals": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.55,
+          0.5
+        ],
+        [
+          0.5,
+          0.55
+        ],
+        [
+          0.45,
+          0.55
+        ]
+      ],
+      "linear_ft": 80,
+      "rate_per_ft": 29,
+      "text": {
+        "tag": "WINTER SALE PRICING",
+        "headline": "80 linear ft of black metal fence",
+        "calc": "80 ft × $29 / linear ft",
+        "total_suffix": "installed",
+        "small": "Installation included. Winter Sale until [SALE END DATE].",
+        "cta": "Get your exact price in 2 minutes"
+      }
+    }
   }
 }
