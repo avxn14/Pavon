@@ -26,7 +26,10 @@ for f, (w, h) in SIZES.items():
     for k in ("phone", "card"):
         x0, by0, x1, by1 = L[k]
         if x0 < 0 or by0 < 0 or x1 > w or by1 > h: fails.append(f"{f}: {k} {L[k]} outside the canvas")
-    px = im.convert("RGB")
+    px = im.convert("RGB"); px.load()
+    for y in list(range(0, 3)) + list(range(h - 3, h)):
+        bad = [x for x in range(0, w, 2) if max(abs(a - b) for a, b in zip(px.getpixel((x, y)), (0xF5, 0xC4, 0x00))) > 2]
+        if bad: fails.append(f"{f}: row {y} not clean background at x={bad[0]}..{bad[-1]} (shadow or element bleeds off the edge)")
     for (x, y) in [(5, 5), (w - 6, 5), (5, h - 6), (w - 6, h - 6)]:
         if px.getpixel((x, y)) != (0xF5, 0xC4, 0x00): fails.append(f"{f}: corner {(x, y)} is {px.getpixel((x, y))}, not #F5C400")
     print(f"{f}: {w}x{h} {sz/1024:.0f} KB text {L['textAreaPct']}% phone {L['phone']} card {L['card']}")
