@@ -65,10 +65,23 @@ def src_time_at(t_out):
         t -= d
     return last_src
 cut_lo = ev["contact:shown"] + contact_hold
+# the page's step swap leaves ~0.4 s of near-white screen (old pane out, new pane not yet in): hold the previous screen instead
+swap_windows = [(ev[k], ev[k] + 0.8) for k in ev if k.startswith("next:")]
+_blank_cache = {}
+def is_blank(f):
+    if f not in _blank_cache:
+        g = Image.open(os.path.join(CAP, "raw", f)).convert("L").resize((86, 186)); a = np.asarray(g)[20:170, :]
+        _blank_cache[f] = (a > 235).mean() > 0.9
+    return _blank_cache[f]
+last_good = None; held = 0
 for i in range(n_total):
     st = src_time_at(i / FPS)
     if cut_lo <= st < ev["calc:visible"] + 0.05: st = cut_lo - 0.001          # never show the filled form
-    f = frame_at(st); os.symlink(os.path.join(CAP, "raw", f), os.path.join(OUT, f"{i:05d}.png")); written += 1
+    f = frame_at(st)
+    if any(a <= st <= b for a, b in swap_windows) and is_blank(f) and last_good: f = last_good; held += 1
+    else: last_good = f
+    os.symlink(os.path.join(CAP, "raw", f), os.path.join(OUT, f"{i:05d}.png")); written += 1
+print(f"held the previous screen on {held} blank swap frames")
 mp4 = os.path.join(HERE, "public", "demo", "demo.mp4")
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(OUT, "%05d.png"), "-c:v", "libx264", "-preset", "slow", "-crf", "16",
                 "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-tune", "stillimage", mp4], check=True)
