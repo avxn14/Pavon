@@ -6,3 +6,4 @@ public/fences/
 public/audio/*.mp3
 public/audio/*.wav
 public/audio/*.json
+final/
